@@ -9,7 +9,7 @@ package org.usfirst.frc.team2791.robot.util;
 public class Constants {
 	
 	// Joystick constants
-	public static final double DEADZONE = 0.08;
+	public static final double DEADZONE = 0.05;
 	
 	public static double driveEncoderTicks = 256;
 	}
