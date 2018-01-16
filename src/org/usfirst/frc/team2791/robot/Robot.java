@@ -3,7 +3,9 @@ package org.usfirst.frc.team2791.robot;
 
 import org.usfirst.frc.team2791.robot.commands.ExampleCommand;
 import org.usfirst.frc.team2791.robot.subsystems.IntakeClaw;
+import org.usfirst.frc.team2791.robot.subsystems.Limelight;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
+
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -27,6 +29,7 @@ public class Robot extends IterativeRobot {
 	
 	public static ShakerDrivetrain drivetrain;
 	public static IntakeClaw intakeClaw;
+	public static Limelight limelight;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -45,6 +48,8 @@ public class Robot extends IterativeRobot {
 		intakeClaw = new IntakeClaw();
 		
 		oi = new OI();
+		limelight = new Limelight();
+
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
@@ -98,6 +103,19 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+
+		//For Limelight testing
+		boolean targetValid = limelight.validTarget();
+		double targetSkew = limelight.getTargetSkew();
+		double targetArea = limelight.getTargetArea();
+		double horizontalOffsetAngle = limelight.getOffsetAngleHorizontal();
+		double verticalOffsetAngle = limelight.getOffsetAngleVertical();
+
+		// Testing Camera
+		// Printing stats as string
+		String printCamera = "------------------------" + "\nLimelight: " + "\nValid Target: " + targetValid + "\nTarget Skew: " + targetSkew + "\nTarget Area: " + targetArea + "\nHorizontal Angle: " + horizontalOffsetAngle + "\nVertical Angle: " + verticalOffsetAngle;
+		System.out.println(printCamera);
+
 	}
 
 	@Override
