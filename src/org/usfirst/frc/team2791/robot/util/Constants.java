@@ -7,7 +7,10 @@ package org.usfirst.frc.team2791.robot.util;
  */
 
 public class Constants {
-	
+
+	// Server Constants
+	public static final String TEAM_NUMBER = "2791";
+	public static final String SERVER_PORT = "roboRIO-" + TEAM_NUMBER + "-FRC";
 	// Joystick constants
 	public static final double DEADZONE = 0.05;
 	
