@@ -1,11 +1,11 @@
 /*
-Name:
-Author:
-Date:
+Name: Limelight.java
+Author: Sam O
+Date: 1/18/2018
 
 Info:
-
-
+This is the limelight class to control robots limelight.
+More info: http://docs.limelightvision.io/en/latest/
 
 */
 
