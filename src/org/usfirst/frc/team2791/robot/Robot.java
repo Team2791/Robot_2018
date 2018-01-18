@@ -105,11 +105,11 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 
 		//For Limelight testing
-		boolean targetValid = limelight.validTarget();
+		boolean targetValid = limelight.targetValid();
 		double targetSkew = limelight.getTargetSkew();
 		double targetArea = limelight.getTargetArea();
-		double horizontalOffsetAngle = limelight.getOffsetAngleHorizontal();
-		double verticalOffsetAngle = limelight.getOffsetAngleVertical();
+		double horizontalOffsetAngle = limelight.getHorizontalOffset();
+		double verticalOffsetAngle = limelight.getVerticalOffset();
 
 		// Testing Camera
 		// Printing stats as string
