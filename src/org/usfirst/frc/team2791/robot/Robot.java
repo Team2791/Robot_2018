@@ -104,17 +104,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 
-		//For Limelight testing
-		boolean targetValid = limelight.targetValid();
-		double targetSkew = limelight.getTargetSkew();
-		double targetArea = limelight.getTargetArea();
-		double horizontalOffsetAngle = limelight.getHorizontalOffset();
-		double verticalOffsetAngle = limelight.getVerticalOffset();
 
-		// Testing Camera
-		// Printing stats as string
-		String printCamera = "------------------------" + "\nLimelight: " + "\nValid Target: " + targetValid + "\nTarget Skew: " + targetSkew + "\nTarget Area: " + targetArea + "\nHorizontal Angle: " + horizontalOffsetAngle + "\nVertical Angle: " + verticalOffsetAngle;
-		System.out.println(printCamera);
 
 	}
 
@@ -134,8 +124,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-	}
 
+	}
 	/**
 	 * This function is called periodically during test mode
 	 */
