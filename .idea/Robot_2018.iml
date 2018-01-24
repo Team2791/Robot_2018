@@ -11,22 +11,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
-      <library name="WPILib User Lib Directory">
-        <CLASSES>
-          <root url="file://$USER_HOME$/wpilib/user/java/lib" />
-        </CLASSES>
-        <JAVADOC>
-          <root url="file://$USER_HOME$/wpilib/user/java/lib" />
-        </JAVADOC>
-        <SOURCES>
-          <root url="file://$USER_HOME$/wpilib/user/java/lib" />
-        </SOURCES>
-        <jarDirectory url="file://$USER_HOME$/wpilib/user/java/lib" recursive="true" />
-        <jarDirectory url="file://$USER_HOME$/wpilib/user/java/lib" recursive="true" type="JAVADOC" />
-        <jarDirectory url="file://$USER_HOME$/wpilib/user/java/lib" recursive="true" type="SOURCES" />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
       <library name="WPILib Libraries">
         <CLASSES>
           <root url="file://$USER_HOME$/wpilib/java/current/lib" />
@@ -40,6 +24,22 @@
         <jarDirectory url="file://$USER_HOME$/wpilib/java/current/lib" recursive="true" />
         <jarDirectory url="file://$USER_HOME$/wpilib/java/current/lib" recursive="true" type="JAVADOC" />
         <jarDirectory url="file://$USER_HOME$/wpilib/java/current/lib" recursive="true" type="SOURCES" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="WPILib User Lib Directory">
+        <CLASSES>
+          <root url="file://$USERLIBS_DIR$/java/lib" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="file://$USERLIBS_DIR$/java/lib" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="file://$USERLIBS_DIR$/java/lib" />
+        </SOURCES>
+        <jarDirectory url="file://$USERLIBS_DIR$/java/lib" recursive="true" />
+        <jarDirectory url="file://$USERLIBS_DIR$/java/lib" recursive="true" type="JAVADOC" />
+        <jarDirectory url="file://$USERLIBS_DIR$/java/lib" recursive="true" type="SOURCES" />
       </library>
     </orderEntry>
   </component>
