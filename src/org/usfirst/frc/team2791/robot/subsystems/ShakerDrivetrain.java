@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * 
  * @author team2791: See Robot.java for contact info
  */
+
 public class ShakerDrivetrain extends Subsystem{
 
 	//Spark speed controllers can be controlled with the WPI Talon class.
@@ -47,8 +48,9 @@ public class ShakerDrivetrain extends Subsystem{
 		shakyDrive = new RobotDrive(leftSpark, rightSpark);
 		
 		//Inverts the motor outputs so that the right and left motors both turn the right direction for forward drive
-		shakyDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
-		shakyDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+		shakyDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, false);
+		shakyDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, false);
+		//The outputs are reversed for optimal test of the intkake
 
 		// stops all motors right away just in case
 		shakyDrive.stopMotor();
