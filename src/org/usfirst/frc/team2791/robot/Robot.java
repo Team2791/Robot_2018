@@ -1,7 +1,6 @@
 
 package org.usfirst.frc.team2791.robot;
 
-import org.usfirst.frc.team2791.robot.commands.ExampleCommand;
 import org.usfirst.frc.team2791.robot.subsystems.IntakeClaw;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
 import org.usfirst.frc.team2791.robot.util.Limelight;
@@ -50,7 +49,6 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		limelight = new Limelight();
 
-		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 	}

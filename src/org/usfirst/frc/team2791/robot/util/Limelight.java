@@ -29,9 +29,10 @@ public class Limelight {
     private double latency;
 
 
-    public void Limelight(){
+    @SuppressWarnings("deprecation")
+	public void Limelight(){
         // Set table to limelight
-        this.table = NetworkTable.getTable("limelight");
+        table = NetworkTable.getTable("limelight");
 
         // Get stats
         this.horizontalOffset = this.table.getNumber("tx", 0);
@@ -42,25 +43,34 @@ public class Limelight {
         this.validTarget = this.table.getNumber("tv", 0) == 1.0;
 
     }
+    
+    public void updateInformation() {
+        horizontalOffset = table.getNumber("tx", 0);
+        verticalOffset = table.getNumber("ty", 0);
+        targetArea = table.getNumber("ta", 0);
+        targetSkew = table.getNumber("ts", 0);
+        latency = table.getNumber("tl", 0);
+        validTarget = table.getNumber("tv", 0) == 1.0;
+    }
 
     // Methods to get information
     public double getHorizontalOffset(){
-        return this.horizontalOffset;
+        return horizontalOffset;
     }
     public double getVerticalOffset(){
-        return this.verticalOffset;
+        return verticalOffset;
     }
     public double getTargetArea(){
-        return this.targetArea;
+        return targetArea;
     }
     public double getTargetSkew(){
-        return this.targetSkew;
+        return targetSkew;
     }
     public double getLatency(){
-        return this.latency;
+        return latency;
     }
     public boolean targetValid(){
-        return this.validTarget;
+        return validTarget;
     }
 
     // Methods to set Camera settings
@@ -69,32 +79,32 @@ public class Limelight {
     // String mode must be either "on" or "off" or "blink"
     public void setLed(String mode){
         if(mode.equals("on")){
-            this.table.putNumber("ledMode", 0);
+            table.putNumber("ledMode", 0);
         }
         else if(mode.equals("off")){
-            this.table.putNumber("ledMode", 1);
+            table.putNumber("ledMode", 1);
         }
         else if(mode.equals("blink")){
-            this.table.putNumber("ledMode", 2);
+            table.putNumber("ledMode", 2);
         }
         else{
             System.out.println("Limelight:   setLed(String mode) -----> mode not recognised\nSetting Leds to blink.");
-            this.table.putNumber("ledMode", 2);
+            table.putNumber("ledMode", 2);
         }
     }
+    
     // Sets the camera to a operation mode
     // String mode must be either "vision" or "driver"
     public void setCameraMode(String mode){
         if(mode.equals("vision")){
-            this.table.putNumber("camMode", 0);
+            table.putNumber("camMode", 0);
         }
         else if(mode.equals("driver")){
-            this.table.putNumber("camMode", 1);
+            table.putNumber("camMode", 1);
         }
         else{
             System.out.println("Limelight:   setCameraMode(String mode) -----> mode not recognised\nSetting camera to vision.");
-            this.table.putNumber("camMode", 0);
+            table.putNumber("camMode", 0);
         }
-
     }
 }
