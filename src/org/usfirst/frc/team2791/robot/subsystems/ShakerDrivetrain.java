@@ -31,7 +31,7 @@ public class ShakerDrivetrain extends Subsystem{
 	public ADXRS450_Gyro gyro;
 	public boolean gyroDisabled = false;
 
-	protected RobotDrive shakyDrive = null;
+
 	
 	//Determines the amount of distance traveled for every pulse read on the encoders
 //	private double distancePerPulse = Util.tickToFeet(CONSTANTS.driveEncoderTicks, CONSTANTS.WHEEL_DIAMETER_IN_FEET);
