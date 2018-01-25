@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2791.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.RobotMap;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.DriveWithJoystick;
@@ -21,10 +23,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class ShakerDrivetrain extends Subsystem{
 
-	//Spark speed controllers can be controlled with the WPI Talon class.
-	private Spark leftSpark;    
-	private Spark rightSpark;
-	
+	// Victor speed controllers can be controlled with the WPI Talon class.
+	private VictorSPX victorLeft1, victorLeft2, victorLeft3;
+	private VictorSPX victorRight1, victorRight2, victorRight3;
+	VictorSPX[] leftDrive;
+	VictorSPX[] rightDrive;
+
 	protected Encoder leftDriveEncoder = null;
 	protected Encoder rightDriveEncoder = null;
 
@@ -37,21 +41,30 @@ public class ShakerDrivetrain extends Subsystem{
 //	private double distancePerPulse = Util.tickToFeet(CONSTANTS.driveEncoderTicks, CONSTANTS.WHEEL_DIAMETER_IN_FEET);
 
 	public ShakerDrivetrain(){
-		leftSpark = new Spark(RobotMap.DRIVE_SPARK_LEFT_PORT);
-		rightSpark = new Spark(RobotMap.DRIVE_SPARK_RIGHT_PORT);
+		victorLeft1 = new VictorSPX(RobotMap.VICTOR_LEFT_1);
+		victorLeft2 = new VictorSPX(RobotMap.VICTOR_LEFT_2);
+		victorLeft3 = new VictorSPX(RobotMap.VICTOR_LEFT_3);
+		victorRight1 = new VictorSPX(RobotMap.VICTOR_RIGHT_1);
+		victorRight2 = new VictorSPX(RobotMap.VICTOR_RIGHT_2);
+		victorRight3 = new VictorSPX(RobotMap.VICTOR_RIGHT_3);
+
+		leftDrive = new VictorSPX[]{victorLeft1, victorLeft2, victorLeft3};
+		rightDrive = new VictorSPX[]{victorRight1, victorRight2, victorRight3};
 
 		leftDriveEncoder = new Encoder(RobotMap.LEFT_DRIVE_ENCODER_PORT_A, RobotMap.LEFT_DRIVE_ENCODER_PORT_B);
 		rightDriveEncoder = new Encoder(RobotMap.RIGHT_DRIVE_ENCODER_PORT_A,RobotMap.RIGHT_DRIVE_ENCODER_PORT_B);
 
-		//Uses the Sparks to create a robotDrive (it has methods that allow for easier control of the whole drivetrain at once)
-		shakyDrive = new RobotDrive(leftSpark, rightSpark);
 		
 		//Inverts the motor outputs so that the right and left motors both turn the right direction for forward drive
-		shakyDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
-		shakyDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+		for(int i = 0; i < leftDrive.length; i++) {
+			leftDrive[i].setInverted(true);
+		}
+		for(int i = 0; i < rightDrive.length; i++){
+			rightDrive[i].setInverted(false);
+		}
 
 		// stops all motors right away just in case
-		shakyDrive.stopMotor();
+		disable();
 
 		leftDriveEncoder.reset();
 		rightDriveEncoder.reset();
@@ -76,11 +89,17 @@ public class ShakerDrivetrain extends Subsystem{
 		setDefaultCommand(new DriveWithJoystick());
 	}
 
+
 	/**
 	 * Stops the drivetrain
 	 */
 	public void disable() {
-		shakyDrive.stopMotor();
+		for (int i = 0; i < leftDrive.length; i++){
+			leftDrive[i].set(ControlMode.PercentOutput, 0.0);
+		}
+		for(int i = 0; i < rightDrive.length; i++){
+			rightDrive[i].set(ControlMode.PercentOutput, 0.0);
+		}
 	}
 	
 	/** 
@@ -89,7 +108,12 @@ public class ShakerDrivetrain extends Subsystem{
 	 * @param right motor output*/
 	public void setLeftRightMotorOutputs(double left, double right){
 		SmartDashboard.putString("LeftOutput vs RightOutput", left+":"+right);
-		shakyDrive.setLeftRightMotorOutputs(left, right);
+		for(int i = 0; i < leftDrive.length; i++){
+			leftDrive[i].set(ControlMode.PercentOutput, left * 100);
+		}
+		for(int i = 0; i < rightDrive.length; i++){
+			rightDrive[i].set(ControlMode.PercentOutput, right * 100);
+		}
 	}
 //
 //	/**

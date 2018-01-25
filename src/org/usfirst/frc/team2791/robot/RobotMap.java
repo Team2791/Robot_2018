@@ -13,9 +13,13 @@ public class RobotMap {
 	// ===== Actuators =====
 	
 	// Drive train
-	public static final int DRIVE_SPARK_LEFT_PORT = 0;
-	public static final int DRIVE_SPARK_RIGHT_PORT = 1;
-	
+	public static final int VICTOR_LEFT_1 = 20;
+	public static final int VICTOR_LEFT_2 = 21;
+	public static final int VICTOR_LEFT_3 = 22;
+	public static final int VICTOR_RIGHT_1 = 23;
+	public static final int VICTOR_RIGHT_2 = 24;
+	public static final int VICTOR_RIGHT_3 = 25;
+
 	// Intake
 	public static final int INTAKE_SPARK_LEFT_PORT = 2;
 	public static final int INTAKE_SPARK_RIGHT_PORT = 3;

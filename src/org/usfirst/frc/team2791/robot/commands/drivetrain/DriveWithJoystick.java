@@ -2,6 +2,7 @@ package org.usfirst.frc.team2791.robot.commands.drivetrain;
 
 import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
+import org.usfirst.frc.team2791.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -12,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveWithJoystick extends Command {
 
-	private double speedMultiplier = 1.0;
+	private double speedMultiplier = Constants.SPEED_MULTIPLIER;
 
 	public DriveWithJoystick() {
 		super("DriveWithJoystick");
