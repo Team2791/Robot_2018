@@ -47,7 +47,7 @@ public class DriveWithJoystick extends Command {
 
 	protected void interrupted() {
 		new DriveWithJoystick();
-		System.out.println("Drive with joysticcccccccck interrupted.");
+		System.out.println("Drive with joystick interrupted.");
 	}
 
 }
