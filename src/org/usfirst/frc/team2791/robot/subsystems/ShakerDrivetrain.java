@@ -113,6 +113,17 @@ public class ShakerDrivetrain extends Subsystem{
 			rightDrive[i].set(ControlMode.PercentOutput, right * 100);
 		}
 	}
+	 // inDriveMode == True ---> Drive, inDriveMode == False ---> Ramp
+	void setDriveOrRampMode(boolean inDriveMode){
+		// change gear
+		// I'm thinking of making a command for this
+		if(inDriveMode){
+			System.out.println("Setting Gear Mode to Drive");
+		}
+		else if(!inDriveMode){
+			System.out.println("Setting Gear Mode to Ramp");
+		}
+	}
 //
 //	/**
 //	 * Sets PID values for Stationary Angle, Moving Angle, and Distance for use in auto
