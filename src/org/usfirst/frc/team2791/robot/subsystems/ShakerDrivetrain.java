@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team2791.robot.util.Constants;
 
 /**
  * This class corresponds to the drivetrain. The drivetrain is 6 wheel, center drop with 2 CIMs, 1 miniCIM on each
@@ -114,14 +115,15 @@ public class ShakerDrivetrain extends Subsystem{
 		}
 	}
 	 // inDriveMode == True ---> Drive, inDriveMode == False ---> Ramp
-	void setDriveOrRampMode(boolean inDriveMode){
-		// change gear
+	void setDriveOrRampMode(boolean inDriveMode, double time) {
+		// change gear only if time is larger than Constants.RAMP_RELEASE_TIME
 		// I'm thinking of making a command for this
-		if(inDriveMode){
-			System.out.println("Setting Gear Mode to Drive");
-		}
-		else if(!inDriveMode){
-			System.out.println("Setting Gear Mode to Ramp");
+		if (time >= Constants.RAMP_RELEASE_TIME) {
+			if (inDriveMode) {
+				System.out.println("Setting Gear Mode to Drive");
+			} else if (!inDriveMode) {
+				System.out.println("Setting Gear Mode to Ramp");
+			}
 		}
 	}
 //

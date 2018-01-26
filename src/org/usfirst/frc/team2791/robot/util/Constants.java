@@ -17,4 +17,11 @@ public class Constants {
 	public static double driveEncoderTicks = 256;
 	public static final double SPEED_MULTIPLIER = 1.0;
 	public static final double WHEEL_DIAMETER_IN_FEET = 1.0;
+
+	// Time when ramps are allowed to be released
+	// (3 * 60) - 30 = (3 minutes * 60 seconds) - 30 seconds
+	public static final double RAMP_RELEASE_TIME = (3 * 60) - 30;
+	// How off can Robot be angled from target
+	// Measured in degrees
+	public static final double TARGET_MARGIN_OF_ERROR = 3.0;
 	}
