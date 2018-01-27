@@ -28,8 +28,8 @@ public class ShakerDrivetrain extends Subsystem{
 	VictorSPX[] leftDrive;
 	VictorSPX[] rightDrive;
 
-	protected Encoder leftDriveEncoder = null;
-	protected Encoder rightDriveEncoder = null;
+	public Encoder leftDriveEncoder;
+	public Encoder rightDriveEncoder;
 
 	public ADXRS450_Gyro gyro;
 	public boolean gyroDisabled = false;

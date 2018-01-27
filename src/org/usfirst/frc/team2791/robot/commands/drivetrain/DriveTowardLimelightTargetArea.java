@@ -11,17 +11,16 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.Timer;
 
 
-public class DriveTowardLimelightTarget extends Command {
+public class DriveTowardLimelightTargetArea extends Command {
+    private double areaLimit;
+
     private Limelight limelight;
     private double horizontalOffset, verticalOffset, targetArea, targetSkew, targetLatency;
     private boolean targetValid;
-
-    private double distanceToTarget;
-    private Timer time;
     private ShakerDrivetrain drivetrain;
     private double defaultSpeed = 5.0;
 
-    public DriveTowardLimelightTarget() {
+    public DriveTowardLimelightTargetArea(double areaLimit) {
         setInterruptible(true);
         limelight = new Limelight();
         targetValid = limelight.targetValid();
@@ -35,10 +34,7 @@ public class DriveTowardLimelightTarget extends Command {
             targetArea = limelight.getTargetArea();
             targetSkew = limelight.getTargetSkew();
             targetLatency = limelight.getLatency();
-            time = new Timer();
             drivetrain = new ShakerDrivetrain();
-            distanceToTarget = 0;
-
         }
 
     }
@@ -50,7 +46,6 @@ public class DriveTowardLimelightTarget extends Command {
      */
     @Override
     protected void initialize() {
-        time.start();
 
 
     }
@@ -60,6 +55,7 @@ public class DriveTowardLimelightTarget extends Command {
      * The execute method is called repeatedly when this Command is
      * scheduled to run until this Command either finishes or is canceled.
      */
+
     @Override
     protected void execute() {
         // Checks if Robot is lined up with the target
@@ -97,8 +93,14 @@ public class DriveTowardLimelightTarget extends Command {
      */
     @Override
     protected boolean isFinished() {
-        // TODO: Make this return true when this Command no longer needs to run execute()
-        return false;
+        double areaCurrent = limelight.getTargetArea();
+
+        if(areaCurrent >= areaLimit){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
 
