@@ -19,7 +19,7 @@ public class DriveTowardLimelightTargetDistance extends Command {
     private double horizontalOffset, verticalOffset, targetArea, targetSkew, targetLatency;
     private boolean targetValid;
     private ShakerDrivetrain drivetrain;
-    private double defaultSpeed = 5.0;
+    private double speedMultiplier = Constants.SPEED_MULTIPLIER;
 
     //param distanceLimit is how far the robot is allowed to travel in feet
     public DriveTowardLimelightTargetDistance(double distanceLimit) {
@@ -66,15 +66,15 @@ public class DriveTowardLimelightTargetDistance extends Command {
         // Checks if Robot is lined up with the target
         // If the angle is between -TARGET_MARGIN_OF_ERROR and TARGET_MARGIN_OF_ERROR ---> Drive Forward
         if(horizontalOffset >= Constants.TARGET_MARGIN_OF_ERROR * -1 && horizontalOffset <= Constants.TARGET_MARGIN_OF_ERROR){
-            drivetrain.setLeftRightMotorOutputs(defaultSpeed, defaultSpeed);
+            drivetrain.setLeftRightMotorOutputs(speedMultiplier, speedMultiplier);
         }
         // If the angle is less than -TARGET_MARGIN_OF_ERROR ---> turn Left by spinning left wheels backwards (-1) and right wheels forward (1)
         else if(horizontalOffset <= -1 * Constants.TARGET_MARGIN_OF_ERROR){
-            drivetrain.setLeftRightMotorOutputs(-1 * defaultSpeed, 1 * defaultSpeed);
+            drivetrain.setLeftRightMotorOutputs(-1 * speedMultiplier, 1 * speedMultiplier);
         }
         // If the angle is greater than TARGET_MARGIN_OF_ERROR ---> turn Right by spinning right wheels backwards (-1) and left wheels forward (1)
         else if(horizontalOffset >= Constants.TARGET_MARGIN_OF_ERROR){
-            drivetrain.setLeftRightMotorOutputs(1 * defaultSpeed, -1 * defaultSpeed);
+            drivetrain.setLeftRightMotorOutputs(1 * speedMultiplier, -1 * speedMultiplier);
         }
     }
 

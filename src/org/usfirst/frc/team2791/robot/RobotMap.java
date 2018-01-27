@@ -24,6 +24,8 @@ public class RobotMap {
 	public static final int INTAKE_SPARK_LEFT_PORT = 2;
 	public static final int INTAKE_SPARK_RIGHT_PORT = 3;
 
+	// Ramp release double soleniod
+	public static final int RAMP_RELEASE_SOLENIOD = 5;
 	
 	// ===== Sensors =====
 	
