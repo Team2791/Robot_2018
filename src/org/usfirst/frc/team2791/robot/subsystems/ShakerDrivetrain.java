@@ -25,8 +25,8 @@ public class ShakerDrivetrain extends Subsystem{
 	// Victor speed controllers can be controlled with the WPI Talon class.
 	private VictorSPX victorLeft1, victorLeft2, victorLeft3;
 	private VictorSPX victorRight1, victorRight2, victorRight3;
-	VictorSPX[] leftDrive;
-	VictorSPX[] rightDrive;
+	private VictorSPX[] leftDrive;
+	private VictorSPX[] rightDrive;
 
 	public Encoder leftDriveEncoder;
 	public Encoder rightDriveEncoder;
@@ -47,19 +47,20 @@ public class ShakerDrivetrain extends Subsystem{
 		victorRight2 = new VictorSPX(RobotMap.VICTOR_RIGHT_2);
 		victorRight3 = new VictorSPX(RobotMap.VICTOR_RIGHT_3);
 
-		leftDrive = new VictorSPX[]{victorLeft1, victorLeft2, victorLeft3};
-		rightDrive = new VictorSPX[]{victorRight1, victorRight2, victorRight3};
+		leftDrive = new VictorSPX[] {victorLeft1, victorLeft2, victorLeft3};
+		rightDrive = new VictorSPX[] {victorRight1, victorRight2, victorRight3};
 
 		leftDriveEncoder = new Encoder(RobotMap.LEFT_DRIVE_ENCODER_PORT_A, RobotMap.LEFT_DRIVE_ENCODER_PORT_B);
 		rightDriveEncoder = new Encoder(RobotMap.RIGHT_DRIVE_ENCODER_PORT_A,RobotMap.RIGHT_DRIVE_ENCODER_PORT_B);
 
 		
 		//Inverts the motor outputs so that the right and left motors both turn the right direction for forward drive
+		boolean letSideInverted = true;
 		for(int i = 0; i < leftDrive.length; i++) {
-			leftDrive[i].setInverted(true);
+			leftDrive[i].setInverted(letSideInverted);
 		}
 		for(int i = 0; i < rightDrive.length; i++){
-			rightDrive[i].setInverted(false);
+			rightDrive[i].setInverted(!letSideInverted);
 		}
 
 		// stops all motors right away just in case
@@ -101,6 +102,7 @@ public class ShakerDrivetrain extends Subsystem{
 		}
 	}
 	
+
 	/** 
 	 * Drivetrain motor outputs; Accepts values between -1.0 and +1.0
 	 * @param left motor output
@@ -108,12 +110,13 @@ public class ShakerDrivetrain extends Subsystem{
 	public void setLeftRightMotorOutputs(double left, double right){
 		SmartDashboard.putString("LeftOutput vs RightOutput", left+":"+right);
 		for(int i = 0; i < leftDrive.length; i++){
-			leftDrive[i].set(ControlMode.PercentOutput, left * 100);
+			leftDrive[i].set(ControlMode.PercentOutput, left);
 		}
 		for(int i = 0; i < rightDrive.length; i++){
-			rightDrive[i].set(ControlMode.PercentOutput, right * 100);
+			rightDrive[i].set(ControlMode.PercentOutput, right);
 		}
 	}
+	
 	/* // inDriveMode == True ---> Drive, inDriveMode == False ---> Ramp
 	void setDriveOrRampMode(boolean inDriveMode, double time) {
 		// change gear only if time is larger than Constants.RAMP_RELEASE_TIME

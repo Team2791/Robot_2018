@@ -1,9 +1,7 @@
 package org.usfirst.frc.team2791.robot;
 
+import org.usfirst.frc.team2791.robot.commands.drivetrain.RunDrivetrainOnlyOneSide;
 import org.usfirst.frc.team2791.robot.shakerJoystick.ShakerGamePad;
-
-import org.usfirst.frc.team2791.robot.commands.drivetrain.*;
-import org.usfirst.frc.team2791.robot.commands.intakeclaw.*;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -28,52 +26,16 @@ public class OI {
 	
 	public OI() {
 		initButtons();
-//		initDpad();
-
-
-		// Map buttons and triggers
-		/*operatorX.whileHeld(new RunWallShot());
-		operatorY.whileHeld(new RunLongShot());
-
-		operatorA.whileHeld(new IntakeOn());
-		operatorB.whileHeld(new ClimberOn());
-
-		operatorRB.whileHeld(new HopperOn());
-		operatorLB.whileHeld(new HopperOnBackwards());
-
-		operatorDpadDown.whenPressed(new GearMechActiveIntake()); //intake gear w/ ir sensor logic
-		operatorDpadUp.whenPressed(new GearMechUp());
-
-		operatorDpadLeft.whileHeld(new AimAndShoot());
-		operatorDpadRight.whenPressed(new StationaryVisionTurn(0.5,1.5));
-
-		operatorLS.whenPressed(new GearMechDownRunMotors()); //intake gear w/o ir sensor logic
-		operatorRS.whileHeld(new ClimberOnSlow());
-
-		operatorBack.whenPressed(new StopClimberAndDisengage());//safety
-		operatorStart.whenPressed(new ShooterHopperSafety());//safety*/
 
 		/********************************** Driver Button Assignments ****************************************/
 
-		//driverX.whileHeld(new GearMechScore());
+//		driverY.whileHeld(new RunIntakeWithJoystick());
+//		driverB.whenPressed(new DriveTowardLimelightTargetTime(2000));// TODO Remove this command from driver and give to operator instead of long shot
 
-		driverY.whileHeld(new RunIntakeWithJoystick());
-
-		//driverA.whileHeld(new GearPoop());
-
-		driverB.whenPressed(new DriveTowardLimelightTargetTime(2000));// TODO Remove this command from driver and give to operator instead of long shot
-
-		driverLB.whileHeld(new DriveWithJoystick());
-		driverRB.whileHeld(new DriveWithJoystick());
-
-		//driverDpadLeft.whenPressed(new StationaryVisionTurn(0.5, 1.5));
-		//driverDpadRight.whenPressed(new DriveStraightVision(CONSTANTS.DRIVE_VISION_SWEET_SPOT_FEET, .25));
-
-		//driverBack.whileHeld(new CalibrateGyro());
-		//driverDpadUp.whileHeld(new RunVisionShot());
-
+		driverA.whileHeld(new RunDrivetrainOnlyOneSide(true, 0.2)); // true runs the left side
+		driverB.whileHeld(new RunDrivetrainOnlyOneSide(false, 0.2)); // flase runs the right side
+		
 		System.out.println("OI initialized");
-
 	}
 
 
