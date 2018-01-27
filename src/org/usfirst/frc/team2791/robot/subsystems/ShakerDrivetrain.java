@@ -1,7 +1,9 @@
 package org.usfirst.frc.team2791.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.RobotMap;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.DriveWithJoystick;
@@ -23,10 +25,12 @@ import org.usfirst.frc.team2791.robot.util.Constants;
 public class ShakerDrivetrain extends Subsystem{
 
 	// Victor speed controllers can be controlled with the WPI Talon class.
-	private VictorSPX victorLeft1, victorLeft2, victorLeft3;
-	private VictorSPX victorRight1, victorRight2, victorRight3;
-	private VictorSPX[] leftDrive;
-	private VictorSPX[] rightDrive;
+	private VictorSPX victorLeft1, victorLeft2;
+	private TalonSRX talonLeft3;
+	private VictorSPX victorRight1, victorRight2;
+	private TalonSRX  talonRight3;
+	private BaseMotorController[] leftDrive;
+	private BaseMotorController[] rightDrive;
 
 	public Encoder leftDriveEncoder;
 	public Encoder rightDriveEncoder;
@@ -42,19 +46,19 @@ public class ShakerDrivetrain extends Subsystem{
 	public ShakerDrivetrain(){
 		victorLeft1 = new VictorSPX(RobotMap.VICTOR_LEFT_1);
 		victorLeft2 = new VictorSPX(RobotMap.VICTOR_LEFT_2);
-		victorLeft3 = new VictorSPX(RobotMap.VICTOR_LEFT_3);
+		talonLeft3 = new TalonSRX(RobotMap.TALON_LEFT_3);
 		victorRight1 = new VictorSPX(RobotMap.VICTOR_RIGHT_1);
 		victorRight2 = new VictorSPX(RobotMap.VICTOR_RIGHT_2);
-		victorRight3 = new VictorSPX(RobotMap.VICTOR_RIGHT_3);
+		talonRight3 = new TalonSRX(RobotMap.TALON_RIGHT_3);
 
-		leftDrive = new VictorSPX[] {victorLeft1, victorLeft2, victorLeft3};
-		rightDrive = new VictorSPX[] {victorRight1, victorRight2, victorRight3};
+		leftDrive = new BaseMotorController[] {victorLeft1, victorLeft2, talonLeft3};
+		rightDrive = new BaseMotorController[] {victorRight1, victorRight2, talonRight3};
 
 		leftDriveEncoder = new Encoder(RobotMap.LEFT_DRIVE_ENCODER_PORT_A, RobotMap.LEFT_DRIVE_ENCODER_PORT_B);
 		rightDriveEncoder = new Encoder(RobotMap.RIGHT_DRIVE_ENCODER_PORT_A,RobotMap.RIGHT_DRIVE_ENCODER_PORT_B);
 
 		
-		//Inverts the motor outputs so that the right and left motors both turn the right direction for forward drive
+		//Inverts the motor outputs so that the right and lef 	t motors both turn the right direction for forward drive
 		boolean letSideInverted = true;
 		for(int i = 0; i < leftDrive.length; i++) {
 			leftDrive[i].setInverted(letSideInverted);
