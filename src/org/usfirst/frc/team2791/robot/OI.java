@@ -1,7 +1,10 @@
 package org.usfirst.frc.team2791.robot;
 
+import org.usfirst.frc.team2791.robot.commands.drivetrain.limelightTarget.*;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.RunDrivetrainOnlyOneSide;
 import org.usfirst.frc.team2791.robot.shakerJoystick.ShakerGamePad;
+
+
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -23,7 +26,7 @@ public class OI {
 
 	public static ShakerGamePad driver = new ShakerGamePad(0);
 	public static ShakerGamePad operator = new ShakerGamePad(1);
-	
+	public static DriveTowardLimelightTarget driveTowardLimelightTarget = new DriveTowardLimelightTarget();
 	public OI() {
 		initButtons();
 
@@ -34,7 +37,9 @@ public class OI {
 
 		driverA.whileHeld(new RunDrivetrainOnlyOneSide(true, 0.2)); // true runs the left side
 		driverB.whileHeld(new RunDrivetrainOnlyOneSide(false, 0.2)); // flase runs the right side
-		
+
+		driverX.whileHeld(new TurnTowardLimelightTarget());
+		driverY.whileHeld(new DriveTowardLimelightTargetTime(1 * 1e6));
 		System.out.println("OI initialized");
 	}
 

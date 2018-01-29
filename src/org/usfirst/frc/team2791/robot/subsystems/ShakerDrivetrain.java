@@ -14,6 +14,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2791.robot.util.Constants;
 
+
+
 /**
  * This class corresponds to the drivetrain. The drivetrain is 6 wheel, center drop with 2 CIMs, 1 miniCIM on each
  * side. Each motor output is controlled by a Spark speed controller. The Rio outputs signal through a single PWM 
@@ -22,6 +24,7 @@ import org.usfirst.frc.team2791.robot.util.Constants;
  * 
  * @author team2791: See Robot.java for contact info
  */
+
 public class ShakerDrivetrain extends Subsystem{
 
 	// Victor speed controllers can be controlled with the WPI Talon class.
