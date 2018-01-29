@@ -8,6 +8,7 @@ import org.usfirst.frc.team2791.robot.shakerJoystick.ShakerGamePad;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.usfirst.frc.team2791.robot.util.Constants;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -33,13 +34,13 @@ public class OI {
 		/********************************** Driver Button Assignments ****************************************/
 
 //		driverY.whileHeld(new RunIntakeWithJoystick());
-//		driverB.whenPressed(new DriveTowardLimelightTargetTime(2000));// TODO Remove this command from driver and give to operator instead of long shot
 
-		driverA.whileHeld(new RunDrivetrainOnlyOneSide(true, 0.2)); // true runs the left side
-		driverB.whileHeld(new RunDrivetrainOnlyOneSide(false, 0.2)); // flase runs the right side
+		driverA.whileHeld(new RunDrivetrainOnlyOneSide(true, Constants.SPEED_MULTIPLIER)); // true runs the left side
+		driverB.whileHeld(new RunDrivetrainOnlyOneSide(false, Constants.SPEED_MULTIPLIER)); // flase runs the right side
+
 
 		driverX.whileHeld(new TurnTowardLimelightTarget());
-		driverY.whileHeld(new DriveTowardLimelightTargetTime(1 * 1e6));
+		driverY.whileHeld(new DriveTowardLimelightTargetTime(2 * 1e6));
 		System.out.println("OI initialized");
 	}
 
