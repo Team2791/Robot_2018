@@ -27,7 +27,7 @@ public class OI {
 
 	public static ShakerGamePad driver = new ShakerGamePad(0);
 	public static ShakerGamePad operator = new ShakerGamePad(1);
-	public static DriveTowardLimelightTarget driveTowardLimelightTarget = new DriveTowardLimelightTarget();
+	//public static DriveTowardLimelightTarget driveTowardLimelightTarget = new DriveTowardLimelightTarget();
 	public OI() {
 		initButtons();
 
@@ -39,8 +39,8 @@ public class OI {
 		driverB.whileHeld(new RunDrivetrainOnlyOneSide(false, Constants.SPEED_MULTIPLIER)); // flase runs the right side
 
 
-		driverX.whileHeld(new TurnTowardLimelightTarget());
-		driverY.whileHeld(new DriveTowardLimelightTargetTime(2 * 1e6));
+		//driverX.whileHeld(new TurnTowardLimelightTarget());
+		//driverY.whileHeld(new DriveTowardLimelightTargetTime(2 * 1e6));
 		System.out.println("OI initialized");
 	}
 

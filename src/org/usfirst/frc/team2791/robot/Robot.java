@@ -31,8 +31,8 @@ public class Robot extends IterativeRobot {
 	public static IntakeClaw intakeClaw;
 	public static Limelight limelight;
 
-	Command autonomousCommand;
-	SendableChooser<Command> chooser = new SendableChooser<>();
+	//Command autonomousCommand;
+	//SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -46,13 +46,13 @@ public class Robot extends IterativeRobot {
 		
 		drivetrain = new ShakerDrivetrain();
 		intakeClaw = new IntakeClaw();
-		
-		oi = new OI();
 		limelight = new Limelight();
+		
 
-		chooser.addDefault("Default Auto", new ExampleCommand());
+		//chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
+		//SmartDashboard.putData("Auto mode", chooser);
+		oi = new OI();
 	}
 
 	/**
@@ -83,7 +83,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
+		//autonomousCommand = chooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -93,8 +93,8 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
-			autonomousCommand.start();
+		//if (autonomousCommand != null)
+			//autonomousCommand.start();
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		Scheduler.getInstance().run();
+		//Scheduler.getInstance().run();
 
 
 
@@ -114,8 +114,8 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null)
-			autonomousCommand.cancel();
+		//if (autonomousCommand != null)
+			//autonomousCommand.cancel();
 	}
 
 	/**
