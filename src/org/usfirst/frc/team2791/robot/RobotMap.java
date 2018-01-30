@@ -18,7 +18,7 @@ public class RobotMap {
 	public static final int TALON_LEFT_3 = 27;
 	public static final int VICTOR_RIGHT_1 = 36;
 	public static final int VICTOR_RIGHT_2 = 33;
-	public static final int TALON_RIGHT_3 = 24;
+	public static final int TALON_RIGHT_3 = 20;
 
 	// Intake
 	public static final int INTAKE_SPARK_LEFT_PORT = 2;
@@ -37,7 +37,17 @@ public class RobotMap {
 	public static final int LEFT_DRIVE_ENCODER_PORT_B = 1;
 	public static final int RIGHT_DRIVE_ENCODER_PORT_A = 2;
 	public static final int RIGHT_DRIVE_ENCODER_PORT_B = 3;
-	
+
+
+	// JOYSTICK PORTS
+	public static final int JOYSTICK_DRIVER_PORT = 0;
+	public static final int JOYSTICK_OPERATOR_PORT = 1;
+
+	//PDP Ports
+	public static final int POWER_RIGHT_DRIVE_A = 0;
+	public static final int POWER_RIGHT_DRIVE_B = 1;
+	public static final int POWER_LEFT_DRIVE_A = 2;
+	public static final int POWER_LEFT_DRIVE_B = 3;
 
 	
 }

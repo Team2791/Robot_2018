@@ -1,12 +1,13 @@
 package org.usfirst.frc.team2791.robot.commands.drivetrain.limelightTarget;
 
 
+import org.usfirst.frc.team2791.robot.Robot;
 //import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.*;
 import org.usfirst.frc.team2791.robot.util.Constants;
 import org.usfirst.frc.team2791.robot.util.Limelight;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
-
+import edu.wpi.first.wpilibj.smartdashboard.*;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.Timer;
 
@@ -21,22 +22,11 @@ public class TurnTowardLimelightTarget extends Command {
 
     public TurnTowardLimelightTarget() {
         setInterruptible(true);
-        limelight = new Limelight();
-        targetValid = limelight.targetValid();
-        if(!targetValid){
-            System.out.println("Target not found, exiting Drive toward target");
-            end();
-        }
-        else{
-            horizontalOffset = limelight.getHorizontalOffset();
-            verticalOffset = limelight.getVerticalOffset();
-            targetArea = limelight.getTargetArea();
-            targetSkew = limelight.getTargetSkew();
-            targetLatency = limelight.getLatency();
-            drivetrain = new ShakerDrivetrain();
+
+        	
         }
 
-    }
+    
 
 
     /**
@@ -45,7 +35,6 @@ public class TurnTowardLimelightTarget extends Command {
      */
     @Override
     protected void initialize() {
-
 
     }
 
@@ -57,15 +46,36 @@ public class TurnTowardLimelightTarget extends Command {
 
     @Override
     protected void execute() {
-        // Checks if Robot is lined up with the target
-        // If the angle is less than -TARGET_MARGIN_OF_ERROR ---> turn Left by spinning left wheels backwards (-1) and right wheels forward (1)
-        if(horizontalOffset <= -1 * Constants.TARGET_MARGIN_OF_ERROR){
-            drivetrain.setLeftRightMotorOutputs(-1 * speedMultiplier, 1 * speedMultiplier);
+    	targetValid = Robot.limelight.targetValid();
+    	SmartDashboard.putString("LimeLightDebug", "Limelight Pressed");
+        SmartDashboard.putString("HorizOffset", Double.toString(horizontalOffset));
+        SmartDashboard.putBoolean("ValidTarget", Robot.limelight.targetValid());
+        if(targetValid){
+        	SmartDashboard.putString("LimeLightDebug", "Lime should be turning");
+        	//System.out.println("Lime should be turning");
+        	
+            horizontalOffset = Robot.limelight.getHorizontalOffset();
+            verticalOffset = Robot.limelight.getVerticalOffset();
+            targetArea = Robot.limelight.getTargetArea();
+            targetSkew = Robot.limelight.getTargetSkew();
+            targetLatency = Robot.limelight.getLatency();
+            
+            // Checks if Robot is lined up with the target
+            // If the angle is less than -TARGET_MARGIN_OF_ERROR ---> turn Left by spinning left wheels backwards (-1) and right wheels forward (1)
+            if(horizontalOffset <= -1 * Constants.TARGET_MARGIN_OF_ERROR){
+                Robot.drivetrain.setLeftRightMotorOutputs(-1 * speedMultiplier, 1 * speedMultiplier);
+            }
+            // If the angle is greater than TARGET_MARGIN_OF_ERROR ---> turn Right by spinning right wheels backwards (-1) and left wheels forward (1)
+            else if(horizontalOffset >= Constants.TARGET_MARGIN_OF_ERROR){
+                Robot.drivetrain.setLeftRightMotorOutputs(1 * speedMultiplier, -1 * speedMultiplier);
         }
-        // If the angle is greater than TARGET_MARGIN_OF_ERROR ---> turn Right by spinning right wheels backwards (-1) and left wheels forward (1)
-        else if(horizontalOffset >= Constants.TARGET_MARGIN_OF_ERROR){
-            drivetrain.setLeftRightMotorOutputs(1 * speedMultiplier, -1 * speedMultiplier);
+        else{
+        	SmartDashboard.putString("LimeLightDebug", "Target not found, exiting Drive toward target");
+            //System.out.println("Target not found, exiting Drive toward target");
         }
+    	
+        
+    }
     }
 
 
@@ -106,7 +116,7 @@ public class TurnTowardLimelightTarget extends Command {
      */
     @Override
     protected void end() {
-
+    	SmartDashboard.putString("LimeLightDebug", "Limelight Released");
     }
 
 

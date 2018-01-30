@@ -23,7 +23,7 @@ public class Limelight {
     private NetworkTable table;
     private double horizontalOffset;
     private double verticalOffset;
-    private boolean validTarget;
+    private double validTarget;
     private double targetArea;
     private double targetSkew;
     private double latency;
@@ -39,7 +39,7 @@ public class Limelight {
         this.targetArea = this.table.getNumber("ta", 0);
         this.targetSkew = this.table.getNumber("ts", 0);
         this.latency = this.table.getNumber("tl", 0);
-        this.validTarget = this.table.getNumber("tv", 0) == 1.0;
+        this.validTarget = this.table.getNumber("tv", 0);
 
     }
 
@@ -60,7 +60,13 @@ public class Limelight {
         return this.latency;
     }
     public boolean targetValid(){
-        return this.validTarget;
+    	if(this.validTarget == 1.0) {
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
+        
     }
 
     // Methods to set Camera settings

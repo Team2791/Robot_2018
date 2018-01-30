@@ -28,11 +28,13 @@ public class DriveTowardLimelightTarget extends Command {
         setInterruptible(true);
         limelight = new Limelight();
         targetValid = limelight.targetValid();
+
         if(!targetValid){
             System.out.println("Target not found, exiting Drive toward target");
             end();
         }
         else{
+        	System.out.println("Limelight Tracking");
             horizontalOffset = limelight.getHorizontalOffset();
             verticalOffset = limelight.getVerticalOffset();
             targetArea = limelight.getTargetArea();
@@ -43,7 +45,6 @@ public class DriveTowardLimelightTarget extends Command {
             rightDrive = drivetrain.rightDriveEncoder;
             horizontalOffsetFraction = (horizontalOffset / 27); // <-------- 27 is largest value that limelight can measure
         }
-        timer.start();
 
     }
 

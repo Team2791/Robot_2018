@@ -2,12 +2,15 @@ package org.usfirst.frc.team2791.robot;
 
 import org.usfirst.frc.team2791.robot.commands.drivetrain.limelightTarget.*;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.RunDrivetrainOnlyOneSide;
+import org.usfirst.frc.team2791.robot.shakerJoystick.ShakerDriver;
 import org.usfirst.frc.team2791.robot.shakerJoystick.ShakerGamePad;
+import edu.wpi.first.wpilibj.smartdashboard.*;
 
 
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.usfirst.frc.team2791.robot.shakerJoystick.ShakerOperator;
 import org.usfirst.frc.team2791.robot.util.Constants;
 
 /**
@@ -25,23 +28,24 @@ public class OI {
 	protected Button operatorDpadUp, operatorDpadUpRight, operatorDpadRight, operatorDpadDownRight, 
 	operatorDpadDown, operatorDpadDownLeft, operatorDpadLeft, operatorDpadUpLeft;
 
-	public static ShakerGamePad driver = new ShakerGamePad(0);
-	public static ShakerGamePad operator = new ShakerGamePad(1);
-	//public static DriveTowardLimelightTarget driveTowardLimelightTarget = new DriveTowardLimelightTarget();
+	public static ShakerDriver driver = new ShakerDriver();
+	public static ShakerOperator operator = new ShakerOperator();
+	public static DriveTowardLimelightTarget driveTowardLimelightTarget = new DriveTowardLimelightTarget();
 	public OI() {
 		initButtons();
+		initDpad();
 
 		/********************************** Driver Button Assignments ****************************************/
 
-//		driverY.whileHeld(new RunIntakeWithJoystick());
 
 		driverA.whileHeld(new RunDrivetrainOnlyOneSide(true, Constants.SPEED_MULTIPLIER)); // true runs the left side
 		driverB.whileHeld(new RunDrivetrainOnlyOneSide(false, Constants.SPEED_MULTIPLIER)); // flase runs the right side
 
 
-		//driverX.whileHeld(new TurnTowardLimelightTarget());
-		//driverY.whileHeld(new DriveTowardLimelightTargetTime(2 * 1e6));
-		System.out.println("OI initialized");
+		driverX.whileHeld(new TurnTowardLimelightTarget());
+		
+		//System.out.println("Limelight Pressed");
+		//driverY.whileHeld(new DriveTowardLimelightTargetTime(2));
 	}
 
 
@@ -73,6 +77,118 @@ public class OI {
 			System.out.println("Error Initiating buttons");
 			error.printStackTrace();
 		}
+	}
+
+	/**
+	 * Initializes the Dpad
+	 */
+	private void initDpad(){
+		driverDpadUp = new Button(){
+			@Override
+			public boolean get(){
+				return driver.getDpadUp();
+			}
+		};
+
+		driverDpadUpRight = new Button(){
+			@Override
+			public boolean get(){
+				return driver.getDpadUpRight();
+			}
+		};
+
+		driverDpadRight = new Button(){
+			@Override
+			public boolean get(){
+				return driver.getDpadRight();
+			}
+		};
+
+		driverDpadDownRight = new Button(){
+			@Override
+			public boolean get(){
+				return driver.getDpadDownRight();
+			}
+		};
+
+		driverDpadDown = new Button(){
+			@Override
+			public boolean get(){
+				return driver.getDpadDown();
+			}
+		};
+
+		driverDpadDownLeft = new Button(){
+			@Override
+			public boolean get(){
+				return driver.getDpadDownLeft();
+			}
+		};
+
+		driverDpadLeft = new Button(){
+			@Override
+			public boolean get(){
+				return driver.getDpadLeft();
+			}
+		};
+
+		driverDpadUpLeft = new Button(){
+			@Override
+			public boolean get(){
+				return driver.getDpadUpLeft();
+			}
+		};
+
+		operatorDpadUp = new Button(){
+			@Override
+			public boolean get(){
+				return operator.getDpadUp();
+			}
+		};
+
+		operatorDpadUpRight = new Button(){
+			@Override
+			public boolean get(){
+				return operator.getDpadUpRight();
+			}
+		};
+
+		operatorDpadRight = new Button(){
+			@Override
+			public boolean get(){
+				return operator.getDpadRight();
+			}
+		};
+		operatorDpadDownRight = new Button(){
+			@Override
+			public boolean get(){
+				return operator.getDpadDownRight();
+			}
+		};
+		operatorDpadDown = new Button(){
+			@Override
+			public boolean get(){
+				return operator.getDpadDown();
+			}
+		};
+		operatorDpadDownLeft = new Button(){
+			@Override
+			public boolean get(){
+				return operator.getDpadDownLeft();
+			}
+		};
+		operatorDpadLeft = new Button(){
+			@Override
+			public boolean get(){
+				return operator.getDpadLeft();
+			}
+		};
+		operatorDpadUpLeft = new Button(){
+			@Override
+			public boolean get(){
+				return operator.getDpadUpLeft();
+			}
+		};
 	}
 
 
