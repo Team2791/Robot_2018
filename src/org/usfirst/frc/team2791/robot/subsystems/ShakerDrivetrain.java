@@ -21,10 +21,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * This class corresponds to the drivetrain. This code is modeled after a drivetrain with four motors and four Spark speed controllers.
+ * This class corresponds to the drivetrain. This code is modeled after a drivetrain with six motors, four Spark and two tallon speed controllers.
  * (Note: Talon and Spark speed controllers work off of the same code.) The controls are done for a tank drive system.
  * In terms, of sensors, this subsystem assumed one encoder on each side of the drivetrain and a gyro within the robot.
- * This code works with the "ADXRS450 gyro" supplied in the FRC Kit-of-parts.
+ * This code works with the ADXRS450 gyro.
  *
  * @author team2791: See Robot.java for contact info
  */
@@ -151,7 +151,6 @@ public class ShakerDrivetrain extends Subsystem{
 
 		SmartDashboard.putNumber("Left Drive Encoders Rate", leftDriveEncoder.getRate());
 		SmartDashboard.putNumber("Right Drive Encoders Rate", rightDriveEncoder.getRate());
-		SmartDashboard.putNumber("Encoder Angle", getAngleEncoder());
 
 		SmartDashboard.putNumber("LEncoderDistance", leftDriveEncoder.getDistance());
 		SmartDashboard.putNumber("REncoderDistance", rightDriveEncoder.getDistance());
@@ -160,14 +159,15 @@ public class ShakerDrivetrain extends Subsystem{
 		SmartDashboard.putNumber("Gyro angle", gyro.getAngle());
 		SmartDashboard.putNumber("Gyro rate", gyro.getRate());
 
-		SmartDashboard.putNumber("Avg Acceleration", getAverageAcceleration());
-
 		SmartDashboard.putNumber("Drivetrain total current", getCurrentUsage());
-
-
 		SmartDashboard.putString("LDist vs RDist vs AvgDist", getLeftDistance()+":"+getRightDistance()+":"+getAverageDist());
 		SmartDashboard.putString("LVel vs RVel vs AvgVel", getLeftVelocity()+":"+getRightVelocity()+":"+getAverageVelocity());
-		SmartDashboard.putString("LAcc vs RAcc vs AvgAcc", getLeftAcceleration()+":"+getRightAcceleration()+":"+getAverageAcceleration());
+		
+		// these are commented out because we don't need them. They were created for motion profiling we are not using.
+		// I'm leaving them in because we may use them in the future and I want to be explicit why we are not using them right now.
+//		SmartDashboard.putNumber("Encoder Angle", getAngleEncoder());
+//		SmartDashboard.putNumber("Avg Acceleration", getAverageAcceleration());
+//		SmartDashboard.putString("LAcc vs RAcc vs AvgAcc", getLeftAcceleration()+":"+getRightAcceleration()+":"+getAverageAcceleration());
 
 	}
 
@@ -220,15 +220,15 @@ public class ShakerDrivetrain extends Subsystem{
 		rightDriveEncoder.reset();
 	}
 	public void resetGyro() {
-		if(!gyroDisabled)
+		if(!gyroDisabled) {
 			gyro.reset();
-		else{
+		} else {
 			System.err.println("Gyro is Disabled, Unable to Reset");
 		}
 	}
 
 	public void calibrateGyro() {
-		if(!gyroDisabled){
+		if(!gyroDisabled) {
 			System.out.println("Gyro calibrating");
 			gyro.calibrate();
 			System.out.println("Done calibrating " + " The current rate is " + gyro.getRate());
@@ -274,7 +274,6 @@ public class ShakerDrivetrain extends Subsystem{
 	}
 
 	public double getLeftAcceleration() {
-
 		leftCurrentRate = getLeftVelocity();
 		leftCurrentTime = Timer.getFPGATimestamp();
 
@@ -289,7 +288,6 @@ public class ShakerDrivetrain extends Subsystem{
 	}
 
 	public double getRightAcceleration() {
-
 		rightCurrentRate = getLeftVelocity();
 		rightCurrentTime = Timer.getFPGATimestamp();
 
@@ -304,7 +302,6 @@ public class ShakerDrivetrain extends Subsystem{
 	}
 
 	public double getAverageAcceleration() {
-
 		currentRate = getAverageVelocity();
 		currentTime = Timer.getFPGATimestamp();
 
@@ -324,7 +321,12 @@ public class ShakerDrivetrain extends Subsystem{
 	 * @return total current usage for all 4 motors in the drivetrain
 	 */
 	public double getCurrentUsage() {
-		return Robot.pdp.getCurrent(RobotMap.POWER_RIGHT_DRIVE_A) + Robot.pdp.getCurrent(RobotMap.POWER_RIGHT_DRIVE_B) + Robot.pdp.getCurrent(RobotMap.POWER_LEFT_DRIVE_A) + Robot.pdp.getCurrent(RobotMap.POWER_LEFT_DRIVE_B);
+		return Robot.pdp.getCurrent(RobotMap.POWER_RIGHT_DRIVE_1) +
+									Robot.pdp.getCurrent(RobotMap.POWER_RIGHT_DRIVE_2) +
+									Robot.pdp.getCurrent(RobotMap.POWER_RIGHT_DRIVE_3) +
+									Robot.pdp.getCurrent(RobotMap.POWER_LEFT_DRIVE_1) + 
+									Robot.pdp.getCurrent(RobotMap.POWER_LEFT_DRIVE_2) +
+									Robot.pdp.getCurrent(RobotMap.POWER_LEFT_DRIVE_3);
 	}
 
 }

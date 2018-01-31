@@ -1,7 +1,7 @@
 
 package org.usfirst.frc.team2791.robot;
 
-import org.usfirst.frc.team2791.robot.commands.ExampleCommand;
+import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
 import org.usfirst.frc.team2791.robot.subsystems.IntakeClaw;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
 import org.usfirst.frc.team2791.robot.util.Limelight;
@@ -31,8 +31,8 @@ public class Robot extends IterativeRobot {
 	public static IntakeClaw intakeClaw;
 	public static Limelight limelight;
 
-	//Command autonomousCommand;
-	//SendableChooser<Command> chooser = new SendableChooser<>();
+	Command autonomousCommand;
+	SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -43,15 +43,15 @@ public class Robot extends IterativeRobot {
 		System.out.println("Starting to init my systems.");
 		
 		pdp = new PowerDistributionPanel(RobotMap.PDP); //CAN id has to be 0
-		
 		drivetrain = new ShakerDrivetrain();
 		intakeClaw = new IntakeClaw();
 		limelight = new Limelight();
 		
-
-		//chooser.addDefault("Default Auto", new ExampleCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		//SmartDashboard.putData("Auto mode", chooser);
+		// Set up our auton chooser
+		chooser.addDefault("Default Auto - Do Nothing", new DoNothing());
+//		chooser.addObject("My Auto", new MyAutoCommand());
+		SmartDashboard.putData("Auto mode", chooser);
+		
 		oi = new OI();
 	}
 
@@ -83,18 +83,11 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		//autonomousCommand = chooser.getSelected();
+		autonomousCommand = chooser.getSelected();
 
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
-
-		// schedule the autonomous command (example)
-		//if (autonomousCommand != null)
-			//autonomousCommand.start();
+		// schedule the autonomous command
+		if (autonomousCommand != null)
+			autonomousCommand.start();
 	}
 
 	/**
@@ -102,20 +95,11 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		//Scheduler.getInstance().run();
-
-
-
+		Scheduler.getInstance().run();
 	}
 
 	@Override
 	public void teleopInit() {
-		// This makes sure that the autonomous stops running when
-		// teleop starts running. If you want the autonomous to
-		// continue until interrupted by another command, remove
-		// this line or comment it out.
-		//if (autonomousCommand != null)
-			//autonomousCommand.cancel();
 	}
 
 	/**

@@ -3,10 +3,6 @@ package org.usfirst.frc.team2791.robot;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.limelightTarget.*;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.RunDrivetrainOnlyOneSide;
 import org.usfirst.frc.team2791.robot.shakerJoystick.ShakerGamePad;
-import edu.wpi.first.wpilibj.smartdashboard.*;
-
-
-
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team2791.robot.util.Constants;
@@ -28,22 +24,21 @@ public class OI {
 
 	public static ShakerGamePad driver = new ShakerGamePad(0);
 	public static ShakerGamePad operator = new ShakerGamePad(1);
-	public static DriveTowardLimelightTarget driveTowardLimelightTarget = new DriveTowardLimelightTarget();
+	
 	public OI() {
 		initButtons();
 		initDpad();
 
-
 		/********************************** Driver Button Assignments ****************************************/
+		driverA.whileHeld(new RunDrivetrainOnlyOneSide(true, 0.15)); // true runs the left side
+		driverB.whileHeld(new RunDrivetrainOnlyOneSide(false, 0.15)); // flase runs the right side
 
-
-		driverA.whileHeld(new RunDrivetrainOnlyOneSide(true, Constants.SPEED_MULTIPLIER)); // true runs the left side
-		driverB.whileHeld(new RunDrivetrainOnlyOneSide(false, Constants.SPEED_MULTIPLIER)); // flase runs the right side
-
-
-		driverX.whileHeld(new TurnTowardLimelightTarget());
 		
-		//System.out.println("Limelight Pressed");
+		/********************************** Operator Button Assignments ****************************************/
+	
+
+		// Commenting out until lime light is finished.
+//		driverX.whileHeld(new TurnTowardLimelightTarget());
 		//driverY.whileHeld(new DriveTowardLimelightTargetTime(2));
 	}
 

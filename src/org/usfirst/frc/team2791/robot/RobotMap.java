@@ -1,7 +1,5 @@
 package org.usfirst.frc.team2791.robot;
 
-import edu.wpi.first.wpilibj.DigitalSource;
-
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -44,10 +42,10 @@ public class RobotMap {
 	public static final int JOYSTICK_OPERATOR_PORT = 1;
 
 	//PDP Ports
-	public static final int POWER_RIGHT_DRIVE_A = 0;
-	public static final int POWER_RIGHT_DRIVE_B = 1;
-	public static final int POWER_LEFT_DRIVE_A = 2;
-	public static final int POWER_LEFT_DRIVE_B = 3;
-
-	
+	public static final int POWER_RIGHT_DRIVE_1 = 0;
+	public static final int POWER_RIGHT_DRIVE_2 = 1;
+	public static final int POWER_RIGHT_DRIVE_3 = 2;
+	public static final int POWER_LEFT_DRIVE_1 = 3;
+	public static final int POWER_LEFT_DRIVE_2 = 4;
+	public static final int POWER_LEFT_DRIVE_3 = 5;
 }

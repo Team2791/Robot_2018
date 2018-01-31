@@ -22,11 +22,12 @@ public class DriveWithJoystick extends Command {
 
 	protected void initialize() {
 	}
+	
 	@Override
 	protected void execute() {
-
-		Robot.drivetrain.setLeftRightMotorOutputs(speedMultiplier*GTADrive.getLeftValue(Robot.oi.driver),
-				speedMultiplier*GTADrive.getRightValue(Robot.oi.driver));
+		double leftSpeed = Robot.oi.driver.getGtaDriveLeft() * speedMultiplier;
+		double rightSpeed = Robot.oi.driver.getGtaDriveRight() * speedMultiplier;
+		Robot.drivetrain.setLeftRightMotorOutputs(leftSpeed, rightSpeed);
 	}
 
 	@Override
@@ -36,11 +37,10 @@ public class DriveWithJoystick extends Command {
 
 	@Override
 	protected void end() {
-		Robot.drivetrain.setLeftRightMotorOutputs(0.0,0.0);
+		Robot.drivetrain.setLeftRightMotorOutputs(0.0, 0.0);
 	}
 
 	protected void interrupted() {
-		new DriveWithJoystick();
+		end();
 	}
-
 }

@@ -1,16 +1,13 @@
-package org.usfirst.frc.team2791.robot.commands.intakeclaw;
-
-import org.usfirst.frc.team2791.robot.OI;
-import org.usfirst.frc.team2791.robot.Robot;
+package org.usfirst.frc.team2791.robot.commands.auto;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class RunIntakeWithJoystick extends Command {
+public class DoNothing extends Command {
 
-    public RunIntakeWithJoystick() {
+    public DoNothing() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -21,8 +18,6 @@ public class RunIntakeWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double speed = OI.driver.getAxisRightY();
-    	Robot.intakeClaw.setIntakeSpeed(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

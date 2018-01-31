@@ -25,8 +25,9 @@ public class RunDrivetrainOnlyOneSide extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	// TODO verify that the negative are on the right sides here!
     	double leftOutput = leftSide ? speed : 0; 
-    	double rightOutput = leftSide ? 0 : speed; 
+    	double rightOutput = leftSide ? 0 : -speed; 
     	Robot.drivetrain.setLeftRightMotorOutputs(leftOutput, rightOutput);
     }
 

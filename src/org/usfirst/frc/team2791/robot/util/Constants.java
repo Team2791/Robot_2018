@@ -14,6 +14,7 @@ public class Constants {
 	// Joystick constants
 	public static final double DEADZONE = 0.05;
 	
+	// Drive train constants
 	public static double driveEncoderTicks = 256;
 	public static final double SPEED_MULTIPLIER = 0.2;
 	public static final double WHEEL_DIAMETER_IN_FEET = 1.0;
@@ -22,7 +23,6 @@ public class Constants {
 	// (3 * 60) - 30 = (3 minutes * 60 seconds) - 30 seconds
 	public static final double RAMP_RELEASE_TIME = (3 * 60) - 30;
 
-	// How off can Robot be angled from target
-	// Measured in degrees
-	public static final double TARGET_MARGIN_OF_ERROR = 3.0;
-	}
+	// Limelight Driving Constants
+	public static final double LIMELIGHT_TURNING_KP = 0;
+}
