@@ -2,9 +2,10 @@ package org.usfirst.frc.team2791.robot.commands.drivetrain;
 
 import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
+import org.usfirst.frc.team2791.robot.util.Constants;
+import org.usfirst.frc.team2791.robot.util.GTADrive;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Uses the {@link GTADrive} I/O Logic to control the {@link ShakerDrivetrain Drivetrain}.
@@ -12,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveWithJoystick extends Command {
 
-	private double speedMultiplier = 1.0;
+	private double speedMultiplier = Constants.SPEED_MULTIPLIER;
 
 	public DriveWithJoystick() {
 		super("DriveWithJoystick");
@@ -24,14 +25,9 @@ public class DriveWithJoystick extends Command {
 	
 	@Override
 	protected void execute() {
-		double left = speedMultiplier * Robot.oi.driver.getGtaDriveLeft();
-		double right = speedMultiplier * Robot.oi.driver.getGtaDriveRight();
-		
-		Robot.drivetrain.setLeftRightMotorOutputs(left, right);
-		
-		SmartDashboard.putNumber("Left Joystick Output", left);
-		SmartDashboard.putNumber("Right Joystick Output", right);
-
+		double leftSpeed = Robot.oi.driver.getGtaDriveLeft() * speedMultiplier;
+		double rightSpeed = Robot.oi.driver.getGtaDriveRight() * speedMultiplier;
+		Robot.drivetrain.setLeftRightMotorOutputs(leftSpeed, rightSpeed);
 	}
 
 	@Override
@@ -41,12 +37,10 @@ public class DriveWithJoystick extends Command {
 
 	@Override
 	protected void end() {
-		Robot.drivetrain.setLeftRightMotorOutputs(0.0,0.0);
+		Robot.drivetrain.setLeftRightMotorOutputs(0.0, 0.0);
 	}
 
 	protected void interrupted() {
-		new DriveWithJoystick();
-		System.out.println("Drive with joysticcccccccck interrupted.");
+		end();
 	}
-
 }
