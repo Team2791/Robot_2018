@@ -2,7 +2,6 @@ package org.usfirst.frc.team2791.robot;
 
 import org.usfirst.frc.team2791.robot.commands.drivetrain.limelightTarget.*;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.RunDrivetrainOnlyOneSide;
-import org.usfirst.frc.team2791.robot.shakerJoystick.ShakerDriver;
 import org.usfirst.frc.team2791.robot.shakerJoystick.ShakerGamePad;
 import edu.wpi.first.wpilibj.smartdashboard.*;
 
@@ -10,7 +9,6 @@ import edu.wpi.first.wpilibj.smartdashboard.*;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.usfirst.frc.team2791.robot.shakerJoystick.ShakerOperator;
 import org.usfirst.frc.team2791.robot.util.Constants;
 
 /**
@@ -28,8 +26,8 @@ public class OI {
 	protected Button operatorDpadUp, operatorDpadUpRight, operatorDpadRight, operatorDpadDownRight, 
 	operatorDpadDown, operatorDpadDownLeft, operatorDpadLeft, operatorDpadUpLeft;
 
-	public static ShakerDriver driver = new ShakerDriver();
-	public static ShakerOperator operator = new ShakerOperator();
+	public static ShakerGamePad driver = new ShakerGamePad(0);
+	public static ShakerGamePad operator = new ShakerGamePad(1);
 	public static DriveTowardLimelightTarget driveTowardLimelightTarget = new DriveTowardLimelightTarget();
 	public OI() {
 		initButtons();
