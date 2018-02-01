@@ -1,21 +1,21 @@
 package org.usfirst.frc.team2791.robot.subsystems;
 
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.RobotMap;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.DriveWithJoystick;
 import org.usfirst.frc.team2791.robot.util.Constants;
-import org.usfirst.frc.team2791.robot.util.SpeedControllerSet;
 import org.usfirst.frc.team2791.robot.util.Util;
 
-
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -38,12 +38,14 @@ public class ShakerDrivetrain extends Subsystem{
 	private TalonSRX  talonRight3;
 	private BaseMotorController[] leftDrive;
 	private BaseMotorController[] rightDrive;
+	
+	private DoubleSolenoid shiftingSolenoid;
 
-	public Encoder leftDriveEncoder = null;
-	public Encoder rightDriveEncoder = null;
+	private Encoder leftDriveEncoder = null;
+	private Encoder rightDriveEncoder = null;
 
-	public ADXRS450_Gyro gyro;
-	public boolean gyroDisabled = false;
+	private ADXRS450_Gyro gyro;
+	private boolean gyroDisabled = false;
 
 
 	//The next three initialization sections are for encoder and gyro helpers.
@@ -81,9 +83,8 @@ public class ShakerDrivetrain extends Subsystem{
 
 		leftDriveEncoder = new Encoder(RobotMap.LEFT_DRIVE_ENCODER_PORT_A, RobotMap.LEFT_DRIVE_ENCODER_PORT_B);
 		rightDriveEncoder = new Encoder(RobotMap.RIGHT_DRIVE_ENCODER_PORT_A,RobotMap.RIGHT_DRIVE_ENCODER_PORT_B);
-
-		//Uses the Sparks to create a robotDrive (it has methods that allow for easier control of the whole drivetrain at once)
-
+		
+		shiftingSolenoid = new DoubleSolenoid(RobotMap.DRIVETRAIN_GEARBOX_SHIFTER_IN, RobotMap.DRIVETRAIN_GEARBOX_SHIFTER_OUT);
 
 		//Inverts the motor outputs so that the right and left motors both turn the right direction for forward drive
 		boolean letSideInverted = true;
@@ -145,6 +146,20 @@ public class ShakerDrivetrain extends Subsystem{
 			rightDrive[i].set(ControlMode.PercentOutput, right);
 		}
 	}
+	
+	/**
+	 * inDriveMode == True ---> Drive
+	 * inDriveMode == False -----> Ramp
+	 * @param inDriveMode
+	 */
+	public void setDriveOrRampMode(boolean inDriveMode) {
+		if(inDriveMode) {
+			shiftingSolenoid.set(Value.kForward);
+		} else {
+			shiftingSolenoid.set(Value.kReverse);
+		}
+	}
+	
 	/**
 	 * Drivetrain sfx outputs
 	 */

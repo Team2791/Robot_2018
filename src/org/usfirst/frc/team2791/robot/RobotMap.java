@@ -17,13 +17,13 @@ public class RobotMap {
 	public static final int VICTOR_RIGHT_1 = 36;
 	public static final int VICTOR_RIGHT_2 = 33;
 	public static final int TALON_RIGHT_3 = 20;
+	
+	public static final int DRIVETRAIN_GEARBOX_SHIFTER_IN = 0;
+	public static final int DRIVETRAIN_GEARBOX_SHIFTER_OUT = 1;
 
 	// Intake
 	public static final int INTAKE_SPARK_LEFT_PORT = 2;
 	public static final int INTAKE_SPARK_RIGHT_PORT = 3;
-
-	// Ramp release double soleniod
-	public static final int RAMP_RELEASE_SOLENIOD = 5;
 	
 	// ===== Sensors =====
 	
@@ -35,6 +35,14 @@ public class RobotMap {
 	public static final int LEFT_DRIVE_ENCODER_PORT_B = 1;
 	public static final int RIGHT_DRIVE_ENCODER_PORT_A = 2;
 	public static final int RIGHT_DRIVE_ENCODER_PORT_B = 3;
+	
+	// Ramps
+	public static final int LIMIT_SWITCH_LEFT_1 = 4;
+	public static final int LIMIT_SWITCH_LEFT_2 = 5;
+	public static final int LIMIT_SWITCH_RIGHT_1 = 6;
+	public static final int LIMIT_SWITCH_RIGHT_2 = 7;
+	
+	public static final int RAMP_DEPLOY_SOLENOID = 2;
 
 
 	// JOYSTICK PORTS
@@ -48,4 +56,5 @@ public class RobotMap {
 	public static final int POWER_LEFT_DRIVE_1 = 3;
 	public static final int POWER_LEFT_DRIVE_2 = 4;
 	public static final int POWER_LEFT_DRIVE_3 = 5;
+	
 }

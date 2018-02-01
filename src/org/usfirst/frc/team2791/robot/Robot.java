@@ -4,6 +4,7 @@ package org.usfirst.frc.team2791.robot;
 import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
 import org.usfirst.frc.team2791.robot.subsystems.IntakeClaw;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
+import org.usfirst.frc.team2791.robot.subsystems.ShakerRamp;
 import org.usfirst.frc.team2791.robot.util.Limelight;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -29,6 +30,8 @@ public class Robot extends IterativeRobot {
 	
 	public static ShakerDrivetrain drivetrain;
 	public static IntakeClaw intakeClaw;
+	public static ShakerRamp ramps; 
+	
 	public static Limelight limelight;
 
 	Command autonomousCommand;
@@ -46,6 +49,7 @@ public class Robot extends IterativeRobot {
 		drivetrain = new ShakerDrivetrain();
 		intakeClaw = new IntakeClaw();
 		limelight = new Limelight();
+		ramps = new ShakerRamp();
 
 
 		// Set up our auton chooser

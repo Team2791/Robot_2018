@@ -1,11 +1,12 @@
 package org.usfirst.frc.team2791.robot;
 
-import org.usfirst.frc.team2791.robot.commands.drivetrain.limelightTarget.*;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.RunDrivetrainOnlyOneSide;
+import org.usfirst.frc.team2791.robot.commands.drivetrain.SetDrivetrainShifterMode;
+import org.usfirst.frc.team2791.robot.commands.drivetrain.SetRampDeploy;
 import org.usfirst.frc.team2791.robot.shakerJoystick.ShakerGamePad;
+
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.usfirst.frc.team2791.robot.util.Constants;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -30,8 +31,14 @@ public class OI {
 		initDpad();
 
 		/********************************** Driver Button Assignments ****************************************/
-		driverA.whileHeld(new RunDrivetrainOnlyOneSide(true, 0.15)); // true runs the left side
-		driverB.whileHeld(new RunDrivetrainOnlyOneSide(false, 0.15)); // flase runs the right side
+		driverA.whenPressed(new SetDrivetrainShifterMode(true));
+		driverB.whenPressed(new SetDrivetrainShifterMode(false));
+		driverX.whenPressed(new SetRampDeploy(false));
+		driverY.whenPressed(new SetRampDeploy(false));
+		
+		
+		driverLB.whileHeld(new RunDrivetrainOnlyOneSide(true, 0.15)); // true runs the left side
+		driverRB.whileHeld(new RunDrivetrainOnlyOneSide(false, 0.15)); // flase runs the right side
 
 		
 		/********************************** Operator Button Assignments ****************************************/
