@@ -27,15 +27,6 @@ public class Limelight {
         // Set table to limelight
         table = NetworkTable.getTable("limelight");
     }
-    
-    public void updateInformation() {
-        horizontalOffset = table.getNumber("tx", 0);
-        verticalOffset = table.getNumber("ty", 0);
-        targetArea = table.getNumber("ta", 0);
-        targetSkew = table.getNumber("ts", 0);
-        latency = table.getNumber("tl", 0);
-        validTarget = table.getNumber("tv", 0) == 1.0;
-    }
 
     // Methods to get information
     public double getHorizontalOffset(){
