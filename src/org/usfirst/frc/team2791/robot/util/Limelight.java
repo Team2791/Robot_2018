@@ -41,7 +41,7 @@ public class Limelight {
         ledMode = table.getEntry("ledMode");
         camMode = table.getEntry("camMode");
 
-        horizontalOffset = tx.getDouble(100.0);
+        horizontalOffset = tx.getDouble(0.0);
         verticalOffset = ty.getDouble(0.0);
         validTarget = tv.getDouble(0.0);
         targetArea = ta.getDouble(0.0);

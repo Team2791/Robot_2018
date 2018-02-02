@@ -3,9 +3,11 @@ package org.usfirst.frc.team2791.robot;
 
 import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
 import org.usfirst.frc.team2791.robot.subsystems.IntakeClaw;
+import org.usfirst.frc.team2791.robot.subsystems.Manipulator;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerRamp;
 import org.usfirst.frc.team2791.robot.util.Limelight;
+
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -30,7 +32,8 @@ public class Robot extends IterativeRobot {
 	
 	public static ShakerDrivetrain drivetrain;
 	public static IntakeClaw intakeClaw;
-	public static ShakerRamp ramps; 
+	public static ShakerRamp ramps;
+	public static Manipulator manipulator;
 	
 	public static Limelight limelight;
 
@@ -50,7 +53,7 @@ public class Robot extends IterativeRobot {
 		intakeClaw = new IntakeClaw();
 		limelight = new Limelight();
 		ramps = new ShakerRamp();
-
+		manipulator = new Manipulator();
 
 		// Set up our auton chooser
 		chooser.addDefault("Default Auto - Do Nothing", new DoNothing());
