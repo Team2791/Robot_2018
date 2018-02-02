@@ -25,4 +25,9 @@ public class Constants {
 
 	// Limelight Driving Constants
 	public static final double LIMELIGHT_TURNING_KP = 0;
+
+	// Manipulator Constants
+	public static final double MIN_SENSOR_RANGE_INCHES = 3;
+	public static final double SENSOR_LEFT_RIGHT_ACCEPTABLE_DIFFERENCE = 0.5;
+	public static final double INTAKE_SPEED = 2;
 }
