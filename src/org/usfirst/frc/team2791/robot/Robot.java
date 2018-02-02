@@ -1,9 +1,11 @@
 
 package org.usfirst.frc.team2791.robot;
 
+import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
 import org.usfirst.frc.team2791.robot.subsystems.IntakeClaw;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
+import org.usfirst.frc.team2791.robot.subsystems.ShakerLift;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerRamp;
 import org.usfirst.frc.team2791.robot.util.Limelight;
 
@@ -33,8 +35,9 @@ public class Robot extends IterativeRobot {
 	public static ShakerRamp ramps; 
 	
 	public static Limelight limelight;
+    public static ShakerLift lift;
 
-	Command autonomousCommand;
+    Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
@@ -50,6 +53,7 @@ public class Robot extends IterativeRobot {
 		intakeClaw = new IntakeClaw();
 		limelight = new Limelight();
 		ramps = new ShakerRamp();
+		lift = new ShakerLift();
 
 
 		// Set up our auton chooser
