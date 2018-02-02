@@ -2,7 +2,6 @@ package org.usfirst.frc.team2791.robot.subsystems;
 import edu.wpi.first.wpilibj.*;
 import org.usfirst.frc.team2791.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Subsystem;
-
 import static java.lang.StrictMath.max;
 import static java.lang.StrictMath.min;
 import static org.usfirst.frc.team2791.robot.util.Constants.*;

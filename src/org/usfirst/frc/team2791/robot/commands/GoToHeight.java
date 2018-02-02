@@ -4,13 +4,14 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2791.robot.Robot;
 
 import static java.lang.Math.abs;
-import static javax.swing.plaf.basic.BasicTableUI.Actions.sign;
 import static org.usfirst.frc.team2791.robot.util.Constants.*;
 
 public class GoToHeight extends Command {
-    public GoToHeight() {
+    private double targetHeight;
+    public GoToHeight(double height) {
         super("GoToHeight");
         requires(Robot.lift);
+        targetHeight = height;
     }
 
     protected void initialize() {
@@ -19,16 +20,16 @@ public class GoToHeight extends Command {
 
     @Override
     protected void execute(){
-        public double traveltoHeight ( double height){
-            double diff = Robot.lift.getHeight() - height;
-            double diffsign = sign(diff);
+            double diff = Robot.lift.getHeight() - targetHeight;
+            int diffSign = (int) Math.signum(diff);
             if (abs(diff) > FAR_AWAY) {
-                setPower(-diffsign * LARGE_NUMBER);
+                Robot.lift.setPower(-diffSign * LARGE_NUMBER);
 
             } else if (abs(diff) > CLOSE) {
-                setPower(-diffsign * SMALL_NUMBER);
+                Robot.lift.setPower(-diffSign * SMALL_NUMBER);
+
             } else {
-                setPower(0);
+                Robot.lift.setPower(0);
 
             }
 
