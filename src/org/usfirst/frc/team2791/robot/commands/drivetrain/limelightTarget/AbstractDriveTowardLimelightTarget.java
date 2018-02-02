@@ -5,6 +5,7 @@ package org.usfirst.frc.team2791.robot.commands.drivetrain.limelightTarget;
 import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.util.Constants;
 import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team2791.robot.util.Limelight;
 
 
 public abstract class AbstractDriveTowardLimelightTarget extends Command {
@@ -14,7 +15,6 @@ public abstract class AbstractDriveTowardLimelightTarget extends Command {
     
     public AbstractDriveTowardLimelightTarget(double speed) {
         driveSpeed = speed;
-        limelight =
     }
 
     /**

@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 /**
  * This class corresponds to the drivetrain. The drivetrain is 6 wheel, center drop with 2 CIMs, 1 miniCIM on each
  * side. Each motor output is controlled by a Spark speed controller. The Rio outputs signal through a single PWM 

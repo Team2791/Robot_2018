@@ -14,7 +14,6 @@ package org.usfirst.frc.team2791.robot.util;
 
 
 
-import org.usfirst.frc.team2791.robot.util.Constants;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
