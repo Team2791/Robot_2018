@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2791.robot.commands.drivetrain.limelightTarget;
 
 
-
+//import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import org.usfirst.frc.team2791.robot.Robot;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -17,7 +17,6 @@ public class DriveTowardLimelightTargetStopWithDistance extends AbstractDriveTow
     	super(speed);
     	requires(Robot.drivetrain);
     	distanceToTravel = distance;
-
     }
     
     /**

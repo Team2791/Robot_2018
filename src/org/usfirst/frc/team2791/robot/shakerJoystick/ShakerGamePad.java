@@ -5,83 +5,50 @@ import org.usfirst.frc.team2791.robot.util.Util;
 
 import edu.wpi.first.wpilibj.Joystick;
 public class ShakerGamePad extends Joystick {
-	
+    int port;
 	public ShakerGamePad(int port){
 		super(port);
+		this.port = port;
 	}
 
-//    public boolean getDpadUp() {
-//        return super.getPOV(0) == 0;
-//    }
-//
-//    public boolean getDpadUpRight() {
-//        return super.getPOV(0) == 45;
-//    }
-//
-//    public boolean getDpadRight() {
-//        return super.getPOV(0) == 90;
-//    }
-//
-//    public boolean getDpadDownRight() {
-//        return super.getPOV(0) == 135;
-//    }
-//
-//    public boolean getDpadDown() {
-//        return super.getPOV(0) == 180;
-//    }
-//
-//    public boolean getDpadDownLeft() {
-//        return super.getPOV(0) == 225;
-//    }
-//
-//    public boolean getDpadLeft() {
-//        return super.getPOV(0) == 270;
-//    }
-//
-//    public boolean getDpadUpLeft() {
-//        return super.getPOV(0) == 315;
-//    }
-//
-//    public boolean getButtonA() {
-//        return super.getRawButton(1);
-//    }
-//
-//    public boolean getButtonB() {
-//        return super.getRawButton(2);
-//    }
-//
-//    public boolean getButtonX() {
-//        return super.getRawButton(3);
-//    }
-//
-//    public boolean getButtonY() {
-//        return super.getRawButton(4);
-//    }
-//
-//    public boolean getButtonLB() {
-//        return super.getRawButton(5);
-//    }
-//
-//    public boolean getButtonRB() {
-//        return super.getRawButton(6);
-//    }
-//
-//    public boolean getButtonBack() {
-//        return super.getRawButton(7);
-//    }
-//
-//    public boolean getButtonSt() {
-//        return super.getRawButton(8);
-//    }
-//
-//    public boolean getButtonLS() {
-//        return super.getRawButton(9);
-//    }
-//
-//    public boolean getButtonRS() {
-//        return super.getRawButton(10);
-//    }
-//
+    public boolean getDpadUp() {
+        return super.getPOV(0) == 0;
+    }
+
+    public boolean getDpadUpRight() {
+        return super.getPOV(0) == 45;
+    }
+
+    public boolean getDpadRight() {
+        return super.getPOV(0) == 90;
+    }
+
+    public boolean getDpadDownRight() {
+        return super.getPOV(0) == 135;
+    }
+
+    public boolean getDpadDown() {
+        return super.getPOV(0) == 180;
+    }
+
+    public boolean getDpadDownLeft() {
+        return super.getPOV(0) == 225;
+    }
+
+    public boolean getDpadLeft() {
+        return super.getPOV(0) == 270;
+    }
+
+    public boolean getDpadUpLeft() {
+        return super.getPOV(0) == 315;
+    }
+
+    public boolean getButtonStatus() {
+        return super.getRawButton(this.port);
+    }
+
+
+
     public double getAxisLeftX() {
         return Util.deadzone(Constants.DEADZONE, super.getRawAxis(0), 1.0);
     }

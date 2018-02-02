@@ -6,6 +6,7 @@ import org.usfirst.frc.team2791.robot.commands.intakeclaw.RunIntakeWithJoystick;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+
 /**
  *
  */
@@ -21,12 +22,13 @@ public class IntakeClaw extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new RunIntakeWithJoystick());
+        //setDefaultCommand(new RunIntakeWithJoystick());
     }
     
     public void setIntakeSpeed(double speed) {
     	leftMotorSpark.set(speed);
     	rightMotorSpark.set(speed);
+
     }
 }
 

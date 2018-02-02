@@ -1,9 +1,11 @@
 
 package org.usfirst.frc.team2791.robot;
 
-import org.usfirst.frc.team2791.robot.commands.ExampleCommand;
+import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
 import org.usfirst.frc.team2791.robot.subsystems.IntakeClaw;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
+import org.usfirst.frc.team2791.robot.subsystems.ShakerRamp;
+import org.usfirst.frc.team2791.robot.util.Limelight;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -12,8 +14,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team2791.robot.util.Limelight;
-
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -22,12 +22,17 @@ import org.usfirst.frc.team2791.robot.util.Limelight;
  * directory.
  */
 
+
 public class Robot extends IterativeRobot {
+	
 	public static PowerDistributionPanel pdp; //CAN ID has to be 0 for current sensing
 	public static OI oi;
-	//public static Limelight limelight;
+	
 	public static ShakerDrivetrain drivetrain;
 	public static IntakeClaw intakeClaw;
+	public static ShakerRamp ramps; 
+	
+	public static Limelight limelight;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -41,14 +46,18 @@ public class Robot extends IterativeRobot {
 		System.out.println("Starting to init my systems.");
 		
 		pdp = new PowerDistributionPanel(RobotMap.PDP); //CAN id has to be 0
-		
 		drivetrain = new ShakerDrivetrain();
 		intakeClaw = new IntakeClaw();
+		limelight = new Limelight();
+		ramps = new ShakerRamp();
+
+
+		// Set up our auton chooser
+		chooser.addDefault("Default Auto - Do Nothing", new DoNothing());
+//		chooser.addObject("My Auto", new MyAutoCommand());
+		SmartDashboard.putData("Auto mode", chooser);
 		
 		oi = new OI();
-		chooser.addDefault("Default Auto", new ExampleCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
 	}
 
 	/**
@@ -81,14 +90,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
 
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
-
-		// schedule the autonomous command (example)
+		// schedule the autonomous command
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}
@@ -103,12 +105,6 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
-		// This makes sure that the autonomous stops running when
-		// teleop starts running. If you want the autonomous to
-		// continue until interrupted by another command, remove
-		// this line or comment it out.
-		if (autonomousCommand != null)
-			autonomousCommand.cancel();
 	}
 
 	/**
@@ -117,8 +113,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-	}
 
+	}
 	/**
 	 * This function is called periodically during test mode
 	 */
