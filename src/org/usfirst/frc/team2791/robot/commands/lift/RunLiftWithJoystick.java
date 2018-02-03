@@ -3,12 +3,13 @@ package org.usfirst.frc.team2791.robot.commands.lift;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2791.robot.OI;
 import org.usfirst.frc.team2791.robot.Robot;
+import org.usfirst.frc.team2791.robot.subsystems.ShakerLift;
 
 import static org.usfirst.frc.team2791.robot.util.Constants.POWER;
 
 public class RunLiftWithJoystick extends Command {
     public RunLiftWithJoystick(){
-        //idk what requires things in here
+        requires(Robot.lift);
     }
     protected void initiliaze(){
 
