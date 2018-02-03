@@ -71,14 +71,7 @@ public class ShakerLift extends Subsystem {
         motorThree.set(ControlMode.PercentOutput, power);
     }
 
-    public void setMotorPower(double speedU, double speedD,) {
-        for (int i = 0; i < upMotor.length; i++) {
-            upMotor[i].set(ControlMode.PercentOutput, speedU);
-        }
-        for (int i = 0; i < downMotor.length; i++) {
-            downMotor[i].set(Controlmode.PercentOutput.speedD);
-        }
-    }
+
     public void debug(){
         SmartDashboard.putBoolean("Top Limit Switch value", topLimitSwitch.get());
         SmartDashboard.putBoolean("Bottom Limit Switch value", bottomLimitSwitch.get());

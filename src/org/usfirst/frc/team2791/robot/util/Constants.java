@@ -16,7 +16,7 @@ public class Constants {
     public static final double CLOSE = 10;
     public static final double CLOSE_TO_BOTTOM_DISTANCE = 5;
     public static final double CLOSE_TO_TOP_DISTANCE = 3;
-    public static final double POWER = .2;
+    public static final double POWER = .3;
 	// Server Constants
 	public static final String TEAM_NUMBER = "2791";
 	public static final String SERVER_PORT = "roboRIO-" + TEAM_NUMBER + "-FRC";

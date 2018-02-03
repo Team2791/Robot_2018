@@ -17,9 +17,8 @@ public class RunLiftWithJoystick extends Command {
 
     @Override
     protected void execute() {
-        double upSpeed =Robot.oi.driver.getAxisLeftX()*POWER;
-        double downSpeed=Robot.oi.driver.getAxisLeftY()*POWER;
-        Robot.lift.setMotorPower( upSpeed , downSpeed);
+        double Speed =Robot.oi.driver.getAxisLeftY()*POWER;
+        Robot.lift.setPower(Speed);
     }
 
     @Override
@@ -28,7 +27,7 @@ public class RunLiftWithJoystick extends Command {
     }
     @Override
     protected void end(){
-        Robot.lift.setMotorPower(0,0);
+
 
     }
     @Override
