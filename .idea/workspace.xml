@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a63bb6a-fc87-4abd-a71d-b79b741d118f" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/lift/RunLiftWithJoystick.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/GoToHeight.java" afterPath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/lift/GoToHeight.java" />
-      <change beforePath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/subsystems/ShakerLift.java" afterPath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/subsystems/ShakerLift.java" />
-      <change beforePath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/util/Constants.java" afterPath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/util/Constants.java" />
-    </list>
+    <list default="true" id="6a63bb6a-fc87-4abd-a71d-b79b741d118f" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -154,7 +147,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="293" />
     <option name="y" value="31" />
     <option name="width" value="974" />
@@ -337,7 +330,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
