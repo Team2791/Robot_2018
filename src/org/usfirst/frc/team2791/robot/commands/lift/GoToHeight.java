@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2791.robot.commands;
+package org.usfirst.frc.team2791.robot.commands.lift;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerLift;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2791.robot.Robot;
