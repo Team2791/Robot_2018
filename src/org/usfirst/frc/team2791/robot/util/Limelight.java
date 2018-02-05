@@ -22,65 +22,50 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class Limelight {
     NetworkTable table;
-    private NetworkTableEntry camMode, ledMode, tx, ty, ta, tv, ts, tl;
-    private double horizontalOffset, verticalOffset, validTarget, targetArea, targetSkew, latency;
+    private NetworkTableEntry pipeline, camMode, ledMode, tx, ty, ta, tv, ts, tl;
+    //private double horizontalOffset, verticalOffset, validTarget, targetArea, targetSkew, latency;
 
 
-    public void Limelight(){
+    public Limelight(){
         // Set table to limelight
         table = NetworkTableInstance.getDefault().getTable("limelight");
 
         // Get stats
-        NetworkTableEntry tx = table.getEntry("tx");
-        NetworkTableEntry ty = table.getEntry("ty");
-        NetworkTableEntry ta = table.getEntry("ta");
-        NetworkTableEntry tv = table.getEntry("tv");
-        NetworkTableEntry ts = table.getEntry("ts");
-        NetworkTableEntry tl = table.getEntry("tl");
+        tx = table.getEntry("tx");
+        ty = table.getEntry("ty");
+        ta = table.getEntry("ta");
+        tv = table.getEntry("tv");
+        ts = table.getEntry("ts");
+        tl = table.getEntry("tl");
 
         ledMode = table.getEntry("ledMode");
         camMode = table.getEntry("camMode");
+        pipeline = table.getEntry("pipeline");
 
-        horizontalOffset = tx.getDouble(0.0);
-        verticalOffset = ty.getDouble(0.0);
-        validTarget = tv.getDouble(0.0);
-        targetArea = ta.getDouble(0.0);
-        targetSkew = ts.getDouble(0.0);
-        latency = tl.getDouble(0.0);
 
 
 
     }
 
-    public void refresh(){
-        ledMode = table.getEntry("ledMode");
-        camMode = table.getEntry("camMode");
 
-        horizontalOffset = tx.getDouble(100.0);
-        verticalOffset = ty.getDouble(0.0);
-        validTarget = tv.getDouble(0.0);
-        targetArea = ta.getDouble(0.0);
-        targetSkew = ts.getDouble(0.0);
-        latency = tl.getDouble(0.0);
-    }
     // Methods to get information
     public double getHorizontalOffset(){
-        return horizontalOffset;
+        return tx.getDouble(0.0);
     }
     public double getVerticalOffset(){
-        return verticalOffset;
+        return ty.getDouble(0.0);
     }
     public double getTargetArea(){
-        return targetArea;
+        return ta.getDouble(0.0);
     }
     public double getTargetSkew(){
-        return targetSkew;
+        return ts.getDouble(0.0);
     }
     public double getLatency(){
-        return latency;
+        return tl.getDouble(0.0);
     }
     public boolean targetValid(){
-    	if(validTarget == 1.0) {
+    	if(tv.getDouble(0.0) == 1.0) {
     		return true;
     	}
     	else {
@@ -123,5 +108,8 @@ public class Limelight {
             camMode.setNumber(0);
         }
 
+    }
+    public void setPipeline(int id){
+        pipeline.setNumber(id);
     }
 }
