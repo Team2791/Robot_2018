@@ -31,6 +31,7 @@ public class IntakeClaw extends Subsystem {
     	rightMotorSpark.set(speed);
 
     }
+    // does this subsystem need debug?
     public void debug(){
 		SmartDashboard.putNumber("Getting the Left Motor value", leftMotorSpark.get());
 		SmartDashboard.putNumber("Getting the Right Motor value", rightMotorSpark.get());
