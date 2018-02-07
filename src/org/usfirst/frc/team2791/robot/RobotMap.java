@@ -56,5 +56,7 @@ public class RobotMap {
 	public static final int POWER_LEFT_DRIVE_1 = 3;
 	public static final int POWER_LEFT_DRIVE_2 = 4;
 	public static final int POWER_LEFT_DRIVE_3 = 5;
-	
+
+    public static final int LIMIT_SWITCH_TOP = 8;
+	public static final int LIMIT_SWITCH_BOTTOM = 9;
 }
