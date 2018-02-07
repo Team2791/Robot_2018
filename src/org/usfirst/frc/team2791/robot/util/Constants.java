@@ -7,6 +7,7 @@ package org.usfirst.frc.team2791.robot.util;
  */
 
 public class Constants {
+
 //Lift Constants
     public static final double offset= 30;
     public static final double ratio = 1/2;
