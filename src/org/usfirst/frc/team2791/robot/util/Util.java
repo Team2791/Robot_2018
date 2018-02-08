@@ -37,4 +37,12 @@ public class Util {
     public static double tickToFeet(double encoderTicks, double wheelDiameter_inFeet) {
         return (wheelDiameter_inFeet * Math.PI / encoderTicks);
     }
+
+    public static double average(double... numbers){
+    	int total = 0;
+    	for(int i = 0; i < numbers.length; i++){
+    		total += numbers[i];
+		}
+		return total / numbers.length;
+	}
 }

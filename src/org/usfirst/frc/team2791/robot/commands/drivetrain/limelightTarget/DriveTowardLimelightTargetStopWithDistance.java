@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2791.robot.commands.drivetrain.limelightTarget;
 
 
-//import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
+
 import org.usfirst.frc.team2791.robot.Robot;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -13,7 +13,7 @@ public class DriveTowardLimelightTargetStopWithDistance extends AbstractDriveTow
     private boolean goingForward;
 
 
-    public DriveTowardLimelightTargetStopWithDistance(double speed, double distance) {
+    public DriveTowardLimelightTargetStopWithDistance(double speed, double distance) { //<------ I think speed argument is reduntant
     	super(speed);
     	requires(Robot.drivetrain);
     	distanceToTravel = distance;

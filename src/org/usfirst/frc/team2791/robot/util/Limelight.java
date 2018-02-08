@@ -16,42 +16,61 @@ package org.usfirst.frc.team2791.robot.util;
 
 import org.usfirst.frc.team2791.robot.util.Constants;
 
-import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Limelight {
+    NetworkTable table;
+    private NetworkTableEntry camMode, ledMode, tx, ty, ta, tv, ts, tl;
+    //private double horizontalOffset, verticalOffset, validTarget, targetArea, targetSkew, latency;
 
-    private NetworkTable table;
 
-    @SuppressWarnings("deprecation")
-	public void Limelight(){
+    public Limelight(){
         // Set table to limelight
-        table = NetworkTable.getTable("limelight");
+        table = NetworkTableInstance.getDefault().getTable("limelight");
+
+        // Get stats
+        tx = table.getEntry("tx");
+        ty = table.getEntry("ty");
+        ta = table.getEntry("ta");
+        tv = table.getEntry("tv");
+        ts = table.getEntry("ts");
+        tl = table.getEntry("tl");
+
+        ledMode = table.getEntry("ledMode");
+        camMode = table.getEntry("camMode");
+
+
+
     }
+
 
     // Methods to get information
     public double getHorizontalOffset(){
-    	return table.getNumber("tx", 0);
+        return tx.getDouble(0.0);
     }
     public double getVerticalOffset(){
-        return table.getNumber("ty", 0);
+        return ty.getDouble(0.0);
     }
     public double getTargetArea(){
-        return table.getNumber("ta", 0);
+        return ta.getDouble(0.0);
     }
     public double getTargetSkew(){
-        return table.getNumber("ts", 0);
+        return ts.getDouble(0.0);
     }
     public double getLatency(){
-        return table.getNumber("tl", 0);
+        return tl.getDouble(0.0);
     }
     public boolean targetValid(){
-    	double tv = table.getNumber("tv", 0);
-    	if(tv == 1.0) {
+    	if(tv.getDouble(0.0) == 1.0) {
     		return true;
     	}
     	else {
     		return false;
     	}
+
     }
 
     // Methods to set Camera settings
@@ -59,35 +78,46 @@ public class Limelight {
     // Controls Leds
     // String mode must be either "on" or "off" or "blink"
     public void setLed(String mode){
-    	// TODO change this to an enum instead of a string
         if(mode.equals("on")){
-            table.putNumber("ledMode", 0);
+            ledMode.setNumber(0);
+
         }
         else if(mode.equals("off")){
-            table.putNumber("ledMode", 1);
+            ledMode.setNumber(1);
         }
         else if(mode.equals("blink")){
-            table.putNumber("ledMode", 2);
+            ledMode.setNumber(2);
         }
         else{
             System.out.println("Limelight:   setLed(String mode) -----> mode not recognised\nSetting Leds to blink.");
-            table.putNumber("ledMode", 2);
+            ledMode.setNumber(2);
         }
     }
-    
     // Sets the camera to a operation mode
     // String mode must be either "vision" or "driver"
     public void setCameraMode(String mode){
-    	// TODO change this to an enum instead of a string
         if(mode.equals("vision")){
-            table.putNumber("camMode", 0);
+            camMode.setNumber(0);
         }
         else if(mode.equals("driver")){
-            table.putNumber("camMode", 1);
+            camMode.setNumber(1);
         }
         else{
             System.out.println("Limelight:   setCameraMode(String mode) -----> mode not recognised\nSetting camera to vision.");
-            table.putNumber("camMode", 0);
+            camMode.setNumber(0);
         }
+
+    }
+
+    public void debug(){
+        SmartDashboard.putString("Limelight Horizontal", Double.toString(tx.getDouble(0.0)));
+        SmartDashboard.putString("Limelight Vertical", Double.toString(ty.getDouble(0.0)));
+        SmartDashboard.putString("Limelight Area", Double.toString(ta.getDouble(0.0)));
+        SmartDashboard.putString("Limelight Skew", Double.toString(ts.getDouble(0.0)));
+        SmartDashboard.putString("Limelight Latency", Double.toString(tl.getDouble(0.0)));
+        SmartDashboard.putString("Limelight Valid", Boolean.toString(tv.getDouble(0.0) == 1.0));
+
+
+
     }
 }

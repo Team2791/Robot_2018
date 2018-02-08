@@ -19,7 +19,6 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 /**
  * This class corresponds to the drivetrain. This code is modeled after a drivetrain with six motors, four Spark and two tallon speed controllers.
  * (Note: Talon and Spark speed controllers work off of the same code.) The controls are done for a tank drive system.
@@ -271,7 +270,7 @@ public class ShakerDrivetrain extends Subsystem{
 
 	/**@return average distance of both encoder velocities */
 	public double getAverageDist() {
-//		return (getLeftDistance() + getRightDistance()) / 2;
+//		return Util.average(getLeftDistance(), getRightDistance());
 //		left side commented out due to potential wiring issues
 		return getLeftDistance();
 	}
@@ -286,7 +285,7 @@ public class ShakerDrivetrain extends Subsystem{
 
 	/**@return average velocity of both encoder velocities */
 	public double getAverageVelocity() {
-		return (getLeftVelocity() + getRightVelocity()) / 2;
+		return Util.average(getLeftVelocity(), getRightVelocity());
 	}
 
 	public double getLeftAcceleration() {
