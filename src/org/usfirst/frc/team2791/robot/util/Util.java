@@ -38,10 +38,8 @@ public class Util {
         return (wheelDiameter_inFeet * Math.PI / encoderTicks);
     }
 
-    // Method to return the average of series of numbers
-	// Just Convenience
     public static double average(double... numbers){
-    	double total = 0;
+    	int total = 0;
     	for(int i = 0; i < numbers.length; i++){
     		total += numbers[i];
 		}

@@ -24,7 +24,9 @@ public class Constants {
 	public static final double RAMP_RELEASE_TIME = (3 * 60) - 30;
 
 	// Limelight Driving Constants
-	public static final double LIMELIGHT_TURNING_KP = 0;
+	public static final double LIMELIGHT_TURNING_KP = 10;
+	public static final double LIMELIGHT_TURNING_DIVISOR = 0.05;
+	public static final double LIMELIGHT_TURNING_CAP = 0.3;
 
 	// Manipulator Constants
 	public static final double INTAKE_SPEED = .5;

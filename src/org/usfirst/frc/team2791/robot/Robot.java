@@ -3,11 +3,10 @@ package org.usfirst.frc.team2791.robot;
 
 import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
 import org.usfirst.frc.team2791.robot.subsystems.IntakeClaw;
-import org.usfirst.frc.team2791.robot.subsystems.Manipulator;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerRamp;
+import org.usfirst.frc.team2791.robot.subsystems.Manipulator;
 import org.usfirst.frc.team2791.robot.util.Limelight;
-
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -32,9 +31,8 @@ public class Robot extends IterativeRobot {
 	
 	public static ShakerDrivetrain drivetrain;
 	public static IntakeClaw intakeClaw;
-	public static ShakerRamp ramps;
+	public static ShakerRamp ramps; 
 	public static Manipulator manipulator;
-	
 	public static Limelight limelight;
 
 	Command autonomousCommand;
@@ -50,10 +48,11 @@ public class Robot extends IterativeRobot {
 		
 		pdp = new PowerDistributionPanel(RobotMap.PDP); //CAN id has to be 0
 		drivetrain = new ShakerDrivetrain();
-		intakeClaw = new IntakeClaw();
-		limelight = new Limelight();
-		ramps = new ShakerRamp();
+		//intakeClaw = new IntakeClaw();
 		manipulator = new Manipulator();
+		ramps = new ShakerRamp();
+		limelight = new Limelight();
+
 
 		// Set up our auton chooser
 		chooser.addDefault("Default Auto - Do Nothing", new DoNothing());
@@ -76,6 +75,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		debug();
 	}
 
 	/**
@@ -104,6 +104,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		debug();
 	}
 
 	@Override
@@ -116,7 +117,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-
+		debug();
 	}
 	/**
 	 * This function is called periodically during test mode
@@ -124,5 +125,14 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
 		LiveWindow.run();
+		debug();
+	}
+
+
+	public void debug(){
+		limelight.debug();
+		drivetrain.debug();
+		ramps.debug();
+		manipulator.debug();
 	}
 }

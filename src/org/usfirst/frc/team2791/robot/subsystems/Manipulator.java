@@ -2,17 +2,13 @@ package org.usfirst.frc.team2791.robot.subsystems;
 
 
 import org.usfirst.frc.team2791.robot.RobotMap;
-import org.usfirst.frc.team2791.robot.util.Constants;
-import org.usfirst.frc.team2791.robot.util.Util;
 
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.ControlMode;
-//import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.DigitalInput;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Manipulator extends Subsystem {
 
@@ -83,6 +79,17 @@ public class Manipulator extends Subsystem {
     public void initDefaultCommand() {
         // TODO: Set the default command, if any, for a subsystem here. Example:
         //    setDefaultCommand(new MySpecialCommand());
+    }
+
+    public void debug(){
+        SmartDashboard.putString("Manipulator Left Motor Percent", Double.toString(leftMotor.getMotorOutputPercent()));
+        SmartDashboard.putString("Manipulator Right Motor Percent", Double.toString(rightMotor.getMotorOutputPercent()));
+        SmartDashboard.putBoolean("Manipulator Left Sensor", iRSensorLeft.get());
+        SmartDashboard.putBoolean("Manipulator Right Sensor", iRSensorRight.get());
+        SmartDashboard.putBoolean("Manipulator Extender Solenoid", extender.get());
+        SmartDashboard.putBoolean("Manipulator Grabber Solenoid", grabber.get());
+
+
     }
 }
 

@@ -19,10 +19,11 @@ import org.usfirst.frc.team2791.robot.util.Constants;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Limelight {
     NetworkTable table;
-    private NetworkTableEntry pipeline, camMode, ledMode, tx, ty, ta, tv, ts, tl;
+    private NetworkTableEntry camMode, ledMode, tx, ty, ta, tv, ts, tl;
     //private double horizontalOffset, verticalOffset, validTarget, targetArea, targetSkew, latency;
 
 
@@ -40,8 +41,6 @@ public class Limelight {
 
         ledMode = table.getEntry("ledMode");
         camMode = table.getEntry("camMode");
-        pipeline = table.getEntry("pipeline");
-
 
 
 
@@ -109,7 +108,16 @@ public class Limelight {
         }
 
     }
-    public void setPipeline(int id){
-        pipeline.setNumber(id);
+
+    public void debug(){
+        SmartDashboard.putString("Limelight Horizontal", Double.toString(tx.getDouble(0.0)));
+        SmartDashboard.putString("Limelight Vertical", Double.toString(ty.getDouble(0.0)));
+        SmartDashboard.putString("Limelight Area", Double.toString(ta.getDouble(0.0)));
+        SmartDashboard.putString("Limelight Skew", Double.toString(ts.getDouble(0.0)));
+        SmartDashboard.putString("Limelight Latency", Double.toString(tl.getDouble(0.0)));
+        SmartDashboard.putString("Limelight Valid", Boolean.toString(tv.getDouble(0.0) == 1.0));
+
+
+
     }
 }
