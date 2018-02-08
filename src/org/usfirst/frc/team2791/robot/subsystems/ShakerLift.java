@@ -1,4 +1,8 @@
 package org.usfirst.frc.team2791.robot.subsystems;
+
+
+
+
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2791.robot.RobotMap;
@@ -6,7 +10,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import static java.lang.StrictMath.max;
 import static java.lang.StrictMath.min;
 import static org.usfirst.frc.team2791.robot.util.Constants.*;
-
 
 public class ShakerLift extends Subsystem {
     DigitalInput topLimitSwitch, bottomLimitSwitch;
@@ -25,6 +28,7 @@ public class ShakerLift extends Subsystem {
     @Override
     protected void initDefaultCommand() {
         // do nothing by default.
+
     }
 
     /**
@@ -47,6 +51,8 @@ public class ShakerLift extends Subsystem {
         } else if (closeToTop()) {
             power = min(0.3, power);
         }
+        // This was missing, I'm assuming this is what you want
+        return power;
     }
 
     public boolean atBottom() {
@@ -66,9 +72,13 @@ public class ShakerLift extends Subsystem {
     }
 
     private void setPowerUnsafe(double power) {
-        motorOne.set(ControlMode.PercentOutput, power);
-        motorTwo.set(ControlMode.PercentOutput, power);
-        motorThree.set(ControlMode.PercentOutput, power);
+        // PWM Motors don't take ControlMode argument, just a double power
+        motorOne.set(power);
+        motorTwo.set(power);
+        motorThree.set(power);
+        //motorOne.set(ControlMode.PercentOutput, power);
+        //motorTwo.set(ControlMode.PercentOutput, power);
+        //motorThree.set(ControlMode.PercentOutput, power);
     }
 
 

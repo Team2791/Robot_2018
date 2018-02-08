@@ -11,7 +11,7 @@ public class RunLiftWithJoystick extends Command {
     public RunLiftWithJoystick(){
         requires(Robot.lift);
     }
-    protected void initiliaze(){
+    protected void initialize(){
 
     }
 

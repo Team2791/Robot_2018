@@ -34,9 +34,10 @@ public class GoToHeight extends Command {
             }
 
         }
-    }
+
     @Override
     public boolean isFinished() {
+        // Need to set a finished  variable
         return false;
     }
     @Override
@@ -47,5 +48,5 @@ public class GoToHeight extends Command {
 
     }
 }
-}
-}
+
+

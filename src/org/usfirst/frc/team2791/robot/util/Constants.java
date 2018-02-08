@@ -8,7 +8,11 @@ package org.usfirst.frc.team2791.robot.util;
 
 public class Constants {
 
-//Lift Constants
+	// Server Constants
+	public static final String TEAM_NUMBER = "2791";
+	public static final String SERVER_PORT = "roboRIO-" + TEAM_NUMBER + "-FRC";
+
+	//Lift Constants
     public static final double offset= 30;
     public static final double ratio = 1/2;
     public static final double FAR_AWAY= 50;
@@ -18,9 +22,7 @@ public class Constants {
     public static final double CLOSE_TO_BOTTOM_DISTANCE = 5;
     public static final double CLOSE_TO_TOP_DISTANCE = 3;
     public static final double POWER = .3;
-	// Server Constants
-	public static final String TEAM_NUMBER = "2791";
-	public static final String SERVER_PORT = "roboRIO-" + TEAM_NUMBER + "-FRC";
+
 	// Joystick constants
 	public static final double DEADZONE = 0.05;
 	
