@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2791.robot.subsystems;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2791.robot.RobotMap;
 import org.usfirst.frc.team2791.robot.commands.intakeclaw.RunIntakeWithJoystick;
 
@@ -30,5 +31,10 @@ public class IntakeClaw extends Subsystem {
     	rightMotorSpark.set(speed);
 
     }
+    // does this subsystem need debug?
+    public void debug(){
+		SmartDashboard.putNumber("Getting the Left Motor value", leftMotorSpark.get());
+		SmartDashboard.putNumber("Getting the Right Motor value", rightMotorSpark.get());
+	}
 }
 
