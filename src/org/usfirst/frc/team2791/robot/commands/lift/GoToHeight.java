@@ -30,20 +30,18 @@ public class GoToHeight extends Command {
 
             } else {
                 Robot.lift.setPower(0);
-
             }
-
         }
 
     @Override
     public boolean isFinished() {
-        // Need to set a finished  variable
-        return false;
+        return Math.abs(Robot.lift.getHeight() - targetHeight) < SMALL_NUMBER;
     }
     @Override
     protected void end () {
-
+    	Robot.lift.setPower(0);
     }
+
     protected void interrupted () {
 
     }

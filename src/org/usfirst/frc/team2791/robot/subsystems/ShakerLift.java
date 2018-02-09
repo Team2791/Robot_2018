@@ -1,21 +1,27 @@
 package org.usfirst.frc.team2791.robot.subsystems;
 
-
-
-
-import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team2791.robot.RobotMap;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import static java.lang.StrictMath.max;
 import static java.lang.StrictMath.min;
-import static org.usfirst.frc.team2791.robot.util.Constants.*;
+import static org.usfirst.frc.team2791.robot.util.Constants.CLOSE_TO_BOTTOM_DISTANCE;
+import static org.usfirst.frc.team2791.robot.util.Constants.CLOSE_TO_TOP_DISTANCE;
+import static org.usfirst.frc.team2791.robot.util.Constants.offset;
+import static org.usfirst.frc.team2791.robot.util.Constants.ratio;
+
+import org.usfirst.frc.team2791.robot.RobotMap;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ShakerLift extends Subsystem {
     DigitalInput topLimitSwitch, bottomLimitSwitch;
     Solenoid Break;
     AnalogPotentiometer potentiometer;
-    PWMVictorSPX motorOne, motorTwo, motorThree;
+    VictorSPX motorOne, motorTwo, motorThree;
 
     public ShakerLift() {
         super("ShakerLift");
@@ -28,7 +34,6 @@ public class ShakerLift extends Subsystem {
     @Override
     protected void initDefaultCommand() {
         // do nothing by default.
-
     }
 
     /**
@@ -40,19 +45,21 @@ public class ShakerLift extends Subsystem {
         return (potentiometer.get() - offset) * ratio;
     }
 
-    public double setPower(double power) {
+    // this method is used to set the power of the lift and included saftey so the lift
+    // is moving slowly near the top/bottom and once at the top/bottom can't break itself. 
+    public void setPower(double power) {
         if (atBottom()) {
             power = max(0, power);
         } else if (closeToBottom()) {
             power = max(-.2, power);
         } else if (atTop()) {
             power = min(0, power);
-
         } else if (closeToTop()) {
             power = min(0.3, power);
         }
-        // This was missing, I'm assuming this is what you want
-        return power;
+        // now we use the internal method that has direct control to the motor
+        // after we have made sure that power is a safe number.
+        setPowerUnsafe(power);
     }
 
     public boolean atBottom() {
@@ -72,13 +79,9 @@ public class ShakerLift extends Subsystem {
     }
 
     private void setPowerUnsafe(double power) {
-        // PWM Motors don't take ControlMode argument, just a double power
-        motorOne.set(power);
-        motorTwo.set(power);
-        motorThree.set(power);
-        //motorOne.set(ControlMode.PercentOutput, power);
-        //motorTwo.set(ControlMode.PercentOutput, power);
-        //motorThree.set(ControlMode.PercentOutput, power);
+        motorOne.set(ControlMode.PercentOutput, power);
+        motorTwo.set(ControlMode.PercentOutput, power);
+        motorThree.set(ControlMode.PercentOutput, power);
     }
 
 
@@ -86,9 +89,9 @@ public class ShakerLift extends Subsystem {
         SmartDashboard.putBoolean("Top Limit Switch value", topLimitSwitch.get());
         SmartDashboard.putBoolean("Bottom Limit Switch value", bottomLimitSwitch.get());
         SmartDashboard.putNumber("Potentiometer value",potentiometer.get());
-        SmartDashboard.putNumber("Motor One value", motorOne.get());
-        SmartDashboard.putNumber("Motor Two value", motorTwo.get());
-        SmartDashboard.putNumber("Motor Three value", motorThree.get());
+        SmartDashboard.putNumber("Motor One value", motorOne.getMotorOutputPercent());
+        SmartDashboard.putNumber("Motor Two value", motorTwo.getMotorOutputPercent());
+        SmartDashboard.putNumber("Motor Three value", motorThree.getMotorOutputPercent());
         SmartDashboard.putBoolean("Break value", Break.get());
     }
 }

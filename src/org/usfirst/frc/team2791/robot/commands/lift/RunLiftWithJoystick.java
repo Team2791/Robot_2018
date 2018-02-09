@@ -17,19 +17,19 @@ public class RunLiftWithJoystick extends Command {
 
     @Override
     protected void execute() {
-        double Speed =Robot.oi.driver.getAxisLeftY()*POWER;
-        Robot.lift.setPower(Speed);
+        double speed = OI.driver.getAxisLeftY()*POWER;
+        Robot.lift.setPower(speed);
     }
 
     @Override
     protected boolean isFinished() {
         return false;
     }
+
     @Override
     protected void end(){
-
-
     }
+    
     @Override
     protected void interrupted(){
 

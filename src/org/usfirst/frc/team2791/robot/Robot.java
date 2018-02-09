@@ -1,7 +1,6 @@
 
 package org.usfirst.frc.team2791.robot;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
 import org.usfirst.frc.team2791.robot.subsystems.IntakeClaw;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
