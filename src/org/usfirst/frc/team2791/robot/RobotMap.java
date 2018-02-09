@@ -21,9 +21,11 @@ public class RobotMap {
 	public static final int DRIVETRAIN_GEARBOX_SHIFTER_IN = 0;
 	public static final int DRIVETRAIN_GEARBOX_SHIFTER_OUT = 1;
 
-	// Intake
+	// Manipulator
 	public static final int INTAKE_SPARK_LEFT_PORT = 2;
 	public static final int INTAKE_SPARK_RIGHT_PORT = 3;
+	public static final int INTAKE_EXTENDER_SOLENOID_PORT = 4;
+	public static final int INTAKE_GRABBER_SOLENOID_PORT = 5;
 	
 	// ===== Sensors =====
 	

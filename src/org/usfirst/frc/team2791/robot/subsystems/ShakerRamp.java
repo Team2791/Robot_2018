@@ -49,13 +49,12 @@ public class ShakerRamp extends Subsystem {
     protected void initDefaultCommand() {
         // There is no default command for the ramps.
     }
-
-    //does this subsystem need a debug? -JY
-    public void debug() {
-        SmartDashboard.putBoolean("Getting the Left Limit Switch One value", leftLimitSwitchOne.get());
-        SmartDashboard.putBoolean("Getting the Left Limit Switch Two value", leftLimitSwitchTwo.get());
-        SmartDashboard.putBoolean("Getting the Right Limit Switch One value" rightLimitSwitchOne.get());
-        SmartDashboard.putBoolean("Getting the Right Limit Switch Two value", rightLimitSwitchTwo.get());
-        SmartDashboard.putBoolean("Getting the ramp Deploy value", rampDeploySolenoid.get());
-    }
+  
+    public void debug(){
+        SmartDashboard.putBoolean("Ramp Left Limit Switch 1", leftLimitSwitchOne.get());
+        SmartDashboard.putBoolean("Ramp Left Limit Switch 2", leftLimitSwitchTwo.get());
+        SmartDashboard.putBoolean("Ramp Right Limit Switch 1", rightLimitSwitchOne.get());
+        SmartDashboard.putBoolean("Ramp Right Limit Switch 2", rightLimitSwitchTwo.get());
+        SmartDashboard.putBoolean("Ramp Deploy Soleniod", rampDeploySolenoid.get());
+     } 
 }
