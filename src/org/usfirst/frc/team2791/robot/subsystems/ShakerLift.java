@@ -83,6 +83,9 @@ public class ShakerLift extends Subsystem {
         motorTwo.set(ControlMode.PercentOutput, power);
         motorThree.set(ControlMode.PercentOutput, power);
     }
+    public void setBreak(boolean breakOn){
+        Break.set(breakOn);
+    }
 
 
     public void debug(){
