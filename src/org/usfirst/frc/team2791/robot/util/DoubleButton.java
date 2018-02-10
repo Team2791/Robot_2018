@@ -1,9 +1,9 @@
 package org.usfirst.frc.team2791.robot.util;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Button;
+import edu.wpi.first.wpilibj.buttons.Button;
 
-public Class DoubleButton extends Button{
+public class DoubleButton extends Button{
     Joystick stick;
     int b1;
     int b2;

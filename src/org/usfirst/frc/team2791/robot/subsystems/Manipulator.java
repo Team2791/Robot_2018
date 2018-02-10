@@ -18,11 +18,11 @@ public class Manipulator extends Subsystem {
 
 
 
-    public void Manipulator(){
+    public Manipulator(){
         leftMotor = new VictorSPX(RobotMap.INTAKE_SPARK_LEFT_PORT);
         rightMotor = new VictorSPX(RobotMap.INTAKE_SPARK_RIGHT_PORT);
-        iRSensorLeft = new DigitalInput(1);
-        iRSensorRight = new DigitalInput(1);
+//        iRSensorLeft = new DigitalInput(RobotMap.IR_SENSOR_LEFT);
+//        iRSensorRight = new DigitalInput(RobotMap.IR_SENSOR_LEFT);
         extender = new Solenoid(RobotMap.INTAKE_EXTENDER_SOLENOID_PORT);
         grabber = new Solenoid(RobotMap.INTAKE_GRABBER_SOLENOID_PORT);
 
@@ -34,21 +34,22 @@ public class Manipulator extends Subsystem {
     }
 
     public boolean isCubeInGripper(){
-        boolean left = iRSensorLeft.get();
-        boolean right = iRSensorRight.get();
-        if(left && right){
-            return true;
-        }
+//        boolean left = iRSensorLeft.get();
+//        boolean right = iRSensorRight.get();
+//        if(left && right){
+//            return true;
+//        }
         return false;
     }
 
     // Don't know how to find out if cube is jammed
     // If difference between left and right sensors is large, then its jammed
     public boolean isCubeJammed(){
-        boolean left = iRSensorLeft.get();
-        boolean right = iRSensorRight.get();
+//        boolean left = iRSensorLeft.get();
+//        boolean right = iRSensorRight.get();
 
-        return left ^ right;
+//        return left ^ right;
+        return false;
     }
 
     public void setLeftRightMotorSpeed(double leftSpeed, double rightSpeed){
@@ -84,8 +85,8 @@ public class Manipulator extends Subsystem {
     public void debug(){
         SmartDashboard.putString("Manipulator Left Motor Percent", Double.toString(leftMotor.getMotorOutputPercent()));
         SmartDashboard.putString("Manipulator Right Motor Percent", Double.toString(rightMotor.getMotorOutputPercent()));
-        SmartDashboard.putBoolean("Manipulator Left Sensor", iRSensorLeft.get());
-        SmartDashboard.putBoolean("Manipulator Right Sensor", iRSensorRight.get());
+//        SmartDashboard.putBoolean("Manipulator Left Sensor", iRSensorLeft.get());
+//        SmartDashboard.putBoolean("Manipulator Right Sensor", iRSensorRight.get());
         SmartDashboard.putBoolean("Manipulator Extender Solenoid", extender.get());
         SmartDashboard.putBoolean("Manipulator Grabber Solenoid", grabber.get());
 
