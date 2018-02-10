@@ -27,7 +27,7 @@ public class ShakerLift extends Subsystem {
         super("ShakerLift");
         topLimitSwitch = new DigitalInput(RobotMap.LIMIT_SWITCH_TOP);
         bottomLimitSwitch = new DigitalInput(RobotMap.LIMIT_SWITCH_BOTTOM);
-        Break = new Solenoid(RobotMap.BOTTOM_SOLENOID);
+        Break = new Solenoid(RobotMap.BREAK_SOLENOID);
         potentiometer = new AnalogPotentiometer(0, 3600, 30);
     }
 
