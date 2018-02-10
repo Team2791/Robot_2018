@@ -10,6 +10,8 @@ public class RobotMap {
 
 	// ===== Actuators =====
 	
+	// __ _Motors ___
+
 	// Drive train
 	public static final int VICTOR_LEFT_1 = 32;
 	public static final int VICTOR_LEFT_2 = 31;
@@ -18,19 +20,41 @@ public class RobotMap {
 	public static final int VICTOR_RIGHT_2 = 33;
 	public static final int TALON_RIGHT_3 = 20;
 	
-	public static final int DRIVETRAIN_GEARBOX_SHIFTER_IN = 0;
-	public static final int DRIVETRAIN_GEARBOX_SHIFTER_OUT = 1;
-
 	// Manipulator
 	public static final int INTAKE_SPARK_LEFT_PORT = 2;
 	public static final int INTAKE_SPARK_RIGHT_PORT = 3;
+	
+	// Lift
+	public static final int LIFT_TALON_ONE = 28; // this is the
+	public static final int LIFT_VICTOR_TWO = 37; // this is the
+	public static final int LIFT_VICTOR_THREE = 38; // this is the
+	
+	
+	// __ Pistons ___
+	
+	// Drive train
+	public static final int DRIVETRAIN_GEARBOX_SHIFTER_IN = 0;
+	public static final int DRIVETRAIN_GEARBOX_SHIFTER_OUT = 1;
+	
+	// Ramps
+	public static final int RAMP_DEPLOY_SOLENOID = 3;
+	
+	// Lift
+	public static final int BREAK_SOLENOID = 2;
+
+	// Manipulator
 	public static final int INTAKE_EXTENDER_SOLENOID_PORT = 4;
 	public static final int INTAKE_GRABBER_SOLENOID_PORT = 5;
 	
 	// ===== Sensors =====
 	
-	// Power distribution panel
-	public static final int PDP = 0;
+
+	// ___ Digital Sensors ____
+	
+	// Lift Ports
+    public static final int LIMIT_SWITCH_TOP = 8;
+	public static final int LIMIT_SWITCH_BOTTOM = 9;
+	
 	
 	// Drive train
 	public static final int LEFT_DRIVE_ENCODER_PORT_A = 0;
@@ -44,12 +68,17 @@ public class RobotMap {
 	public static final int LIMIT_SWITCH_RIGHT_1 = 6;
 	public static final int LIMIT_SWITCH_RIGHT_2 = 7;
 	
-	public static final int RAMP_DEPLOY_SOLENOID = 2;
+	// ___ Analog Sensors ___
+	
+	// Lift 
+	public static final int LIFT_POT_PORT = 1;
+	
 
-
-	// JOYSTICK PORTS
-	public static final int JOYSTICK_DRIVER_PORT = 0;
-	public static final int JOYSTICK_OPERATOR_PORT = 1;
+	
+	// ___ PDP Stuff ____
+	
+	// Power distribution panel
+	public static final int PDP = 0;
 
 	//PDP Ports
 	public static final int POWER_RIGHT_DRIVE_1 = 0;
@@ -58,9 +87,8 @@ public class RobotMap {
 	public static final int POWER_LEFT_DRIVE_1 = 3;
 	public static final int POWER_LEFT_DRIVE_2 = 4;
 	public static final int POWER_LEFT_DRIVE_3 = 5;
-
-	// Lift Ports
-    public static final int LIMIT_SWITCH_TOP = 8;
-	public static final int LIMIT_SWITCH_BOTTOM = 9;
-	public static final int BREAK_SOLENOID = 6;
+	
+	// JOYSTICK PORTS
+	public static final int JOYSTICK_DRIVER_PORT = 0;
+	public static final int JOYSTICK_OPERATOR_PORT = 1;
 }

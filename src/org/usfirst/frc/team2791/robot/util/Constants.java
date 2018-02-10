@@ -13,15 +13,20 @@ public class Constants {
 	public static final String SERVER_PORT = "roboRIO-" + TEAM_NUMBER + "-FRC";
 
 	//Lift Constants
-    public static final double offset= 30;
-    public static final double ratio = 1/2;
-    public static final double FAR_AWAY= 50;
-    public static final double LARGE_NUMBER = .3;
-    public static final double SMALL_NUMBER = .1;
-    public static final double CLOSE = 10;
-    public static final double CLOSE_TO_BOTTOM_DISTANCE = 5;
-    public static final double CLOSE_TO_TOP_DISTANCE = 3;
-    public static final double POWER = .3;
+	//at 60% the lift was at 36'' from the ground, 33'' from the bottom of it's travel
+    public static final double LIFT_POT_OFFSET = 3;
+    public static final double LIFT_POT_FULL_RANGE = 33.0 / 0.6;
+    
+    public static final double FAR_AWAY_DISTANCE = 2.5;
+    public static final double CLOSE_DISTANCE = 0.5;
+    public static final double FAR_AWAY_POWER = 1;
+    public static final double CLOSE_POWER = .25;
+    
+    public static final double LIFT_MAX_HEIGHT = 35; // -1 for safety
+    public static final double LIFT_MIN_HEIGHT = 4; // -1 for safety
+    
+    public static final double CLOSE_TO_HARD_STOPS_DISTANCE = 2.5;
+    public static final double MANUAL_POWER = .5;
 
 	// Joystick constants
 	public static final double DEADZONE = 0.05;

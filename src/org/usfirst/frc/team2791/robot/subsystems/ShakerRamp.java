@@ -27,12 +27,12 @@ public class ShakerRamp extends Subsystem {
 
     // Checks if LeftRamp is up
     public boolean isLeftRampUp() {
-        return leftLimitSwitchOne.get() || leftLimitSwitchTwo.get() || isLeftRampCurrentHigh();
+        return !leftLimitSwitchOne.get() || !leftLimitSwitchTwo.get() || isLeftRampCurrentHigh();
     }
 
     // Checks if RightRamp is up
     public boolean isRightRampUp() {
-        return rightLimitSwitchOne.get() || rightLimitSwitchTwo.get() || isRightRampCurrentHigh();
+        return !rightLimitSwitchOne.get() || !rightLimitSwitchTwo.get() || isRightRampCurrentHigh();
     }
 
     private boolean isLeftRampCurrentHigh() {

@@ -8,6 +8,7 @@ import org.usfirst.frc.team2791.robot.util.Constants;
 import org.usfirst.frc.team2791.robot.util.Util;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -89,9 +90,11 @@ public class ShakerDrivetrain extends Subsystem{
 		boolean letSideInverted = true;
 		for(int i = 0; i < leftDrive.length; i++) {
 			leftDrive[i].setInverted(letSideInverted);
+			leftDrive[i].setNeutralMode(NeutralMode.Brake);
 		}
 		for(int i = 0; i < rightDrive.length; i++){
 			rightDrive[i].setInverted(!letSideInverted);
+			rightDrive[i].setNeutralMode(NeutralMode.Brake);
 		}
 
 		// stops all motors right away just in case

@@ -1,24 +1,24 @@
 package org.usfirst.frc.team2791.robot.commands.lift;
 
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2791.robot.OI;
 import org.usfirst.frc.team2791.robot.Robot;
-import org.usfirst.frc.team2791.robot.subsystems.ShakerLift;
+import org.usfirst.frc.team2791.robot.util.Constants;
 
-import static org.usfirst.frc.team2791.robot.util.Constants.POWER;
+import edu.wpi.first.wpilibj.command.Command;
 
 public class RunLiftWithJoystick extends Command {
     public RunLiftWithJoystick(){
         requires(Robot.lift);
     }
     protected void initialize(){
-
+    	Robot.lift.setBreak(false);
     }
 
     @Override
     protected void execute() {
-        double speed = OI.driver.getAxisLeftY()*POWER;
+        double speed = OI.operator.getAxisLeftY() * Constants.MANUAL_POWER;
         Robot.lift.setPower(speed);
+        Robot.lift.setBreak(false);
     }
 
     @Override

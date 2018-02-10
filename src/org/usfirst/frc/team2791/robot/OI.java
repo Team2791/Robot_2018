@@ -4,11 +4,13 @@ import org.usfirst.frc.team2791.robot.commands.drivetrain.RunDrivetrainOnlyOneSi
 import org.usfirst.frc.team2791.robot.commands.drivetrain.SetDrivetrainShifterMode;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.SetRampDeploy;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.limelightTarget.DriveTowardLimelightTargetStopWithDistance;
+import org.usfirst.frc.team2791.robot.commands.lift.GoToHeight;
+import org.usfirst.frc.team2791.robot.commands.lift.RunLiftWithJoystick;
 import org.usfirst.frc.team2791.robot.shakerJoystick.ShakerGamePad;
+import org.usfirst.frc.team2791.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.usfirst.frc.team2791.robot.util.Constants;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -24,11 +26,14 @@ public class OI {
 	driverDpadDownLeft, driverDpadLeft, driverDpadUpLeft;
 	protected Button operatorDpadUp, operatorDpadUpRight, operatorDpadRight, operatorDpadDownRight, 
 	operatorDpadDown, operatorDpadDownLeft, operatorDpadLeft, operatorDpadUpLeft;
+	
+	protected Button opereatorJoystickUsed;
 
 	public static ShakerGamePad driver = new ShakerGamePad(0);
 	public static ShakerGamePad operator = new ShakerGamePad(1);
 	
 	public OI() {
+		initCustomStuff();
 		initButtons();
 		initDpad();
 
@@ -41,15 +46,33 @@ public class OI {
 		
 		driverLB.whileHeld(new RunDrivetrainOnlyOneSide(true, 0.15)); // true runs the left side
 		driverRB.whileHeld(new RunDrivetrainOnlyOneSide(false, 0.15)); // flase runs the right side
+		
+		opereatorJoystickUsed.whileHeld(new RunLiftWithJoystick());
 
 		driverStart.whileHeld(new DriveTowardLimelightTargetStopWithDistance(Constants.SPEED_MULTIPLIER, 1));
 		
 		/********************************** Operator Button Assignments ****************************************/
+		
+		operatorA.whenPressed(new GoToHeight(3)); // go to bottom
+		operatorB.whenPressed(new GoToHeight(13));
+		operatorX.whenPressed(new GoToHeight(23));
+		operatorY.whenPressed(new GoToHeight(35.4)); // go to top
 	
 
 		// Commenting out until lime light is finished.
 //		driverX.whileHeld(new TurnTowardLimelightTarget());
 		//driverY.whileHeld(new DriveTowardLimelightTargetTime(2));
+	}
+
+
+	private void initCustomStuff() {
+		opereatorJoystickUsed = new Button(){
+		@Override
+		public boolean get(){
+			return Math.abs(operator.getAxisLeftY()) > 0.15;
+		}
+	};
+		
 	}
 
 

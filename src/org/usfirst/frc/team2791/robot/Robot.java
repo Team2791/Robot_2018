@@ -137,5 +137,6 @@ public class Robot extends IterativeRobot {
 		drivetrain.debug();
 		ramps.debug();
 		manipulator.debug();
+		lift.debug();
 	}
 }

@@ -54,7 +54,7 @@ public class ShakerGamePad extends Joystick {
     }
 
     public double getAxisLeftY() {
-        return Util.deadzone(Constants.DEADZONE, super.getRawAxis(1), 1.0);
+        return -1 * Util.deadzone(Constants.DEADZONE, super.getRawAxis(1), 1.0);
     }
 
     public double getAxisLT() {
@@ -70,7 +70,7 @@ public class ShakerGamePad extends Joystick {
     }
 
     public double getAxisRightY() {
-        return Util.deadzone(Constants.DEADZONE, super.getRawAxis(5), 1.0);
+        return -1 * Util.deadzone(Constants.DEADZONE, super.getRawAxis(5), 1.0);
     }
     
     //GTA Drive
