@@ -1,10 +1,13 @@
 package org.usfirst.frc.team2791.robot.commands.lift;
-import org.usfirst.frc.team2791.robot.subsystems.ShakerLift;
-import edu.wpi.first.wpilibj.command.Command;
+import static java.lang.Math.abs;
+import static org.usfirst.frc.team2791.robot.util.Constants.CLOSE;
+import static org.usfirst.frc.team2791.robot.util.Constants.FAR_AWAY;
+import static org.usfirst.frc.team2791.robot.util.Constants.LARGE_NUMBER;
+import static org.usfirst.frc.team2791.robot.util.Constants.SMALL_NUMBER;
+
 import org.usfirst.frc.team2791.robot.Robot;
 
-import static java.lang.Math.abs;
-import static org.usfirst.frc.team2791.robot.util.Constants.*;
+import edu.wpi.first.wpilibj.command.Command;
 
 public class GoToHeight extends Command {
     private double targetHeight;
@@ -20,21 +23,20 @@ public class GoToHeight extends Command {
 
     @Override
     protected void execute(){
-            double diff = Robot.lift.getHeight() - targetHeight;
-            int diffSign = (int) Math.signum(diff);
-            if (abs(diff) > FAR_AWAY) {
-                Robot.lift.setPower(-diffSign * LARGE_NUMBER);
-                Robot.lift.setBreak(false);
-            } else if (abs(diff) > CLOSE) {
-                Robot.lift.setPower(-diffSign * SMALL_NUMBER);
-                Robot.lift.setBreak(false);
-            } else {
-                Robot.lift.setPower(0);
-                Robot.lift.setBreak(true);
-            }
-
+        double diff = Robot.lift.getHeight() - targetHeight;
+        int diffSign = (int) Math.signum(diff);
+        if (abs(diff) > FAR_AWAY) {
+            Robot.lift.setPower(-diffSign * LARGE_NUMBER);
+            Robot.lift.setBreak(false);
+        } else if (abs(diff) > CLOSE) {
+            Robot.lift.setPower(-diffSign * SMALL_NUMBER);
+            Robot.lift.setBreak(false);
+        } else {
+            Robot.lift.setPower(0);
+            Robot.lift.setBreak(true);
         }
     }
+    
     @Override
     public boolean isFinished() {
         return false;
@@ -46,6 +48,4 @@ public class GoToHeight extends Command {
     protected void interrupted () {
 
     }
-}
-}
 }

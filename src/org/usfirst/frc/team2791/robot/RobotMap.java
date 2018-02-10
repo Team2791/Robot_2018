@@ -62,5 +62,5 @@ public class RobotMap {
 	// Lift Ports
     public static final int LIMIT_SWITCH_TOP = 8;
 	public static final int LIMIT_SWITCH_BOTTOM = 9;
-	public static final int BOTTOM_SOLENOID = 10;
+	public static final int BREAK_SOLENOID = 6;
 }
