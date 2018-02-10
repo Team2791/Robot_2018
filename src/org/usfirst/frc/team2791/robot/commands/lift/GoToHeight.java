@@ -24,27 +24,28 @@ public class GoToHeight extends Command {
             int diffSign = (int) Math.signum(diff);
             if (abs(diff) > FAR_AWAY) {
                 Robot.lift.setPower(-diffSign * LARGE_NUMBER);
-
+                Robot.lift.setBreak(false);
             } else if (abs(diff) > CLOSE) {
                 Robot.lift.setPower(-diffSign * SMALL_NUMBER);
-
+                Robot.lift.setBreak(false);
             } else {
                 Robot.lift.setPower(0);
+                Robot.lift.setBreak(true);
             }
-        }
 
+        }
+    }
     @Override
     public boolean isFinished() {
-        return Math.abs(Robot.lift.getHeight() - targetHeight) < SMALL_NUMBER;
+        return false;
     }
     @Override
     protected void end () {
-    	Robot.lift.setPower(0);
-    }
 
+    }
     protected void interrupted () {
 
     }
 }
-
-
+}
+}
