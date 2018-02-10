@@ -41,7 +41,7 @@ public class OI {
 		driverA.whenPressed(new SetDrivetrainShifterMode(true));
 		driverB.whenPressed(new SetDrivetrainShifterMode(false));
 		driverX.whenPressed(new SetRampDeploy(false));
-		driverY.whenPressed(new SetRampDeploy(false));
+		driverY.whenPressed(new SetRampDeploy(true));
 		
 		
 		driverLB.whileHeld(new RunDrivetrainOnlyOneSide(true, 0.15)); // true runs the left side

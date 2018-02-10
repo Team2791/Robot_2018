@@ -85,9 +85,11 @@ public class ShakerDrivetrain extends Subsystem{
 		rightDriveEncoder = new Encoder(RobotMap.RIGHT_DRIVE_ENCODER_PORT_A,RobotMap.RIGHT_DRIVE_ENCODER_PORT_B);
 		
 		shiftingSolenoid = new DoubleSolenoid(RobotMap.DRIVETRAIN_GEARBOX_SHIFTER_IN, RobotMap.DRIVETRAIN_GEARBOX_SHIFTER_OUT);
-
+		setDriveOrRampMode(true); // set to drive mode
+		
+		
 		//Inverts the motor outputs so that the right and left motors both turn the right direction for forward drive
-		boolean letSideInverted = true;
+		boolean letSideInverted = false;
 		for(int i = 0; i < leftDrive.length; i++) {
 			leftDrive[i].setInverted(letSideInverted);
 			leftDrive[i].setNeutralMode(NeutralMode.Brake);

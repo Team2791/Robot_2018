@@ -19,6 +19,8 @@ public class ShakerRamp extends Subsystem {
         rightLimitSwitchTwo = new DigitalInput(RobotMap.LIMIT_SWITCH_RIGHT_2);
         // Define the solenoids to control ramps
         rampDeploySolenoid = new Solenoid(RobotMap.RAMP_DEPLOY_SOLENOID);
+        
+        setRampsDown(false);
     }
 
     public void setRampsDown(boolean setDown) {
