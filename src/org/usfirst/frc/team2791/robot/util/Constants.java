@@ -48,4 +48,8 @@ public class Constants {
 	// Manipulator Constants
 	public static final double INTAKE_SPEED = .5;
 	public static final double OUTPUT_SPEED = -.75;
+
+	//Auto Constants
+	public static final double LINE_DISTANCE = 10; //THIS IS NOT FINAL TODO FIND ACTUAL DISTANCE
+	public static final double SMALL_DISTANCE = 2; //THIS IS NOT FINAL TODO FIND ACTUAL VALUABLE SMALL DISTANCE
 }
