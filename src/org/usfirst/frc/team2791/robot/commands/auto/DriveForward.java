@@ -21,13 +21,13 @@ public class DriveForward extends Command {
     public void execute() {
         if (LINE_DISTANCE > Robot.drivetrain.getAverageDist()) {
             speed = .3;
-        } else if (SMALL_DISTANCE < LINE_DISTANCE && LINE_DISTANCE > Robot.drivetrain.getAverageDist()) {
+        } else if (SMALL_DISTANCE < Robot.drivetrain.getAverageDist() && LINE_DISTANCE > Robot.drivetrain.getAverageDist()) {
             speed = .1;
         } else if (LINE_DISTANCE == Robot.drivetrain.getAverageDist()) {
             speed = 0;
         }
         Robot.drivetrain.setLeftRightMotorOutputs(speed, speed);
-    }
+}
 
     @Override
     protected boolean isFinished() {

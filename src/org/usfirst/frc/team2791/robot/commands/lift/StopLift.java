@@ -16,7 +16,7 @@ public class StopLift extends Command {
     @Override
     protected void execute() {
     	Robot.lift.setPower(0);
-    }
+}
     
     @Override
     public boolean isFinished() {
