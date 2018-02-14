@@ -4,6 +4,8 @@ import org.usfirst.frc.team2791.robot.commands.drivetrain.RunDrivetrainOnlyOneSi
 import org.usfirst.frc.team2791.robot.commands.drivetrain.SetDrivetrainShifterMode;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.SetRampDeploy;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.limelightTarget.DriveTowardLimelightTargetStopWithDistance;
+import org.usfirst.frc.team2791.robot.commands.intakeclaw.IntakeAndHoldCube;
+import org.usfirst.frc.team2791.robot.commands.intakeclaw.ShootCube;
 import org.usfirst.frc.team2791.robot.commands.lift.GoToHeight;
 import org.usfirst.frc.team2791.robot.commands.lift.RunLiftWithJoystick;
 import org.usfirst.frc.team2791.robot.shakerJoystick.ShakerGamePad;
@@ -53,10 +55,14 @@ public class OI {
 		
 		/********************************** Operator Button Assignments ****************************************/
 		
-		operatorA.whenPressed(new GoToHeight(3)); // go to bottom
+		operatorA.whenPressed(new GoToHeight(1)); // go to bottom
 		operatorB.whenPressed(new GoToHeight(13));
 		operatorX.whenPressed(new GoToHeight(23));
 		operatorY.whenPressed(new GoToHeight(35.4)); // go to top
+		
+		operatorRB.whenPressed(new IntakeAndHoldCube());
+		operatorLB.whenPressed(new ShootCube());
+		
 	
 
 		// Commenting out until lime light is finished.

@@ -8,11 +8,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RunIntakeWithJoystick extends Command {
+public class RunManipulatorWithJoystick extends Command {
 
-    public RunIntakeWithJoystick() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    public RunManipulatorWithJoystick() {
+    	requires(Robot.manipulator);
     }
 
     // Called just before this Command runs the first time
@@ -21,8 +20,8 @@ public class RunIntakeWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double speed = OI.driver.getAxisRightY();
-    	Robot.intakeClaw.setIntakeSpeed(speed);
+    	double speed = OI.operator.getAxisRightY();
+    	Robot.manipulator.setLeftRightMotorSpeed(speed, speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

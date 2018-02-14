@@ -21,8 +21,8 @@ public class RobotMap {
 	public static final int TALON_RIGHT_3 = 20;
 	
 	// Manipulator
-	public static final int INTAKE_SPARK_LEFT_PORT = 2;
-	public static final int INTAKE_SPARK_RIGHT_PORT = 3;
+	public static final int INTAKE_SPARK_LEFT_PORT = 34;
+	public static final int INTAKE_SPARK_RIGHT_PORT = 35;
 	
 	// Lift
 	public static final int LIFT_TALON_ONE = 28; // this is the
@@ -54,8 +54,8 @@ public class RobotMap {
 	// Lift Ports
     public static final int LIMIT_SWITCH_TOP = 8;
 	public static final int LIMIT_SWITCH_BOTTOM = 9;
-	public static final int IR_SENSOR_LEFT = 2;
-	public static final int IR_SENSOR_RIGHT = 3;
+	public static final int IR_SENSOR_LEFT = 3;
+	public static final int IR_SENSOR_RIGHT = 2;
 
 	
 	// Drive train

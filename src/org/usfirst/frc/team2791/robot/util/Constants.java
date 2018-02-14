@@ -14,7 +14,7 @@ public class Constants {
 
 	//Lift Constants
 	//at 60% the lift was at 36'' from the ground, 33'' from the bottom of it's travel
-    public static final double LIFT_POT_OFFSET = 3;
+    public static final double LIFT_POT_OFFSET = -1.13;
     public static final double LIFT_POT_FULL_RANGE = 33.0 / 0.6;
     
     public static final double FAR_AWAY_DISTANCE = 2.5;
@@ -22,10 +22,10 @@ public class Constants {
     public static final double FAR_AWAY_POWER = 1;
     public static final double CLOSE_POWER = .25;
     
-    public static final double LIFT_MAX_HEIGHT = 35; // -1 for safety
-    public static final double LIFT_MIN_HEIGHT = 4; // -1 for safety
+    public static final double LIFT_MAX_HEIGHT = 38-1; // -1 for safety
+    public static final double LIFT_MIN_HEIGHT = .25 + 1; // +1 for safety
     
-    public static final double CLOSE_TO_HARD_STOPS_DISTANCE = 2.5;
+    public static final double CLOSE_TO_HARD_STOPS_DISTANCE = 4;
     public static final double MANUAL_POWER = .5;
 
 	// Joystick constants
@@ -47,7 +47,8 @@ public class Constants {
 
 	// Manipulator Constants
 	public static final double INTAKE_SPEED = .5;
-	public static final double OUTPUT_SPEED = -.75;
+	public static final double OUTPUT_SPEED = -.2;
+	public static final double HOLD_SPEED = -0.07;
 
 	//Auto Constants
 	public static final double LINE_DISTANCE = 10; //THIS IS NOT FINAL TODO FIND ACTUAL DISTANCE

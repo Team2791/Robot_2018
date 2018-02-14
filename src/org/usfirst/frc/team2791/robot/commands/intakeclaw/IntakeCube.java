@@ -12,25 +12,20 @@ public class IntakeCube extends Command {
     private Manipulator manipulator;
 
     public IntakeCube() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    	requires(Robot.manipulator);
         manipulator = Robot.manipulator;
-
     }
 
     @Override
     protected void initialize() {
-        manipulator.setCubeArmsClosed(false);
         manipulator.setLeftRightMotorSpeed(Constants.INTAKE_SPEED, Constants.INTAKE_SPEED);
-
     }
 
     @Override
     protected void execute() {
         if (manipulator.isCubeInGripper()) {
             // we have the cube
-            manipulator.setCubeArmsClosed(true);
-            manipulator.setLeftRightMotorSpeed(0.0, 0.0);
+            manipulator.setLeftRightMotorSpeed(Constants.HOLD_SPEED, Constants.HOLD_SPEED);
         } else {
             // we are trying to get the cube
             if (manipulator.isCubeJammed()) {
@@ -46,14 +41,12 @@ public class IntakeCube extends Command {
 
     @Override
     protected boolean isFinished() {
-        // TODO: Make this return true when this Command no longer needs to run execute()
         return manipulator.isCubeInGripper();
     }
 
     @Override
     protected void end() {
-
-        manipulator.setLeftRightMotorSpeed(0,0);
+    	manipulator.setLeftRightMotorSpeed(Constants.HOLD_SPEED, Constants.HOLD_SPEED);
     }
 
     @Override
