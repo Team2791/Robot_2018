@@ -120,7 +120,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		debug();
+		//debug();
 	}
 	/**
 	 * This function is called periodically during test mode

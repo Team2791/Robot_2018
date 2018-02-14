@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2791.robot.subsystems;
 
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.RobotMap;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.DriveWithJoystick;
@@ -41,9 +42,6 @@ public class ShakerDrivetrain extends Subsystem{
 	
 	private DoubleSolenoid shiftingSolenoid;
 
-	private Encoder leftDriveEncoder = null;
-	private Encoder rightDriveEncoder = null;
-
 	private ADXRS450_Gyro gyro;
 	private boolean gyroDisabled = false;
 
@@ -81,8 +79,8 @@ public class ShakerDrivetrain extends Subsystem{
 		leftDrive = new BaseMotorController[] {victorLeft1, victorLeft2, talonLeft3};
 		rightDrive = new BaseMotorController[] {victorRight1, victorRight2, talonRight3};
 
-		leftDriveEncoder = new Encoder(RobotMap.LEFT_DRIVE_ENCODER_PORT_A, RobotMap.LEFT_DRIVE_ENCODER_PORT_B);
-		rightDriveEncoder = new Encoder(RobotMap.RIGHT_DRIVE_ENCODER_PORT_A,RobotMap.RIGHT_DRIVE_ENCODER_PORT_B);
+		talonLeft3.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
+		talonRight3.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 		
 		shiftingSolenoid = new DoubleSolenoid(RobotMap.DRIVETRAIN_GEARBOX_SHIFTER_IN, RobotMap.DRIVETRAIN_GEARBOX_SHIFTER_OUT);
 		setDriveOrRampMode(true); // set to drive mode
@@ -101,13 +99,6 @@ public class ShakerDrivetrain extends Subsystem{
 
 		// stops all motors right away just in case
 		disable();
-
-		leftDriveEncoder.reset();
-		rightDriveEncoder.reset();
-
-		//configures the encoder so that it can be used in drive PID functions
-		leftDriveEncoder.setDistancePerPulse(distancePerPulse);
-		rightDriveEncoder.setDistancePerPulse(-distancePerPulse);
 
 		//keeps the gyro from throwing startCompetition() errors and allows us to troubleshoot errors
 		try{
@@ -169,11 +160,11 @@ public class ShakerDrivetrain extends Subsystem{
 	 */
 	public void debug() {
 
-		SmartDashboard.putNumber("Left Drive Encoders Rate", leftDriveEncoder.getRate());
-		SmartDashboard.putNumber("Right Drive Encoders Rate", rightDriveEncoder.getRate());
+		SmartDashboard.putNumber("Left Drive Encoders Rate", getLeftVelocity());
+		SmartDashboard.putNumber("Right Drive Encoders Rate", getRightVelocity());
 
-		SmartDashboard.putNumber("LEncoderDistance", leftDriveEncoder.getDistance());
-		SmartDashboard.putNumber("REncoderDistance", rightDriveEncoder.getDistance());
+		SmartDashboard.putNumber("LEncoderDistance", getLeftDistance());
+		SmartDashboard.putNumber("REncoderDistance", getRightDistance());
 		SmartDashboard.putNumber("AvgEncoderDistance", getAverageDist());
 
 		SmartDashboard.putNumber("Gyro angle", gyro.getAngle());
@@ -209,7 +200,7 @@ public class ShakerDrivetrain extends Subsystem{
 
 	@Deprecated
 	public double getEncoderAngleRate() {
-		return (360/7.9) * (leftDriveEncoder.getRate() - rightDriveEncoder.getRate()) / 2.0;
+		return (360/7.9) * (getLeftVelocity() - getRightVelocity()) / 2.0;
 	}
 
 	public double getGyroRate() {
@@ -236,9 +227,10 @@ public class ShakerDrivetrain extends Subsystem{
 
 	public void resetEncoders() {
 		// zero the encoders
-		leftDriveEncoder.reset();
-		rightDriveEncoder.reset();
+		talonLeft3.setSelectedSensorPosition(0, 0,0 );
+		talonRight3.setSelectedSensorPosition(0, 0,0);
 	}
+
 	public void resetGyro() {
 		if(!gyroDisabled) {
 			gyro.reset();
@@ -263,14 +255,14 @@ public class ShakerDrivetrain extends Subsystem{
 	 * @return distance traveled by left side based on encoder
 	 */
 	public double getLeftDistance() {
-		return leftDriveEncoder.getDistance();
+		return talonLeft3.getSelectedSensorPosition(0) * distancePerPulse;
 	}
 
 	/**
 	 * @return distance traveled by right side based on encoder
 	 */
 	public double getRightDistance() {
-		return rightDriveEncoder.getDistance();
+		return talonRight3.getSelectedSensorPosition(0) * distancePerPulse;
 	}
 
 	/**@return average distance of both encoder velocities */
@@ -281,11 +273,11 @@ public class ShakerDrivetrain extends Subsystem{
 	}
 
 	public double getLeftVelocity() {
-		return leftDriveEncoder.getRate();
+		return  talonLeft3.getSelectedSensorVelocity(0) * distancePerPulse * 10;// 10 to convert from milliseconds a
 	}
 
 	public double getRightVelocity() {
-		return rightDriveEncoder.getRate();
+		return  talonRight3.getSelectedSensorVelocity(0) * distancePerPulse * 10;
 	}
 
 	/**@return average velocity of both encoder velocities */
@@ -348,5 +340,4 @@ public class ShakerDrivetrain extends Subsystem{
 									Robot.pdp.getCurrent(RobotMap.POWER_LEFT_DRIVE_2) +
 									Robot.pdp.getCurrent(RobotMap.POWER_LEFT_DRIVE_3);
 	}
-
 }
