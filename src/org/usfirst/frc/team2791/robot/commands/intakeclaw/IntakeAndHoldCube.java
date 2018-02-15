@@ -25,7 +25,9 @@ public class IntakeAndHoldCube extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
+//    	addSequential(new SetManipulatorRetracted(true));
     	addSequential(new IntakeCube());
+//    	addParallel(new SetManipulatorRetracted(true));
     	addSequential(new HoldCube());
     }
 }

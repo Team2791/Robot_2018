@@ -37,13 +37,13 @@ public class RobotMap {
 	public static final int DRIVETRAIN_GEARBOX_SHIFTER_OUT = 1;
 	
 	// Ramps
-	public static final int RAMP_DEPLOY_SOLENOID = 3;
+	public static final int RAMP_DEPLOY_SOLENOID = 5;
 	
 	// Lift
 	public static final int BREAK_SOLENOID = 2;
 
 	// Manipulator
-	public static final int INTAKE_EXTENDER_SOLENOID_PORT = 4;
+	public static final int INTAKE_EXTENDER_SOLENOID_PORT = 3;
 	//public static final int INTAKE_GRABBER_SOLENOID_PORT = 5;
 	
 	// ===== Sensors =====
@@ -89,6 +89,9 @@ public class RobotMap {
 	public static final int POWER_LEFT_DRIVE_1 = 3;
 	public static final int POWER_LEFT_DRIVE_2 = 4;
 	public static final int POWER_LEFT_DRIVE_3 = 5;
+	
+	public static final int PDP_INTAKE_LEFT = 3;
+	public static final int PDP_INTAKE_RIGHT = 4;
 	
 	// JOYSTICK PORTS
 	public static final int JOYSTICK_DRIVER_PORT = 0;

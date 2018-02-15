@@ -26,7 +26,7 @@ public class ShakerLift extends Subsystem {
     Solenoid Break;
     AnalogPotentiometer potentiometer;
     BaseMotorController motorOne, motorTwo, motorThree;
-    BaseMotorController[] motorControllers = { motorOne, motorTwo, motorThree };
+    BaseMotorController[] motorControllers;
     AnalogInput potAnalogInput;
     Timer breakReleaseTimer;
     boolean breakReleaseTimerStarted = false;
@@ -44,11 +44,13 @@ public class ShakerLift extends Subsystem {
         motorTwo = new VictorSPX(RobotMap.LIFT_VICTOR_TWO);
         motorThree = new VictorSPX(RobotMap.LIFT_VICTOR_THREE);
         
+        motorControllers = new BaseMotorController[] { motorOne, motorTwo, motorThree };
+        
         for(int i=0; i<motorControllers.length; i++) {
         	motorControllers[i].setNeutralMode(NeutralMode.Brake);
         	// this will limit the motor controllers from shocking the lift with full power
         	// it will take them 0.5s to ramp up to full power.
-        	motorControllers[i].configOpenloopRamp(0.5, 10); 
+        	motorControllers[i].configOpenloopRamp(0.3, 10); 
         }
 
     }
@@ -83,11 +85,11 @@ public class ShakerLift extends Subsystem {
         } else if (atTop()) {
             power = min(0, power);
         } else if (closeToTop()) {
-            power = min(0.2, power);
+            power = min(0.35, power);
         }
         
         // clamp the maximum down power to 0.25 until we figure out why the bearing popped out
-        power = min(-.25, power);
+        power = max(-.25, power);
         
         // now we use the internal method that has direct control to the motor
         // after we have made sure that power is a safe number.
@@ -95,19 +97,19 @@ public class ShakerLift extends Subsystem {
     }
 
     public boolean atBottom() {
-        return !bottomLimitSwitch.get();
+        return !bottomLimitSwitch.get() || potentiometer.get() < Constants.LIFT_MIN_HEIGHT - 0.1;
     }
 
     public boolean closeToBottom() {
-        return potentiometer.get() < Constants.LIFT_MIN_HEIGHT + Constants.CLOSE_TO_HARD_STOPS_DISTANCE;
+        return potentiometer.get() < Constants.LIFT_MIN_HEIGHT + Constants.BOTTOM_SAFTEY_DISTANCE;
     }
 
     public boolean atTop() {
-        return !topLimitSwitch.get();
+        return !topLimitSwitch.get() || potentiometer.get() > Constants.LIFT_MAX_HEIGHT + 0.1;
     }
 
     public boolean closeToTop() {
-        return potentiometer.get() > Constants.LIFT_MAX_HEIGHT - Constants.CLOSE_TO_HARD_STOPS_DISTANCE;
+        return potentiometer.get() > Constants.LIFT_MAX_HEIGHT - Constants.TOP_SAFTEY_DISTANCE;
     }
 
     private void setPowerUnsafe(double power) {

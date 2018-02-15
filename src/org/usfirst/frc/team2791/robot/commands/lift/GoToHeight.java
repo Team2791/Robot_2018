@@ -40,9 +40,10 @@ public class GoToHeight extends Command {
     }
     @Override
     protected void end () {
-
+    	Robot.lift.setPower(0);
+    	Robot.lift.setBreak(true);
     }
     protected void interrupted () {
-
+    	end();
     }
 }

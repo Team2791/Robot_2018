@@ -20,7 +20,7 @@ public class RunManipulatorWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double speed = OI.operator.getAxisRightY();
+    	double speed = -1 * OI.operator.getAxisRightY() * 0.3;
     	Robot.manipulator.setLeftRightMotorSpeed(speed, speed);
     }
 
