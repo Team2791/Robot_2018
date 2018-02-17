@@ -91,11 +91,11 @@ public class ShakerDrivetrain extends Subsystem{
 		boolean letSideInverted = false;
 		for(int i = 0; i < leftDrive.length; i++) {
 			leftDrive[i].setInverted(letSideInverted);
-			leftDrive[i].setNeutralMode(NeutralMode.Brake);
+			leftDrive[i].setNeutralMode(NeutralMode.Coast);
 		}
 		for(int i = 0; i < rightDrive.length; i++){
 			rightDrive[i].setInverted(!letSideInverted);
-			rightDrive[i].setNeutralMode(NeutralMode.Brake);
+			rightDrive[i].setNeutralMode(NeutralMode.Coast);
 		}
 
 		// stops all motors right away just in case

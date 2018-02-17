@@ -9,15 +9,12 @@ import edu.wpi.first.wpilibj.Timer;
 
 
 public class ShootCube extends Command {
-    private Manipulator manipulator;
+    private double speed;
     private Timer timer;
-    public ShootCube() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    public ShootCube(double outputSpeed) {
     	requires(Robot.manipulator);
-        manipulator = Robot.manipulator;
+        speed = outputSpeed;
         timer = new Timer();
-
     }
 
     @Override
@@ -29,23 +26,21 @@ public class ShootCube extends Command {
 
     @Override
     protected void execute() {
-        if (timer.get() >= 0.25) {
-            manipulator.setLeftRightMotorSpeed(Constants.OUTPUT_SPEED, Constants.OUTPUT_SPEED);
+        Robot.manipulator.setLeftRightMotorSpeed(speed, speed);
+
+
         }
-    }
+
 
     @Override
     protected boolean isFinished() {
         // TODO: Make this return true when this Command no longer needs to run execute()
-        if(timer.get() > 1.5) {
-            return !manipulator.isCubeInGripper();
-        }
-        return false;
+        return timer.get() > 2.5;
     }
 
     @Override
     protected void end() {
-        manipulator.setLeftRightMotorSpeed(0, 0);
+        Robot.manipulator.setLeftRightMotorSpeed(0, 0);
         timer.stop();
     }
 

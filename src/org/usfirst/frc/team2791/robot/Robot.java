@@ -70,7 +70,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
+		Robot.ramps.setRampsDown(false);
 	}
 
 	@Override
