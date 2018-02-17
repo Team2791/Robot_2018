@@ -51,7 +51,7 @@ public class ShakerLift extends Subsystem {
         	motorControllers[i].setNeutralMode(NeutralMode.Brake);
         	// this will limit the motor controllers from shocking the lift with full power
         	// it will take them 0.5s to ramp up to full power.
-        	motorControllers[i].configOpenloopRamp(0.3, 10); 
+        	motorControllers[i].configOpenloopRamp(0.25, 10); 
         }
 
     }
@@ -74,7 +74,7 @@ public class ShakerLift extends Subsystem {
     // is moving slowly near the top/bottom and once at the top/bottom can't break itself. 
     public void setPower(double power) {
     	// make sure the break is released before we let it move
-    	if(breakReleaseTimer.get() < 0.15) {
+    	if(breakReleaseTimer.get() < 0.12) {
     		setPowerUnsafe(0);
     		return;
     	}

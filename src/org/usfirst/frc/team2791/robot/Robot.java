@@ -1,14 +1,17 @@
 
 package org.usfirst.frc.team2791.robot;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
+import org.usfirst.frc.team2791.robot.commands.auto.DriveForwardTime;
+import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyStraightSwitchCube;
+import org.usfirst.frc.team2791.robot.subsystems.Manipulator;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerLift;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerRamp;
-import org.usfirst.frc.team2791.robot.subsystems.Manipulator;
+import org.usfirst.frc.team2791.robot.util.DelayedCommandGroup;
 import org.usfirst.frc.team2791.robot.util.Limelight;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
@@ -28,7 +31,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	public static String data;
-	public boolean leftSwitchNear, leftScale, leftSwitchFar;
+	public static boolean leftSwitchNear, leftScale, leftSwitchFar;
 	public static DriverStation station;
 	public static PowerDistributionPanel pdp; //CAN ID has to be 0 for current sensing
 	public static OI oi;
@@ -61,7 +64,9 @@ public class Robot extends IterativeRobot {
 
 		// Set up our auton chooser
 		chooser.addDefault("Default Auto - Do Nothing", new DoNothing());
-//		chooser.addObject("My Auto", new MyAutoCommand());
+		chooser.addObject("Cross line - time only", new DriveForwardTime(0.4, 3.2));
+		chooser.addObject("LEFT side Straight Switch - time only", new TimeOnlyStraightSwitchCube(true));
+		chooser.addObject("RIGHT side Straight Switch - time only", new TimeOnlyStraightSwitchCube(false));
 		SmartDashboard.putData("Auto mode", chooser);
 		
 		oi = new OI();
@@ -103,8 +108,13 @@ public class Robot extends IterativeRobot {
 		autonomousCommand = chooser.getSelected();
 
 		// schedule the autonomous command
-		if (autonomousCommand != null)
+		if (autonomousCommand != null) {
+			// if it's a DelayedCommandGroup we need to init it
+			if(autonomousCommand instanceof DelayedCommandGroup) {
+				((DelayedCommandGroup) autonomousCommand).init();
+			}
 			autonomousCommand.start();
+		}
 	}
 
 	/**

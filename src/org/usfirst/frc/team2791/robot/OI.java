@@ -56,8 +56,8 @@ public class OI {
 		driverY.whenPressed(new DropRamps());
 		
 		
-		driverStart.whileHeld(new RunDrivetrainOnlyOneSide(true, 0.85)); // true runs the left side
-		driverBack.whileHeld(new RunDrivetrainOnlyOneSide(false, 0.85)); // flase runs the right side
+		driverStart.whileHeld(new RunDrivetrainOnlyOneSide(true, 0.80)); // true runs the left side
+		driverBack.whileHeld(new RunDrivetrainOnlyOneSide(false, 0.80)); // flase runs the right side
 		
 		operatorLeftJoystickUsed.whenPressed(new RunLiftWithJoystick(operatorLeftJoystickUsed));
 		operatorRightJoystickUsed.whenPressed(new RunManipulatorWithJoystick());
@@ -76,10 +76,10 @@ public class OI {
 
 		operatorRAnalogTrigger.whenPressed(new IntakeAndHoldCube());
 		operatorLAnalogTrigger.whenPressed(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
-		operatorLS.whenPressed(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
+		operatorLB.whenPressed(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
 
-		operatorBack.whenPressed(new SetManipulatorRetracted(true));
-		operatorStart.whenPressed(new SetManipulatorRetracted(false));
+		operatorDpadUp.whenPressed(new SetManipulatorRetracted(true));
+		operatorDpadDown.whenPressed(new SetManipulatorRetracted(false));
 
 		// Commenting out until lime light is finished.
 //		driverX.whileHeld(new TurnTowardLimelightTarget());
@@ -105,13 +105,13 @@ public class OI {
 		operatorRAnalogTrigger = new Button() {
 			@Override
 			public boolean get() {
-				return operator.getAxisType(5) > 0.8;
+				return operator.getAxisRT() > 0.8;
 			}
 		};
 		operatorLAnalogTrigger= new Button(){
 			@Override
 			public boolean get(){
-				return operator.getAxisType(5) < -0.8;
+				return operator.getAxisLT() > 0.8;
 			}
 		};
 

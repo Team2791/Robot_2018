@@ -166,20 +166,19 @@ public class ShakerDrivetrain extends Subsystem{
 	 * Drivetrain sfx outputs
 	 */
 	public void debug() {
+		SmartDashboard.putNumber("DT - Left Encoders Rate", getLeftVelocity());
+		SmartDashboard.putNumber("DT - Right Encoders Rate", getRightVelocity());
 
-		SmartDashboard.putNumber("Left Drive Encoders Rate", getLeftVelocity());
-		SmartDashboard.putNumber("Right Drive Encoders Rate", getRightVelocity());
+		SmartDashboard.putNumber("DT - Left Encoder Distance", getLeftDistance());
+		SmartDashboard.putNumber("DT - Right Encoder Distance", getRightDistance());
+		SmartDashboard.putNumber("DT - Avg Encoder Distance", getAverageDist());
 
-		SmartDashboard.putNumber("LEncoderDistance", getLeftDistance());
-		SmartDashboard.putNumber("REncoderDistance", getRightDistance());
-		SmartDashboard.putNumber("AvgEncoderDistance", getAverageDist());
+		SmartDashboard.putNumber("DT - Gyro angle", gyro.getAngle());
+		SmartDashboard.putNumber("DT - Gyro rate", gyro.getRate());
 
-		SmartDashboard.putNumber("Gyro angle", gyro.getAngle());
-		SmartDashboard.putNumber("Gyro rate", gyro.getRate());
-
-		SmartDashboard.putNumber("Drivetrain total current", getCurrentUsage());
-		SmartDashboard.putString("LDist vs RDist vs AvgDist", getLeftDistance()+":"+getRightDistance()+":"+getAverageDist());
-		SmartDashboard.putString("LVel vs RVel vs AvgVel", getLeftVelocity()+":"+getRightVelocity()+":"+getAverageVelocity());
+		SmartDashboard.putNumber("DT - total current", getCurrentUsage());
+//		SmartDashboard.putString("LDist vs RDist vs AvgDist", getLeftDistance()+":"+getRightDistance()+":"+getAverageDist());
+//		SmartDashboard.putString("LVel vs RVel vs AvgVel", getLeftVelocity()+":"+getRightVelocity()+":"+getAverageVelocity());
 		
 		// these are commented out because we don't need them. They were created for motion profiling we are not using.
 		// I'm leaving them in because we may use them in the future and I want to be explicit why we are not using them right now.

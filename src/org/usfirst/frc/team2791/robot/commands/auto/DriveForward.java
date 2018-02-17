@@ -1,15 +1,12 @@
 package org.usfirst.frc.team2791.robot.commands.auto;
 
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.command.Subsystem;
-import org.usfirst.frc.team2791.robot.Robot;
-
-import edu.wpi.first.wpilibj.command.Command;
-
 import static org.usfirst.frc.team2791.robot.Robot.drivetrain;
 import static org.usfirst.frc.team2791.robot.util.Constants.LINE_DISTANCE;
 import static org.usfirst.frc.team2791.robot.util.Constants.SMALL_DISTANCE;
+
+import org.usfirst.frc.team2791.robot.Robot;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveForward extends Command {
     private double speed;
