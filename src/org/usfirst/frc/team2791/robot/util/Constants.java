@@ -50,6 +50,8 @@ public class Constants {
 	public static final double INTAKE_SPEED = .5;
 	public static final double OUTPUT_SPEED = -.4;
 	public static final double HOLD_SPEED = 0.15;
+	public static final double SMALL_OUTPUT_SPEED = -.2;
+	public static final double LARGE_OUTPUT_SPEED = -.6;
 	 // 2v is the maximum we can give the 775 pros for a long time stalled
 	// 2/13 ~= 0.15
 

@@ -16,26 +16,32 @@ import org.usfirst.frc.team2791.robot.util.Constants;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
+import static org.usfirst.frc.team2791.robot.util.Constants.LARGE_OUTPUT_SPEED;
+import static org.usfirst.frc.team2791.robot.util.Constants.SMALL_OUTPUT_SPEED;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	
+
 	protected Button driverA, driverB, driverX, driverY, driverLB, driverRB, driverBack, driverStart, driverLS, driverRS;
-	protected Button operatorA, operatorB, operatorX, operatorY, operatorLB, operatorRB, operatorBack, operatorStart, 
-	operatorLS, operatorRS; 
+	protected Button operatorA, operatorB, operatorX, operatorY, operatorLB, operatorRB, operatorBack, operatorStart,
+			operatorLS, operatorRS;
 
 	protected Button driverDpadUp, driverDpadUpRight, driverDpadRight, driverDpadDownRight, driverDpadDown,
-	driverDpadDownLeft, driverDpadLeft, driverDpadUpLeft;
-	protected Button operatorDpadUp, operatorDpadUpRight, operatorDpadRight, operatorDpadDownRight, 
-	operatorDpadDown, operatorDpadDownLeft, operatorDpadLeft, operatorDpadUpLeft;
-	
-	protected Button opereatorLeftJoystickUsed, opereatorRightJoystickUsed;
+			driverDpadDownLeft, driverDpadLeft, driverDpadUpLeft;
+	protected Button operatorDpadUp, operatorDpadUpRight, operatorDpadRight, operatorDpadDownRight,
+			operatorDpadDown, operatorDpadDownLeft, operatorDpadLeft, operatorDpadUpLeft;
+
+	protected Button operatorLeftJoystickUsed, operatorRightJoystickUsed;
+
+	protected Button operatorRAnalogTrigger, operatorLAnalogTrigger;
+
 
 	public static ShakerGamePad driver = new ShakerGamePad(0);
 	public static ShakerGamePad operator = new ShakerGamePad(1);
-	
+
 	public OI() {
 		initCustomStuff();
 		initButtons();
@@ -46,30 +52,30 @@ public class OI {
 		driverB.whenPressed(new SetDrivetrainShifterMode(false));
 		driverX.whenPressed(new SetRampDeploy(false));
 		driverY.whenPressed(new SetRampDeploy(true));
-		
-		
+
+
 		driverLB.whileHeld(new RunDrivetrainOnlyOneSide(true, 0.15)); // true runs the left side
 		driverRB.whileHeld(new RunDrivetrainOnlyOneSide(false, 0.15)); // flase runs the right side
-		
-		opereatorLeftJoystickUsed.whileHeld(new RunLiftWithJoystick());
-		opereatorRightJoystickUsed.whileHeld(new RunManipulatorWithJoystick());
+
+		operatorLeftJoystickUsed.whileHeld(new RunLiftWithJoystick());
+		operatorRightJoystickUsed.whileHeld(new RunManipulatorWithJoystick());
 
 		driverStart.whileHeld(new DriveTowardLimelightTargetStopWithDistance(Constants.SPEED_MULTIPLIER, 1));
-		
+
 		/********************************** Operator Button Assignments ****************************************/
-		
+
 		operatorA.whenPressed(new GoToHeight(0)); // go to bottom
 		operatorB.whenPressed(new GoToHeight(13));
 		operatorX.whenPressed(new GoToHeight(23));
 		operatorY.whenPressed(new GoToHeight(36.5)); // go to top
-		
-		operatorRB.whenPressed(new IntakeAndHoldCube());
-		operatorLB.whenPressed(new ShootCube());
-		
+
+		operatorRAnalogTrigger.whenPressed(new IntakeAndHoldCube());
+		operatorLAnalogTrigger.whenPressed(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
+		operatorLS.whenPressed(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
+
 		operatorBack.whenPressed(new SetManipulatorRetracted(true));
 		operatorStart.whenPressed(new SetManipulatorRetracted(false));
-		
-	
+
 
 		// Commenting out until lime light is finished.
 //		driverX.whileHeld(new TurnTowardLimelightTarget());
@@ -78,22 +84,36 @@ public class OI {
 
 
 	private void initCustomStuff() {
-		opereatorLeftJoystickUsed = new Button(){
+		operatorLeftJoystickUsed = new Button() {
 			@Override
-			public boolean get(){
+			public boolean get() {
 				return Math.abs(operator.getAxisLeftY()) > 0.12;
 			}
 		};
-		
-		opereatorRightJoystickUsed = new Button(){
+
+		operatorRightJoystickUsed = new Button() {
 			@Override
-			public boolean get(){
+			public boolean get() {
 				return Math.abs(operator.getAxisRightY()) > 0.12;
 			}
 		};
-		
-		
+
+		operatorRAnalogTrigger = new Button() {
+			@Override
+			public boolean get() {
+				return operator.getAxisType(5) > 0.8;
+			}
+		};
+		operatorLAnalogTrigger= new Button(){
+			@Override
+			public boolean get(){
+				return operator.getAxisType(5) < -0.8;
+			}
+		};
+
 	}
+
+
 
 
 	private void initButtons() {
