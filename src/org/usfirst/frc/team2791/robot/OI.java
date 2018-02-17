@@ -48,26 +48,26 @@ public class OI {
 		driverY.whenPressed(new SetRampDeploy(true));
 		
 		
-		driverLB.whileHeld(new RunDrivetrainOnlyOneSide(true, 0.15)); // true runs the left side
-		driverRB.whileHeld(new RunDrivetrainOnlyOneSide(false, 0.15)); // flase runs the right side
+		driverStart.whileHeld(new RunDrivetrainOnlyOneSide(true, 0.85)); // true runs the left side
+		driverBack.whileHeld(new RunDrivetrainOnlyOneSide(false, 0.85)); // flase runs the right side
 		
-		opereatorLeftJoystickUsed.whileHeld(new RunLiftWithJoystick());
-		opereatorRightJoystickUsed.whileHeld(new RunManipulatorWithJoystick());
+		opereatorLeftJoystickUsed.whenPressed(new RunLiftWithJoystick(opereatorLeftJoystickUsed));
+		opereatorRightJoystickUsed.whenPressed(new RunManipulatorWithJoystick());
 
 		driverStart.whileHeld(new DriveTowardLimelightTargetStopWithDistance(Constants.SPEED_MULTIPLIER, 1));
 		
 		/********************************** Operator Button Assignments ****************************************/
 		
 		operatorA.whenPressed(new GoToHeight(0)); // go to bottom
-		operatorB.whenPressed(new GoToHeight(13));
+		operatorB.whenPressed(new GoToHeight(11));
 		operatorX.whenPressed(new GoToHeight(23));
 		operatorY.whenPressed(new GoToHeight(36.5)); // go to top
 		
 		operatorRB.whenPressed(new IntakeAndHoldCube());
 		operatorLB.whenPressed(new ShootCube());
 		
-		operatorBack.whenPressed(new SetManipulatorRetracted(true));
-		operatorStart.whenPressed(new SetManipulatorRetracted(false));
+		operatorDpadUp.whenPressed(new SetManipulatorRetracted(true));
+		operatorDpadDown.whenPressed(new SetManipulatorRetracted(false));
 		
 	
 
