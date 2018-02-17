@@ -58,4 +58,19 @@ public class Constants {
 	//Auto Constants
 	public static final double LINE_DISTANCE = 10; //THIS IS NOT FINAL TODO FIND ACTUAL DISTANCE
 	public static final double SMALL_DISTANCE = 2; //THIS IS NOT FINAL TODO FIND ACTUAL VALUABLE SMALL DISTANCE
+	
+	
+	// Auto PID constants
+	public static double DRIVE_DISTANCE_P = 0;
+	public static double DRIVE_DISTANCE_I = 0;
+	public static double DRIVE_DISTANCE_D = 0;
+	
+	public static double DRIVE_ANGLE_P = 0;
+	public static double DRIVE_ANGLE_I = 0;
+	public static double DRIVE_ANGLE_D = 0;
+	
+	public static double STATIONARY_ANGLE_P;
+	public static double STATIONARY_ANGLE_I;
+	public static double STATIONARY_ANGLE_D;
+	
 }

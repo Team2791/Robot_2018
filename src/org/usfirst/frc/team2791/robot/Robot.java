@@ -57,9 +57,7 @@ public class Robot extends IterativeRobot {
 		lift = new ShakerLift();
 		limelight = new Limelight();
 
-
 		updateGameData();
-
 
 		// Set up our auton chooser
 		chooser.addDefault("Default Auto - Do Nothing", new DoNothing());
@@ -77,6 +75,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledInit() {
 		Robot.ramps.setRampsDown(false);
+		updateGameData();
 	}
 
 	@Override
@@ -84,7 +83,6 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		debug();
 		updateGameData();
-
 	}
 
 	/**
@@ -100,6 +98,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		updateGameData();
+		
 		autonomousCommand = chooser.getSelected();
 
 		// schedule the autonomous command
@@ -114,11 +114,11 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 		debug();
-		updateGameData();
 	}
 
 	@Override
 	public void teleopInit() {
+		updateGameData();
 	}
 
 	/**
