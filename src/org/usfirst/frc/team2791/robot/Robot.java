@@ -2,7 +2,6 @@
 package org.usfirst.frc.team2791.robot;
 
 import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
-import org.usfirst.frc.team2791.robot.subsystems.IntakeClaw;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerLift;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerRamp;
@@ -31,7 +30,6 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	
 	public static ShakerDrivetrain drivetrain;
-	public static IntakeClaw intakeClaw;
 	public static ShakerRamp ramps; 
 	public static Manipulator manipulator;
 	public static Limelight limelight;
@@ -120,7 +118,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		//debug();
+		debug();
 	}
 	/**
 	 * This function is called periodically during test mode

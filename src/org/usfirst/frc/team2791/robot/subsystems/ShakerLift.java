@@ -26,6 +26,7 @@ public class ShakerLift extends Subsystem {
     Solenoid Break;
     AnalogPotentiometer potentiometer;
     BaseMotorController motorOne, motorTwo, motorThree;
+    BaseMotorController[] motorControllers;
     AnalogInput potAnalogInput;
     Timer breakReleaseTimer;
     boolean breakReleaseTimerStarted = false;
@@ -39,13 +40,19 @@ public class ShakerLift extends Subsystem {
         potentiometer = new AnalogPotentiometer(potAnalogInput, Constants.LIFT_POT_FULL_RANGE, Constants.LIFT_POT_OFFSET);
         breakReleaseTimer = new Timer();
         
-        
         motorOne = new TalonSRX(RobotMap.LIFT_TALON_ONE);
-        motorOne.setNeutralMode(NeutralMode.Brake);
         motorTwo = new VictorSPX(RobotMap.LIFT_VICTOR_TWO);
-        motorTwo.setNeutralMode(NeutralMode.Brake);
         motorThree = new VictorSPX(RobotMap.LIFT_VICTOR_THREE);
-        motorThree.setNeutralMode(NeutralMode.Brake);
+        
+        motorControllers = new BaseMotorController[] { motorOne, motorTwo, motorThree };
+        
+        for(int i=0; i<motorControllers.length; i++) {
+        	motorControllers[i].setNeutralMode(NeutralMode.Brake);
+        	// this will limit the motor controllers from shocking the lift with full power
+        	// it will take them 0.5s to ramp up to full power.
+        	motorControllers[i].configOpenloopRamp(0.3, 10); 
+        }
+
     }
 
     @Override
@@ -74,31 +81,35 @@ public class ShakerLift extends Subsystem {
         if (atBottom()) {
             power = max(0, power);
         } else if (closeToBottom()) {
-            power = max(-.2, power);
+            power = max(0, power); // was 0.2 without manipulator, if it needs to be something it can be -0.05 or something very small
         } else if (atTop()) {
             power = min(0, power);
         } else if (closeToTop()) {
-            power = min(0.2, power);
+            power = min(0.35, power);
         }
+        
+        // clamp the maximum down power to 0.25 until we figure out why the bearing popped out
+        power = max(-.25, power);
+        
         // now we use the internal method that has direct control to the motor
         // after we have made sure that power is a safe number.
         setPowerUnsafe(power);
     }
 
     public boolean atBottom() {
-        return !bottomLimitSwitch.get();
+        return !bottomLimitSwitch.get() || potentiometer.get() < Constants.LIFT_MIN_HEIGHT - 0.1;
     }
 
     public boolean closeToBottom() {
-        return potentiometer.get() < Constants.LIFT_MIN_HEIGHT + Constants.CLOSE_TO_HARD_STOPS_DISTANCE;
+        return potentiometer.get() < Constants.LIFT_MIN_HEIGHT + Constants.BOTTOM_SAFTEY_DISTANCE;
     }
 
     public boolean atTop() {
-        return !topLimitSwitch.get();
+        return !topLimitSwitch.get() || potentiometer.get() > Constants.LIFT_MAX_HEIGHT + 0.1;
     }
 
     public boolean closeToTop() {
-        return potentiometer.get() > Constants.LIFT_MAX_HEIGHT - Constants.CLOSE_TO_HARD_STOPS_DISTANCE;
+        return potentiometer.get() > Constants.LIFT_MAX_HEIGHT - Constants.TOP_SAFTEY_DISTANCE;
     }
 
     private void setPowerUnsafe(double power) {
@@ -137,9 +148,9 @@ public class ShakerLift extends Subsystem {
         SmartDashboard.putNumber("Lift - Potentiometer value", potentiometer.get());
         SmartDashboard.putNumber("Lift - Analog voltage value", potAnalogInput.getVoltage());
         
-        SmartDashboard.putNumber("Lift - Motor One value", motorOne.getMotorOutputPercent());
-        SmartDashboard.putNumber("Lift - Motor Two value", motorTwo.getMotorOutputPercent());
-        SmartDashboard.putNumber("Lift - Motor Three value", motorThree.getMotorOutputPercent());
+//        SmartDashboard.putNumber("Lift - Motor One value", motorOne.getMotorOutputPercent());
+//        SmartDashboard.putNumber("Lift - Motor Two value", motorTwo.getMotorOutputPercent());
+//        SmartDashboard.putNumber("Lift - Motor Three value", motorThree.getMotorOutputPercent());
         SmartDashboard.putBoolean("Lift - Break value", Break.get());
         
         SmartDashboard.putNumber("Lift - break timer", breakReleaseTimer.get());

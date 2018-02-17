@@ -5,6 +5,10 @@ import org.usfirst.frc.team2791.robot.commands.drivetrain.RunDrivetrainOnlyOneSi
 import org.usfirst.frc.team2791.robot.commands.drivetrain.SetDrivetrainShifterMode;
 import org.usfirst.frc.team2791.robot.commands.ramps.SetRampDeploy;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.limelightTarget.DriveTowardLimelightTargetStopWithDistance;
+import org.usfirst.frc.team2791.robot.commands.intakeclaw.IntakeAndHoldCube;
+import org.usfirst.frc.team2791.robot.commands.intakeclaw.RunManipulatorWithJoystick;
+import org.usfirst.frc.team2791.robot.commands.intakeclaw.SetManipulatorRetracted;
+import org.usfirst.frc.team2791.robot.commands.intakeclaw.ShootCube;
 import org.usfirst.frc.team2791.robot.commands.lift.GoToHeight;
 import org.usfirst.frc.team2791.robot.commands.lift.RunLiftWithJoystick;
 import org.usfirst.frc.team2791.robot.shakerJoystick.ShakerGamePad;
@@ -28,7 +32,7 @@ public class OI {
 	protected Button operatorDpadUp, operatorDpadUpRight, operatorDpadRight, operatorDpadDownRight, 
 	operatorDpadDown, operatorDpadDownLeft, operatorDpadLeft, operatorDpadUpLeft;
 	
-	protected Button opereatorJoystickUsed;
+	protected Button opereatorLeftJoystickUsed, opereatorRightJoystickUsed;
 
 	public static ShakerGamePad driver = new ShakerGamePad(0);
 	public static ShakerGamePad operator = new ShakerGamePad(1);
@@ -48,7 +52,8 @@ public class OI {
 		driverLB.whileHeld(new RunDrivetrainOnlyOneSide(true, 0.15)); // true runs the left side
 		driverRB.whileHeld(new RunDrivetrainOnlyOneSide(false, 0.15)); // flase runs the right side
 		
-		opereatorJoystickUsed.whileHeld(new RunLiftWithJoystick());
+		opereatorLeftJoystickUsed.whileHeld(new RunLiftWithJoystick());
+		opereatorRightJoystickUsed.whileHeld(new RunManipulatorWithJoystick());
 
 		driverStart.whileHeld(new DriveTowardLimelightTargetStopWithDistance(Constants.SPEED_MULTIPLIER, 1));
 		driverLS.whileHeld(new Creep(-0.1));
@@ -57,10 +62,17 @@ public class OI {
 		
 		/********************************** Operator Button Assignments ****************************************/
 		
-		operatorA.whenPressed(new GoToHeight(3)); // go to bottom
+		operatorA.whenPressed(new GoToHeight(0)); // go to bottom
 		operatorB.whenPressed(new GoToHeight(13));
 		operatorX.whenPressed(new GoToHeight(23));
-		operatorY.whenPressed(new GoToHeight(35.4)); // go to top
+		operatorY.whenPressed(new GoToHeight(36.5)); // go to top
+		
+		operatorRB.whenPressed(new IntakeAndHoldCube());
+		operatorLB.whenPressed(new ShootCube());
+		
+		operatorBack.whenPressed(new SetManipulatorRetracted(true));
+		operatorStart.whenPressed(new SetManipulatorRetracted(false));
+		
 	
 
 		// Commenting out until lime light is finished.
@@ -70,12 +82,20 @@ public class OI {
 
 
 	private void initCustomStuff() {
-		opereatorJoystickUsed = new Button(){
-		@Override
-		public boolean get(){
-			return Math.abs(operator.getAxisLeftY()) > 0.15;
-		}
-	};
+		opereatorLeftJoystickUsed = new Button(){
+			@Override
+			public boolean get(){
+				return Math.abs(operator.getAxisLeftY()) > 0.12;
+			}
+		};
+		
+		opereatorRightJoystickUsed = new Button(){
+			@Override
+			public boolean get(){
+				return Math.abs(operator.getAxisRightY()) > 0.12;
+			}
+		};
+		
 		
 	}
 

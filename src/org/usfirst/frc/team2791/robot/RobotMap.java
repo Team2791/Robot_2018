@@ -21,8 +21,8 @@ public class RobotMap {
 	public static final int TALON_RIGHT_3 = 20;
 	
 	// Manipulator
-	public static final int INTAKE_SPARK_LEFT_PORT = 2;
-	public static final int INTAKE_SPARK_RIGHT_PORT = 3;
+	public static final int INTAKE_SPARK_LEFT_PORT = 34;
+	public static final int INTAKE_SPARK_RIGHT_PORT = 35;
 	
 	// Lift
 	public static final int LIFT_TALON_ONE = 28; // this is the
@@ -37,13 +37,13 @@ public class RobotMap {
 	public static final int DRIVETRAIN_GEARBOX_SHIFTER_OUT = 1;
 	
 	// Ramps
-	public static final int RAMP_DEPLOY_SOLENOID = 3;
+	public static final int RAMP_DEPLOY_SOLENOID = 5;
 	
 	// Lift
 	public static final int BREAK_SOLENOID = 2;
 
 	// Manipulator
-	public static final int INTAKE_EXTENDER_SOLENOID_PORT = 4;
+	public static final int INTAKE_EXTENDER_SOLENOID_PORT = 3;
 	//public static final int INTAKE_GRABBER_SOLENOID_PORT = 5;
 	
 	// ===== Sensors =====
@@ -54,8 +54,8 @@ public class RobotMap {
 	// Lift Ports
     public static final int LIMIT_SWITCH_TOP = 8;
 	public static final int LIMIT_SWITCH_BOTTOM = 9;
-	public static final int IR_SENSOR_LEFT = 2;
-	public static final int IR_SENSOR_RIGHT = 3;
+	public static final int IR_SENSOR_LEFT = 3;
+	public static final int IR_SENSOR_RIGHT = 2;
 
 	
 	// Drive train
@@ -89,6 +89,9 @@ public class RobotMap {
 	public static final int POWER_LEFT_DRIVE_1 = 3;
 	public static final int POWER_LEFT_DRIVE_2 = 4;
 	public static final int POWER_LEFT_DRIVE_3 = 5;
+	
+	public static final int PDP_INTAKE_LEFT = 3;
+	public static final int PDP_INTAKE_RIGHT = 4;
 	
 	// JOYSTICK PORTS
 	public static final int JOYSTICK_DRIVER_PORT = 0;

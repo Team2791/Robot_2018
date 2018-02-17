@@ -1,13 +1,17 @@
 package org.usfirst.frc.team2791.robot.subsystems;
 
 
+import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.RobotMap;
+import org.usfirst.frc.team2791.robot.commands.intakeclaw.RunManipulatorWithJoystick;
 
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import edu.wpi.first.wpilibj.Solenoid;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Manipulator extends Subsystem {
@@ -24,18 +28,22 @@ public class Manipulator extends Subsystem {
         iRSensorLeft = new DigitalInput(RobotMap.IR_SENSOR_LEFT);
         iRSensorRight = new DigitalInput(RobotMap.IR_SENSOR_RIGHT);
         extender = new Solenoid(RobotMap.INTAKE_EXTENDER_SOLENOID_PORT);
-        //grabber = new Solenoid(RobotMap.INTAKE_GRABBER_SOLENOID_PORT);
 
         // Invert Motors
-        leftMotor.setInverted(false);
+        leftMotor.setInverted(true);
+        leftMotor.setNeutralMode(NeutralMode.Brake);
         rightMotor.setInverted(true);
-
-
+        rightMotor.setNeutralMode(NeutralMode.Brake);
+    }
+    
+    public void initDefaultCommand() {
+        // TODO: Set the default command, if any, for a subsystem here. Example:
+//            setDefaultCommand(new RunManipulatorWithJoystick());
     }
 
     public boolean isCubeInGripper(){
-        boolean left = iRSensorLeft.get();
-        boolean right = iRSensorRight.get();
+        boolean left = !iRSensorLeft.get();
+        boolean right = !iRSensorRight.get();
         if(left && right){
             return true;
         }
@@ -45,15 +53,18 @@ public class Manipulator extends Subsystem {
     // Don't know how to find out if cube is jammed
     // If difference between left and right sensors is large, then its jammed
     public boolean isCubeJammed(){
-        boolean left = iRSensorLeft.get();
-        boolean right = iRSensorRight.get();
-
-        return left ^ right;
+    	// this code works as indended however sometimes when the cube is jammed neither sensor is triggered
+//        boolean left = !iRSensorLeft.get();
+//        boolean right = !iRSensorRight.get();
+//
+//        return left ^ right;
+    	return getCurrentUsage() > 12.5;
+    	
     }
 
-    public void setLeftRightMotorSpeed(double leftSpeed, double rightSpeed){
-        leftMotor.set(ControlMode.Velocity, leftSpeed);
-        rightMotor.set(ControlMode.Velocity, rightSpeed);
+    public void setLeftRightMotorSpeed(double leftSpeed, double rightSpeed) {
+        leftMotor.set(ControlMode.PercentOutput, leftSpeed);
+        rightMotor.set(ControlMode.PercentOutput, rightSpeed);
     }
 
     public boolean isRetracted(){
@@ -61,35 +72,25 @@ public class Manipulator extends Subsystem {
         return !extender.get();
     }
 
-//    public boolean areCubeArmsClosed(){
-//        //Not sure if grabber.get returns true if open or closed
-//        return grabber.get();
-//    }
-
-//    public void setCubeArmsClosed(boolean closed){
-//        grabber.set(closed);
-//    }
 
     public void setRetracted(boolean retract){
         extender.set(retract);
     }
-
-
-
-    public void initDefaultCommand() {
-        // TODO: Set the default command, if any, for a subsystem here. Example:
-        //    setDefaultCommand(new MySpecialCommand());
+    
+    public double getCurrentUsage() {
+    	return Robot.pdp.getCurrent(RobotMap.PDP_INTAKE_LEFT) + Robot.pdp.getCurrent(RobotMap.PDP_INTAKE_RIGHT); 	
     }
 
+
     public void debug(){
-        SmartDashboard.putString("Manipulator Left Motor Percent", Double.toString(leftMotor.getMotorOutputPercent()));
-        SmartDashboard.putString("Manipulator Right Motor Percent", Double.toString(rightMotor.getMotorOutputPercent()));
-//        SmartDashboard.putBoolean("Manipulator Left Sensor", iRSensorLeft.get());
-//        SmartDashboard.putBoolean("Manipulator Right Sensor", iRSensorRight.get());
+//        SmartDashboard.putString("Manipulator Left Motor Percent", Double.toString(leftMotor.getMotorOutputPercent()));
+//        SmartDashboard.putString("Manipulator Right Motor Percent", Double.toString(rightMotor.getMotorOutputPercent()));
+        SmartDashboard.putBoolean("Manipulator Left Sensor", !iRSensorLeft.get());
+        SmartDashboard.putBoolean("Manipulator Right Sensor", !iRSensorRight.get());
         SmartDashboard.putBoolean("Manipulator Extender Solenoid", extender.get());
-//        SmartDashboard.putBoolean("Manipulator Grabber Solenoid", grabber.get());
-
-
+        SmartDashboard.putBoolean("Manipulator Cube in gripper", isCubeInGripper());
+        SmartDashboard.putBoolean("Manipulator Cube jammed", isCubeJammed());
+        SmartDashboard.putNumber("Manipulator - Current", getCurrentUsage());
     }
 }
 
