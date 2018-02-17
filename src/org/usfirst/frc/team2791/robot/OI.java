@@ -46,7 +46,7 @@ public class OI {
 		/********************************** Driver Button Assignments ****************************************/
 		driverA.whenPressed(new SetDrivetrainShifterMode(true));
 		driverB.whenPressed(new SetDrivetrainShifterMode(false));
-//		driverX.whenPressed(new SetRampDeploy(false));
+		driverX.whenPressed(new SetRampDeploy(false));
 		driverY.whenPressed(new DropRamps());
 		
 		
@@ -64,7 +64,7 @@ public class OI {
 		/********************************** Operator Button Assignments ****************************************/
 		
 		operatorA.whenPressed(new GoToHeight(0)); // go to bottom
-		operatorB.whenPressed(new GoToHeight(11));
+		operatorB.whenPressed(new GoToHeight(12)); // score on switch and pick up middle of power cube pile
 		operatorX.whenPressed(new GoToHeight(23));
 		operatorY.whenPressed(new GoToHeight(36.5)); // go to top
 		

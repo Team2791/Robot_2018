@@ -21,7 +21,6 @@ public class Creep extends Command {
      */
     @Override
     protected void initialize() {
-
     }
 
 

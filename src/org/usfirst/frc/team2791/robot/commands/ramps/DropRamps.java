@@ -26,6 +26,7 @@ public class DropRamps extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the arm.
         addParallel(new SetDrivetrainShifterMode(false));
         addParallel(new SetRampDeploy(true));
-        addParallel(new GoToHeight(24.0)); // 24 inches = 2 ft
+        // get the gripper out of the way
+        addParallel(new GoToHeight(18.0));
     }
 }
