@@ -25,9 +25,9 @@ public class Constants {
     public static final double LIFT_MAX_HEIGHT = 39-1; // -1 for safety
     public static final double LIFT_MIN_HEIGHT = .25 + 1; // +1 for safety
     
-    public static final double BOTTOM_SAFTEY_DISTANCE = 4;
+    public static final double BOTTOM_SAFTEY_DISTANCE = 2;
     public static final double TOP_SAFTEY_DISTANCE = 12;
-    public static final double MANUAL_POWER = .5;
+    public static final double MANUAL_POWER = 1.0;
 
 	// Joystick constants
 	public static final double DEADZONE = 0.05;
@@ -47,8 +47,8 @@ public class Constants {
 	public static final double LIMELIGHT_TURNING_CAP = 0.3;
 
 	// Manipulator Constants
-	public static final double INTAKE_SPEED = .5;
-	public static final double OUTPUT_SPEED = -.4;
+	public static final double INTAKE_SPEED = .65;
+	public static final double OUTPUT_SPEED = -.25;
 	public static final double HOLD_SPEED = 0.15;
 	public static final double SMALL_OUTPUT_SPEED = -.2;
 	public static final double LARGE_OUTPUT_SPEED = -.6;

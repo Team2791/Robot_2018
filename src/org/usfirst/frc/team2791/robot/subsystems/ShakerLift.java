@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ShakerLift extends Subsystem {
     DigitalInput topLimitSwitch, bottomLimitSwitch;
-    Solenoid Break;
+    Solenoid breakSolenoid;
     AnalogPotentiometer potentiometer;
     BaseMotorController motorOne, motorTwo, motorThree;
     BaseMotorController[] motorControllers;
@@ -35,9 +35,10 @@ public class ShakerLift extends Subsystem {
         super("ShakerLift");
         topLimitSwitch = new DigitalInput(RobotMap.LIMIT_SWITCH_TOP);
         bottomLimitSwitch = new DigitalInput(RobotMap.LIMIT_SWITCH_BOTTOM);
-        Break = new Solenoid(RobotMap.BREAK_SOLENOID);
         potAnalogInput = new AnalogInput(RobotMap.LIFT_POT_PORT);
         potentiometer = new AnalogPotentiometer(potAnalogInput, Constants.LIFT_POT_FULL_RANGE, Constants.LIFT_POT_OFFSET);
+        
+        breakSolenoid = new Solenoid(RobotMap.BREAK_SOLENOID);
         breakReleaseTimer = new Timer();
         
         motorOne = new TalonSRX(RobotMap.LIFT_TALON_ONE);
@@ -87,9 +88,9 @@ public class ShakerLift extends Subsystem {
         } else if (closeToTop()) {
             power = min(0.35, power);
         }
-        
-        // clamp the maximum down power to 0.25 until we figure out why the bearing popped out
-        power = max(-.25, power);
+
+        // clamp the maximum down power to 0.35 until we figure out why the bearing popped out
+        power = max(-.45, power);
         
         // now we use the internal method that has direct control to the motor
         // after we have made sure that power is a safe number.
@@ -119,7 +120,7 @@ public class ShakerLift extends Subsystem {
     }
 
     public void setBreak(boolean breakOn){
-        Break.set(breakOn);
+        breakSolenoid.set(!breakOn); // Solenoid is default on. True means the break will be off
         
         if(breakOn) {
         	// reset and stop the timer when we put the break on.
@@ -151,7 +152,7 @@ public class ShakerLift extends Subsystem {
 //        SmartDashboard.putNumber("Lift - Motor One value", motorOne.getMotorOutputPercent());
 //        SmartDashboard.putNumber("Lift - Motor Two value", motorTwo.getMotorOutputPercent());
 //        SmartDashboard.putNumber("Lift - Motor Three value", motorThree.getMotorOutputPercent());
-        SmartDashboard.putBoolean("Lift - Break value", Break.get());
+        SmartDashboard.putBoolean("Lift - Break value", !breakSolenoid.get());
         
         SmartDashboard.putNumber("Lift - break timer", breakReleaseTimer.get());
         

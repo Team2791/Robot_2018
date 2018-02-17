@@ -23,7 +23,15 @@ public class DriveWithJoystick extends Command {
 	}
 	
 	@Override
+	
 	protected void execute() {
+		if(Robot.lift.getHeight() > 12.5) {
+			speedMultiplier = 0.5;
+		} else {
+			speedMultiplier = Constants.SPEED_MULTIPLIER;
+		}
+		
+		
 		double leftSpeed = Robot.oi.driver.getGtaDriveLeft() * speedMultiplier;
 		double rightSpeed = Robot.oi.driver.getGtaDriveRight() * speedMultiplier;
 		Robot.drivetrain.setLeftRightMotorOutputs(leftSpeed, rightSpeed);

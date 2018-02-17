@@ -1,8 +1,10 @@
 package org.usfirst.frc.team2791.robot;
 
+import org.usfirst.frc.team2791.robot.commands.drivetrain.Creep;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.RunDrivetrainOnlyOneSide;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.SetDrivetrainShifterMode;
-import org.usfirst.frc.team2791.robot.commands.drivetrain.SetRampDeploy;
+import org.usfirst.frc.team2791.robot.commands.ramps.DropRamps;
+import org.usfirst.frc.team2791.robot.commands.ramps.SetRampDeploy;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.limelightTarget.DriveTowardLimelightTargetStopWithDistance;
 import org.usfirst.frc.team2791.robot.commands.intakeclaw.IntakeAndHoldCube;
 import org.usfirst.frc.team2791.robot.commands.intakeclaw.RunManipulatorWithJoystick;
@@ -50,6 +52,7 @@ public class OI {
 		/********************************** Driver Button Assignments ****************************************/
 		driverA.whenPressed(new SetDrivetrainShifterMode(true));
 		driverB.whenPressed(new SetDrivetrainShifterMode(false));
+<<<<<<< HEAD
 		driverX.whenPressed(new SetRampDeploy(false));
 		driverY.whenPressed(new SetRampDeploy(true));
 
@@ -62,12 +65,30 @@ public class OI {
 
 		driverStart.whileHeld(new DriveTowardLimelightTargetStopWithDistance(Constants.SPEED_MULTIPLIER, 1));
 
+=======
+//		driverX.whenPressed(new SetRampDeploy(false));
+		driverY.whenPressed(new DropRamps());
+		
+		
+		driverStart.whileHeld(new RunDrivetrainOnlyOneSide(true, 0.85)); // true runs the left side
+		driverBack.whileHeld(new RunDrivetrainOnlyOneSide(false, 0.85)); // flase runs the right side
+		
+		opereatorLeftJoystickUsed.whenPressed(new RunLiftWithJoystick(opereatorLeftJoystickUsed));
+		opereatorRightJoystickUsed.whenPressed(new RunManipulatorWithJoystick());
+
+		driverStart.whileHeld(new DriveTowardLimelightTargetStopWithDistance(Constants.SPEED_MULTIPLIER, 1));
+		driverLB.whileHeld(new Creep(-0.22));
+		driverRB.whileHeld(new Creep(0.22));
+
+		
+>>>>>>> 1db0c7be758d26926a7dc02aa513f131d902e73c
 		/********************************** Operator Button Assignments ****************************************/
 
 		operatorA.whenPressed(new GoToHeight(0)); // go to bottom
-		operatorB.whenPressed(new GoToHeight(13));
+		operatorB.whenPressed(new GoToHeight(11));
 		operatorX.whenPressed(new GoToHeight(23));
 		operatorY.whenPressed(new GoToHeight(36.5)); // go to top
+<<<<<<< HEAD
 
 		operatorRAnalogTrigger.whenPressed(new IntakeAndHoldCube());
 		operatorLAnalogTrigger.whenPressed(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
@@ -76,6 +97,16 @@ public class OI {
 		operatorBack.whenPressed(new SetManipulatorRetracted(true));
 		operatorStart.whenPressed(new SetManipulatorRetracted(false));
 
+=======
+		
+		operatorRB.whenPressed(new IntakeAndHoldCube());
+		operatorLB.whenPressed(new ShootCube());
+		
+		operatorDpadUp.whenPressed(new SetManipulatorRetracted(true));
+		operatorDpadDown.whenPressed(new SetManipulatorRetracted(false));
+		
+	
+>>>>>>> 1db0c7be758d26926a7dc02aa513f131d902e73c
 
 		// Commenting out until lime light is finished.
 //		driverX.whileHeld(new TurnTowardLimelightTarget());

@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class GoToHeight extends Command {
     private double targetHeight;
+    // Height measered inches
     public GoToHeight(double height) {
         super("GoToHeight");
         requires(Robot.lift);

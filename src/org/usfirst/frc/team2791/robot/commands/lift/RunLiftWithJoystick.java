@@ -4,12 +4,17 @@ import org.usfirst.frc.team2791.robot.OI;
 import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.util.Constants;
 
+import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class RunLiftWithJoystick extends Command {
-    public RunLiftWithJoystick(){
+	Button callingButton;
+	
+    public RunLiftWithJoystick(Button callingButton){
         requires(Robot.lift);
+        this.callingButton = callingButton;
     }
+  
     protected void initialize(){
     	Robot.lift.setBreak(false);
     }
@@ -23,11 +28,12 @@ public class RunLiftWithJoystick extends Command {
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return !callingButton.get();
     }
 
     @Override
     protected void end(){
+    	Robot.lift.setBreak(true);
     }
     
     @Override
