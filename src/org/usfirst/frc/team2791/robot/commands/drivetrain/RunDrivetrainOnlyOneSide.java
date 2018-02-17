@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class RunDrivetrainOnlyOneSide extends Command {
 	private double speed;
 	private boolean leftSide;
+	private boolean rightSide;
 
     public RunDrivetrainOnlyOneSide(boolean leftSide, double speed) {
     	// the ternary operator (?) is used to set the name based on the boolean
@@ -17,6 +18,7 @@ public class RunDrivetrainOnlyOneSide extends Command {
     	requires(Robot.drivetrain);
     	this.speed = speed;
     	this.leftSide = leftSide;
+    	this.rightSide = !leftSide;
     }
 
     // Called just before this Command runs the first time
@@ -26,13 +28,27 @@ public class RunDrivetrainOnlyOneSide extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(Robot.drivetrain.getDriveOrRampMode() != true){
-			System.out.println("ShakerGamePad: Drivetrain is not in Driving mode. Ending Command");
-			end();
-		}
+        if(Robot.ramps.isLeftRampUp() || Robot.ramps.isRightRampUp()){
+
+        }
     	// TODO verify that the negative are on the right sides here!
-    	double leftOutput = leftSide ? speed : 0; 
-    	double rightOutput = leftSide ? 0 : -speed; 
+    	double leftOutput;
+    	double rightOutput;
+
+
+    	if(leftSide && Robot.ramps.isLeftRampUp()) {
+    	    leftOutput = 0;
+        } else {
+    	     leftOutput = leftSide ? speed : 0;
+        }
+
+        if(rightSide && Robot.ramps.isRightRampUp()) {
+    	    rightOutput = 0;
+        } else {
+    	    rightOutput = leftSide ? 0 : -speed;
+        }
+
+
     	Robot.drivetrain.setLeftRightMotorOutputs(leftOutput, rightOutput);
     }
 
