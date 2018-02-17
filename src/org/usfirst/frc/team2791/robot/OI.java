@@ -3,6 +3,7 @@ package org.usfirst.frc.team2791.robot;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.Creep;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.RunDrivetrainOnlyOneSide;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.SetDrivetrainShifterMode;
+import org.usfirst.frc.team2791.robot.commands.ramps.DropRamps;
 import org.usfirst.frc.team2791.robot.commands.ramps.SetRampDeploy;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.limelightTarget.DriveTowardLimelightTargetStopWithDistance;
 import org.usfirst.frc.team2791.robot.commands.intakeclaw.IntakeAndHoldCube;
@@ -45,8 +46,8 @@ public class OI {
 		/********************************** Driver Button Assignments ****************************************/
 		driverA.whenPressed(new SetDrivetrainShifterMode(true));
 		driverB.whenPressed(new SetDrivetrainShifterMode(false));
-		driverX.whenPressed(new SetRampDeploy(false));
-		driverY.whenPressed(new SetRampDeploy(true));
+//		driverX.whenPressed(new SetRampDeploy(false));
+		driverY.whenPressed(new DropRamps());
 		
 		
 		driverStart.whileHeld(new RunDrivetrainOnlyOneSide(true, 0.85)); // true runs the left side
@@ -56,8 +57,8 @@ public class OI {
 		opereatorRightJoystickUsed.whenPressed(new RunManipulatorWithJoystick());
 
 		driverStart.whileHeld(new DriveTowardLimelightTargetStopWithDistance(Constants.SPEED_MULTIPLIER, 1));
-		driverLS.whileHeld(new Creep(-0.1));
-		driverRS.whileHeld(new Creep(0.1));
+		driverLB.whileHeld(new Creep(-0.22));
+		driverRB.whileHeld(new Creep(0.22));
 
 		
 		/********************************** Operator Button Assignments ****************************************/
