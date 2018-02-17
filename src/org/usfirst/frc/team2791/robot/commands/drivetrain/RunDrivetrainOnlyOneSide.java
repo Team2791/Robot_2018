@@ -35,7 +35,6 @@ public class RunDrivetrainOnlyOneSide extends Command {
     	double leftOutput;
     	double rightOutput;
 
-
     	if(leftSide && Robot.ramps.isLeftRampUp()) {
     	    leftOutput = 0;
         } else {
