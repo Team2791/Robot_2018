@@ -59,8 +59,8 @@ public class OI {
 		driverStart.whileHeld(new RunDrivetrainOnlyOneSide(true, 0.85)); // true runs the left side
 		driverBack.whileHeld(new RunDrivetrainOnlyOneSide(false, 0.85)); // flase runs the right side
 		
-		opereatorLeftJoystickUsed.whenPressed(new RunLiftWithJoystick(opereatorLeftJoystickUsed));
-		opereatorRightJoystickUsed.whenPressed(new RunManipulatorWithJoystick());
+		operatorLeftJoystickUsed.whenPressed(new RunLiftWithJoystick(operatorLeftJoystickUsed));
+		operatorRightJoystickUsed.whenPressed(new RunManipulatorWithJoystick());
 
 		driverStart.whileHeld(new DriveTowardLimelightTargetStopWithDistance(Constants.SPEED_MULTIPLIER, 1));
 		driverLB.whileHeld(new Creep(-0.22));
