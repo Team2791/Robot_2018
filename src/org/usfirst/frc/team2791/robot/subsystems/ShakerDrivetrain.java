@@ -32,6 +32,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ShakerDrivetrain extends Subsystem{
 
+
+	boolean inDriveMode = true;
 	// Victor speed controllers can be controlled with the WPI Talon class.
 	private VictorSPX victorLeft1, victorLeft2;
 	private TalonSRX talonLeft3;
@@ -68,7 +70,6 @@ public class ShakerDrivetrain extends Subsystem{
 	private double distancePerPulse = Util.tickToFeet(Constants.driveEncoderTicks, Constants.WHEEL_DIAMETER_IN_FEET);
 
 	public ShakerDrivetrain(){
-
 		victorLeft1 = new VictorSPX(RobotMap.VICTOR_LEFT_1);
 		victorLeft2 = new VictorSPX(RobotMap.VICTOR_LEFT_2);
 		talonLeft3 = new TalonSRX(RobotMap.TALON_LEFT_3);
@@ -145,14 +146,20 @@ public class ShakerDrivetrain extends Subsystem{
 	/**
 	 * inDriveMode == True ---> Drive
 	 * inDriveMode == False -----> Ramp
-	 * @param inDriveMode
+	 * @param inDrivingMode
 	 */
-	public void setDriveOrRampMode(boolean inDriveMode) {
-		if(inDriveMode) {
+	public void setDriveOrRampMode(boolean inDrivingMode) {
+		if(inDrivingMode) {
+			inDriveMode = true;
 			shiftingSolenoid.set(Value.kForward);
 		} else {
+			inDriveMode = false;
 			shiftingSolenoid.set(Value.kReverse);
 		}
+	}
+
+	public boolean getDriveOrRampMode(){
+		return inDriveMode;
 	}
 	
 	/**

@@ -6,24 +6,28 @@ import org.usfirst.frc.team2791.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- * Uses the {@link GTADrive} I/O Logic to control the {@link ShakerDrivetrain Drivetrain}.
- * @see GTADrive
- */
+
 public class DriveWithJoystick extends Command {
 
 	private double speedMultiplier = Constants.SPEED_MULTIPLIER;
 
 	public DriveWithJoystick() {
+
 		super("DriveWithJoystick");
 		requires(Robot.drivetrain);
+
 	}
 
 	protected void initialize() {
+		Robot.drivetrain.setDriveOrRampMode(true);
 	}
 	
 	@Override
 	protected void execute() {
+		if(Robot.drivetrain.getDriveOrRampMode() != true){
+			System.out.println("ShakerGamePad: Drivetrain is not in Driving mode. Ending Command");
+			return;
+		}
 		double leftSpeed = Robot.oi.driver.getGtaDriveLeft() * speedMultiplier;
 		double rightSpeed = Robot.oi.driver.getGtaDriveRight() * speedMultiplier;
 		Robot.drivetrain.setLeftRightMotorOutputs(leftSpeed, rightSpeed);

@@ -21,10 +21,15 @@ public class RunDrivetrainOnlyOneSide extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        Robot.drivetrain.setDriveOrRampMode(true);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        if(Robot.drivetrain.getDriveOrRampMode() != true){
+			System.out.println("ShakerGamePad: Drivetrain is not in Driving mode. Ending Command");
+			end();
+		}
     	// TODO verify that the negative are on the right sides here!
     	double leftOutput = leftSide ? speed : 0; 
     	double rightOutput = leftSide ? 0 : -speed; 
