@@ -1,8 +1,9 @@
 package org.usfirst.frc.team2791.robot;
 
+import org.usfirst.frc.team2791.robot.commands.drivetrain.Creep;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.RunDrivetrainOnlyOneSide;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.SetDrivetrainShifterMode;
-import org.usfirst.frc.team2791.robot.commands.drivetrain.SetRampDeploy;
+import org.usfirst.frc.team2791.robot.commands.ramps.SetRampDeploy;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.limelightTarget.DriveTowardLimelightTargetStopWithDistance;
 import org.usfirst.frc.team2791.robot.commands.intakeclaw.IntakeAndHoldCube;
 import org.usfirst.frc.team2791.robot.commands.intakeclaw.RunManipulatorWithJoystick;
@@ -55,6 +56,9 @@ public class OI {
 		opereatorRightJoystickUsed.whenPressed(new RunManipulatorWithJoystick());
 
 		driverStart.whileHeld(new DriveTowardLimelightTargetStopWithDistance(Constants.SPEED_MULTIPLIER, 1));
+		driverLS.whileHeld(new Creep(-0.1));
+		driverRS.whileHeld(new Creep(0.1));
+
 		
 		/********************************** Operator Button Assignments ****************************************/
 		
