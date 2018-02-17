@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team2791.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerLift;
@@ -25,7 +26,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class Robot extends IterativeRobot {
-	
+
+	public static String data;
+	public boolean leftSwitchNear, leftScale, leftSwitchFar;
+	public static DriverStation station;
 	public static PowerDistributionPanel pdp; //CAN ID has to be 0 for current sensing
 	public static OI oi;
 	
@@ -48,11 +52,13 @@ public class Robot extends IterativeRobot {
 		
 		pdp = new PowerDistributionPanel(RobotMap.PDP); //CAN id has to be 0
 		drivetrain = new ShakerDrivetrain();
-		//intakeClaw = new IntakeClaw();
 		manipulator = new Manipulator();
 		ramps = new ShakerRamp();
 		lift = new ShakerLift();
 		limelight = new Limelight();
+
+
+		updateGameData();
 
 
 		// Set up our auton chooser
@@ -77,6 +83,8 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 		debug();
+		updateGameData();
+
 	}
 
 	/**
@@ -106,6 +114,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 		debug();
+		updateGameData();
 	}
 
 	@Override
@@ -119,6 +128,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		debug();
+		updateGameData();
 	}
 	/**
 	 * This function is called periodically during test mode
@@ -127,8 +137,22 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 		LiveWindow.run();
 		debug();
+		//updateGameData();
 	}
 
+
+	public void updateGameData(){
+		data = DriverStation.getInstance().getGameSpecificMessage();
+		if(data.length() > 0){
+			leftSwitchNear = data.charAt(0) == 'L';
+			leftScale = data.charAt(1) == 'L';
+			leftSwitchFar = data.charAt(2) == 'L';
+
+			SmartDashboard.putBoolean("leftSwitchNear", leftSwitchNear);
+			SmartDashboard.putBoolean("leftScale", leftScale);
+			SmartDashboard.putBoolean("leftSwitchFar", leftSwitchFar);
+		}
+	}
 
 	public void debug(){
 		limelight.debug();

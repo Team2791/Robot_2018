@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6a63bb6a-fc87-4abd-a71d-b79b741d118f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/drivetrain/RunDrivetrainOnlyOneSide.java" afterPath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/drivetrain/RunDrivetrainOnlyOneSide.java" />
+      <change beforePath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/Robot.java" afterPath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/Robot.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,118 +15,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="OI.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/OI.java">
+      <file leaf-file-name="Robot.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/Robot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="53" column="8" lean-forward="true" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ShakerRamp.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/subsystems/ShakerRamp.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="31" column="29" lean-forward="true" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RunDrivetrainOnlyOneSide.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/drivetrain/RunDrivetrainOnlyOneSide.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="33" column="21" lean-forward="true" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="21" />
+            <state relative-caret-position="430">
+              <caret line="150" column="71" lean-forward="true" selection-start-line="150" selection-start-column="71" selection-end-line="150" selection-end-column="71" />
               <folding>
-                <element signature="e#740#741#0" expanded="true" />
-                <element signature="e#797#798#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ShakerGamePad.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/shakerJoystick/ShakerGamePad.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="9" column="20" lean-forward="true" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DropRamps.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/ramps/DropRamps.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="23" column="33" lean-forward="true" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SetDrivetrainShifterMode.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/drivetrain/SetDrivetrainShifterMode.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="12" column="43" lean-forward="false" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ShakerDrivetrain.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/subsystems/ShakerDrivetrain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2800">
-              <caret line="161" column="27" lean-forward="false" selection-start-line="161" selection-start-column="27" selection-end-line="161" selection-end-column="27" />
-              <folding>
-                <element signature="e#5712#5713#0" expanded="true" />
-                <element signature="e#5737#5738#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Creep.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/drivetrain/Creep.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#772#773#0" expanded="true" />
-                <element signature="e#843#844#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SetRampDeploy.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/ramps/SetRampDeploy.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DriveWithJoystick.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/drivetrain/DriveWithJoystick.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-              <folding>
-                <element signature="e#514#515#0" expanded="true" />
-                <element signature="e#562#563#0" expanded="true" />
+                <element signature="e#2635#2636#0" expanded="true" />
+                <element signature="e#2673#2674#0" expanded="true" />
+                <marker date="1518906200877" expanded="true" signature="3965:3996" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -137,9 +34,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FRCCommand" />
         <option value="FRCCommandGroup" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -173,7 +70,6 @@
         <option value="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/util/Limelight.java" />
         <option value="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/util/Constants.java" />
         <option value="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/subsystems/ShakerLift.java" />
-        <option value="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/Robot.java" />
         <option value="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/subsystems/Manipulator.java" />
         <option value="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/RobotMap.java" />
         <option value="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/util/DoubleButton.java" />
@@ -185,6 +81,8 @@
         <option value="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/subsystems/ShakerDrivetrain.java" />
         <option value="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/drivetrain/DriveWithJoystick.java" />
         <option value="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/drivetrain/RunDrivetrainOnlyOneSide.java" />
+        <option value="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/util/DelayedBoolean.java" />
+        <option value="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/Robot.java" />
       </list>
     </option>
   </component>
@@ -267,86 +165,6 @@
             </path>
             <path>
               <item name="Robot_2018" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Robot_2018" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-              <item name="usfirst" type="462c0819:PsiDirectoryNode" />
-              <item name="frc" type="462c0819:PsiDirectoryNode" />
-              <item name="team2791" type="462c0819:PsiDirectoryNode" />
-              <item name="robot" type="462c0819:PsiDirectoryNode" />
-              <item name="commands" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Robot_2018" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Robot_2018" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-              <item name="usfirst" type="462c0819:PsiDirectoryNode" />
-              <item name="frc" type="462c0819:PsiDirectoryNode" />
-              <item name="team2791" type="462c0819:PsiDirectoryNode" />
-              <item name="robot" type="462c0819:PsiDirectoryNode" />
-              <item name="commands" type="462c0819:PsiDirectoryNode" />
-              <item name="drivetrain" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Robot_2018" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Robot_2018" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-              <item name="usfirst" type="462c0819:PsiDirectoryNode" />
-              <item name="frc" type="462c0819:PsiDirectoryNode" />
-              <item name="team2791" type="462c0819:PsiDirectoryNode" />
-              <item name="robot" type="462c0819:PsiDirectoryNode" />
-              <item name="commands" type="462c0819:PsiDirectoryNode" />
-              <item name="lift" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Robot_2018" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Robot_2018" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-              <item name="usfirst" type="462c0819:PsiDirectoryNode" />
-              <item name="frc" type="462c0819:PsiDirectoryNode" />
-              <item name="team2791" type="462c0819:PsiDirectoryNode" />
-              <item name="robot" type="462c0819:PsiDirectoryNode" />
-              <item name="commands" type="462c0819:PsiDirectoryNode" />
-              <item name="ramps" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Robot_2018" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Robot_2018" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-              <item name="usfirst" type="462c0819:PsiDirectoryNode" />
-              <item name="frc" type="462c0819:PsiDirectoryNode" />
-              <item name="team2791" type="462c0819:PsiDirectoryNode" />
-              <item name="robot" type="462c0819:PsiDirectoryNode" />
-              <item name="shakerJoystick" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Robot_2018" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Robot_2018" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-              <item name="usfirst" type="462c0819:PsiDirectoryNode" />
-              <item name="frc" type="462c0819:PsiDirectoryNode" />
-              <item name="team2791" type="462c0819:PsiDirectoryNode" />
-              <item name="robot" type="462c0819:PsiDirectoryNode" />
-              <item name="subsystems" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Robot_2018" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Robot_2018" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-              <item name="usfirst" type="462c0819:PsiDirectoryNode" />
-              <item name="frc" type="462c0819:PsiDirectoryNode" />
-              <item name="team2791" type="462c0819:PsiDirectoryNode" />
-              <item name="robot" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Robot_2018" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
@@ -361,7 +179,7 @@
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="GenerateAntBuildDialog.backupFiles" value="true" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="robot_2018" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.externalTools" />
@@ -546,7 +364,21 @@
       <option name="project" value="LOCAL" />
       <updated>1518903328921</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added check driveorrampmode to drive commands">
+      <created>1518903746079</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1518903746079</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added check driveorrampmode to drive commands">
+      <created>1518903896585</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1518903896585</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -619,14 +451,6 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/RobotMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="51" column="15" lean-forward="true" selection-start-line="51" selection-start-column="15" selection-end-line="51" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/OI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -670,7 +494,7 @@
         <state relative-caret-position="714">
           <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -687,7 +511,7 @@
         <state relative-caret-position="204">
           <caret line="19" column="58" lean-forward="false" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
           <folding>
-            <marker date="1518642126465" expanded="true" signature="628:636" ph="{...}" />
+            <marker date="1518903777238" expanded="true" signature="628:636" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -742,7 +566,7 @@
         <state relative-caret-position="952">
           <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -767,7 +591,7 @@
         <state relative-caret-position="476">
           <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding>
-            <marker date="1518642126465" expanded="true" signature="628:636" ph="{...}" />
+            <marker date="1518903777238" expanded="true" signature="628:636" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -878,7 +702,7 @@
         <state relative-caret-position="100">
           <caret line="9" column="16" lean-forward="false" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
           <folding>
-            <marker date="1518642126465" expanded="true" signature="628:636" ph="{...}" />
+            <marker date="1518903777238" expanded="true" signature="628:636" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -927,19 +751,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/Robot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1518900355910" expanded="true" signature="3736:3747" ph="{...}" />
-            <marker date="1518900355910" expanded="true" signature="3855:3890" ph="{...}" />
-            <marker date="1518900355910" expanded="true" signature="3913:4016" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/lift/GoToHeight.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
@@ -953,9 +764,9 @@
         <state relative-caret-position="280">
           <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#772#773#0" expanded="true" />
-            <element signature="e#843#844#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#771#772#0" expanded="false" />
+            <element signature="e#842#843#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -963,17 +774,17 @@
     <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/ramps/DropRamps.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
-          <caret line="23" column="33" lean-forward="true" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
+          <caret line="23" column="33" lean-forward="false" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/OI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="53" column="8" lean-forward="true" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="8" />
+        <state relative-caret-position="600">
+          <caret line="60" column="8" lean-forward="false" selection-start-line="60" selection-start-column="8" selection-end-line="60" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -983,7 +794,7 @@
         <state relative-caret-position="240">
           <caret line="12" column="43" lean-forward="false" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1010,7 +821,7 @@
     <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/shakerJoystick/ShakerGamePad.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="9" column="20" lean-forward="true" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+          <caret line="9" column="20" lean-forward="false" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -1018,29 +829,46 @@
     <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/drivetrain/DriveWithJoystick.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="e#514#515#0" expanded="true" />
-            <element signature="e#562#563#0" expanded="true" />
-          </folding>
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/subsystems/ShakerRamp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
-          <caret line="31" column="29" lean-forward="true" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+          <caret line="31" column="29" lean-forward="false" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/util/DelayedBoolean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="36" column="5" lean-forward="true" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/drivetrain/RunDrivetrainOnlyOneSide.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="33" column="21" lean-forward="true" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="21" />
+        <state relative-caret-position="450">
+          <caret line="51" column="5" lean-forward="true" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
           <folding>
             <element signature="e#740#741#0" expanded="true" />
             <element signature="e#797#798#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/Robot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="150" column="71" lean-forward="true" selection-start-line="150" selection-start-column="71" selection-end-line="150" selection-end-column="71" />
+          <folding>
+            <element signature="e#2635#2636#0" expanded="true" />
+            <element signature="e#2673#2674#0" expanded="true" />
+            <marker date="1518906200877" expanded="true" signature="3965:3996" ph="{...}" />
           </folding>
         </state>
       </provider>
