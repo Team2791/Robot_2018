@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2791.robot.commands.intakeclaw;
+package org.usfirst.frc.team2791.robot.commands.manipulator;
 
 import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.util.Constants;
@@ -27,7 +27,12 @@ public class HoldCube extends Command {
 
     @Override
     protected void execute() {
-    	Robot.manipulator.setLeftRightMotorSpeed(Constants.HOLD_SPEED, Constants.HOLD_SPEED);
+    	// if the cube is slipping out pull it back in
+    	if(Robot.manipulator.isCubeInGripper()) {
+    		Robot.manipulator.setLeftRightMotorSpeed(Constants.HOLD_SPEED, Constants.HOLD_SPEED);
+    	} else {
+    		Robot.manipulator.setLeftRightMotorSpeed(Constants.INTAKE_SPEED, Constants.INTAKE_SPEED);
+    	}
     }
 
 
@@ -48,7 +53,7 @@ public class HoldCube extends Command {
     		timerStarted = false;
     	}
     	
-        return lostCubeTimer.get() > 1;
+        return lostCubeTimer.get() > 2;
     }
 
     @Override

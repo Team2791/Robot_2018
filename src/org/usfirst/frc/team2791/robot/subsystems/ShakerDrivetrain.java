@@ -92,10 +92,14 @@ public class ShakerDrivetrain extends Subsystem{
 		for(int i = 0; i < leftDrive.length; i++) {
 			leftDrive[i].setInverted(letSideInverted);
 			leftDrive[i].setNeutralMode(NeutralMode.Coast);
+			leftDrive[i].enableVoltageCompensation(true);
+			leftDrive[i].configVoltageCompSaturation(12, 20);
 		}
 		for(int i = 0; i < rightDrive.length; i++){
 			rightDrive[i].setInverted(!letSideInverted);
 			rightDrive[i].setNeutralMode(NeutralMode.Coast);
+			rightDrive[i].enableVoltageCompensation(true);
+			rightDrive[i].configVoltageCompSaturation(12, 20);
 		}
 
 		// stops all motors right away just in case
@@ -261,7 +265,7 @@ public class ShakerDrivetrain extends Subsystem{
 	 * @return distance traveled by left side based on encoder
 	 */
 	public double getLeftDistance() {
-		return talonLeft3.getSelectedSensorPosition(0) * distancePerPulse;
+		return -talonLeft3.getSelectedSensorPosition(0) * distancePerPulse;
 	}
 
 	/**
@@ -279,7 +283,7 @@ public class ShakerDrivetrain extends Subsystem{
 	}
 
 	public double getLeftVelocity() {
-		return  talonLeft3.getSelectedSensorVelocity(0) * distancePerPulse * 10;// 10 to convert from milliseconds a
+		return  -talonLeft3.getSelectedSensorVelocity(0) * distancePerPulse * 10;// 10 to convert from milliseconds a
 	}
 
 	public double getRightVelocity() {

@@ -6,12 +6,12 @@ import org.usfirst.frc.team2791.robot.commands.drivetrain.SetDrivetrainShifterMo
 import org.usfirst.frc.team2791.robot.commands.ramps.DropRamps;
 import org.usfirst.frc.team2791.robot.commands.ramps.SetRampDeploy;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.limelightTarget.DriveTowardLimelightTargetStopWithDistance;
-import org.usfirst.frc.team2791.robot.commands.intakeclaw.IntakeAndHoldCube;
-import org.usfirst.frc.team2791.robot.commands.intakeclaw.RunManipulatorWithJoystick;
-import org.usfirst.frc.team2791.robot.commands.intakeclaw.SetManipulatorRetracted;
-import org.usfirst.frc.team2791.robot.commands.intakeclaw.ShootCube;
 import org.usfirst.frc.team2791.robot.commands.lift.GoToHeight;
 import org.usfirst.frc.team2791.robot.commands.lift.RunLiftWithJoystick;
+import org.usfirst.frc.team2791.robot.commands.manipulator.IntakeAndHoldCube;
+import org.usfirst.frc.team2791.robot.commands.manipulator.RunManipulatorWithJoystick;
+import org.usfirst.frc.team2791.robot.commands.manipulator.SetManipulatorRetracted;
+import org.usfirst.frc.team2791.robot.commands.manipulator.ShootCube;
 import org.usfirst.frc.team2791.robot.shakerJoystick.ShakerGamePad;
 import org.usfirst.frc.team2791.robot.util.Constants;
 

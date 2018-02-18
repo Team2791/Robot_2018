@@ -3,7 +3,7 @@ package org.usfirst.frc.team2791.robot.subsystems;
 
 import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.RobotMap;
-import org.usfirst.frc.team2791.robot.commands.intakeclaw.RunManipulatorWithJoystick;
+import org.usfirst.frc.team2791.robot.commands.manipulator.RunManipulatorWithJoystick;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -44,10 +44,8 @@ public class Manipulator extends Subsystem {
     public boolean isCubeInGripper(){
         boolean left = !iRSensorLeft.get();
         boolean right = !iRSensorRight.get();
-        if(left && right){
-            return true;
-        }
-        return false;
+        
+        return left && right;
     }
 
     // Don't know how to find out if cube is jammed

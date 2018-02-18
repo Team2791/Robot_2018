@@ -4,6 +4,7 @@ package org.usfirst.frc.team2791.robot;
 import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
 import org.usfirst.frc.team2791.robot.commands.auto.DriveForwardTime;
 import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyStraightSwitchCube;
+import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyTurnSwitchHighDrop;
 import org.usfirst.frc.team2791.robot.subsystems.Manipulator;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerLift;
@@ -64,9 +65,11 @@ public class Robot extends IterativeRobot {
 
 		// Set up our auton chooser
 		chooser.addDefault("Default Auto - Do Nothing", new DoNothing());
-		chooser.addObject("Cross line - time only", new DriveForwardTime(0.4, 3.2));
+		chooser.addObject("Cross line - time only", new DriveForwardTime(0.33, 3.5));
 		chooser.addObject("LEFT side Straight Switch - time only", new TimeOnlyStraightSwitchCube(true));
 		chooser.addObject("RIGHT side Straight Switch - time only", new TimeOnlyStraightSwitchCube(false));
+		// this one is not working yet
+//		chooser.addObject("Turn Switch HIGH drop - time only", new TimeOnlyTurnSwitchHighDrop());
 		SmartDashboard.putData("Auto mode", chooser);
 		
 		oi = new OI();

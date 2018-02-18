@@ -1,0 +1,73 @@
+{
+  "dividerPosition": 0.3268015170670038,
+  "tabPane": [
+    {
+      "title": "Tab 1",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "0,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/LeftOutput vs RightOutput",
+              "_title": "/SmartDashboard/LeftOutput vs RightOutput"
+            }
+          },
+          "0,1": {
+            "size": [
+              5,
+              3
+            ],
+            "content": {
+              "_type": "ComboBox Chooser",
+              "_source0": "network_table:///SmartDashboard/Auto mode",
+              "_title": "/SmartDashboard/Auto mode"
+            }
+          },
+          "3,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/DT - Left Encoder Distance",
+              "_title": "SmartDashboard/DT - Left Encoder Distance"
+            }
+          },
+          "5,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/DT - Right Encoder Distance",
+              "_title": "SmartDashboard/DT - Right Encoder Distance"
+            }
+          },
+          "6,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift - Potentiometer value",
+              "_title": "SmartDashboard/Lift - Potentiometer value"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

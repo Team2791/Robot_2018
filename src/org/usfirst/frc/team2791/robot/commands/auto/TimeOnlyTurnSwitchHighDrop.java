@@ -11,11 +11,8 @@ import org.usfirst.frc.team2791.robot.util.DelayedCommandGroup;
 /**
  *
  */
-public class TimeOnlyStraightSwitchCube extends DelayedCommandGroup {
-	boolean robotOnLeftSide;
-
-    public TimeOnlyStraightSwitchCube(boolean robotOnLeftSide) {
-    	this.robotOnLeftSide = robotOnLeftSide;
+public class TimeOnlyTurnSwitchHighDrop extends DelayedCommandGroup {
+    public TimeOnlyTurnSwitchHighDrop() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -37,12 +34,20 @@ public class TimeOnlyStraightSwitchCube extends DelayedCommandGroup {
     // we need to call this NOT during the constructor because the switch side could change.
     public void initCode() {
     	addParallel(new SetManipulatorRetracted(true));
-    	addParallel(new GoToHeight(8)); // was 13
-    	addSequential(new DriveForwardTime(0.33, 3.5));
+    	addParallel(new GoToHeight(16));
     	
-    	if(Robot.leftSwitchNear == robotOnLeftSide) {
-    		System.out.println("Robot on our side of the switch.");
-    		addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
+    	if(Robot.leftSwitchNear) {
+    		// score on the left side
+    		addSequential(new DriveForwardTime(0.33, 1.5));
+    		addSequential(new TurnTime(-0.3, .8));
+    		addSequential(new DriveForwardTime(0.2, 3.5));
+    	} else {
+    		// score on the right side
+    		addSequential(new DriveForwardTime(0.33, 2.5));
+    		addSequential(new TurnTime(0.3, .6));
+    		addSequential(new DriveForwardTime(0.2, 1.2));
     	}
+
+    	addSequential(new ShootCube(1.0));
     }
 }

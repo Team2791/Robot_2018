@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2791.robot.commands.intakeclaw;
+package org.usfirst.frc.team2791.robot.commands.manipulator;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
