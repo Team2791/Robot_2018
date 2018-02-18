@@ -1,10 +1,11 @@
 
 package org.usfirst.frc.team2791.robot;
 
+import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchLEFT;
 import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
-import org.usfirst.frc.team2791.robot.commands.auto.DriveForwardTime;
 import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyDriveStraightToSwitch;
 import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyStraightSwitchCubeSCORE;
+import org.usfirst.frc.team2791.robot.commands.auto.timeonly.DriveForwardTime;
 import org.usfirst.frc.team2791.robot.subsystems.Manipulator;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerLift;
@@ -80,13 +81,18 @@ public class Robot extends IterativeRobot {
 			new TimeOnlyStraightSwitchCubeSCORE() // this will run when we are on the right side of the switch
 		));
 		
+		chooser.addObject("Turn Switch LOW drop - Bang Bang", new NearSwitchAutonChooser(
+				new BangBangTurnSwitchLEFT(), // this will run when we are on the left side of the switch
+				new DoNothing() // this will run when we are on the right side of the switch
+			));
+		
 		// this one is not working yet
 //		chooser.addObject("Turn Switch HIGH drop - time only", chooser.addObject("RIGHT side Straight Switch - time only", new NearSwitchAutonChooser(
 //			new TimeOnlyTurnSwitchHighDropLEFT(), // this will run when we are on the left side of the switch
 //			new TimeOnlyTurnSwitchHighDropRIGHT() // this will run when we are on the right side of the switch
 //		));
-		SmartDashboard.putData("Auto mode", chooser);
-		
+
+		SmartDashboard.putData("Auto mode", chooser);		
 		oi = new OI();
 	}
 

@@ -23,8 +23,6 @@ public class TurnGyroBangBang extends Command {
 	 */
 	public TurnGyroBangBang(double turn, double angle, double timeOut) {
 		this(turn, angle);
-		System.out.println("IIIIIIII AMMMMMMMMMMMMMM TURNINGGGGGGGGGGGGGGGGGG");
-
 		timeToTurn = timeOut;
 	}
 
@@ -38,6 +36,7 @@ public class TurnGyroBangBang extends Command {
 		requires(Robot.drivetrain);
 		this.turn = turn;
 		amountToTurn = angle;
+		assert(Math.signum(turn) == Math.signum(angle));
 	}
 
 	// Called just before this Command runs the first time

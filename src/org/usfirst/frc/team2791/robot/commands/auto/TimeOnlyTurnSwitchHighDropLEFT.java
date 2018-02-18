@@ -1,7 +1,10 @@
 package org.usfirst.frc.team2791.robot.commands.auto;
 
 
+import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.Robot;
+import org.usfirst.frc.team2791.robot.commands.auto.timeonly.DriveForwardTime;
+import org.usfirst.frc.team2791.robot.commands.auto.timeonly.TurnTime;
 import org.usfirst.frc.team2791.robot.commands.lift.GoToHeight;
 import org.usfirst.frc.team2791.robot.commands.manipulator.SetManipulatorRetracted;
 import org.usfirst.frc.team2791.robot.commands.manipulator.ShootCube;
@@ -37,6 +40,6 @@ public class TimeOnlyTurnSwitchHighDropLEFT extends CommandGroup {
 		addSequential(new TurnTime(-0.3, .8));
 		addSequential(new DriveForwardTime(0.2, 3.5));
 
-    	addSequential(new ShootCube(1.0));
+    	addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
     }
 }
