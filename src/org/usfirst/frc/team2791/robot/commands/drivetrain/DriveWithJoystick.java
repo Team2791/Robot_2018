@@ -1,8 +1,9 @@
 package org.usfirst.frc.team2791.robot.commands.drivetrain;
 
+import org.usfirst.frc.team2791.robot.Constants;
+import org.usfirst.frc.team2791.robot.OI;
 import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
-import org.usfirst.frc.team2791.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -19,14 +20,15 @@ public class DriveWithJoystick extends Command {
 	}
 
 	protected void initialize() {
-		Robot.drivetrain.setDriveOrRampMode(true);
+//		Robot.drivetrain.setDriveOrRampMode(true);
 	}
 	
 	@Override
 	protected void execute() {
 		// exit early if in ramp mode
-		if(Robot.drivetrain.getDriveOrRampMode() != true){
-			System.out.println("ShakerGamePad: Drivetrain is not in Driving mode. Ending Command");
+		if(!Robot.drivetrain.isDrivetrainInDriveMode()){
+//			System.out.println("DriveWithJoystick: Drivetrain is not in Driving mode. Ending Command");
+			Robot.drivetrain.setLeftRightMotorOutputs(0, 0);
 			return;
 		}
 		
@@ -36,8 +38,8 @@ public class DriveWithJoystick extends Command {
 			speedMultiplier = Constants.SPEED_MULTIPLIER;
 		}
 		
-		double leftSpeed = Robot.oi.driver.getGtaDriveLeft() * speedMultiplier;
-		double rightSpeed = Robot.oi.driver.getGtaDriveRight() * speedMultiplier;
+		double leftSpeed = OI.driver.getGtaDriveLeft() * speedMultiplier;
+		double rightSpeed = OI.driver.getGtaDriveRight() * speedMultiplier;
 		Robot.drivetrain.setLeftRightMotorOutputs(leftSpeed, rightSpeed);
 	}
 

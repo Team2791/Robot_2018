@@ -1,10 +1,7 @@
 package org.usfirst.frc.team2791.robot;
 
 import org.usfirst.frc.team2791.robot.commands.drivetrain.Creep;
-import org.usfirst.frc.team2791.robot.commands.drivetrain.RunDrivetrainOnlyOneSide;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.SetDrivetrainShifterMode;
-import org.usfirst.frc.team2791.robot.commands.ramps.DropRamps;
-import org.usfirst.frc.team2791.robot.commands.ramps.SetRampDeploy;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.limelightTarget.DriveTowardLimelightTargetStopWithDistance;
 import org.usfirst.frc.team2791.robot.commands.lift.GoToHeight;
 import org.usfirst.frc.team2791.robot.commands.lift.RunLiftWithJoystick;
@@ -12,14 +9,14 @@ import org.usfirst.frc.team2791.robot.commands.manipulator.IntakeAndHoldCube;
 import org.usfirst.frc.team2791.robot.commands.manipulator.RunManipulatorWithJoystick;
 import org.usfirst.frc.team2791.robot.commands.manipulator.SetManipulatorRetracted;
 import org.usfirst.frc.team2791.robot.commands.manipulator.ShootCube;
+import org.usfirst.frc.team2791.robot.commands.ramps.DropRamps;
+import org.usfirst.frc.team2791.robot.commands.ramps.RaiseRamps;
+import org.usfirst.frc.team2791.robot.commands.ramps.SetRampDeploy;
 import org.usfirst.frc.team2791.robot.shakerJoystick.ShakerGamePad;
-import org.usfirst.frc.team2791.robot.util.Constants;
+import org.usfirst.frc.team2791.robot.util.DoubleButton;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
-import static org.usfirst.frc.team2791.robot.util.Constants.LARGE_OUTPUT_SPEED;
-import static org.usfirst.frc.team2791.robot.util.Constants.SMALL_OUTPUT_SPEED;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -39,6 +36,9 @@ public class OI {
 	protected Button operatorLeftJoystickUsed, operatorRightJoystickUsed;
 
 	protected Button operatorRAnalogTrigger, operatorLAnalogTrigger;
+	
+	// these can be double buttons later
+	protected Button dropRampsButton, raiseRampsDoubleButton, raiseRampsLeftButton, raiseRampsRightButton;
 
 
 	public static ShakerGamePad driver = new ShakerGamePad(0);
@@ -50,19 +50,26 @@ public class OI {
 		initDpad();
 
 		/********************************** Driver Button Assignments ****************************************/
-		driverA.whenPressed(new SetDrivetrainShifterMode(true));
+		driverA.whenPressed(new SetDrivetrainShifterMode(true)); // use A to shift back into drive
 		driverB.whenPressed(new SetDrivetrainShifterMode(false));
 		driverX.whenPressed(new SetRampDeploy(false));
 		driverY.whenPressed(new DropRamps());
 		
 		
-		driverStart.whileHeld(new RunDrivetrainOnlyOneSide(true, 0.80)); // true runs the left side
-		driverBack.whileHeld(new RunDrivetrainOnlyOneSide(false, 0.80)); // flase runs the right side
+//		driverStart.whileHeld(new RunDrivetrainOnlyOneSide(true, Constants.RAISE_RAMPS_SPEED)); // true runs the left side
+//		driverBack.whileHeld(new RunDrivetrainOnlyOneSide(false, Constants.RAISE_RAMPS_SPEED)); // flase runs the right side
+		raiseRampsLeftButton = driverStart;
+		raiseRampsRightButton = driverBack;
+		raiseRampsDoubleButton = new DoubleButton(raiseRampsLeftButton, raiseRampsRightButton, "OR");
+		raiseRampsDoubleButton.whileHeld(new RaiseRamps(raiseRampsLeftButton, raiseRampsRightButton));
+		
+		
+		
 		
 		operatorLeftJoystickUsed.whenPressed(new RunLiftWithJoystick(operatorLeftJoystickUsed));
 		operatorRightJoystickUsed.whenPressed(new RunManipulatorWithJoystick());
 
-		driverStart.whileHeld(new DriveTowardLimelightTargetStopWithDistance(Constants.SPEED_MULTIPLIER, 1));
+
 		driverLB.whileHeld(new Creep(-0.22));
 		driverRB.whileHeld(new Creep(0.22));
 
@@ -82,8 +89,9 @@ public class OI {
 		operatorDpadDown.whenPressed(new SetManipulatorRetracted(false));
 
 		// Commenting out until lime light is finished.
-//		driverX.whileHeld(new TurnTowardLimelightTarget());
-		//driverY.whileHeld(new DriveTowardLimelightTargetTime(2));
+//		.whileHeld(new DriveTowardLimelightTargetStopWithDistance(Constants.SPEED_MULTIPLIER, 1));
+//		.whileHeld(new TurnTowardLimelightTarget());
+		//.whileHeld(new DriveTowardLimelightTargetTime(2));
 	}
 
 
@@ -91,14 +99,14 @@ public class OI {
 		operatorLeftJoystickUsed = new Button() {
 			@Override
 			public boolean get() {
-				return Math.abs(operator.getAxisLeftY()) > 0.12;
+				return Math.abs(operator.getAxisLeftY()) > 0.08;
 			}
 		};
 
 		operatorRightJoystickUsed = new Button() {
 			@Override
 			public boolean get() {
-				return Math.abs(operator.getAxisRightY()) > 0.12;
+				return Math.abs(operator.getAxisRightY()) > 0.08;
 			}
 		};
 

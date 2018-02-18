@@ -24,7 +24,9 @@ public class DropRamps extends CommandGroup {
         // A command group will require all of the subsystems that each member would require.
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the arm.
-        addParallel(new SetDrivetrainShifterMode(false));
+    	
+    	// we were going to shift but now wait until we want to raise the ramps so we can adjust
+//        addParallel(new SetDrivetrainShifterMode(false));
         addParallel(new SetRampDeploy(true));
         // get the gripper out of the way
         addParallel(new GoToHeight(18.0));

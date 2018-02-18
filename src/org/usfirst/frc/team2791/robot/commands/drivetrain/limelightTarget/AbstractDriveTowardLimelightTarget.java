@@ -2,8 +2,8 @@ package org.usfirst.frc.team2791.robot.commands.drivetrain.limelightTarget;
 
 
 //import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
+import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.Robot;
-import org.usfirst.frc.team2791.robot.util.Constants;
 import org.usfirst.frc.team2791.robot.util.Limelight;
 
 import edu.wpi.first.wpilibj.command.Command;

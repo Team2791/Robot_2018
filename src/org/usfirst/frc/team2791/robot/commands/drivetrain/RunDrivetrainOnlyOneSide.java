@@ -23,15 +23,11 @@ public class RunDrivetrainOnlyOneSide extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Robot.drivetrain.setDriveOrRampMode(true);
+        Robot.drivetrain.setDriveOrRampMode(false);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(Robot.ramps.isLeftRampUp() || Robot.ramps.isRightRampUp()){
-
-        }
-    	// TODO verify that the negative are on the right sides here!
     	double leftOutput;
     	double rightOutput;
 

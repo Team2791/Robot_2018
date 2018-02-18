@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2791.robot.util;
+package org.usfirst.frc.team2791.robot;
 
 /*
  * This should have all the project's important constants
@@ -13,8 +13,11 @@ public class Constants {
 	public static final String SERVER_PORT = "roboRIO-" + TEAM_NUMBER + "-FRC";
 
 	//Lift Constants
+
+	// Pbot offset = -1.13
+	// flight bot offset = -0.05
+    public static final double LIFT_POT_OFFSET = -0.05; 
 	//at 60% the lift was at 36'' from the ground, 33'' from the bottom of it's travel
-    public static final double LIFT_POT_OFFSET = -1.13;
     public static final double LIFT_POT_FULL_RANGE = 33.0 / 0.6;
     
     public static final double FAR_AWAY_DISTANCE = 5;
@@ -27,7 +30,7 @@ public class Constants {
     
     public static final double BOTTOM_SAFTEY_DISTANCE = 2.5;
     public static final double TOP_SAFTEY_DISTANCE = 12;
-    public static final double MANUAL_POWER = 1.0;
+    public static final double MANUAL_POWER = 0.3;
 
 	// Joystick constants
 	public static final double DEADZONE = 0.05;
@@ -36,6 +39,7 @@ public class Constants {
 	public static double driveEncoderTicks = 256;
 	public static final double SPEED_MULTIPLIER = 1;
 	public static final double WHEEL_DIAMETER_IN_FEET = 1.0;
+	public static final double RAISE_RAMPS_SPEED = 0.8;
 
 	// Time when ramps are allowed to be released
 	// (3 * 60) - 30 = (3 minutes * 60 seconds) - 30 seconds
@@ -49,11 +53,12 @@ public class Constants {
 	// Manipulator Constants
 	public static final double INTAKE_SPEED = .65;
 	public static final double OUTPUT_SPEED = -.25;
-	public static final double HOLD_SPEED = 0.15;
+	 // 2v is the maximum we can give the 775 pros for a long time stalled
+	// 2/12 ~= 0.17. We use voltage compensation so we can assume the voltage is 12v
+	public static final double HOLD_SPEED = 0.17;
 	public static final double SMALL_OUTPUT_SPEED = -.3;
 	public static final double LARGE_OUTPUT_SPEED = -.7;
-	 // 2v is the maximum we can give the 775 pros for a long time stalled
-	// 2/13 ~= 0.15
+
 
 	//Auto Constants
 	public static final double LINE_DISTANCE = 10; //THIS IS NOT FINAL TODO FIND ACTUAL DISTANCE

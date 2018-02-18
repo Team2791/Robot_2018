@@ -2,10 +2,11 @@ package org.usfirst.frc.team2791.robot.subsystems;
 
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+
+import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.RobotMap;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.DriveWithJoystick;
-import org.usfirst.frc.team2791.robot.util.Constants;
 import org.usfirst.frc.team2791.robot.util.Util;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -83,7 +84,7 @@ public class ShakerDrivetrain extends Subsystem{
 		talonLeft3.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 		talonRight3.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 		
-		shiftingSolenoid = new DoubleSolenoid(RobotMap.DRIVETRAIN_GEARBOX_SHIFTER_IN, RobotMap.DRIVETRAIN_GEARBOX_SHIFTER_OUT);
+		shiftingSolenoid = new DoubleSolenoid(RobotMap.PCM_CAN_ID, RobotMap.DRIVETRAIN_GEARBOX_SHIFTER_IN, RobotMap.DRIVETRAIN_GEARBOX_SHIFTER_OUT);
 		setDriveOrRampMode(true); // set to drive mode
 		
 		
@@ -153,8 +154,8 @@ public class ShakerDrivetrain extends Subsystem{
 	 * @param inDrivingMode
 	 */
 	public void setDriveOrRampMode(boolean inDrivingMode) {
+		this.inDriveMode = inDrivingMode;
 		if(inDrivingMode) {
-			inDriveMode = true;
 			shiftingSolenoid.set(Value.kForward);
 		} else {
 			inDriveMode = false;
@@ -162,7 +163,7 @@ public class ShakerDrivetrain extends Subsystem{
 		}
 	}
 
-	public boolean getDriveOrRampMode(){
+	public boolean isDrivetrainInDriveMode(){
 		return inDriveMode;
 	}
 	

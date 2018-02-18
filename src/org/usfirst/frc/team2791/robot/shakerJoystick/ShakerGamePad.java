@@ -1,6 +1,6 @@
 package org.usfirst.frc.team2791.robot.shakerJoystick;
 
-import org.usfirst.frc.team2791.robot.util.Constants;
+import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.util.Util;
 
 import edu.wpi.first.wpilibj.Joystick;

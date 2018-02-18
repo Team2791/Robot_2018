@@ -3,7 +3,6 @@ package org.usfirst.frc.team2791.robot.subsystems;
 
 import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.RobotMap;
-import org.usfirst.frc.team2791.robot.commands.manipulator.RunManipulatorWithJoystick;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -27,13 +26,17 @@ public class Manipulator extends Subsystem {
         rightMotor = new VictorSPX(RobotMap.INTAKE_SPARK_RIGHT_PORT);
         iRSensorLeft = new DigitalInput(RobotMap.IR_SENSOR_LEFT);
         iRSensorRight = new DigitalInput(RobotMap.IR_SENSOR_RIGHT);
-        extender = new Solenoid(RobotMap.INTAKE_EXTENDER_SOLENOID_PORT);
+        extender = new Solenoid(RobotMap.PCM_CAN_ID, RobotMap.INTAKE_EXTENDER_SOLENOID_PORT);
 
         // Invert Motors
         leftMotor.setInverted(true);
         leftMotor.setNeutralMode(NeutralMode.Brake);
+        leftMotor.enableVoltageCompensation(true);
+        leftMotor.configVoltageCompSaturation(12, 20);
         rightMotor.setInverted(true);
         rightMotor.setNeutralMode(NeutralMode.Brake);
+        rightMotor.enableVoltageCompensation(true);
+        rightMotor.configVoltageCompSaturation(12, 20);
     }
     
     public void initDefaultCommand() {

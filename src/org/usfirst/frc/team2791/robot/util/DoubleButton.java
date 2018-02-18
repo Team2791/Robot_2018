@@ -1,20 +1,24 @@
 package org.usfirst.frc.team2791.robot.util;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 
-public class DoubleButton extends Button{
-    Joystick stick;
-    int b1;
-    int b2;
-    public DoubleButton(Joystick joystick, int button1, int button2){
-        stick = joystick;
+public class DoubleButton extends Button {
+    Button b1, b2;
+    String comparasionOpereator;
+    
+    public DoubleButton(Button button1, Button button2, String comparasionOpereator){
         b1 = button1;
         b2 = button2;
+        this.comparasionOpereator = comparasionOpereator;
+        assert(comparasionOpereator == "OR" || comparasionOpereator == "AND");
     }
     
     @Override
     public boolean get(){
-        return stick.getRawButton(b1) && stick.getRawButton(b2);
+    	if(comparasionOpereator == "AND") {
+    		return b1.get() && b2.get();
+    	} else {
+    		return b1.get() || b2.get();
+    	}
     }
 }

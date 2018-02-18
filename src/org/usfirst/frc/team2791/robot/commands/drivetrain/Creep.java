@@ -1,7 +1,6 @@
 package org.usfirst.frc.team2791.robot.commands.drivetrain;
 
 
-import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
 import org.usfirst.frc.team2791.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;

@@ -16,6 +16,7 @@ public class RobotMap {
 	public static final int VICTOR_LEFT_1 = 32;
 	public static final int VICTOR_LEFT_2 = 31;
 	public static final int TALON_LEFT_3 = 27;
+	
 	public static final int VICTOR_RIGHT_1 = 36;
 	public static final int VICTOR_RIGHT_2 = 33;
 	public static final int TALON_RIGHT_3 = 20;
@@ -32,6 +33,8 @@ public class RobotMap {
 	
 	// __ Pistons ___
 	
+	public static final int PCM_CAN_ID = 10;
+	
 	// Drive train
 	public static final int DRIVETRAIN_GEARBOX_SHIFTER_IN = 0;
 	public static final int DRIVETRAIN_GEARBOX_SHIFTER_OUT = 1;
@@ -40,7 +43,7 @@ public class RobotMap {
 	public static final int RAMP_DEPLOY_SOLENOID = 5;
 	
 	// Lift
-	public static final int BREAK_SOLENOID = 2;
+	public static final int BREAK_SOLENOID = 4;
 
 	// Manipulator
 	public static final int INTAKE_EXTENDER_SOLENOID_PORT = 3;

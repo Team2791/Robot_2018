@@ -1,8 +1,8 @@
 package org.usfirst.frc.team2791.robot.commands.lift;
 
+import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.OI;
 import org.usfirst.frc.team2791.robot.Robot;
-import org.usfirst.frc.team2791.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.command.Command;

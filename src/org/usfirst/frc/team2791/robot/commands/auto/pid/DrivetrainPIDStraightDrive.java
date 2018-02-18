@@ -1,8 +1,8 @@
 package org.usfirst.frc.team2791.robot.commands.auto.pid;
 
+import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.util.BasicPID;
-import org.usfirst.frc.team2791.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;

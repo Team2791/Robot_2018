@@ -3,9 +3,9 @@ package org.usfirst.frc.team2791.robot.subsystems;
 import static java.lang.StrictMath.max;
 import static java.lang.StrictMath.min;
 
+import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.RobotMap;
 import org.usfirst.frc.team2791.robot.commands.lift.StopLift;
-import org.usfirst.frc.team2791.robot.util.Constants;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -38,14 +38,15 @@ public class ShakerLift extends Subsystem {
         potAnalogInput = new AnalogInput(RobotMap.LIFT_POT_PORT);
         potentiometer = new AnalogPotentiometer(potAnalogInput, Constants.LIFT_POT_FULL_RANGE, Constants.LIFT_POT_OFFSET);
         
-        breakSolenoid = new Solenoid(RobotMap.BREAK_SOLENOID);
+        breakSolenoid = new Solenoid(RobotMap.PCM_CAN_ID, RobotMap.BREAK_SOLENOID);
         breakReleaseTimer = new Timer();
         
-        motorOne = new TalonSRX(RobotMap.LIFT_TALON_ONE);
+//        motorOne = new TalonSRX(RobotMap.LIFT_TALON_ONE);
         motorTwo = new VictorSPX(RobotMap.LIFT_VICTOR_TWO);
         motorThree = new VictorSPX(RobotMap.LIFT_VICTOR_THREE);
         
-        motorControllers = new BaseMotorController[] { motorOne, motorTwo, motorThree };
+        // vv removed motorOne from here because we're not using it.
+        motorControllers = new BaseMotorController[] {  motorTwo, motorThree };
         
         for(int i=0; i<motorControllers.length; i++) {
         	motorControllers[i].setNeutralMode(NeutralMode.Brake);
@@ -114,9 +115,9 @@ public class ShakerLift extends Subsystem {
     }
 
     private void setPowerUnsafe(double power) {
-        motorOne.set(ControlMode.PercentOutput, power);
-        motorTwo.set(ControlMode.PercentOutput, power);
-        motorThree.set(ControlMode.PercentOutput, power);
+    	for(int i=0; i<motorControllers.length; i++) {
+        	motorControllers[i].set(ControlMode.PercentOutput, power); 
+        }
     }
 
     public void setBreak(boolean breakOn){
@@ -155,8 +156,6 @@ public class ShakerLift extends Subsystem {
         SmartDashboard.putBoolean("Lift - Break value", !breakSolenoid.get());
         
         SmartDashboard.putNumber("Lift - break timer", breakReleaseTimer.get());
-        
-        
     }
 }
 
