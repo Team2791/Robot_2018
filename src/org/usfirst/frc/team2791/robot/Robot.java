@@ -3,14 +3,16 @@ package org.usfirst.frc.team2791.robot;
 
 import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
 import org.usfirst.frc.team2791.robot.commands.auto.DriveForwardTime;
-import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyStraightSwitchCube;
-import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyTurnSwitchHighDrop;
+import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyDriveStraightToSwitch;
+import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyStraightSwitchCubeSCORE;
 import org.usfirst.frc.team2791.robot.subsystems.Manipulator;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerLift;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerRamp;
-import org.usfirst.frc.team2791.robot.util.DelayedCommandGroup;
 import org.usfirst.frc.team2791.robot.util.Limelight;
+import org.usfirst.frc.team2791.robot.util.autonChoosers.AutonCommandChooser;
+import org.usfirst.frc.team2791.robot.util.autonChoosers.NearSwitchAutonChooser;
+import org.usfirst.frc.team2791.robot.util.autonChoosers.NoChoiceChooser;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -32,7 +34,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	public static String data;
-	public static boolean leftSwitchNear, leftScale, leftSwitchFar;
+	public static boolean weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch;
 	public static DriverStation station;
 	public static PowerDistributionPanel pdp; //CAN ID has to be 0 for current sensing
 	public static OI oi;
@@ -44,7 +46,8 @@ public class Robot extends IterativeRobot {
     public static ShakerLift lift;
 
     Command autonomousCommand;
-	SendableChooser<Command> chooser = new SendableChooser<>();
+    AutonCommandChooser autonCommandChooser;
+	SendableChooser<AutonCommandChooser> chooser = new SendableChooser<>();
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -64,12 +67,24 @@ public class Robot extends IterativeRobot {
 		updateGameData();
 
 		// Set up our auton chooser
-		chooser.addDefault("Default Auto - Do Nothing", new DoNothing());
-		chooser.addObject("Cross line - time only", new DriveForwardTime(0.33, 3.5));
-		chooser.addObject("LEFT side Straight Switch - time only", new TimeOnlyStraightSwitchCube(true));
-		chooser.addObject("RIGHT side Straight Switch - time only", new TimeOnlyStraightSwitchCube(false));
+		chooser.addDefault("Default Auto - Do Nothing", new NoChoiceChooser(new DoNothing()));
+		chooser.addObject("Cross line - time only", new NoChoiceChooser(new DriveForwardTime(0.33, 3.5)));
+		
+		chooser.addObject("LEFT side Straight Switch - time only", new NearSwitchAutonChooser(
+			new TimeOnlyStraightSwitchCubeSCORE(), // this will run when we are on the left side of the switch
+			new TimeOnlyDriveStraightToSwitch() // this will run when we are on the right side of the switch
+		));
+
+		chooser.addObject("RIGHT side Straight Switch - time only", new NearSwitchAutonChooser(
+			new TimeOnlyDriveStraightToSwitch(), // this will run when we are on the left side of the switch
+			new TimeOnlyStraightSwitchCubeSCORE() // this will run when we are on the right side of the switch
+		));
+		
 		// this one is not working yet
-//		chooser.addObject("Turn Switch HIGH drop - time only", new TimeOnlyTurnSwitchHighDrop());
+//		chooser.addObject("Turn Switch HIGH drop - time only", chooser.addObject("RIGHT side Straight Switch - time only", new NearSwitchAutonChooser(
+//			new TimeOnlyTurnSwitchHighDropLEFT(), // this will run when we are on the left side of the switch
+//			new TimeOnlyTurnSwitchHighDropRIGHT() // this will run when we are on the right side of the switch
+//		));
 		SmartDashboard.putData("Auto mode", chooser);
 		
 		oi = new OI();
@@ -107,15 +122,14 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		updateGameData();
-		
-		autonomousCommand = chooser.getSelected();
-
 		// schedule the autonomous command
+		
+		autonCommandChooser = chooser.getSelected();
+
+		if (autonCommandChooser != null) {
+			autonomousCommand = autonCommandChooser.getCommand(weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch);
+		}
 		if (autonomousCommand != null) {
-			// if it's a DelayedCommandGroup we need to init it
-			if(autonomousCommand instanceof DelayedCommandGroup) {
-				((DelayedCommandGroup) autonomousCommand).init();
-			}
 			autonomousCommand.start();
 		}
 	}
@@ -157,13 +171,13 @@ public class Robot extends IterativeRobot {
 	public void updateGameData(){
 		data = DriverStation.getInstance().getGameSpecificMessage();
 		if(data.length() > 0){
-			leftSwitchNear = data.charAt(0) == 'L';
-			leftScale = data.charAt(1) == 'L';
-			leftSwitchFar = data.charAt(2) == 'L';
+			weOwnLeftSideNearSwitch = data.charAt(0) == 'L';
+			weOwnLeftSideScale = data.charAt(1) == 'L';
+			weOwnLeftSideFarSwitch = data.charAt(2) == 'L';
 
-			SmartDashboard.putBoolean("leftSwitchNear", leftSwitchNear);
-			SmartDashboard.putBoolean("leftScale", leftScale);
-			SmartDashboard.putBoolean("leftSwitchFar", leftSwitchFar);
+			SmartDashboard.putBoolean("leftSwitchNear", weOwnLeftSideNearSwitch);
+			SmartDashboard.putBoolean("leftScale", weOwnLeftSideScale);
+			SmartDashboard.putBoolean("leftSwitchFar", weOwnLeftSideFarSwitch);
 		}
 	}
 

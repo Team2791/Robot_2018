@@ -6,16 +6,15 @@ import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.commands.lift.GoToHeight;
 import org.usfirst.frc.team2791.robot.commands.manipulator.SetManipulatorRetracted;
 import org.usfirst.frc.team2791.robot.commands.manipulator.ShootCube;
-import org.usfirst.frc.team2791.robot.util.DelayedCommandGroup;
+
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class TimeOnlyStraightSwitchCube extends DelayedCommandGroup {
-	boolean robotOnLeftSide;
+public class TimeOnlyStraightSwitchCubeSCORE extends CommandGroup {
 
-    public TimeOnlyStraightSwitchCube(boolean robotOnLeftSide) {
-    	this.robotOnLeftSide = robotOnLeftSide;
+    public TimeOnlyStraightSwitchCubeSCORE() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -32,17 +31,7 @@ public class TimeOnlyStraightSwitchCube extends DelayedCommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    }
-    
-    // we need to call this NOT during the constructor because the switch side could change.
-    public void initCode() {
-    	addParallel(new SetManipulatorRetracted(true));
-    	addParallel(new GoToHeight(8)); // was 13
-    	addSequential(new DriveForwardTime(0.33, 3.5));
-    	
-    	if(Robot.leftSwitchNear == robotOnLeftSide) {
-    		System.out.println("Robot on our side of the switch.");
-    		addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
-    	}
+    	addParallel(new TimeOnlyDriveStraightToSwitch());
+    	addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
     }
 }
