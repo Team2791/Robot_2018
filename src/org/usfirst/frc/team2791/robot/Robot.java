@@ -168,8 +168,21 @@ public class Robot extends IterativeRobot {
 	}
 
 
-	public void updateGameData(){
-		data = DriverStation.getInstance().getGameSpecificMessage();
+	public void updateGameData(){	
+		int retries = 100;
+		// Retry code taken from 5687! Thanks!
+		// https://www.chiefdelphi.com/forums/showpost.php?p=1735952&postcount=22
+        String data = DriverStation.getInstance().getGameSpecificMessage();
+        while (data.length() < 2 && retries > 0) {
+            retries--;
+            try {
+                Thread.sleep(5);
+            } catch (InterruptedException ie) {
+                // Just ignore the interrupted exception
+            }
+            data = DriverStation.getInstance().getGameSpecificMessage();
+        }
+		
 		if(data.length() > 0){
 			weOwnLeftSideNearSwitch = data.charAt(0) == 'L';
 			weOwnLeftSideScale = data.charAt(1) == 'L';
