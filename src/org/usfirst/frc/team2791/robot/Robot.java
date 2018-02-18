@@ -15,6 +15,7 @@ import org.usfirst.frc.team2791.robot.util.autonChoosers.AutonCommandChooser;
 import org.usfirst.frc.team2791.robot.util.autonChoosers.NearSwitchAutonChooser;
 import org.usfirst.frc.team2791.robot.util.autonChoosers.NoChoiceChooser;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -39,6 +40,7 @@ public class Robot extends IterativeRobot {
 	public static DriverStation station;
 	public static PowerDistributionPanel pdp; //CAN ID has to be 0 for current sensing
 	public static OI oi;
+	public static Compressor compressor;
 	
 	public static ShakerDrivetrain drivetrain;
 	public static ShakerRamp ramps; 
@@ -57,6 +59,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		System.out.println("Starting to init my systems.");
+		
+		compressor = new Compressor(RobotMap.PCM_CAN_ID);
+//		compressor.stop();
 		
 		pdp = new PowerDistributionPanel(RobotMap.PDP); //CAN id has to be 0
 		drivetrain = new ShakerDrivetrain();
@@ -111,7 +116,7 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 		debug();
-		updateGameData();
+//		updateGameData();
 	}
 
 	/**
@@ -161,7 +166,6 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		debug();
-		updateGameData();
 	}
 	/**
 	 * This function is called periodically during test mode
@@ -175,7 +179,7 @@ public class Robot extends IterativeRobot {
 
 
 	public void updateGameData(){	
-		int retries = 100;
+		int retries = 50;
 		// Retry code taken from 5687! Thanks!
 		// https://www.chiefdelphi.com/forums/showpost.php?p=1735952&postcount=22
         String data = DriverStation.getInstance().getGameSpecificMessage();
