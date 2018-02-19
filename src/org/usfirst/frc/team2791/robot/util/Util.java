@@ -39,7 +39,7 @@ public class Util {
     }
 
     public static double average(double... numbers){
-    	int total = 0;
+    	double total = 0;
     	for(int i = 0; i < numbers.length; i++){
     		total += numbers[i];
 		}

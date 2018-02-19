@@ -11,7 +11,7 @@ public class NearSwitchAutonChooser extends AutonCommandChooser {
 	@Override
 	public Command getCommand(boolean weOwnLeftSideNearSwitch,
 			boolean weOwnLeftSideScale, boolean weOwnLeftSideFarSwitch) {
-		if(weOwnLeftSideScale) {
+		if(weOwnLeftSideNearSwitch) {
 			return leftSideAuto;
 		} else {
 			return rightSideAuto;

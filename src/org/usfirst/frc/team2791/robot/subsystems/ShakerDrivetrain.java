@@ -266,7 +266,7 @@ public class ShakerDrivetrain extends Subsystem{
 	 * @return distance traveled by left side based on encoder
 	 */
 	public double getLeftDistance() {
-		return -talonLeft3.getSelectedSensorPosition(0) * distancePerPulse;
+		return talonLeft3.getSelectedSensorPosition(0) * distancePerPulse;
 	}
 
 	/**
@@ -284,7 +284,7 @@ public class ShakerDrivetrain extends Subsystem{
 	}
 
 	public double getLeftVelocity() {
-		return  -talonLeft3.getSelectedSensorVelocity(0) * distancePerPulse * 10;// 10 to convert from milliseconds a
+		return  talonLeft3.getSelectedSensorVelocity(0) * distancePerPulse * 10;// 10 to convert from milliseconds a
 	}
 
 	public double getRightVelocity() {

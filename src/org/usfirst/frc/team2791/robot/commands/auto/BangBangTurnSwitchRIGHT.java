@@ -12,9 +12,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class BangBangTurnSwitchLEFT extends CommandGroup {
+public class BangBangTurnSwitchRIGHT extends CommandGroup {
 
-    public BangBangTurnSwitchLEFT() {
+    public BangBangTurnSwitchRIGHT() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -40,12 +40,12 @@ public class BangBangTurnSwitchLEFT extends CommandGroup {
     	addSequential(new DriveEncoderBangBang(0.3, 0,  8.8-2, 100));
     	addParallel(new SetManipulatorRetracted(true));
     	// turn towards the left side
-    	addSequential(new TurnGyroBangBang(-(45-5), -0.3, 	100));
+    	addSequential(new TurnGyroBangBang((45-5), 0.3, 100));
     	// drive towards the left side
-    	addParallel(new GoToHeight(8)); // was 13
-    	addSequential(new DriveEncoderBangBang(0.3, 0,  30-2, 100));
+    	addParallel(new GoToHeight(8));
+    	addSequential(new DriveEncoderBangBang(0.3, 0,  26.6-2, 100));
     	// turn to face the switch
-    	addSequential(new TurnGyroBangBang(45-5, 0.3, 100));
+    	addSequential(new TurnGyroBangBang(-(45-5), -0.3, 100));
     	// drive into the switch. Low power so we'll hit the wall and use the timeout to stop
     	addSequential(new DriveEncoderBangBang(0.2, 0,  8, 3));
     	// score

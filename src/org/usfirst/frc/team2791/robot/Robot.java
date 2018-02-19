@@ -2,6 +2,7 @@
 package org.usfirst.frc.team2791.robot;
 
 import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchLEFT;
+import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchRIGHT;
 import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
 import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyDriveStraightToSwitch;
 import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyStraightSwitchCubeSCORE;
@@ -53,7 +54,7 @@ public class Robot extends IterativeRobot {
 	SendableChooser<AutonCommandChooser> chooser = new SendableChooser<>();
 
 	/**
-	 * This function is run when the robot is first started up and should be
+	 * This function is run when the robot is first started up and 2should be
 	 * used for any initialization code.
 	 */
 	@Override
@@ -61,7 +62,7 @@ public class Robot extends IterativeRobot {
 		System.out.println("Starting to init my systems.");
 		
 		compressor = new Compressor(RobotMap.PCM_CAN_ID);
-//		compressor.stop();
+		compressor.stop();
 		
 		pdp = new PowerDistributionPanel(RobotMap.PDP); //CAN id has to be 0
 		drivetrain = new ShakerDrivetrain();
@@ -70,7 +71,7 @@ public class Robot extends IterativeRobot {
 		lift = new ShakerLift();
 		limelight = new Limelight();
 
-		updateGameData();
+		updateGameData(false);
 
 		// Set up our auton chooser
 		chooser.addDefault("Default Auto - Do Nothing", new NoChoiceChooser(new DoNothing()));
@@ -88,7 +89,7 @@ public class Robot extends IterativeRobot {
 		
 		chooser.addObject("Turn Switch LOW drop - Bang Bang", new NearSwitchAutonChooser(
 				new BangBangTurnSwitchLEFT(), // this will run when we are on the left side of the switch
-				new DoNothing() // this will run when we are on the right side of the switch
+				new BangBangTurnSwitchRIGHT() // this will run when we are on the right side of the switch
 			));
 		
 		// this one is not working yet
@@ -109,14 +110,20 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledInit() {
 		Robot.ramps.setRampsDown(false);
-		updateGameData();
+		updateGameData(true);
 	}
 
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 		debug();
-//		updateGameData();
+		updateGameData(false);
+		
+		// reset the encoders and gyor when we hit driver start
+		if(OI.driver.getRawButton(8)) {
+			Robot.drivetrain.resetEncoders();
+	    	Robot.drivetrain.resetGyro();
+		}
 	}
 
 	/**
@@ -132,7 +139,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		updateGameData();
+		updateGameData(true);
 		// schedule the autonomous command
 		
 		autonCommandChooser = chooser.getSelected();
@@ -152,11 +159,12 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 		debug();
+		updateGameData(false);
 	}
 
 	@Override
 	public void teleopInit() {
-		updateGameData();
+		updateGameData(true);
 	}
 
 	/**
@@ -174,25 +182,28 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 		LiveWindow.run();
 		debug();
-		//updateGameData();
+		updateGameData(false);
 	}
 
 
-	public void updateGameData(){	
-		int retries = 50;
-		// Retry code taken from 5687! Thanks!
-		// https://www.chiefdelphi.com/forums/showpost.php?p=1735952&postcount=22
-        String data = DriverStation.getInstance().getGameSpecificMessage();
-        while (data.length() < 2 && retries > 0) {
-            retries--;
-            try {
-                Thread.sleep(5);
-            } catch (InterruptedException ie) {
-                // Just ignore the interrupted exception
-            }
-            data = DriverStation.getInstance().getGameSpecificMessage();
-        }
-		
+	public void updateGameData(boolean retry){
+		String data = DriverStation.getInstance().getGameSpecificMessage();
+		if(retry) {
+			int retries = 50;
+			// Retry code taken from 5687! Thanks!
+			// https://www.chiefdelphi.com/forums/showpost.php?p=1735952&postcount=22
+			data = DriverStation.getInstance().getGameSpecificMessage();
+	        while (data.length() < 2 && retries > 0) {
+	            retries--;
+	            try {
+	                Thread.sleep(5);
+	            } catch (InterruptedException ie) {
+	                // Just ignore the interrupted exception
+	            }
+	            data = DriverStation.getInstance().getGameSpecificMessage();
+	        }
+		}
+
 		if(data.length() > 0){
 			weOwnLeftSideNearSwitch = data.charAt(0) == 'L';
 			weOwnLeftSideScale = data.charAt(1) == 'L';

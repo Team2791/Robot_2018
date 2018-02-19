@@ -37,7 +37,7 @@ public class Constants {
 	
 	// Drive train constants
 	public static double driveEncoderTicks = 256;
-	public static final double SPEED_MULTIPLIER = 1;
+	public static final double SPEED_MULTIPLIER = 0.7;
 	public static final double WHEEL_DIAMETER_IN_FEET = 1.0;
 	public static final double RAISE_RAMPS_SPEED = 0.8;
 

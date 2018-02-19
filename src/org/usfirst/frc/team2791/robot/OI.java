@@ -63,13 +63,6 @@ public class OI {
 		raiseRampsDoubleButton = new DoubleButton(raiseRampsLeftButton, raiseRampsRightButton, "OR");
 		raiseRampsDoubleButton.whileHeld(new RaiseRamps(raiseRampsLeftButton, raiseRampsRightButton));
 		
-		
-		
-		
-		operatorLeftJoystickUsed.whenPressed(new RunLiftWithJoystick(operatorLeftJoystickUsed));
-		operatorRightJoystickUsed.whenPressed(new RunManipulatorWithJoystick());
-
-
 		driverLB.whileHeld(new Creep(-0.22));
 		driverRB.whileHeld(new Creep(0.22));
 
@@ -80,6 +73,9 @@ public class OI {
 		operatorB.whenPressed(new GoToHeight(12)); // score on switch and pick up middle of power cube pile
 		operatorX.whenPressed(new GoToHeight(23));
 		operatorY.whenPressed(new GoToHeight(36.5)); // go to top
+		
+		operatorLeftJoystickUsed.whenPressed(new RunLiftWithJoystick(operatorLeftJoystickUsed));
+		operatorRightJoystickUsed.whenPressed(new RunManipulatorWithJoystick());
 
 		operatorRAnalogTrigger.whenPressed(new IntakeAndHoldCube());
 		operatorLAnalogTrigger.whenPressed(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
@@ -87,7 +83,9 @@ public class OI {
 
 		operatorDpadUp.whenPressed(new SetManipulatorRetracted(true));
 		operatorDpadDown.whenPressed(new SetManipulatorRetracted(false));
-
+		
+		
+	
 		// Commenting out until lime light is finished.
 //		.whileHeld(new DriveTowardLimelightTargetStopWithDistance(Constants.SPEED_MULTIPLIER, 1));
 //		.whileHeld(new TurnTowardLimelightTarget());

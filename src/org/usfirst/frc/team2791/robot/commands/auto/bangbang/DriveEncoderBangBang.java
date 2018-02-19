@@ -56,8 +56,10 @@ public class DriveEncoderBangBang extends Command {
     }
 
     protected void end() {
+    	Robot.drivetrain.setLeftRightMotorOutputs(0, 0);
     }
 
     protected void interrupted() {
+    	end();
     }
 }
