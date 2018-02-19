@@ -1,0 +1,350 @@
+{
+  "dividerPosition": 0.2429614181438999,
+  "tabPane": [
+    {
+      "title": "Tab 1",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "0,5": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift - Potentiometer value",
+              "_title": "SmartDashboard/Lift - Potentiometer value"
+            }
+          },
+          "0,6": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/Lift - Top Limit Switch value",
+              "_title": "SmartDashboard/Lift - Top Limit Switch value",
+              "colorWhenTrue": "#7CFC00FF",
+              "colorWhenFalse": "#8B0000FF"
+            }
+          },
+          "1,6": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/Lift - Bottom Limit Switch value",
+              "_title": "SmartDashboard/Lift - Bottom Limit Switch value",
+              "colorWhenTrue": "#7CFC00FF",
+              "colorWhenFalse": "#8B0000FF"
+            }
+          },
+          "2,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/Manipulator Left Sensor",
+              "_title": "SmartDashboard/Manipulator Left Sensor",
+              "colorWhenTrue": "#7CFC00FF",
+              "colorWhenFalse": "#8B0000FF"
+            }
+          },
+          "3,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/Manipulator Right Sensor",
+              "_title": "SmartDashboard/Manipulator Right Sensor",
+              "colorWhenTrue": "#7CFC00FF",
+              "colorWhenFalse": "#8B0000FF"
+            }
+          },
+          "2,6": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/Manipulator Cube in gripper",
+              "_title": "SmartDashboard/Manipulator Cube in gripper",
+              "colorWhenTrue": "#7CFC00FF",
+              "colorWhenFalse": "#8B0000FF"
+            }
+          },
+          "4,5": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/DT - Left Encoder Distance",
+              "_title": "SmartDashboard/DT - Left Encoder Distance"
+            }
+          },
+          "6,5": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/DT - Right Encoder Distance",
+              "_title": "SmartDashboard/DT - Right Encoder Distance"
+            }
+          },
+          "4,6": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/DT - Gyro angle",
+              "_title": "SmartDashboard/DT - Gyro angle"
+            }
+          },
+          "6,6": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/DT - Avg Encoder Distance",
+              "_title": "SmartDashboard/DT - Avg Encoder Distance"
+            }
+          },
+          "0,0": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "ComboBox Chooser",
+              "_source0": "network_table:///SmartDashboard/Auto mode",
+              "_title": "SmartDashboard/Auto mode"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Stationary PID Tuning",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "0,6": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/PID - Stat Angle P",
+              "_title": "SmartDashboard/PID - Stat Angle P"
+            }
+          },
+          "1,6": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/PID - Stat Angle I",
+              "_title": "SmartDashboard/PID - Stat Angle I"
+            }
+          },
+          "2,6": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/PID - Stat Angle D",
+              "_title": "SmartDashboard/PID - Stat Angle D"
+            }
+          },
+          "0,0": {
+            "size": [
+              9,
+              4
+            ],
+            "content": {
+              "_type": "Graph",
+              "_title": "Graph (no sources)",
+              "Visible time": 30.0
+            }
+          },
+          "0,4": {
+            "size": [
+              9,
+              2
+            ],
+            "content": {
+              "_type": "Graph",
+              "_title": "Graph (no sources)",
+              "Visible time": 30.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Moving PID Tuning",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "2,6": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/PID - Distance D",
+              "_title": "SmartDashboard/PID - Distance D"
+            }
+          },
+          "1,6": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/PID - Distance I",
+              "_title": "SmartDashboard/PID - Distance I"
+            }
+          },
+          "0,6": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/PID - Distance P",
+              "_title": "SmartDashboard/PID - Distance P"
+            }
+          },
+          "8,6": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/PID - Moving Angle D",
+              "_title": "SmartDashboard/PID - Moving Angle D"
+            }
+          },
+          "0,3": {
+            "size": [
+              9,
+              3
+            ],
+            "content": {
+              "_type": "Graph",
+              "_title": "Graph (no sources)",
+              "Visible time": 30.0,
+              "SmartDashboard/PID - Moving Angle Error visible": true
+            }
+          },
+          "7,6": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/PID - Moving Angle I",
+              "_title": "SmartDashboard/PID - Moving Angle I"
+            }
+          },
+          "6,6": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/PID - Moving Angle P",
+              "_title": "SmartDashboard/PID - Moving Angle P"
+            }
+          },
+          "3,6": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "ComboBox Chooser",
+              "_source0": "network_table:///SmartDashboard/Auto mode",
+              "_title": "SmartDashboard/Auto mode"
+            }
+          },
+          "9,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/PID - Stationary Angle Output",
+              "_title": "SmartDashboard/PID - Stationary Angle Output"
+            }
+          },
+          "9,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/PID - Distance output",
+              "_title": "SmartDashboard/PID - Distance output"
+            }
+          },
+          "0,0": {
+            "size": [
+              9,
+              3
+            ],
+            "content": {
+              "_type": "Graph",
+              "_title": "Graph (no sources)",
+              "Visible time": 30.0,
+              "SmartDashboard/PID - Distance error visible": true
+            }
+          }
+        }
+      }
+    }
+  ]
+}
