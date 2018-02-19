@@ -32,6 +32,7 @@ public class DriveEncoderBangBangGyroPID extends Command {
     	timer.start();
     	stopDistance = Robot.drivetrain.getAverageDist() + distanceToDrive;
     	System.out.println("Starting encoder bang bang drive. power: " +power+"  stopDistance: "+stopDistance);
+    	System.out.println("Starting angle: "+ Robot.drivetrain.getGyroAngle());
     	anglePID.setSetPoint(Robot.drivetrain.getGyroAngle());
     	updatePIDGains();
     }

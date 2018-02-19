@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public abstract class DrivetrainPIDStraightDrive extends Command {
 
-	private final double MIN_POWER_TO_MOVE = 0.15;
+	private final double MIN_POWER_TO_MOVE = 0.0;
 
 	protected static BasicPID movingAnglePID;
 	protected static BasicPID distancePID;
@@ -73,7 +73,7 @@ public abstract class DrivetrainPIDStraightDrive extends Command {
 
 	protected boolean isFinished() {
 		
-		printStopBooleans();
+//		printStopBooleans();
 		
 		boolean isPIDDone = (Math.abs(distancePID.getError()) < drivingErrorThreshold &&
 				Math.abs(movingAnglePID.getError()) < 1.5 &&
@@ -113,27 +113,23 @@ public abstract class DrivetrainPIDStraightDrive extends Command {
 	
 	public void updatePIDGains() {
 		// get new values from smart dash
-		Constants.STATIONARY_ANGLE_P = SmartDashboard.getNumber("Stat Angle P", Constants.STATIONARY_ANGLE_P);
-		Constants.STATIONARY_ANGLE_I = SmartDashboard.getNumber("Stat Angle I", Constants.STATIONARY_ANGLE_I);
-		Constants.STATIONARY_ANGLE_D = SmartDashboard.getNumber("Stat Angle D",Constants.STATIONARY_ANGLE_D);
+		Constants.DRIVE_ANGLE_P = SmartDashboard.getNumber("PID - Moving Angle P", Constants.DRIVE_ANGLE_P);
+		Constants.DRIVE_ANGLE_I = SmartDashboard.getNumber("PID - Moving Angle I", Constants.DRIVE_ANGLE_I);
+		Constants.DRIVE_ANGLE_D = SmartDashboard.getNumber("PID - Moving Angle D", Constants.DRIVE_ANGLE_D);
 
-		Constants.DRIVE_ANGLE_P = SmartDashboard.getNumber("Moving Angle P", Constants.DRIVE_ANGLE_P);
-		Constants.DRIVE_ANGLE_I = SmartDashboard.getNumber("Moving Angle I", Constants.DRIVE_ANGLE_I);
-		Constants.DRIVE_ANGLE_D = SmartDashboard.getNumber("Moving Angle D", Constants.DRIVE_ANGLE_D);
-
-		Constants.DRIVE_DISTANCE_P = SmartDashboard.getNumber("Distance P", Constants.DRIVE_DISTANCE_P);
-		Constants.DRIVE_DISTANCE_I = SmartDashboard.getNumber("Distance I", Constants.DRIVE_DISTANCE_I);
-		Constants.DRIVE_DISTANCE_D = SmartDashboard.getNumber("Distance D", Constants.DRIVE_DISTANCE_D);
+		Constants.DRIVE_DISTANCE_P = SmartDashboard.getNumber("PID - Distance P", Constants.DRIVE_DISTANCE_P);
+		Constants.DRIVE_DISTANCE_I = SmartDashboard.getNumber("PID - Distance I", Constants.DRIVE_DISTANCE_I);
+		Constants.DRIVE_DISTANCE_D = SmartDashboard.getNumber("PID - Distance D", Constants.DRIVE_DISTANCE_D);
 
 		movingAnglePID.changeGains(Constants.DRIVE_ANGLE_P, Constants.DRIVE_ANGLE_I, Constants.DRIVE_ANGLE_D);
 		distancePID.changeGains(Constants.DRIVE_DISTANCE_P, Constants.DRIVE_DISTANCE_I, Constants.DRIVE_DISTANCE_D);
 	}
 
 	public void debug() {
-		SmartDashboard.putNumber("Moving Angle PID Error", movingAnglePID.getError());
-		SmartDashboard.putNumber("Moving Angle PID Output", movingAnglePID.getOutput());
-		SmartDashboard.putNumber("Distance PID output", distancePID.getOutput());
-		SmartDashboard.putNumber("Distance PID error", distancePID.getError());
+		SmartDashboard.putNumber("PID - Moving Angle Error", movingAnglePID.getError());
+		SmartDashboard.putNumber("PID - Moving Angle Output", movingAnglePID.getOutput());
+		SmartDashboard.putNumber("PID - Distance output", distancePID.getOutput());
+		SmartDashboard.putNumber("PID - Distance error", distancePID.getError());
 	}
 	
 	protected void printStopBooleans(){

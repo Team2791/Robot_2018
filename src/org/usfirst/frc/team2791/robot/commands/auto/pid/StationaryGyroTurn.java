@@ -39,7 +39,6 @@ public class StationaryGyroTurn extends DrivetrainPIDTurn {
 	 * @param maxOutput the maximum output you would like the motors to receive (up to 1.0)
 	 */
     public StationaryGyroTurn(double angleToTurn, double maxOutput) {
-    	
     	this(angleToTurn, maxOutput, 0.25, 10.0);
     }
     

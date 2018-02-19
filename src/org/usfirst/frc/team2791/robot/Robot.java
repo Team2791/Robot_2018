@@ -7,6 +7,8 @@ import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
 import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyDriveStraightToSwitch;
 import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyStraightSwitchCubeSCORE;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveEncoderBangBangGyroPID;
+import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveStraightEncoderGyro;
+import org.usfirst.frc.team2791.robot.commands.auto.pid.StationaryGyroTurn;
 import org.usfirst.frc.team2791.robot.commands.auto.timeonly.DriveForwardTime;
 import org.usfirst.frc.team2791.robot.subsystems.Manipulator;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
@@ -60,8 +62,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		System.out.println("Starting to init my systems.");
-		
 		compressor = new Compressor(RobotMap.PCM_CAN_ID);
 		compressor.stop();
 		
@@ -71,6 +71,8 @@ public class Robot extends IterativeRobot {
 		ramps = new ShakerRamp();
 		lift = new ShakerLift();
 		limelight = new Limelight();
+		
+		ShakerDrivetrain.putPIDGainsOnSmartDash();
 
 		updateGameData(false);
 
@@ -94,6 +96,11 @@ public class Robot extends IterativeRobot {
 			));
 		
 		chooser.addObject("TEST - Long bang bang + gyro drive", new NoChoiceChooser(new DriveEncoderBangBangGyroPID(0.4, 15*12, 100)));
+		chooser.addObject("TEST - gyro pid 90º rotation", new NoChoiceChooser(new StationaryGyroTurn(90, 0.5, 1.5, 50)));
+		chooser.addObject("TEST - gyro pid 45º rotation", new NoChoiceChooser(new StationaryGyroTurn(45, 0.5, 1.5, 50)));
+		chooser.addObject("TEST - gyro pid 180º rotation", new NoChoiceChooser(new StationaryGyroTurn(180, 0.5, 1.5, 50)));
+		chooser.addObject("TEST - gyro + encoder pid 10 UNIT drive", new NoChoiceChooser(new DriveStraightEncoderGyro(10, 0.7, 100, .1)));
+		chooser.addObject("TEST - gyro + encoder pid -10 UNIT drive", new NoChoiceChooser(new DriveStraightEncoderGyro(-10, 0.7, 100, .1)));
 		
 		// this one is not working yet
 //		chooser.addObject("Turn Switch HIGH drop - time only", chooser.addObject("RIGHT side Straight Switch - time only", new NearSwitchAutonChooser(
@@ -112,6 +119,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
+		Robot.drivetrain.setBrakeMode(false);
 		Robot.ramps.setRampsDown(false);
 		updateGameData(true);
 	}
@@ -167,6 +175,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
+		Robot.drivetrain.setBrakeMode(false);
 		updateGameData(true);
 	}
 

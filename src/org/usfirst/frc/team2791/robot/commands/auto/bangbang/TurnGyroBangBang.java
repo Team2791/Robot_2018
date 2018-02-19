@@ -45,6 +45,7 @@ public class TurnGyroBangBang extends Command {
 		timer.start();
 		stopAngle = Robot.drivetrain.getGyroAngle() + amountToTurn;
 		System.out.println("Starting gyro bang bang turn. power: "+power+"  Stop angle: "+stopAngle);
+		System.out.println("Starting at distance: "+Robot.drivetrain.getAverageDist());
 	}
 
 	// Called repeatedly when this Command is scheduled to run

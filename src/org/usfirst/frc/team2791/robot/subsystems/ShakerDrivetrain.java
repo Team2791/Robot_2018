@@ -1,8 +1,6 @@
 package org.usfirst.frc.team2791.robot.subsystems;
 
 
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-
 import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.RobotMap;
@@ -10,6 +8,7 @@ import org.usfirst.frc.team2791.robot.commands.drivetrain.DriveWithJoystick;
 import org.usfirst.frc.team2791.robot.util.Util;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -18,7 +17,6 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -92,16 +90,15 @@ public class ShakerDrivetrain extends Subsystem{
 		boolean letSideInverted = false;
 		for(int i = 0; i < leftDrive.length; i++) {
 			leftDrive[i].setInverted(letSideInverted);
-			leftDrive[i].setNeutralMode(NeutralMode.Coast);
 			leftDrive[i].enableVoltageCompensation(true);
 			leftDrive[i].configVoltageCompSaturation(12, 20);
 		}
 		for(int i = 0; i < rightDrive.length; i++){
 			rightDrive[i].setInverted(!letSideInverted);
-			rightDrive[i].setNeutralMode(NeutralMode.Coast);
 			rightDrive[i].enableVoltageCompensation(true);
 			rightDrive[i].configVoltageCompSaturation(12, 20);
 		}
+		setBrakeMode(false);
 
 		// stops all motors right away just in case
 		disable();
@@ -120,6 +117,16 @@ public class ShakerDrivetrain extends Subsystem{
 
 	public void initDefaultCommand() {
 		setDefaultCommand(new DriveWithJoystick());
+	}
+	
+	public void setBrakeMode(boolean inBrakeMode) {
+		NeutralMode mode = inBrakeMode ? NeutralMode.Brake : NeutralMode.Coast;
+		for(int i = 0; i < leftDrive.length; i++) {
+			leftDrive[i].setNeutralMode(mode);
+		}
+		for(int i = 0; i < rightDrive.length; i++){
+			rightDrive[i].setNeutralMode(mode);
+		}
 	}
 
 	/**
@@ -181,7 +188,10 @@ public class ShakerDrivetrain extends Subsystem{
 		SmartDashboard.putNumber("DT - Gyro angle", gyro.getAngle());
 		SmartDashboard.putNumber("DT - Gyro rate", gyro.getRate());
 
-		SmartDashboard.putNumber("DT - total current", getCurrentUsage());
+		// we are getting a lot of CAN recieve timeout errors. This is a pain in the rear.
+//		SmartDashboard.putNumber("DT - total current", getCurrentUsage());
+		
+
 //		SmartDashboard.putString("LDist vs RDist vs AvgDist", getLeftDistance()+":"+getRightDistance()+":"+getAverageDist());
 //		SmartDashboard.putString("LVel vs RVel vs AvgVel", getLeftVelocity()+":"+getRightVelocity()+":"+getAverageVelocity());
 		
@@ -191,6 +201,28 @@ public class ShakerDrivetrain extends Subsystem{
 //		SmartDashboard.putNumber("Avg Acceleration", getAverageAcceleration());
 //		SmartDashboard.putString("LAcc vs RAcc vs AvgAcc", getLeftAcceleration()+":"+getRightAcceleration()+":"+getAverageAcceleration());
 
+	}
+	
+	public static void putPIDGainsOnSmartDash(){
+		SmartDashboard.putNumber("PID - Stat Angle P", Constants.STATIONARY_ANGLE_P);
+        SmartDashboard.putNumber("PID - Stat Angle I", Constants.STATIONARY_ANGLE_I);
+        SmartDashboard.putNumber("PID - Stat Angle D", Constants.STATIONARY_ANGLE_D);
+        SmartDashboard.putNumber("PID - Moving Angle P", Constants.DRIVE_ANGLE_P);
+        SmartDashboard.putNumber("PID - Moving Angle I", Constants.DRIVE_ANGLE_I);
+        SmartDashboard.putNumber("PID - Moving Angle D", Constants.DRIVE_ANGLE_D);
+        SmartDashboard.putNumber("PID - Distance P", Constants.DRIVE_DISTANCE_P);
+        SmartDashboard.putNumber("PID - Distance I", Constants.DRIVE_DISTANCE_I);
+        SmartDashboard.putNumber("PID - Distance D", Constants.DRIVE_DISTANCE_D);
+		
+		SmartDashboard.putNumber("TUNE PID Distance", 0.0);
+		SmartDashboard.putNumber("TUNE PID Stat Angle", 0.0);
+		
+		SmartDashboard.putNumber("PID - Stationary Angle Error", 0);
+        SmartDashboard.putNumber("PID - Stationary Angle Output", 0);
+        SmartDashboard.putNumber("PID - Moving Angle Error", 0);
+		SmartDashboard.putNumber("PID - Moving Angle Output", 0);
+		SmartDashboard.putNumber("PID - Distance output", 0);
+		SmartDashboard.putNumber("PID - Distance error", 0);
 	}
 
 

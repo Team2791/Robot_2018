@@ -3,6 +3,8 @@ package org.usfirst.frc.team2791.robot.commands.auto;
 import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.commands.auto.bangbang.TurnGyroBangBang;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveEncoderBangBangGyroPID;
+import org.usfirst.frc.team2791.robot.commands.drivetrain.PauseDrivetrain;
+import org.usfirst.frc.team2791.robot.commands.drivetrain.SetDrivetrainBreakMode;
 import org.usfirst.frc.team2791.robot.commands.lift.GoToHeight;
 import org.usfirst.frc.team2791.robot.commands.manipulator.SetManipulatorRetracted;
 import org.usfirst.frc.team2791.robot.commands.manipulator.ShootCube;
@@ -36,17 +38,20 @@ public class BangBangTurnSwitchRIGHT extends CommandGroup {
     	// 3rd arg is drive distance 
     	
     	// NOTE. ALl bang bang distances have a little removed to compensate for overshoot.
-
+    	addSequential(new SetDrivetrainBreakMode(true));
     	addSequential(new DriveEncoderBangBangGyroPID(0.3, 5-2, 100));
     	addParallel(new SetManipulatorRetracted(true));
     	// turn towards the left side
-    	addSequential(new TurnGyroBangBang(60, 0.3, 100));
-    	// drive towards the left side
+    	addSequential(new TurnGyroBangBang(60-10, 0.3, 100)); // want to turn 60 degrees 
     	addParallel(new GoToHeight(8));
-    	
-    	addSequential(new DriveEncoderBangBangGyroPID(0.3, 13.9, 100));
+    	// stop any momentum we have so the next drive start cleanly
+    	addSequential(new PauseDrivetrain(0.5));
+    	// drive towards the left side
+    	addSequential(new DriveEncoderBangBangGyroPID(0.3, 16.9, 100)); // was 16.9, made 32 but I wanted to add 18 in. // made 22.5 and overshot 1/2 a robot
+    	// stop any momentum we have so the next drive start cleanly
+    	addSequential(new PauseDrivetrain(0.75));
     	// turn to face the switch
-    	addSequential(new TurnGyroBangBang(-60, -0.3, 100));
+    	addSequential(new TurnGyroBangBang(-(60-5), -0.35, 100)); // robot has more trouble turning counter clockwise
     	// drive into the switch. Low power so we'll hit the wall and use the timeout to stop
     	addSequential(new DriveEncoderBangBangGyroPID(0.4, 14, 3.5));
     	addSequential(new DriveEncoderBangBangGyroPID(0.2, 14, 3.5));

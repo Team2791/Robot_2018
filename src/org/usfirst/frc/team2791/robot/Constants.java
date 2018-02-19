@@ -74,8 +74,8 @@ public class Constants {
 	public static double DRIVE_ANGLE_I = 0.01; // I and D values are guesses
 	public static double DRIVE_ANGLE_D = 0.015;
 	
-	public static double STATIONARY_ANGLE_P;
-	public static double STATIONARY_ANGLE_I;
-	public static double STATIONARY_ANGLE_D;
+	public static double STATIONARY_ANGLE_P = 0.05;
+	public static double STATIONARY_ANGLE_I = 0.10;
+	public static double STATIONARY_ANGLE_D = 0.005;
 	
 }

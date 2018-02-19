@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public abstract class DrivetrainPIDTurn extends Command {
 	
-	private final double MIN_POWER_TO_TURN = 0.22;
+	private final double MIN_POWER_TO_TURN = 0;
 	protected double errorThreshold = 1;
 	protected static BasicPID stationaryAnglePID;
 	
@@ -22,11 +22,9 @@ public abstract class DrivetrainPIDTurn extends Command {
 	 * @param maxOutput the maximum output you would like the motors to receive (up to 1.0)
 	 */
     public DrivetrainPIDTurn(double maxOutput, double errorThreshold) {
-
     	super("Turning Base Class");
 
         requires(Robot.drivetrain);
-        
         this.errorThreshold = errorThreshold;
         
 		stationaryAnglePID = new BasicPID(Constants.STATIONARY_ANGLE_P, Constants.STATIONARY_ANGLE_I, Constants.STATIONARY_ANGLE_D);
@@ -86,16 +84,16 @@ public abstract class DrivetrainPIDTurn extends Command {
     }
     public void updatePIDGains() {
     	// get new values from smart dash
-    	Constants.STATIONARY_ANGLE_P = SmartDashboard.getNumber("Stat Angle P", Constants.STATIONARY_ANGLE_P );
-		Constants.STATIONARY_ANGLE_I = SmartDashboard.getNumber("Stat Angle I", Constants.STATIONARY_ANGLE_I );
-		Constants.STATIONARY_ANGLE_D = SmartDashboard.getNumber("Stat Angle D", Constants.STATIONARY_ANGLE_D );
+    	Constants.STATIONARY_ANGLE_P = SmartDashboard.getNumber("PID - Stat Angle P", Constants.STATIONARY_ANGLE_P );
+		Constants.STATIONARY_ANGLE_I = SmartDashboard.getNumber("PID - Stat Angle I", Constants.STATIONARY_ANGLE_I );
+		Constants.STATIONARY_ANGLE_D = SmartDashboard.getNumber("PID - Stat Angle D", Constants.STATIONARY_ANGLE_D );
 		
 		stationaryAnglePID.changeGains(Constants.STATIONARY_ANGLE_P, Constants.STATIONARY_ANGLE_I,
 				Constants.STATIONARY_ANGLE_D);
 	}
     
     public void debug() {
-        SmartDashboard.putNumber("Stationary Angle PID Error", stationaryAnglePID.getError());
-        SmartDashboard.putNumber("Stationary Angle PID Output", stationaryAnglePID.getOutput());
+        SmartDashboard.putNumber("PID - Stationary Angle Error", stationaryAnglePID.getError());
+        SmartDashboard.putNumber("PID - Stationary Angle Output", stationaryAnglePID.getOutput());
     }
 }
