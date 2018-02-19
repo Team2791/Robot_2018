@@ -37,13 +37,13 @@ public class BangBangTurnSwitchRIGHT extends CommandGroup {
     	
     	// NOTE. ALl bang bang distances have a little removed to compensate for overshoot.
 
-    	addSequential(new DriveEncoderBangBang(0.3, 0,  8.8-2, 100));
+    	addSequential(new DriveEncoderBangBang(0.3, 0,  10-2, 100));
     	addParallel(new SetManipulatorRetracted(true));
     	// turn towards the left side
     	addSequential(new TurnGyroBangBang((45-5), 0.3, 100));
     	// drive towards the left side
     	addParallel(new GoToHeight(8));
-    	addSequential(new DriveEncoderBangBang(0.3, 0,  26.6-2, 100));
+    	addSequential(new DriveEncoderBangBang(0.3, 0,  22.6-2, 100));
     	// turn to face the switch
     	addSequential(new TurnGyroBangBang(-(45-5), -0.3, 100));
     	// drive into the switch. Low power so we'll hit the wall and use the timeout to stop

@@ -70,9 +70,9 @@ public class Constants {
 	public static double DRIVE_DISTANCE_I = 0;
 	public static double DRIVE_DISTANCE_D = 0;
 	
-	public static double DRIVE_ANGLE_P = 0;
-	public static double DRIVE_ANGLE_I = 0;
-	public static double DRIVE_ANGLE_D = 0;
+	public static double DRIVE_ANGLE_P = 0.04; // want .35 output with error 5 degrees 
+	public static double DRIVE_ANGLE_I = 0.01; // I and D values are guesses
+	public static double DRIVE_ANGLE_D = 0.015;
 	
 	public static double STATIONARY_ANGLE_P;
 	public static double STATIONARY_ANGLE_I;

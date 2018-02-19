@@ -41,9 +41,10 @@ public class TurnGyroBangBang extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		timer.reset();
 		timer.start();
 		stopAngle = Robot.drivetrain.getGyroAngle() + amountToTurn;
-		System.out.println("Starting gyro bang bang turn.   Stop angle: "+stopAngle);
+		System.out.println("Starting gyro bang bang turn. power: "+power+"  Stop angle: "+stopAngle);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -63,7 +64,6 @@ public class TurnGyroBangBang extends Command {
 				System.out.println("Stopping at angle: "+Robot.drivetrain.getGyroAngle());
 				return true;
 			}
-			
 		} else {
 			if(Robot.drivetrain.getGyroAngle() < stopAngle) {
 				System.out.println("Stopping at angle: "+Robot.drivetrain.getGyroAngle());
