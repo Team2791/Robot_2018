@@ -19,6 +19,7 @@ import org.usfirst.frc.team2791.robot.util.autonChoosers.AutonCommandChooser;
 import org.usfirst.frc.team2791.robot.util.autonChoosers.NearSwitchAutonChooser;
 import org.usfirst.frc.team2791.robot.util.autonChoosers.NoChoiceChooser;
 
+import edu.wpi.first.wpilibj.CameraServer; //USB Camera Code
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -63,8 +64,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		compressor = new Compressor(RobotMap.PCM_CAN_ID);
-		compressor.stop();
-		
+		compressor.start();
+		CameraServer.getInstance().startAutomaticCapture(); //USB Camera Code
 		pdp = new PowerDistributionPanel(RobotMap.PDP); //CAN id has to be 0
 		drivetrain = new ShakerDrivetrain();
 		manipulator = new Manipulator();

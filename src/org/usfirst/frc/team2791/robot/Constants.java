@@ -15,8 +15,9 @@ public class Constants {
 	//Lift Constants
 
 	// Pbot offset = -1.13
+	//Noah's PBot = -.2
 	// flight bot offset = -0.05
-    public static final double LIFT_POT_OFFSET = -0.05; 
+    public static final double LIFT_POT_OFFSET = -0.2; 
 	//at 60% the lift was at 36'' from the ground, 33'' from the bottom of it's travel
     public static final double LIFT_POT_FULL_RANGE = 33.0 / 0.6;
     
@@ -51,13 +52,13 @@ public class Constants {
 	public static final double LIMELIGHT_TURNING_CAP = 0.3;
 
 	// Manipulator Constants
-	public static final double INTAKE_SPEED = .65;
-	public static final double OUTPUT_SPEED = -.25;
+	public static final double INTAKE_SPEED = -.85;  //Made negative for P-Bot, wires are backwards //Increased by 40% for new 1:10 reduction
+	public static final double OUTPUT_SPEED = .3; //Made positive for P-Bot, wires are backwards //Increased by 40% for new 1:10 reduction
 	 // 2v is the maximum we can give the 775 pros for a long time stalled
 	// 2/12 ~= 0.17. We use voltage compensation so we can assume the voltage is 12v
-	public static final double HOLD_SPEED = 0.17;
-	public static final double SMALL_OUTPUT_SPEED = -.3;
-	public static final double LARGE_OUTPUT_SPEED = -.7;
+	public static final double HOLD_SPEED = -0.15; //Made negative for P-Bot, wires are backwards 
+	public static final double SMALL_OUTPUT_SPEED = .35; //Made negative for P-Bot, wires are backwards //Increased by 40% for new 1:10 reduction
+	public static final double LARGE_OUTPUT_SPEED = .7; //Made negative for P-Bot, wires are backwards //Increased by 40% for new 1:10 reduction
 
 
 	//Auto Constants

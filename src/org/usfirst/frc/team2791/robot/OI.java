@@ -70,10 +70,16 @@ public class OI {
 		/********************************** Operator Button Assignments ****************************************/
 
 		operatorA.whenPressed(new GoToHeight(0)); // go to bottom
-		operatorB.whenPressed(new GoToHeight(12)); // score on switch and pick up middle of power cube pile
-		operatorX.whenPressed(new GoToHeight(23));
-		operatorY.whenPressed(new GoToHeight(36.5)); // go to top
+		operatorB.whenPressed(new GoToHeight(7.25)); //middle of power cube pile //Was 12 Is now 7.25
+		operatorX.whenPressed(new GoToHeight(12.5)); //Top of power cube pile OR Portal//Was 23 now is 12.5
+		operatorY.whenPressed(new GoToHeight(15.5)); //Set height to scoring switch
 		
+		operatorDpadDown.whenPressed(new GoToHeight(30.0)); //Set height to scoring lowest scale
+		operatorDpadRight.whenPressed(new GoToHeight(36.0)); //Set height to scoring even scale
+		operatorDpadUp.whenPressed(new GoToHeight(34.5)); //Set height to scoring highest scale //TODO Make this one automatically raise the manipulator piston if it is not already raised
+		
+		operatorStart.whenPressed(new SetManipulatorRetracted(true));
+		operatorBack.whenPressed(new SetManipulatorRetracted(false));
 		operatorLeftJoystickUsed.whenPressed(new RunLiftWithJoystick(operatorLeftJoystickUsed));
 		operatorRightJoystickUsed.whenPressed(new RunManipulatorWithJoystick());
 
@@ -81,8 +87,8 @@ public class OI {
 		operatorLAnalogTrigger.whenPressed(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
 		operatorLB.whenPressed(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
 
-		operatorDpadUp.whenPressed(new SetManipulatorRetracted(true));
-		operatorDpadDown.whenPressed(new SetManipulatorRetracted(false));
+		//operatorDpadUp.whenPressed(new SetManipulatorRetracted(true));
+		//operatorDpadDown.whenPressed(new SetManipulatorRetracted(false));
 		
 		
 	
