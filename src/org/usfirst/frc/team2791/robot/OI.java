@@ -70,33 +70,23 @@ public class OI {
 		/********************************** Operator Button Assignments ****************************************/
 
 		operatorA.whenPressed(new GoToHeight(0)); // go to bottom
-		operatorB.whenPressed(new GoToHeight(3));// go to the 2nd level of the power cube pile height
-		operatorX.whenPressed(new GoToHeight(6));// go to the 3rd level of the power cube pile height
-		operatorY.whenPressed(new GoToHeight(12)); // go to score on switch height
+		operatorB.whenPressed(new GoToHeight(7.25)); //middle of power cube pile //Was 12 Is now 7.25
+		operatorX.whenPressed(new GoToHeight(12.5)); //Top of power cube pile OR Portal//Was 23 now is 12.5
+		operatorY.whenPressed(new GoToHeight(15.5)); //Set height to scoring switch
 		
-		operatorDpadDown.whenPressed(new GoToHeight(25)); // go to scoring on the switch when it's in our favor
-		operatorDpadRight.whenPressed(new GoToHeight(30)); // go to scoring on the switch when it's balanced
-		operatorDpadUp.whenPressed(new GoToHeight(36.5)); // go to max height
+		operatorDpadDown.whenPressed(new GoToHeight(30.0)); //Set height to scoring lowest scale
+		operatorDpadRight.whenPressed(new GoToHeight(36.0)); //Set height to scoring even scale
+		operatorDpadUp.whenPressed(new GoToHeight(34.5)); //Set height to scoring highest scale //TODO Make this one automatically raise the manipulator piston if it is not already raised
 		
 		operatorStart.whenPressed(new SetManipulatorRetracted(true));
 		operatorBack.whenPressed(new SetManipulatorRetracted(false));
 
-		
 		operatorLeftJoystickUsed.whenPressed(new RunLiftWithJoystick(operatorLeftJoystickUsed));
 		operatorRightJoystickUsed.whenPressed(new RunManipulatorWithJoystick());
 
 		operatorRAnalogTrigger.whenPressed(new IntakeAndHoldCube());
 		operatorLAnalogTrigger.whenPressed(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
 		operatorLB.whenPressed(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
-
-
-		
-		
-	
-		// Commenting out until lime light is finished.
-//		.whileHeld(new DriveTowardLimelightTargetStopWithDistance(Constants.SPEED_MULTIPLIER, 1));
-//		.whileHeld(new TurnTowardLimelightTarget());
-		//.whileHeld(new DriveTowardLimelightTargetTime(2));
 	}
 
 
