@@ -59,7 +59,7 @@ public class Manipulator extends Subsystem {
 //        boolean right = !iRSensorRight.get();
 //
 //        return left ^ right;
-    	return getCurrentUsage() > 12.5;
+    	return getCurrentUsage() > 10;
     	
     }
 

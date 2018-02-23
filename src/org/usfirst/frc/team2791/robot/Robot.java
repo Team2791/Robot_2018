@@ -19,6 +19,9 @@ import org.usfirst.frc.team2791.robot.util.autonChoosers.AutonCommandChooser;
 import org.usfirst.frc.team2791.robot.util.autonChoosers.NearSwitchAutonChooser;
 import org.usfirst.frc.team2791.robot.util.autonChoosers.NoChoiceChooser;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoMode.PixelFormat;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -51,6 +54,7 @@ public class Robot extends IterativeRobot {
 	public static Manipulator manipulator;
 	public static Limelight limelight;
     public static ShakerLift lift;
+    public static UsbCamera driver_cam;
 
     Command autonomousCommand;
     AutonCommandChooser autonCommandChooser;
@@ -110,6 +114,19 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putData("Auto mode", chooser);		
 		oi = new OI();
+		
+		try {
+			driver_cam = CameraServer.getInstance().startAutomaticCapture("Gear Camera",1);
+			driver_cam.setPixelFormat(PixelFormat.kMJPEG);
+//			driver_cam.setFPS(10);
+			if(!driver_cam.setResolution(240, 180)){
+				driver_cam.setResolution(240, 180); 
+				System.out.println("******Desired resolution FAILED for GEAR Camera******");
+			}
+		} catch(Exception e) {
+			System.out.println("*****Driver Camera FAILED*****");
+			e.printStackTrace();
+		}
 	}
 
 	/**

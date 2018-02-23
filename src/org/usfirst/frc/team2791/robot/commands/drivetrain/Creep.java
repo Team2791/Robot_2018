@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2791.robot.commands.drivetrain;
 
 
+import org.usfirst.frc.team2791.robot.OI;
 import org.usfirst.frc.team2791.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -29,7 +30,8 @@ public class Creep extends Command {
      */
     @Override
     protected void execute() {
-        Robot.drivetrain.setLeftRightMotorOutputs(power, power);
+    	double turning = 0.5 * OI.driver.getAxisLeftX();
+        Robot.drivetrain.setLeftRightMotorOutputs(power + turning, power - turning);
     }
 
 
