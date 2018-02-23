@@ -70,9 +70,17 @@ public class OI {
 		/********************************** Operator Button Assignments ****************************************/
 
 		operatorA.whenPressed(new GoToHeight(0)); // go to bottom
-		operatorB.whenPressed(new GoToHeight(12)); // score on switch and pick up middle of power cube pile
-		operatorX.whenPressed(new GoToHeight(23));
-		operatorY.whenPressed(new GoToHeight(36.5)); // go to top
+		operatorB.whenPressed(new GoToHeight(3));// go to the 2nd level of the power cube pile height
+		operatorX.whenPressed(new GoToHeight(6));// go to the 3rd level of the power cube pile height
+		operatorY.whenPressed(new GoToHeight(12)); // go to score on switch height
+		
+		operatorDpadDown.whenPressed(new GoToHeight(25)); // go to scoring on the switch when it's in our favor
+		operatorDpadRight.whenPressed(new GoToHeight(30)); // go to scoring on the switch when it's balanced
+		operatorDpadUp.whenPressed(new GoToHeight(36.5)); // go to max height
+		
+		operatorStart.whenPressed(new SetManipulatorRetracted(true));
+		operatorBack.whenPressed(new SetManipulatorRetracted(false));
+
 		
 		operatorLeftJoystickUsed.whenPressed(new RunLiftWithJoystick(operatorLeftJoystickUsed));
 		operatorRightJoystickUsed.whenPressed(new RunManipulatorWithJoystick());
@@ -81,8 +89,7 @@ public class OI {
 		operatorLAnalogTrigger.whenPressed(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
 		operatorLB.whenPressed(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
 
-		operatorDpadUp.whenPressed(new SetManipulatorRetracted(true));
-		operatorDpadDown.whenPressed(new SetManipulatorRetracted(false));
+
 		
 		
 	

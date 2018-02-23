@@ -34,10 +34,10 @@ public class ShakerDrivetrain extends Subsystem{
 
 	boolean inDriveMode = true;
 	// Victor speed controllers can be controlled with the WPI Talon class.
-	private VictorSPX victorLeft1, victorLeft2;
-	private TalonSRX talonLeft3;
-	private VictorSPX victorRight1, victorRight2;
-	private TalonSRX  talonRight3;
+	private VictorSPX victorLeft1;//, victorLeft2;
+	private TalonSRX talonLeft2;
+	private VictorSPX victorRight1;//, victorRight2;
+	private TalonSRX  talonRight2;
 	private BaseMotorController[] leftDrive;
 	private BaseMotorController[] rightDrive;
 	
@@ -70,17 +70,15 @@ public class ShakerDrivetrain extends Subsystem{
 
 	public ShakerDrivetrain(){
 		victorLeft1 = new VictorSPX(RobotMap.VICTOR_LEFT_1);
-		victorLeft2 = new VictorSPX(RobotMap.VICTOR_LEFT_2);
-		talonLeft3 = new TalonSRX(RobotMap.TALON_LEFT_3);
+		talonLeft2 = new TalonSRX(RobotMap.TALON_LEFT_2);
 		victorRight1 = new VictorSPX(RobotMap.VICTOR_RIGHT_1);
-		victorRight2 = new VictorSPX(RobotMap.VICTOR_RIGHT_2);
-		talonRight3 = new TalonSRX(RobotMap.TALON_RIGHT_3);
+		talonRight2 = new TalonSRX(RobotMap.TALON_RIGHT_2);
 
-		leftDrive = new BaseMotorController[] {victorLeft1, victorLeft2, talonLeft3};
-		rightDrive = new BaseMotorController[] {victorRight1, victorRight2, talonRight3};
+		leftDrive = new BaseMotorController[] {victorLeft1, talonLeft2};
+		rightDrive = new BaseMotorController[] {victorRight1, talonRight2};
 
-		talonLeft3.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
-		talonRight3.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
+		talonLeft2.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
+		talonRight2.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 		
 		shiftingSolenoid = new DoubleSolenoid(RobotMap.PCM_CAN_ID, RobotMap.DRIVETRAIN_GEARBOX_SHIFTER_IN, RobotMap.DRIVETRAIN_GEARBOX_SHIFTER_OUT);
 		setDriveOrRampMode(true); // set to drive mode
@@ -270,8 +268,8 @@ public class ShakerDrivetrain extends Subsystem{
 
 	public void resetEncoders() {
 		// zero the encoders
-		talonLeft3.setSelectedSensorPosition(0, 0,0 );
-		talonRight3.setSelectedSensorPosition(0, 0,0);
+		talonLeft2.setSelectedSensorPosition(0, 0,0 );
+		talonRight2.setSelectedSensorPosition(0, 0,0);
 	}
 
 	public void resetGyro() {
@@ -298,14 +296,14 @@ public class ShakerDrivetrain extends Subsystem{
 	 * @return distance traveled by left side based on encoder
 	 */
 	public double getLeftDistance() {
-		return talonLeft3.getSelectedSensorPosition(0) * distancePerPulse;
+		return talonLeft2.getSelectedSensorPosition(0) * distancePerPulse;
 	}
 
 	/**
 	 * @return distance traveled by right side based on encoder
 	 */
 	public double getRightDistance() {
-		return talonRight3.getSelectedSensorPosition(0) * distancePerPulse;
+		return talonRight2.getSelectedSensorPosition(0) * distancePerPulse;
 	}
 
 	/**@return average distance of both encoder velocities */
@@ -316,11 +314,11 @@ public class ShakerDrivetrain extends Subsystem{
 	}
 
 	public double getLeftVelocity() {
-		return  talonLeft3.getSelectedSensorVelocity(0) * distancePerPulse * 10;// 10 to convert from milliseconds a
+		return  talonLeft2.getSelectedSensorVelocity(0) * distancePerPulse * 10;// 10 to convert from milliseconds a
 	}
 
 	public double getRightVelocity() {
-		return  talonRight3.getSelectedSensorVelocity(0) * distancePerPulse * 10;
+		return  talonRight2.getSelectedSensorVelocity(0) * distancePerPulse * 10;
 	}
 
 	/**@return average velocity of both encoder velocities */

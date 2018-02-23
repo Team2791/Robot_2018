@@ -38,7 +38,8 @@ public class Constants {
 	// Drive train constants
 	public static double driveEncoderTicks = 256;
 	public static final double SPEED_MULTIPLIER = 0.7;
-	public static final double WHEEL_DIAMETER_IN_FEET = 1.0;
+	public static final double WHEEL_DIAMETER_IN_FEET = 1.0 ; // keeping this incorrect value in code to keep autos working FOR NOW 
+	//6.0 * 3.14159 / 12.0; // was 1.0, now 6.0*3.14159/12.0 = 1.570
 	public static final double RAISE_RAMPS_SPEED = 0.8;
 
 	// Time when ramps are allowed to be released

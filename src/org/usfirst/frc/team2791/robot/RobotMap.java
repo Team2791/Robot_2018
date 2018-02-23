@@ -13,13 +13,11 @@ public class RobotMap {
 	// __ _Motors ___
 
 	// Drive train
-	public static final int VICTOR_LEFT_1 = 32; // this Victor is coming out
-	public static final int VICTOR_LEFT_2 = 31;
-	public static final int TALON_LEFT_3 = 27;
+	public static final int VICTOR_LEFT_1 = 31; 
+	public static final int TALON_LEFT_2 = 27;
 	
 	public static final int VICTOR_RIGHT_1 = 36;
-	public static final int VICTOR_RIGHT_2 = 33;  // this Victor is coming out
-	public static final int TALON_RIGHT_3 = 20;
+	public static final int TALON_RIGHT_2 = 20;
 	
 	// Manipulator
 	public static final int INTAKE_SPARK_LEFT_PORT = 34;
