@@ -4,7 +4,7 @@ import org.usfirst.frc.team2791.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.SetDrivetrainShifterMode;
-import org.usfirst.frc.team2791.robot.commands.lift.GoToHeight;
+import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeight;
 
 
 public class DropRamps extends CommandGroup {
@@ -29,6 +29,6 @@ public class DropRamps extends CommandGroup {
 //        addParallel(new SetDrivetrainShifterMode(false));
         addParallel(new SetRampDeploy(true));
         // get the gripper out of the way
-        addParallel(new GoToHeight(18.0));
+        addParallel(new SetLiftHeight(18.0));
     }
 }

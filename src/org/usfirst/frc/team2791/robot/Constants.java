@@ -37,9 +37,9 @@ public class Constants {
 	public static final double DEADZONE = 0.05;
 	
 	// Drive train constants
-	public static double driveEncoderTicks = 256;
+	public static double driveEncoderTicks = 256 * 2; // not sure why we're doing this ??
 	public static final double SPEED_MULTIPLIER = 1;
-	public static final double WHEEL_DIAMETER_IN_FEET = 1.0 ; // keeping this incorrect value in code to keep autos working FOR NOW 
+	public static final double WHEEL_DIAMETER_IN_FEET = 6.0;
 	//6.0 * 3.14159 / 12.0; // was 1.0, now 6.0*3.14159/12.0 = 1.570
 	public static final double RAISE_RAMPS_SPEED = 0.8;
 
@@ -69,13 +69,13 @@ public class Constants {
 	
 	
 	// Auto PID constants
-	public static double DRIVE_DISTANCE_P = 0;
+	public static double DRIVE_DISTANCE_P = 0.035;
 	public static double DRIVE_DISTANCE_I = 0;
-	public static double DRIVE_DISTANCE_D = 0;
+	public static double DRIVE_DISTANCE_D = 0.005;
 	
 	public static double DRIVE_ANGLE_P = 0.04; // want .35 output with error 5 degrees 
-	public static double DRIVE_ANGLE_I = 0.01; // I and D values are guesses
-	public static double DRIVE_ANGLE_D = 0.015;
+	public static double DRIVE_ANGLE_I = 0.0; // I and D values are guesses
+	public static double DRIVE_ANGLE_D = 0.0;
 	
 	public static double STATIONARY_ANGLE_P = 0.05;
 	public static double STATIONARY_ANGLE_I = 0.10;

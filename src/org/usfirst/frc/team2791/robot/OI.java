@@ -2,7 +2,7 @@ package org.usfirst.frc.team2791.robot;
 
 import org.usfirst.frc.team2791.robot.commands.drivetrain.Creep;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.SetDrivetrainShifterMode;
-import org.usfirst.frc.team2791.robot.commands.lift.GoToHeight;
+import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeight;
 import org.usfirst.frc.team2791.robot.commands.lift.RunLiftWithJoystick;
 import org.usfirst.frc.team2791.robot.commands.manipulator.IntakeCube;
 import org.usfirst.frc.team2791.robot.commands.manipulator.RunManipulatorWithJoystick;
@@ -68,14 +68,14 @@ public class OI {
 		
 		/********************************** Operator Button Assignments ****************************************/
 
-		operatorA.whenPressed(new GoToHeight(0)); // go to bottom
-		operatorB.whenPressed(new GoToHeight(7.25)); //middle of power cube pile //Was 12 Is now 7.25
-		operatorX.whenPressed(new GoToHeight(12.5)); //Top of power cube pile OR Portal//Was 23 now is 12.5
-		operatorY.whenPressed(new GoToHeight(15.5)); //Set height to scoring switch
+		operatorA.whenPressed(new SetLiftHeight(0)); // go to bottom
+		operatorB.whenPressed(new SetLiftHeight(7.25)); //middle of power cube pile //Was 12 Is now 7.25
+		operatorX.whenPressed(new SetLiftHeight(12.5)); //Top of power cube pile OR Portal//Was 23 now is 12.5
+		operatorY.whenPressed(new SetLiftHeight(15.5)); //Set height to scoring switch
 		
-		operatorDpadDown.whenPressed(new GoToHeight(30.0)); //Set height to scoring lowest scale
-		operatorDpadRight.whenPressed(new GoToHeight(36.0)); //Set height to scoring even scale
-		operatorDpadUp.whenPressed(new GoToHeight(34.5)); //Set height to scoring highest scale //TODO Make this one automatically raise the manipulator piston if it is not already raised
+		operatorDpadDown.whenPressed(new SetLiftHeight(30.0)); //Set height to scoring lowest scale
+		operatorDpadRight.whenPressed(new SetLiftHeight(36.0)); //Set height to scoring even scale
+		operatorDpadUp.whenPressed(new SetLiftHeight(34.5)); //Set height to scoring highest scale //TODO Make this one automatically raise the manipulator piston if it is not already raised
 		
 		operatorStart.whenPressed(new SetManipulatorRetracted(true));
 		operatorBack.whenPressed(new SetManipulatorRetracted(false));

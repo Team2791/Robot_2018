@@ -18,7 +18,7 @@ public class DriveEncoderBangBangGyroPID extends Command {
 	BasicPID anglePID;
 	
 	protected Timer timer = new Timer();
-	
+
     public DriveEncoderBangBangGyroPID(double power, double distance, double timeOut) {
     	this.power = power;
     	timeToDrive = timeOut;
@@ -35,6 +35,7 @@ public class DriveEncoderBangBangGyroPID extends Command {
     	System.out.println("Starting angle: "+ Robot.drivetrain.getGyroAngle());
     	anglePID.setSetPoint(Robot.drivetrain.getGyroAngle());
     	updatePIDGains();
+    	Robot.drivetrain.setVoltageRampRate(1);
     }
 
     protected void execute() {
@@ -64,6 +65,7 @@ public class DriveEncoderBangBangGyroPID extends Command {
 
     protected void end() {
     	Robot.drivetrain.setLeftRightMotorOutputs(0, 0);
+    	Robot.drivetrain.setVoltageRampRate(0);
     }
     
     public void updatePIDGains() {

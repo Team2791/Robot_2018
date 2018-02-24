@@ -4,7 +4,7 @@ import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.commands.auto.bangbang.DriveEncoderBangBang;
 import org.usfirst.frc.team2791.robot.commands.auto.bangbang.TurnGyroBangBang;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveEncoderBangBangGyroPID;
-import org.usfirst.frc.team2791.robot.commands.lift.GoToHeight;
+import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeight;
 import org.usfirst.frc.team2791.robot.commands.manipulator.SetManipulatorRetracted;
 import org.usfirst.frc.team2791.robot.commands.manipulator.ShootCube;
 
@@ -38,18 +38,18 @@ public class BangBangTurnSwitchLEFT extends CommandGroup {
     	
     	// NOTE. ALl bang bang distances have a little removed to compensate for overshoot.
 
-    	addSequential(new DriveEncoderBangBangGyroPID(0.4, 5-2, 100));
+    	addSequential(new DriveEncoderBangBangGyroPID(0.4, 3 * 1.57, 100));
     	addParallel(new SetManipulatorRetracted(true));
     	// turn towards the left side
     	addSequential(new TurnGyroBangBang(-60, -0.3, 100));
     	// drive towards the left side
-    	addParallel(new GoToHeight(8)); // was 13
-    	addSequential(new DriveEncoderBangBangGyroPID(0.4, 25-2, 100));
+    	addParallel(new SetLiftHeight(8)); // was 13
+    	addSequential(new DriveEncoderBangBangGyroPID(0.4, 23 *1.57, 100));
     	// turn to face the switch
     	addSequential(new TurnGyroBangBang(60, 0.3, 100)); // there is only a weak drive after this turn so it overshoots more
     	// drive into the switch. Low power so we'll hit the wall and use the timeout to stop
-    	addSequential(new DriveEncoderBangBangGyroPID(0.4, 10, 3.5));
-    	addSequential(new DriveEncoderBangBangGyroPID(0.2, 14, 3.5));
+    	addSequential(new DriveEncoderBangBangGyroPID(0.4, 10*1.57, 3.5));
+    	addSequential(new DriveEncoderBangBangGyroPID(0.2, 14*1.57, 3.5));
     	// score
     	addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
     }

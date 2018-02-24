@@ -15,7 +15,7 @@ public abstract class DrivetrainPIDTurn extends Command {
 	
 	private final double MIN_POWER_TO_TURN = 0;
 	protected double errorThreshold = 1;
-	protected static BasicPID stationaryAnglePID;
+	protected BasicPID stationaryAnglePID;
 	
 	/**
 	 * @param angleToTurn the angle in degrees you would like to turn, ***negative if counterclockwise*** *

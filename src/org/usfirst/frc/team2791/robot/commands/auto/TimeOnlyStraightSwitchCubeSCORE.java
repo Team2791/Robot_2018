@@ -3,7 +3,7 @@ package org.usfirst.frc.team2791.robot.commands.auto;
 
 import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.Robot;
-import org.usfirst.frc.team2791.robot.commands.lift.GoToHeight;
+import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeight;
 import org.usfirst.frc.team2791.robot.commands.manipulator.SetManipulatorRetracted;
 import org.usfirst.frc.team2791.robot.commands.manipulator.ShootCube;
 

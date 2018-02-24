@@ -4,6 +4,7 @@ package org.usfirst.frc.team2791.robot;
 import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchLEFT;
 import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchRIGHT;
 import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
+import org.usfirst.frc.team2791.robot.commands.auto.SingleCubeScaleSCORE;
 import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyDriveStraightToSwitch;
 import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyStraightSwitchCubeSCORE;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveEncoderBangBangGyroPID;
@@ -20,7 +21,6 @@ import org.usfirst.frc.team2791.robot.util.autonChoosers.NearSwitchAutonChooser;
 import org.usfirst.frc.team2791.robot.util.autonChoosers.NoChoiceChooser;
 
 import edu.wpi.cscore.UsbCamera;
-import edu.wpi.cscore.VideoMode.PixelFormat;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -103,16 +103,16 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("TEST - gyro pid 90º rotation", new NoChoiceChooser(new StationaryGyroTurn(90, 0.5, 1.5, 50)));
 		chooser.addObject("TEST - gyro pid 45º rotation", new NoChoiceChooser(new StationaryGyroTurn(45, 0.5, 1.5, 50)));
 		chooser.addObject("TEST - gyro pid 180º rotation", new NoChoiceChooser(new StationaryGyroTurn(180, 0.5, 1.5, 50)));
-		chooser.addObject("TEST - gyro + encoder pid 10 UNIT drive", new NoChoiceChooser(new DriveStraightEncoderGyro(10, 0.7, 100, .1)));
-		chooser.addObject("TEST - gyro + encoder pid -10 UNIT drive", new NoChoiceChooser(new DriveStraightEncoderGyro(-10, 0.7, 100, .1)));
-		
-		// this one is not working yet
-//		chooser.addObject("Turn Switch HIGH drop - time only", chooser.addObject("RIGHT side Straight Switch - time only", new NearSwitchAutonChooser(
-//			new TimeOnlyTurnSwitchHighDropLEFT(), // this will run when we are on the left side of the switch
-//			new TimeOnlyTurnSwitchHighDropRIGHT() // this will run when we are on the right side of the switch
-//		));
+		chooser.addObject("TEST - gyro + encoder pid 10'' drive", new NoChoiceChooser(new DriveStraightEncoderGyro(10, 0.7, 100, .1)));
+		chooser.addObject("TEST - gyro + encoder pid -10'' drive", new NoChoiceChooser(new DriveStraightEncoderGyro(-10, 0.7, 100, .1)));
+		chooser.addObject("TEST - gyro + encoder pid 50'' drive", new NoChoiceChooser(new DriveStraightEncoderGyro(50, 0.7, 100, .1)));
+		chooser.addObject("TEST - gyro + encoder pid -50'' drive", new NoChoiceChooser(new DriveStraightEncoderGyro(-50, 0.7, 100, .1)));
+		chooser.addObject("TEST - gyro + encoder pid 120'' drive", new NoChoiceChooser(new DriveStraightEncoderGyro(120, 0.7, 100, .1)));
+		chooser.addObject("TEST - gyro + encoder pid -120'' drive", new NoChoiceChooser(new DriveStraightEncoderGyro(-120, 0.7, 100, .1)));
+	
+		chooser.addObject("TEST - scale cube score", new NoChoiceChooser(new SingleCubeScaleSCORE(true)));
 
-		SmartDashboard.putData("Auto mode", chooser);		
+		SmartDashboard.putData("Auto mode", chooser);
 		oi = new OI();
 		
 //		try {
@@ -137,6 +137,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledInit() {
 		Robot.drivetrain.setBrakeMode(false);
+		Robot.drivetrain.setVoltageRampRate(0);
 		Robot.ramps.setRampsDown(false);
 		updateGameData(true);
 	}
@@ -193,6 +194,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopInit() {
 		Robot.drivetrain.setBrakeMode(false);
+		Robot.drivetrain.setVoltageRampRate(0);
 		updateGameData(true);
 	}
 

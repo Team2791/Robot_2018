@@ -34,8 +34,8 @@ public class Util {
      * @param wheelDiameter_inFeet
      * @return number of feet traveled based on encoder ticks read
      */
-    public static double tickToFeet(double encoderTicks, double wheelDiameter_inFeet) {
-        return (wheelDiameter_inFeet * Math.PI / encoderTicks);
+    public static double tickToFeet(double encoderTicks, double wheelDiameterInInches) {
+        return (wheelDiameterInInches * Math.PI / encoderTicks);
     }
 
     public static double average(double... numbers){

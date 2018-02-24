@@ -2,10 +2,9 @@ package org.usfirst.frc.team2791.robot.commands.auto;
 
 
 import org.usfirst.frc.team2791.robot.Constants;
-import org.usfirst.frc.team2791.robot.Robot;
-import org.usfirst.frc.team2791.robot.commands.auto.timeonly.DriveForwardTime;
-import org.usfirst.frc.team2791.robot.commands.auto.timeonly.TurnTime;
-import org.usfirst.frc.team2791.robot.commands.lift.GoToHeight;
+import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveStraightEncoderGyro;
+import org.usfirst.frc.team2791.robot.commands.auto.pid.StationaryGyroTurn;
+import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeight;
 import org.usfirst.frc.team2791.robot.commands.manipulator.SetManipulatorRetracted;
 import org.usfirst.frc.team2791.robot.commands.manipulator.ShootCube;
 
@@ -14,8 +13,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class TimeOnlyTurnSwitchHighDropLEFT extends CommandGroup {
-    public TimeOnlyTurnSwitchHighDropLEFT() {
+public class SingleCubeScaleSCORE extends CommandGroup {
+
+    public SingleCubeScaleSCORE(boolean leftSide) {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -32,14 +32,16 @@ public class TimeOnlyTurnSwitchHighDropLEFT extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	
     	addParallel(new SetManipulatorRetracted(true));
-    	addParallel(new GoToHeight(16));
-		// score on the left side
-		addSequential(new DriveForwardTime(0.33, 1.5));
-		addSequential(new TurnTime(-0.3, .8));
-		addSequential(new DriveForwardTime(0.2, 3.5));
-
+    	addSequential(new DriveStraightEncoderGyro(210, 0.7));
+    	addParallel(new SetLiftHeight(13));
+    	if(leftSide) {
+    		addSequential(new StationaryGyroTurn(22, 0.5, 1.5));
+    	} else {
+    		addSequential(new StationaryGyroTurn(-22, 0.5, 1.5));
+    	}
+    	addSequential(new SetLiftHeight(34.5));
+    	addSequential(new DriveStraightEncoderGyro(53, 0.3));
     	addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
     }
 }

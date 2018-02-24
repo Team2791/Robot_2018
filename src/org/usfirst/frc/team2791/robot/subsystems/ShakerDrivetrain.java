@@ -29,9 +29,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * @author team2791: See Robot.java for contact info
  */
 
-public class ShakerDrivetrain extends Subsystem{
-
-
+public class ShakerDrivetrain extends Subsystem {
 	boolean inDriveMode = true;
 	// Victor speed controllers can be controlled with the WPI Talon class.
 	private VictorSPX victorLeft1;//, victorLeft2;
@@ -124,6 +122,15 @@ public class ShakerDrivetrain extends Subsystem{
 		}
 		for(int i = 0; i < rightDrive.length; i++){
 			rightDrive[i].setNeutralMode(mode);
+		}
+	}
+	
+	public void setVoltageRampRate(double rampTime) {
+		for(int i = 0; i < leftDrive.length; i++) {
+			leftDrive[i].configOpenloopRamp(rampTime, 3);
+		}
+		for(int i = 0; i < rightDrive.length; i++){
+			rightDrive[i].configOpenloopRamp(rampTime, 3);
 		}
 	}
 

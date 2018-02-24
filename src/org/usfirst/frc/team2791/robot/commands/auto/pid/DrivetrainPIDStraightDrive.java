@@ -16,8 +16,8 @@ public abstract class DrivetrainPIDStraightDrive extends Command {
 
 	private final double MIN_POWER_TO_MOVE = 0.0;
 
-	protected static BasicPID movingAnglePID;
-	protected static BasicPID distancePID;
+	protected BasicPID movingAnglePID;
+	protected BasicPID distancePID;
 	double distanceToDrive, maxOutput;
 
 	protected Timer timer =new Timer();

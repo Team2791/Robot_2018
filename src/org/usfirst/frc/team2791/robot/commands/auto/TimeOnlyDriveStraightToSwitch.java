@@ -2,7 +2,7 @@ package org.usfirst.frc.team2791.robot.commands.auto;
 
 
 import org.usfirst.frc.team2791.robot.commands.auto.timeonly.DriveForwardTime;
-import org.usfirst.frc.team2791.robot.commands.lift.GoToHeight;
+import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeight;
 import org.usfirst.frc.team2791.robot.commands.manipulator.SetManipulatorRetracted;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -30,7 +30,7 @@ public class TimeOnlyDriveStraightToSwitch extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addParallel(new SetManipulatorRetracted(true));
-    	addParallel(new GoToHeight(8)); // was 13
+    	addParallel(new SetLiftHeight(8)); // was 13
     	addSequential(new DriveForwardTime(0.33, 3.5));
     }
 }

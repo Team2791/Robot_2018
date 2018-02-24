@@ -26,7 +26,11 @@ public class DriveStraightEncoderGyro extends DrivetrainPIDStraightDrive {
 	 * @param timeOut the time in seconds before you would like to wait before the PID times out and the command ends
 	 */
 	public DriveStraightEncoderGyro(double distanceToDrive, double maxOutput, double timeOut) {
-		super(distanceToDrive, maxOutput, timeOut, 1.5);
+		super(distanceToDrive, maxOutput, timeOut, 0.25);
+	}
+	
+	public DriveStraightEncoderGyro(double distanceToDrive, double maxOutput) {
+		super(distanceToDrive, maxOutput, 10);
 	}
 
 	// Called just before this Command runs the first time

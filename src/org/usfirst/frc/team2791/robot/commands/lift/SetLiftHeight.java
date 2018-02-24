@@ -6,10 +6,10 @@ import org.usfirst.frc.team2791.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class GoToHeight extends Command {
+public class SetLiftHeight extends Command {
     private double targetHeight;
     // Height measered inches
-    public GoToHeight(double height) {
+    public SetLiftHeight(double height) {
         super("GoToHeight");
         requires(Robot.lift);
         targetHeight = height;
