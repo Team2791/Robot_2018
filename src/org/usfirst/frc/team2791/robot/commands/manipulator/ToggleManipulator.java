@@ -6,7 +6,7 @@ import org.usfirst.frc.team2791.robot.subsystems.Manipulator;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-class ToggleManipulator{
+public class ToggleManipulator extends Command {
     public ToggleManipulator() {
     	requires(Robot.manipulator);
     }
