@@ -53,7 +53,7 @@ public class Manipulator extends Subsystem {
         maxCurrentTimer.start();
         
         cubeInGripperDelayedBoolean = new DelayedBoolean(0.5);
-        cubeJammedDelayedBoolean = new DelayedBoolean(0.25);
+        cubeJammedDelayedBoolean = new DelayedBoolean(0.1);
     }
     
     public void initDefaultCommand() {
