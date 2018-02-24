@@ -28,11 +28,13 @@ public class HoldCube extends Command {
     @Override
     protected void execute() {
     	// if the cube is slipping out pull it back in
-    	if(Robot.manipulator.isCubeInGripper()) {
-    		Robot.manipulator.setLeftRightMotorSpeed(Constants.HOLD_SPEED, Constants.HOLD_SPEED);
-    	} else {
-    		Robot.manipulator.setLeftRightMotorSpeed(Constants.INTAKE_SPEED, Constants.INTAKE_SPEED);
-    	}
+//    	if(Robot.manipulator.isCubeInGripper()) {
+//    		Robot.manipulator.setLeftRightMotorSpeed(Constants.HOLD_SPEED, Constants.HOLD_SPEED);
+//    	} else {
+//    		Robot.manipulator.setLeftRightMotorSpeed(Constants.INTAKE_SPEED, Constants.INTAKE_SPEED);
+//    	}
+//    	
+    	Robot.manipulator.setLeftRightMotorSpeed(Constants.HOLD_SPEED, Constants.HOLD_SPEED);
     }
 
 
@@ -53,7 +55,8 @@ public class HoldCube extends Command {
     		timerStarted = false;
     	}
     	
-        return lostCubeTimer.get() > 2;
+//        return lostCubeTimer.get() > 2;
+    	return false;
     }
 
     @Override

@@ -10,14 +10,16 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class IntakeCube extends Command {
     private Manipulator manipulator;
-    private Timer intakeCurrentTimer;
-    private boolean intakeCurrentTimerStarted;
+    private Timer intakeCurrentTimer, cubeInGripperTimer;
+    private boolean intakeCurrentTimerStarted, cubeInGripperTimerStarted;
 
     public IntakeCube() {
     	requires(Robot.manipulator);
         manipulator = Robot.manipulator;
         intakeCurrentTimer = new Timer();
         intakeCurrentTimerStarted = false;
+        
+        cubeInGripperTimer = new Timer();
     }
 
     @Override
@@ -35,32 +37,45 @@ public class IntakeCube extends Command {
             if (manipulator.isCubeJammed()) {
 //            	System.out.println("Manipulator - FIXING JAM");
                 // if the cube is jammed we want to unjam it
-                manipulator.setLeftRightMotorSpeed(Constants.INTAKE_SPEED, 0.1 * Constants.INTAKE_SPEED);
+                manipulator.setLeftRightMotorSpeed(Constants.INTAKE_SPEED, 0);
             } else {
                 // if we don't have the cube and it is not jammed run normally
                 manipulator.setLeftRightMotorSpeed(Constants.INTAKE_SPEED, Constants.INTAKE_SPEED);
             }
         }
         
-        if(manipulator.getCurrentUsage() > 10 && !intakeCurrentTimerStarted) {
+        if(manipulator.getCurrentUsage() > Constants.INTAKE_CUBE_STALL_CURRENT && !intakeCurrentTimerStarted) {
         	intakeCurrentTimer.start();
+        	intakeCurrentTimerStarted = true;
         }
-        if(! (manipulator.getCurrentUsage() > 10)) {
+        if(! (manipulator.getCurrentUsage() > Constants.INTAKE_CUBE_STALL_CURRENT)) {
         	intakeCurrentTimer.stop();
+        	intakeCurrentTimer.reset();
         	intakeCurrentTimerStarted = false;
-        	
+        }
+
+        
+        if(manipulator.isCubeInGripper() && !cubeInGripperTimerStarted) {
+        	cubeInGripperTimer.start();
+        	cubeInGripperTimerStarted = true;
+        }
+        if(!manipulator.isCubeInGripper()) {
+        	cubeInGripperTimer.stop();
+        	cubeInGripperTimer.reset();
+        	cubeInGripperTimerStarted = false;
         }
     }
 
 
     @Override
     protected boolean isFinished() {
-        return manipulator.isCubeInGripper() || intakeCurrentTimer.get() > 5;
+        return manipulator.isCubeInGripper() || intakeCurrentTimer.get() > 3;
     }
 
     @Override
     protected void end() {
     	manipulator.setLeftRightMotorSpeed(Constants.HOLD_SPEED, Constants.HOLD_SPEED);
+    	System.out.println("Intake cube finished.");
     }
 
     @Override

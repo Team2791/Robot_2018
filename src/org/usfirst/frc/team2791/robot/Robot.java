@@ -115,18 +115,18 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", chooser);		
 		oi = new OI();
 		
-		try {
-			driver_cam = CameraServer.getInstance().startAutomaticCapture("Gear Camera",1);
-			driver_cam.setPixelFormat(PixelFormat.kMJPEG);
-//			driver_cam.setFPS(10);
-			if(!driver_cam.setResolution(240, 180)){
-				driver_cam.setResolution(240, 180); 
-				System.out.println("******Desired resolution FAILED for GEAR Camera******");
-			}
-		} catch(Exception e) {
-			System.out.println("*****Driver Camera FAILED*****");
-			e.printStackTrace();
-		}
+//		try {
+//			driver_cam = CameraServer.getInstance().startAutomaticCapture("Driver Camera", 0);
+//			driver_cam.setPixelFormat(PixelFormat.kMJPEG);
+////			driver_cam.setFPS(10);
+////			if(!driver_cam.setResolution(240, 180)){
+////				driver_cam.setResolution(240, 180); 
+////				System.out.println("******Desired resolution FAILED for GEAR Camera******");
+////			}
+//		} catch(Exception e) {
+//			System.out.println("*****Driver Camera FAILED*****");
+//			e.printStackTrace();
+//		}
 	}
 
 	/**
@@ -250,5 +250,9 @@ public class Robot extends IterativeRobot {
 		ramps.debug();
 		manipulator.debug();
 		lift.debug();
+	}
+	
+	public void run() {
+		manipulator.run();
 	}
 }

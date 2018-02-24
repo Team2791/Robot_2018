@@ -1,8 +1,11 @@
 package org.usfirst.frc.team2791.robot.subsystems;
 
 
+import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.RobotMap;
+import org.usfirst.frc.team2791.robot.commands.manipulator.HoldCube;
+import org.usfirst.frc.team2791.robot.util.DelayedBoolean;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -10,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -18,9 +22,14 @@ public class Manipulator extends Subsystem {
     private VictorSPX leftMotor,rightMotor;
     private DigitalInput iRSensorLeft,iRSensorRight;
     private Solenoid extender;
-
-
-
+    
+    // cache the current so we don't keep hitting the CAN bus
+    private double lastCurrent, lastMaxCurrent;
+    private Timer currentTimer, maxCurrentTimer;
+    
+    private DelayedBoolean cubeInGripperDelayedBoolean;
+    private DelayedBoolean cubeJammedDelayedBoolean;
+    
     public Manipulator(){
         leftMotor = new VictorSPX(RobotMap.INTAKE_SPARK_LEFT_PORT);
         rightMotor = new VictorSPX(RobotMap.INTAKE_SPARK_RIGHT_PORT);
@@ -37,18 +46,26 @@ public class Manipulator extends Subsystem {
         rightMotor.setNeutralMode(NeutralMode.Brake);
         rightMotor.enableVoltageCompensation(true);
         rightMotor.configVoltageCompSaturation(12, 20);
+        
+        currentTimer = new Timer();
+        currentTimer.start();
+        maxCurrentTimer = new Timer();
+        maxCurrentTimer.start();
+        
+        cubeInGripperDelayedBoolean = new DelayedBoolean(0.5);
+        cubeJammedDelayedBoolean = new DelayedBoolean(0.25);
     }
     
     public void initDefaultCommand() {
         // TODO: Set the default command, if any, for a subsystem here. Example:
-//            setDefaultCommand(new RunManipulatorWithJoystick());
+            setDefaultCommand(new HoldCube());
     }
 
     public boolean isCubeInGripper(){
         boolean left = !iRSensorLeft.get();
         boolean right = !iRSensorRight.get();
         
-        return left && right;
+	    return cubeInGripperDelayedBoolean.update(left || right);
     }
 
     // Don't know how to find out if cube is jammed
@@ -57,13 +74,13 @@ public class Manipulator extends Subsystem {
     	// this code works as indended however sometimes when the cube is jammed neither sensor is triggered
 //        boolean left = !iRSensorLeft.get();
 //        boolean right = !iRSensorRight.get();
-//
+
 //        return left ^ right;
-    	return getCurrentUsage() > 10;
-    	
+    	return cubeJammedDelayedBoolean.update(getMaxMotorCurrent() > Constants.INTAKE_CUBE_STALL_CURRENT && !isCubeInGripper());
     }
 
     public void setLeftRightMotorSpeed(double leftSpeed, double rightSpeed) {
+    	System.out.println("M: "+leftSpeed + " : " + rightSpeed);
         leftMotor.set(ControlMode.PercentOutput, leftSpeed);
         rightMotor.set(ControlMode.PercentOutput, rightSpeed);
     }
@@ -79,7 +96,21 @@ public class Manipulator extends Subsystem {
     }
     
     public double getCurrentUsage() {
-    	return Robot.pdp.getCurrent(RobotMap.PDP_INTAKE_LEFT) + Robot.pdp.getCurrent(RobotMap.PDP_INTAKE_RIGHT); 	
+    	if(currentTimer.get() > 0.1) {
+    		lastCurrent = Robot.pdp.getCurrent(RobotMap.PDP_INTAKE_LEFT) + Robot.pdp.getCurrent(RobotMap.PDP_INTAKE_RIGHT);
+    		currentTimer.reset();
+    		currentTimer.start();
+    	}
+    	return lastCurrent;
+    }
+    
+    public double getMaxMotorCurrent() {
+    	if(maxCurrentTimer.get() > 0.05) {
+    		lastMaxCurrent = Math.max(Robot.pdp.getCurrent(RobotMap.PDP_INTAKE_LEFT), Robot.pdp.getCurrent(RobotMap.PDP_INTAKE_RIGHT));
+    		currentTimer.reset();
+    		currentTimer.start();
+    	}
+    	return lastMaxCurrent;	
     }
 
 
@@ -92,6 +123,11 @@ public class Manipulator extends Subsystem {
         SmartDashboard.putBoolean("Manipulator Cube in gripper", isCubeInGripper());
         SmartDashboard.putBoolean("Manipulator Cube jammed", isCubeJammed());
         SmartDashboard.putNumber("Manipulator - Current", getCurrentUsage());
+        SmartDashboard.putNumber("Manipulator - Max Current", getMaxMotorCurrent());
+    }
+    
+    public void run() {
+    	
     }
 }
 

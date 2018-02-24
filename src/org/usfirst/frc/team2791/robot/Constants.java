@@ -31,14 +31,14 @@ public class Constants {
     
     public static final double BOTTOM_SAFTEY_DISTANCE = 2.5;
     public static final double TOP_SAFTEY_DISTANCE = 12;
-    public static final double MANUAL_POWER = 0.3;
+    public static final double MANUAL_POWER = .5;
 
 	// Joystick constants
 	public static final double DEADZONE = 0.05;
 	
 	// Drive train constants
 	public static double driveEncoderTicks = 256;
-	public static final double SPEED_MULTIPLIER = 0.7;
+	public static final double SPEED_MULTIPLIER = 1;
 	public static final double WHEEL_DIAMETER_IN_FEET = 1.0 ; // keeping this incorrect value in code to keep autos working FOR NOW 
 	//6.0 * 3.14159 / 12.0; // was 1.0, now 6.0*3.14159/12.0 = 1.570
 	public static final double RAISE_RAMPS_SPEED = 0.8;
@@ -53,14 +53,15 @@ public class Constants {
 	public static final double LIMELIGHT_TURNING_CAP = 0.3;
 
 	// Manipulator Constants
-	public static final double INTAKE_SPEED = -.85;  //Made negative for P-Bot, wires are backwards //Increased by 40% for new 1:10 reduction
+	public static final double INTAKE_SPEED = -1.0;  //Made negative for P-Bot, wires are backwards //Increased by 40% for new 1:10 reduction
 	public static final double OUTPUT_SPEED = .3; //Made positive for P-Bot, wires are backwards //Increased by 40% for new 1:10 reduction
 	 // 2v is the maximum we can give the 775 pros for a long time stalled
 	// 2/12 ~= 0.17. We use voltage compensation so we can assume the voltage is 12v
-	public static final double HOLD_SPEED = -0.15; //Made negative for P-Bot, wires are backwards 
-	public static final double SMALL_OUTPUT_SPEED = .35; //Made negative for P-Bot, wires are backwards //Increased by 40% for new 1:10 reduction
-	public static final double LARGE_OUTPUT_SPEED = .7; //Made negative for P-Bot, wires are backwards //Increased by 40% for new 1:10 reduction
-
+	public static final double HOLD_SPEED = -0.1; //Made negative for P-Bot, wires are backwards 
+	public static final double SMALL_OUTPUT_SPEED = .45; //Made negative for P-Bot, wires are backwards //Increased by 40% for new 1:10 reduction
+	public static final double LARGE_OUTPUT_SPEED = .9; //Made negative for P-Bot, wires are backwards //Increased by 40% for new 1:10 reduction
+	public static final double INTAKE_CUBE_STALL_CURRENT = 7;
+	
 
 	//Auto Constants
 	public static final double LINE_DISTANCE = 10; //THIS IS NOT FINAL TODO FIND ACTUAL DISTANCE

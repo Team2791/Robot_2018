@@ -2,10 +2,9 @@ package org.usfirst.frc.team2791.robot;
 
 import org.usfirst.frc.team2791.robot.commands.drivetrain.Creep;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.SetDrivetrainShifterMode;
-import org.usfirst.frc.team2791.robot.commands.drivetrain.limelightTarget.DriveTowardLimelightTargetStopWithDistance;
 import org.usfirst.frc.team2791.robot.commands.lift.GoToHeight;
 import org.usfirst.frc.team2791.robot.commands.lift.RunLiftWithJoystick;
-import org.usfirst.frc.team2791.robot.commands.manipulator.IntakeAndHoldCube;
+import org.usfirst.frc.team2791.robot.commands.manipulator.IntakeCube;
 import org.usfirst.frc.team2791.robot.commands.manipulator.RunManipulatorWithJoystick;
 import org.usfirst.frc.team2791.robot.commands.manipulator.SetManipulatorRetracted;
 import org.usfirst.frc.team2791.robot.commands.manipulator.ShootCube;
@@ -84,9 +83,11 @@ public class OI {
 		operatorLeftJoystickUsed.whenPressed(new RunLiftWithJoystick(operatorLeftJoystickUsed));
 		operatorRightJoystickUsed.whenPressed(new RunManipulatorWithJoystick());
 
-		operatorRAnalogTrigger.whenPressed(new IntakeAndHoldCube());
+//		operatorRAnalogTrigger.whenPressed(new IntakeAndHoldCube());
+		operatorRAnalogTrigger.whenPressed(new IntakeCube());
 		operatorLAnalogTrigger.whenPressed(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
 		operatorLB.whenPressed(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
+		operatorRB.whenPressed(new ShootCube(0));
 	}
 
 
