@@ -6,16 +6,9 @@ import org.usfirst.frc.team2791.robot.subsystems.Manipulator;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-
-public class SetManipulatorRetracted extends Command {
-    private boolean setRetracted;
-
-    public SetManipulatorRetracted(boolean setRetracted) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+class ToggleManipulator{
+    public ToggleManipulator() {
     	requires(Robot.manipulator);
-    	this.setRetracted = setRetracted;
-
     }
 
     @Override
@@ -24,13 +17,12 @@ public class SetManipulatorRetracted extends Command {
 
     @Override
     protected void execute() {
-    	Robot.manipulator.setRetracted(setRetracted);
+    	Robot.manipulator.setRetracted(!Robot.manipulator.getRetracted());
     }
 
 
     @Override
     protected boolean isFinished() {
-        // TODO: Make this return true when this Command no longer needs to run execute()
         return true;
     }
 

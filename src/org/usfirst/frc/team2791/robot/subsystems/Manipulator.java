@@ -95,6 +95,10 @@ public class Manipulator extends Subsystem {
         extender.set(retract);
     }
     
+    public boolean getRetracted(){
+        return extender.get();
+    }
+    
     public double getCurrentUsage() {
     	if(currentTimer.get() > 0.1) {
     		lastCurrent = Robot.pdp.getCurrent(RobotMap.PDP_INTAKE_LEFT) + Robot.pdp.getCurrent(RobotMap.PDP_INTAKE_RIGHT);
