@@ -40,7 +40,10 @@ public class DriveWithJoystick extends Command {
 		
 		double leftSpeed = OI.driver.getGtaDriveLeft() * speedMultiplier;
 		double rightSpeed = OI.driver.getGtaDriveRight() * speedMultiplier;
-		Robot.drivetrain.setLeftRightMotorOutputs(leftSpeed, rightSpeed);
+		
+		double turn = OI.driver.getAxisRightY() * Constants.RIGHT_JOYSTICK_TURN_MULTIPLIER;
+		
+		Robot.drivetrain.setLeftRightMotorOutputs(leftSpeed + turn, rightSpeed - turn);
 	}
 
 	@Override

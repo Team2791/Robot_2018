@@ -70,6 +70,7 @@ public class Constants {
 	//Auto Constants
 	public static final double LINE_DISTANCE = 10; //THIS IS NOT FINAL TODO FIND ACTUAL DISTANCE
 	public static final double SMALL_DISTANCE = 2; //THIS IS NOT FINAL TODO FIND ACTUAL VALUABLE SMALL DISTANCE
+	public static final double RIGHT_JOYSTICK_TURN_MULTIPLIER = 0.5;
 	
 	
 	// Auto PID constants
