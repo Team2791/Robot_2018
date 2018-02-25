@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2791.robot.commands.auto;
 
-
 import org.usfirst.frc.team2791.robot.Constants;
+import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveEncoderBangBangGyroPID;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveStraightEncoderGyro;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.StationaryGyroTurn;
 import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeight;
@@ -13,9 +13,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class SingleCubeScaleSCORE extends CommandGroup {
+public class PIDSideSwitchClose extends CommandGroup {
 
-    public SingleCubeScaleSCORE(boolean leftSide) {
+    public PIDSideSwitchClose(boolean onLeftSide) {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -33,15 +33,18 @@ public class SingleCubeScaleSCORE extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addParallel(new SetManipulatorRetracted(true));
-    	addSequential(new DriveStraightEncoderGyro(210, 0.7));
-    	addParallel(new SetLiftHeight(13));
-    	if(leftSide) {
-    		addSequential(new StationaryGyroTurn(22, 0.5, 1.5));
+    	addParallel(new SetLiftHeight(Constants.AUTON_SWITCH_HEIGHT)); // was 13
+    	addSequential(new DriveStraightEncoderGyro(148, 0.7));
+    	// turn towards the switch
+    	if(onLeftSide) {
+    		addSequential(new StationaryGyroTurn(90, 0.5));
     	} else {
-    		addSequential(new StationaryGyroTurn(-22, 0.5, 1.5));
+    		addSequential(new StationaryGyroTurn(-90, 0.5));
     	}
-    	addSequential(new SetLiftHeight(34.5));
-    	addSequential(new DriveStraightEncoderGyro(53, 0.3));
-    	addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
+    	// drive into the switch. Low power so we'll hit the wall and use the timeout to stop
+    	addSequential(new DriveStraightEncoderGyro(19-4, 0.7, 1.5)); // 4 short so we do the last part of the drive with bang bang
+    	addSequential(new DriveEncoderBangBangGyroPID(0.3, 4+3, 1.2)); // 3 overshoot to ensure we hit the wall
+    	// score
+    	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
     }
 }

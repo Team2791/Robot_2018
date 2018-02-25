@@ -31,7 +31,11 @@ public class Constants {
     
     public static final double BOTTOM_SAFTEY_DISTANCE = 2.5;
     public static final double TOP_SAFTEY_DISTANCE = 12;
-    public static final double MANUAL_POWER = .5;
+    public static final double MANUAL_POWER = .75;
+    
+    // TODO Make switch heights constants
+    public static final double AUTON_SWITCH_HEIGHT = 12; // PBOT LIFT IS CALIBRATED WRONG. THIS WILL NEED TO CHANGE!!!
+    public static final double AUTON_SCALE_HEIGHT = 36; // PBOT LIFT IS CALIBRATED WRONG. THIS WILL NEED TO CHANGE!!!
 
 	// Joystick constants
 	public static final double DEADZONE = 0.05;
@@ -39,7 +43,7 @@ public class Constants {
 	// Drive train constants
 	public static double driveEncoderTicks = 256 * 2; // not sure why we're doing this ??
 	public static final double SPEED_MULTIPLIER = 1;
-	public static final double WHEEL_DIAMETER_IN_FEET = 6.0;
+	public static final double WHEEL_DIAMETER_IN_IN = 6.0;
 	//6.0 * 3.14159 / 12.0; // was 1.0, now 6.0*3.14159/12.0 = 1.570
 	public static final double RAISE_RAMPS_SPEED = 0.8;
 

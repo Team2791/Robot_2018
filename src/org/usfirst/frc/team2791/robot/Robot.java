@@ -4,7 +4,12 @@ package org.usfirst.frc.team2791.robot;
 import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchLEFT;
 import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchRIGHT;
 import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
-import org.usfirst.frc.team2791.robot.commands.auto.SingleCubeScaleSCORE;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDSideScaleClose;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDSideScaleFar;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDSideSwitchClose;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDSideSwitchFar;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchLEFT;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchRIGHT;
 import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyDriveStraightToSwitch;
 import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyStraightSwitchCubeSCORE;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveEncoderBangBangGyroPID;
@@ -68,13 +73,14 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		compressor = new Compressor(RobotMap.PCM_CAN_ID);
 		compressor.start();
-		CameraServer.getInstance().startAutomaticCapture(); //USB Camera Code
 		pdp = new PowerDistributionPanel(RobotMap.PDP); //CAN id has to be 0
 		drivetrain = new ShakerDrivetrain();
 		manipulator = new Manipulator();
 		ramps = new ShakerRamp();
 		lift = new ShakerLift();
 		limelight = new Limelight();
+
+		CameraServer.getInstance().startAutomaticCapture(); //USB Camera Code
 		
 		ShakerDrivetrain.putPIDGainsOnSmartDash();
 
@@ -94,27 +100,51 @@ public class Robot extends IterativeRobot {
 			new TimeOnlyStraightSwitchCubeSCORE() // this will run when we are on the right side of the switch
 		));
 		
-		chooser.addObject("Turn Switch LOW drop - Bang Bang", new NearSwitchAutonChooser(
-				new BangBangTurnSwitchLEFT(), // this will run when we are on the left side of the switch
-				new BangBangTurnSwitchRIGHT() // this will run when we are on the right side of the switch
-			));
+		chooser.addObject("Turn Switch - Bang Bang", new NearSwitchAutonChooser(
+			new BangBangTurnSwitchLEFT(), // this will run when we are on the left side of the switch
+			new BangBangTurnSwitchRIGHT() // this will run when we are on the right side of the switch
+		));
 		
+		chooser.addObject("Turn switch - PID", new NearSwitchAutonChooser(
+			new PIDTurnSwitchLEFT(),
+			new PIDTurnSwitchRIGHT()
+		));
+		
+		chooser.addObject("side switch LEFT - PID", new NearSwitchAutonChooser(
+			new PIDSideSwitchClose(true),
+			new PIDSideSwitchFar(true)
+		));
+
+		chooser.addObject("side switch RIGHT - PID", new NearSwitchAutonChooser(
+			new PIDSideSwitchFar(false),
+			new PIDSideSwitchClose(false)
+		));
+		
+		chooser.addObject("side scale LEFT - PID", new NearSwitchAutonChooser(
+			new PIDSideScaleClose(true),
+			new PIDSideScaleFar(true)
+		));
+		
+		chooser.addObject("side scale RIGHT - PID", new NearSwitchAutonChooser(
+			new PIDSideScaleFar(false),
+			new PIDSideScaleClose(false)
+		));
+
 		chooser.addObject("TEST - Long bang bang + gyro drive", new NoChoiceChooser(new DriveEncoderBangBangGyroPID(0.4, 15*12, 100)));
-		chooser.addObject("TEST - gyro pid 90º rotation", new NoChoiceChooser(new StationaryGyroTurn(90, 0.5, 1.5, 50)));
-		chooser.addObject("TEST - gyro pid 45º rotation", new NoChoiceChooser(new StationaryGyroTurn(45, 0.5, 1.5, 50)));
-		chooser.addObject("TEST - gyro pid 180º rotation", new NoChoiceChooser(new StationaryGyroTurn(180, 0.5, 1.5, 50)));
+		chooser.addObject("TEST - gyro pid 90 rotation", new NoChoiceChooser(new StationaryGyroTurn(90, 0.5, 1.5, 50)));
+		chooser.addObject("TEST - gyro pid -90 rotation", new NoChoiceChooser(new StationaryGyroTurn(-90, 0.5, 1.5, 50)));
+		chooser.addObject("TEST - gyro pid 45 rotation", new NoChoiceChooser(new StationaryGyroTurn(45, 0.5, 1.5, 50)));
+		chooser.addObject("TEST - gyro pid 180 rotation", new NoChoiceChooser(new StationaryGyroTurn(180, 0.5, 1.5, 50)));
 		chooser.addObject("TEST - gyro + encoder pid 10'' drive", new NoChoiceChooser(new DriveStraightEncoderGyro(10, 0.7, 100, .1)));
 		chooser.addObject("TEST - gyro + encoder pid -10'' drive", new NoChoiceChooser(new DriveStraightEncoderGyro(-10, 0.7, 100, .1)));
 		chooser.addObject("TEST - gyro + encoder pid 50'' drive", new NoChoiceChooser(new DriveStraightEncoderGyro(50, 0.7, 100, .1)));
 		chooser.addObject("TEST - gyro + encoder pid -50'' drive", new NoChoiceChooser(new DriveStraightEncoderGyro(-50, 0.7, 100, .1)));
 		chooser.addObject("TEST - gyro + encoder pid 120'' drive", new NoChoiceChooser(new DriveStraightEncoderGyro(120, 0.7, 100, .1)));
 		chooser.addObject("TEST - gyro + encoder pid -120'' drive", new NoChoiceChooser(new DriveStraightEncoderGyro(-120, 0.7, 100, .1)));
-	
-		chooser.addObject("TEST - scale cube score", new NoChoiceChooser(new SingleCubeScaleSCORE(true)));
-
+		
 		SmartDashboard.putData("Auto mode", chooser);
 		oi = new OI();
-		
+	
 //		try {
 //			driver_cam = CameraServer.getInstance().startAutomaticCapture("Driver Camera", 0);
 //			driver_cam.setPixelFormat(PixelFormat.kMJPEG);

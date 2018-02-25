@@ -64,7 +64,7 @@ public class ShakerDrivetrain extends Subsystem {
 	protected double rightFilteredAccel = 0;
 
 	//Determines the amount of distance traveled for every pulse read on the encoders
-	private double distancePerPulse = Util.tickToFeet(Constants.driveEncoderTicks, Constants.WHEEL_DIAMETER_IN_FEET);
+	private double distancePerPulse = Util.tickToFeet(Constants.driveEncoderTicks, Constants.WHEEL_DIAMETER_IN_IN);
 
 	public ShakerDrivetrain(){
 		victorLeft1 = new VictorSPX(RobotMap.VICTOR_LEFT_1);
@@ -104,6 +104,7 @@ public class ShakerDrivetrain extends Subsystem {
 			gyro = new ADXRS450_Gyro();//SPI.Port.kOnboardCS1
 			gyro.calibrate(); //takes 5 seconds
 			gyro.reset();
+			System.out.println("Gyro is working! :-)");
 		}catch(NullPointerException e){
 			gyroDisabled = true;
 			System.out.println("Gyro is unplugged, Disabling Gyro");
@@ -286,6 +287,8 @@ public class ShakerDrivetrain extends Subsystem {
 			System.err.println("Gyro is Disabled, Unable to Reset");
 		}
 	}
+	
+	public boolean getGyroDisabled() { return gyroDisabled; }
 
 	public void calibrateGyro() {
 		if(!gyroDisabled) {

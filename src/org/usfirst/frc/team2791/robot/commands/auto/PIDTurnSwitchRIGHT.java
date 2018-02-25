@@ -1,9 +1,9 @@
 package org.usfirst.frc.team2791.robot.commands.auto;
 
 import org.usfirst.frc.team2791.robot.Constants;
-import org.usfirst.frc.team2791.robot.commands.auto.bangbang.DriveEncoderBangBang;
-import org.usfirst.frc.team2791.robot.commands.auto.bangbang.TurnGyroBangBang;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveEncoderBangBangGyroPID;
+import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveStraightEncoderGyro;
+import org.usfirst.frc.team2791.robot.commands.auto.pid.StationaryGyroTurn;
 import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeight;
 import org.usfirst.frc.team2791.robot.commands.manipulator.SetManipulatorRetracted;
 import org.usfirst.frc.team2791.robot.commands.manipulator.ShootCube;
@@ -13,9 +13,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class BangBangTurnSwitchLEFT extends CommandGroup {
+public class PIDTurnSwitchRIGHT extends CommandGroup {
 
-    public BangBangTurnSwitchLEFT() {
+    public PIDTurnSwitchRIGHT() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -32,25 +32,20 @@ public class BangBangTurnSwitchLEFT extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	
-    	// drive off the wall
-    	// 3rd arg is drive distance 
-    	
-    	// NOTE. ALl bang bang distances have a little removed to compensate for overshoot.
-
-    	addSequential(new DriveEncoderBangBangGyroPID(0.4, 3*3, 100));
     	addParallel(new SetManipulatorRetracted(true));
+    	addSequential(new DriveStraightEncoderGyro(12, 0.7));
     	// turn towards the left side
-    	addSequential(new TurnGyroBangBang(-60, -0.3, 100));
+    	addSequential(new StationaryGyroTurn(60, 0.5));
     	// drive towards the left side
-    	addParallel(new SetLiftHeight(8)); // was 13
-    	addSequential(new DriveEncoderBangBangGyroPID(0.4, 23*3, 100));
+    	addParallel(new SetLiftHeight(Constants.AUTON_SWITCH_HEIGHT)); // was 13
+    
+    	addSequential(new DriveStraightEncoderGyro(56, 0.7));
     	// turn to face the switch
-    	addSequential(new TurnGyroBangBang(60, 0.3, 100)); // there is only a weak drive after this turn so it overshoots more
+    	addSequential(new StationaryGyroTurn(-60, 0.5)); // there is only a weak drive after this turn so it overshoots more
     	// drive into the switch. Low power so we'll hit the wall and use the timeout to stop
-    	addSequential(new DriveEncoderBangBangGyroPID(0.4, 10*3, 3.5));
-    	addSequential(new DriveEncoderBangBangGyroPID(0.2, 14*3, 3.5));
+    	addSequential(new DriveStraightEncoderGyro(61-4, 0.7)); // 4 short so we do the last part of the drive with bang bang
+    	addSequential(new DriveEncoderBangBangGyroPID(0.3, 4+3, 2)); // 3 overshoot to ensure we hit the wall
     	// score
-    	addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
+    	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
     }
 }

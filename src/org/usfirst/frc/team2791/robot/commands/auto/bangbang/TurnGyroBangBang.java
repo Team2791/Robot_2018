@@ -17,12 +17,12 @@ public class TurnGyroBangBang extends Command {
 	protected Timer timer = new Timer();
 
 	/**
-	 * @param power amount of power you want in the turn
 	 * @param angle degrees that you want to turn
+	 * @param power amount of power you want in the turn
 	 * @param timeOut seconds before you want to time out
 	 */
-	public TurnGyroBangBang(double turn, double angle, double timeOut) {
-		this(turn, angle);
+	public TurnGyroBangBang(double angle, double power, double timeOut) {
+		this(angle, power);
 		timeToTurn = timeOut;
 	}
 

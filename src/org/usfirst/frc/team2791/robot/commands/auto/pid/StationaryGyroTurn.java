@@ -20,7 +20,7 @@ public class StationaryGyroTurn extends DrivetrainPIDTurn {
     public StationaryGyroTurn(double angleToTurn, double maxOutput, double maxThreshold, double timeOut) {
     	super(maxOutput, maxThreshold);
     	this.angleToTurn = angleToTurn;
-    	this.setTimeout(timeOut);
+    	setTimeout(timeOut);
     }
 	
 	/**
@@ -29,7 +29,6 @@ public class StationaryGyroTurn extends DrivetrainPIDTurn {
 	 * @param maxThreshold the maximum error that PID can accept before finishing the command
 	 */
     public StationaryGyroTurn(double angleToTurn, double maxOutput, double maxThreshold) {
-    	//this(angle
     	this(angleToTurn, maxOutput, maxThreshold, 10.0);
     }
     
@@ -39,7 +38,7 @@ public class StationaryGyroTurn extends DrivetrainPIDTurn {
 	 * @param maxOutput the maximum output you would like the motors to receive (up to 1.0)
 	 */
     public StationaryGyroTurn(double angleToTurn, double maxOutput) {
-    	this(angleToTurn, maxOutput, 0.25, 10.0);
+    	this(angleToTurn, maxOutput, 1.25);
     }
     
     /**
@@ -57,7 +56,14 @@ public class StationaryGyroTurn extends DrivetrainPIDTurn {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Math.abs(stationaryAnglePID.getError()) < getThreshold() &&
-        	   Math.abs(Robot.drivetrain.getGyroRate()) < 2; //1
+    	// if the gyro is disabled return false and don't run. We don't want to break the bot by finishing
+    	// this drive and doing another one.
+    	if(Robot.drivetrain.getGyroDisabled()) {
+    		System.out.println("ALERT GYRO DISABLED!! STOPPING !!");
+    		return false;
+    	}
+        return (Math.abs(stationaryAnglePID.getError()) < getThreshold() &&
+        	   Math.abs(Robot.drivetrain.getGyroRate()) < 2) ||
+        		isTimedOut();
     }
 }

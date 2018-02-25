@@ -23,6 +23,7 @@ public abstract class DrivetrainPIDTurn extends Command {
 	 */
     public DrivetrainPIDTurn(double maxOutput, double errorThreshold) {
     	super("Turning Base Class");
+    	assert(maxOutput > 0);
 
         requires(Robot.drivetrain);
         this.errorThreshold = errorThreshold;
