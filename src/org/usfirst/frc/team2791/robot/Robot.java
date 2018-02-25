@@ -80,7 +80,7 @@ public class Robot extends IterativeRobot {
 		lift = new ShakerLift();
 		limelight = new Limelight();
 
-		CameraServer.getInstance().startAutomaticCapture(); //USB Camera Code
+		driver_cam = CameraServer.getInstance().startAutomaticCapture("Driver Cam", 0);
 		
 		ShakerDrivetrain.putPIDGainsOnSmartDash();
 

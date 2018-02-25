@@ -87,7 +87,7 @@ public class OI {
 		operatorRightJoystickUsed.whenPressed(new RunManipulatorWithJoystick());
 
 //		operatorRAnalogTrigger.whenPressed(new IntakeAndHoldCube());
-		operatorRAnalogTrigger.whenPressed(new IntakeCube());
+		operatorRAnalogTrigger.whileHeld(new IntakeCube());
 		operatorLAnalogTrigger.whenPressed(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
 		operatorLB.whenPressed(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
 		operatorRB.whenPressed(new ShootCube(0));
