@@ -24,6 +24,7 @@ import org.usfirst.frc.team2791.robot.util.Limelight;
 import org.usfirst.frc.team2791.robot.util.autonChoosers.AutonCommandChooser;
 import org.usfirst.frc.team2791.robot.util.autonChoosers.NearSwitchAutonChooser;
 import org.usfirst.frc.team2791.robot.util.autonChoosers.NoChoiceChooser;
+import org.usfirst.frc.team2791.robot.util.autonChoosers.ScaleAutonChooser;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -120,12 +121,12 @@ public class Robot extends IterativeRobot {
 			new PIDSideSwitchClose(false)
 		));
 		
-		chooser.addObject("side scale LEFT - PID", new NearSwitchAutonChooser(
+		chooser.addObject("side scale LEFT - PID", new ScaleAutonChooser(
 			new PIDSideScaleClose(true),
 			new PIDSideScaleFar(true)
 		));
 		
-		chooser.addObject("side scale RIGHT - PID", new NearSwitchAutonChooser(
+		chooser.addObject("side scale RIGHT - PID", new ScaleAutonChooser(
 			new PIDSideScaleFar(false),
 			new PIDSideScaleClose(false)
 		));
