@@ -46,6 +46,7 @@ public class Constants {
 	public static final double WHEEL_DIAMETER_IN_IN = 6.0;
 	//6.0 * 3.14159 / 12.0; // was 1.0, now 6.0*3.14159/12.0 = 1.570
 	public static final double RAISE_RAMPS_SPEED = 0.8;
+	public static final double RIGHT_JOYSTICK_TURN_MULTIPLIER = 0.5;
 
 	// Time when ramps are allowed to be released
 	// (3 * 60) - 30 = (3 minutes * 60 seconds) - 30 seconds
@@ -70,7 +71,6 @@ public class Constants {
 	//Auto Constants
 	public static final double LINE_DISTANCE = 10; //THIS IS NOT FINAL TODO FIND ACTUAL DISTANCE
 	public static final double SMALL_DISTANCE = 2; //THIS IS NOT FINAL TODO FIND ACTUAL VALUABLE SMALL DISTANCE
-	public static final double RIGHT_JOYSTICK_TURN_MULTIPLIER = 0.5;
 	
 	
 	// Auto PID constants
