@@ -35,7 +35,7 @@ public class ShootCube extends Command {
     @Override
     protected boolean isFinished() {
         // TODO: Make this return true when this Command no longer needs to run execute()
-        return timer.get() > 2.5;
+        return timer.get() > 2;
     }
 
     @Override

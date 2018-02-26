@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2791.robot.commands.auto;
 
 import org.usfirst.frc.team2791.robot.Constants;
+import org.usfirst.frc.team2791.robot.commands.auto.bangbang.DriveEncoderBangBang;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveEncoderBangBangGyroPID;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveStraightEncoderGyro;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.StationaryGyroTurn;
@@ -53,5 +54,8 @@ public class PIDSideSwitchFar extends CommandGroup {
     	// drive into the cubes near the switch. Low power so we'll hit the them and use the timeout to stop
     	addSequential(new DriveStraightEncoderGyro(12, 0.4, 2));
     	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
+    	addParallel(new SetManipulatorRetracted(true));
+    	addSequential(new DriveEncoderBangBang(-0.3, 0, -20));
+    	addSequential(new SetLiftHeight(0));
     }
 }

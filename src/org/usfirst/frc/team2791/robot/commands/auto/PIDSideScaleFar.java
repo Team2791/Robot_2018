@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2791.robot.commands.auto;
 
 import org.usfirst.frc.team2791.robot.Constants;
-import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveEncoderBangBangGyroPID;
+import org.usfirst.frc.team2791.robot.commands.auto.bangbang.DriveEncoderBangBang;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveStraightEncoderGyro;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.StationaryGyroTurn;
 import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeight;
@@ -33,7 +33,7 @@ public class PIDSideScaleFar extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addParallel(new SetManipulatorRetracted(true));
-    	addSequential(new DriveStraightEncoderGyro(218, 1.0));
+    	addSequential(new DriveStraightEncoderGyro(221, 1.0));
     	// turn towards the switch
     	if(onLeftSide) {
     		addSequential(new StationaryGyroTurn(90, 0.5));
@@ -41,7 +41,7 @@ public class PIDSideScaleFar extends CommandGroup {
     		addSequential(new StationaryGyroTurn(-90, 0.5));
     	}
     	addParallel(new SetLiftHeight(11));
-    	addSequential(new DriveStraightEncoderGyro(208, 1.0));
+    	addSequential(new DriveStraightEncoderGyro(203, 1.0));
     	
     	addParallel(new SetLiftHeight(Constants.AUTON_SCALE_HEIGHT));
     	if(onLeftSide) {
@@ -49,7 +49,9 @@ public class PIDSideScaleFar extends CommandGroup {
     	} else {
     		addSequential(new StationaryGyroTurn(100, 0.5));
     	}
-    	addSequential(new DriveStraightEncoderGyro(60, 0.5, 3));
-    	addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
+    	addSequential(new DriveStraightEncoderGyro(57, 0.5, 3));
+    	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
+    	addSequential(new DriveEncoderBangBang(-0.3, 0, -20));
+    	addSequential(new SetLiftHeight(0));
     }
 }

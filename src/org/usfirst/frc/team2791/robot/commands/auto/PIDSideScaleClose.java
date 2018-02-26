@@ -2,6 +2,7 @@ package org.usfirst.frc.team2791.robot.commands.auto;
 
 
 import org.usfirst.frc.team2791.robot.Constants;
+import org.usfirst.frc.team2791.robot.commands.auto.bangbang.DriveEncoderBangBang;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveStraightEncoderGyro;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.StationaryGyroTurn;
 import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeight;
@@ -42,6 +43,8 @@ public class PIDSideScaleClose extends CommandGroup {
     	}
     	addSequential(new SetLiftHeight(Constants.AUTON_SCALE_HEIGHT));
     	addSequential(new DriveStraightEncoderGyro(63, 0.3));
-    	addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
+    	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
+    	addSequential(new DriveEncoderBangBang(-0.3, 0, -20));
+    	addSequential(new SetLiftHeight(0));
     }
 }

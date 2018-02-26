@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2791.robot.commands.auto;
 
 import org.usfirst.frc.team2791.robot.Constants;
+import org.usfirst.frc.team2791.robot.commands.auto.bangbang.DriveEncoderBangBang;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveEncoderBangBangGyroPID;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveStraightEncoderGyro;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.StationaryGyroTurn;
@@ -47,5 +48,9 @@ public class PIDTurnSwitchLEFT extends CommandGroup {
     	addSequential(new DriveEncoderBangBangGyroPID(0.3, 4+3, 2)); // 3 overshoot to ensure we hit the wall
     	// score
     	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
+    	addSequential(new DriveEncoderBangBang(-0.3, 0, -20));
+    	addSequential(new SetLiftHeight(0));
+    	addParallel(new SetManipulatorRetracted(false));
+    	addSequential(new StationaryGyroTurn(50, 0.5));
     }
 }

@@ -90,7 +90,7 @@ public class Robot extends IterativeRobot {
 		// Set up our auton chooser
 		chooser.addDefault("Default Auto - Do Nothing", new NoChoiceChooser(new DoNothing()));
 		
-		chooser.addObject("Turn switch - PID", new NearSwitchAutonChooser(
+		chooser.addObject("center switch - PID", new NearSwitchAutonChooser(
 			new PIDTurnSwitchLEFT(),
 			new PIDTurnSwitchRIGHT()
 		));

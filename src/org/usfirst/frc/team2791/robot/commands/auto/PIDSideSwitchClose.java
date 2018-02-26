@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2791.robot.commands.auto;
 
 import org.usfirst.frc.team2791.robot.Constants;
+import org.usfirst.frc.team2791.robot.commands.auto.bangbang.DriveEncoderBangBang;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveEncoderBangBangGyroPID;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveStraightEncoderGyro;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.StationaryGyroTurn;
@@ -45,5 +46,7 @@ public class PIDSideSwitchClose extends CommandGroup {
     	addSequential(new DriveStraightEncoderGyro(19, 0.5, 2.5)); // 4 short so we do the last part of the drive with bang bang
     	// score
     	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
+    	addSequential(new DriveEncoderBangBang(-0.3, 0, -20));
+    	addSequential(new SetLiftHeight(0));
     }
 }
