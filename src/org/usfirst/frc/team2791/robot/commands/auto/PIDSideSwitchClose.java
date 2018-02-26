@@ -42,8 +42,7 @@ public class PIDSideSwitchClose extends CommandGroup {
     		addSequential(new StationaryGyroTurn(-90, 0.5));
     	}
     	// drive into the switch. Low power so we'll hit the wall and use the timeout to stop
-    	addSequential(new DriveStraightEncoderGyro(19-4, 0.7, 1.5)); // 4 short so we do the last part of the drive with bang bang
-    	addSequential(new DriveEncoderBangBangGyroPID(0.3, 4+3, 1.2)); // 3 overshoot to ensure we hit the wall
+    	addSequential(new DriveStraightEncoderGyro(19, 0.5, 2.5)); // 4 short so we do the last part of the drive with bang bang
     	// score
     	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
     }

@@ -33,15 +33,15 @@ public class PIDSideScaleFar extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addParallel(new SetManipulatorRetracted(true));
-    	addSequential(new DriveStraightEncoderGyro(215, 1.0));
+    	addSequential(new DriveStraightEncoderGyro(218, 1.0));
     	// turn towards the switch
     	if(onLeftSide) {
     		addSequential(new StationaryGyroTurn(90, 0.5));
     	} else {
     		addSequential(new StationaryGyroTurn(-90, 0.5));
     	}
-    	addParallel(new SetLiftHeight(13));
-    	addSequential(new DriveStraightEncoderGyro(202, 1.0));
+    	addParallel(new SetLiftHeight(11));
+    	addSequential(new DriveStraightEncoderGyro(208, 1.0));
     	
     	addParallel(new SetLiftHeight(Constants.AUTON_SCALE_HEIGHT));
     	if(onLeftSide) {
@@ -49,7 +49,7 @@ public class PIDSideScaleFar extends CommandGroup {
     	} else {
     		addSequential(new StationaryGyroTurn(100, 0.5));
     	}
-//    	addSequential(new DriveStraightEncoderGyro(64, 0.5, 4));
-//    	addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
+    	addSequential(new DriveStraightEncoderGyro(60, 0.5, 3));
+    	addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
     }
 }

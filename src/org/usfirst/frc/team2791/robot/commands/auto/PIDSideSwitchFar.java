@@ -33,25 +33,25 @@ public class PIDSideSwitchFar extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addParallel(new SetManipulatorRetracted(true));
-    	addSequential(new DriveStraightEncoderGyro(215, 1.0));
+    	addSequential(new DriveStraightEncoderGyro(221, 1.0));
+    	addParallel(new SetManipulatorRetracted(false));
     	// turn towards the switch
     	if(onLeftSide) {
     		addSequential(new StationaryGyroTurn(90, 0.5));
     	} else {
     		addSequential(new StationaryGyroTurn(-90, 0.5));
     	}
-    	addParallel(new SetLiftHeight(Constants.AUTON_SWITCH_HEIGHT)); // was 13
-    	addSequential(new DriveStraightEncoderGyro(167, 1.0));
+    	addParallel(new SetLiftHeight(Constants.AUTON_BACK_SWITCH_HEIGHT));
+    	addSequential(new DriveStraightEncoderGyro(179, 1.0));
     	
     	if(onLeftSide) {
     		addSequential(new StationaryGyroTurn(90, 0.5));
     	} else {
     		addSequential(new StationaryGyroTurn(-90, 0.5));
     	}
-    	// drive into the switch. Low power so we'll hit the wall and use the timeout to stop
-    	addSequential(new DriveStraightEncoderGyro(13-4, 0.7)); // 4 short so we do the last part of the drive with bang bang
-    	addSequential(new DriveEncoderBangBangGyroPID(0.3, 4+3, 2)); // 3 overshoot to ensure we hit the wall
-    	// score
+    	
+    	// drive into the cubes near the switch. Low power so we'll hit the them and use the timeout to stop
+    	addSequential(new DriveStraightEncoderGyro(12, 0.4, 2));
     	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
     }
 }

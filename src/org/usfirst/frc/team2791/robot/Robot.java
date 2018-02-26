@@ -89,22 +89,6 @@ public class Robot extends IterativeRobot {
 
 		// Set up our auton chooser
 		chooser.addDefault("Default Auto - Do Nothing", new NoChoiceChooser(new DoNothing()));
-		chooser.addObject("Cross line - time only", new NoChoiceChooser(new DriveForwardTime(0.33, 3.5)));
-		
-		chooser.addObject("LEFT side Straight Switch - time only", new NearSwitchAutonChooser(
-			new TimeOnlyStraightSwitchCubeSCORE(), // this will run when we are on the left side of the switch
-			new TimeOnlyDriveStraightToSwitch() // this will run when we are on the right side of the switch
-		));
-
-		chooser.addObject("RIGHT side Straight Switch - time only", new NearSwitchAutonChooser(
-			new TimeOnlyDriveStraightToSwitch(), // this will run when we are on the left side of the switch
-			new TimeOnlyStraightSwitchCubeSCORE() // this will run when we are on the right side of the switch
-		));
-		
-		chooser.addObject("Turn Switch - Bang Bang", new NearSwitchAutonChooser(
-			new BangBangTurnSwitchLEFT(), // this will run when we are on the left side of the switch
-			new BangBangTurnSwitchRIGHT() // this will run when we are on the right side of the switch
-		));
 		
 		chooser.addObject("Turn switch - PID", new NearSwitchAutonChooser(
 			new PIDTurnSwitchLEFT(),
@@ -120,12 +104,12 @@ public class Robot extends IterativeRobot {
 			new PIDSideSwitchFar(false),
 			new PIDSideSwitchClose(false)
 		));
-		
+
 		chooser.addObject("side scale LEFT - PID", new ScaleAutonChooser(
 			new PIDSideScaleClose(true),
 			new PIDSideScaleFar(true)
 		));
-		
+
 		chooser.addObject("side scale RIGHT - PID", new ScaleAutonChooser(
 			new PIDSideScaleFar(false),
 			new PIDSideScaleClose(false)
@@ -142,6 +126,23 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("TEST - gyro + encoder pid -50'' drive", new NoChoiceChooser(new DriveStraightEncoderGyro(-50, 0.7, 100, .1)));
 		chooser.addObject("TEST - gyro + encoder pid 120'' drive", new NoChoiceChooser(new DriveStraightEncoderGyro(120, 0.7, 100, .1)));
 		chooser.addObject("TEST - gyro + encoder pid -120'' drive", new NoChoiceChooser(new DriveStraightEncoderGyro(-120, 0.7, 100, .1)));
+		
+		chooser.addObject("Cross line - time only", new NoChoiceChooser(new DriveForwardTime(0.33, 3.5)));
+		
+		chooser.addObject("LEFT side Straight Switch - time only", new NearSwitchAutonChooser(
+			new TimeOnlyStraightSwitchCubeSCORE(), // this will run when we are on the left side of the switch
+			new TimeOnlyDriveStraightToSwitch() // this will run when we are on the right side of the switch
+		));
+
+		chooser.addObject("RIGHT side Straight Switch - time only", new NearSwitchAutonChooser(
+			new TimeOnlyDriveStraightToSwitch(), // this will run when we are on the left side of the switch
+			new TimeOnlyStraightSwitchCubeSCORE() // this will run when we are on the right side of the switch
+		));
+		
+		chooser.addObject("Turn Switch - Bang Bang", new NearSwitchAutonChooser(
+			new BangBangTurnSwitchLEFT(), // this will run when we are on the left side of the switch
+			new BangBangTurnSwitchRIGHT() // this will run when we are on the right side of the switch
+		));
 		
 		SmartDashboard.putData("Auto mode", chooser);
 		oi = new OI();

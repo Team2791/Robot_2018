@@ -26,7 +26,7 @@ public class Constants {
     public static final double FAR_AWAY_POWER = 1;
     public static final double CLOSE_POWER = .25;
     
-    public static final double LIFT_MAX_HEIGHT = 39-1; // -1 for safety
+    public static final double LIFT_MAX_HEIGHT = 40-1; // -1 for safety
     public static final double LIFT_MIN_HEIGHT = .25;
     
     public static final double BOTTOM_SAFTEY_DISTANCE = 2.5;
@@ -34,8 +34,9 @@ public class Constants {
     public static final double MANUAL_POWER = .75;
     
     // TODO Make switch heights constants
-    public static final double AUTON_SWITCH_HEIGHT = 12; // PBOT LIFT IS CALIBRATED WRONG. THIS WILL NEED TO CHANGE!!!
-    public static final double AUTON_SCALE_HEIGHT = 36; // PBOT LIFT IS CALIBRATED WRONG. THIS WILL NEED TO CHANGE!!!
+    public static final double AUTON_SWITCH_HEIGHT = 10;
+    public static final double AUTON_BACK_SWITCH_HEIGHT = 13;
+    public static final double AUTON_SCALE_HEIGHT = 38;
 
 	// Joystick constants
 	public static final double DEADZONE = 0.05;
