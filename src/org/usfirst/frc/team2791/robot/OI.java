@@ -51,17 +51,15 @@ public class OI {
 		/********************************** Driver Button Assignments ****************************************/
 		driverA.whenPressed(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
 		driverB.whenPressed(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
-		driverY.whenPressed(new SetDrivetrainShifterMode(true));
+		driverX.whenPressed(new SetDrivetrainShifterMode(true));
+		driverY.whenPressed(new DropRamps());
 		
 		
 		raiseRampsLeftButton = driverStart;
 		raiseRampsRightButton = driverBack;
 		raiseRampsDoubleButton = new DoubleButton(raiseRampsLeftButton, raiseRampsRightButton, "OR");
 		raiseRampsDoubleButton.whileHeld(new RaiseRamps(raiseRampsLeftButton, raiseRampsRightButton));
-		
-		dropRampsButton = new DoubleButton(raiseRampsLeftButton, raiseRampsRightButton, "AND");
-		dropRampsButton.whenPressed(new DropRamps());
-		
+
 		driverLB.whileHeld(new Creep(-0.22));
 		driverRB.whileHeld(new Creep(0.22));
 

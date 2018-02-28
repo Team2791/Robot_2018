@@ -32,7 +32,7 @@ public class DriveWithJoystick extends Command {
 			return;
 		}
 		
-		if(Robot.lift.getHeight() > 13.5) {
+		if(Robot.lift.getHeight() > 13.75) {
 			speedMultiplier = 0.5;
 		} else {
 			speedMultiplier = Constants.SPEED_MULTIPLIER;

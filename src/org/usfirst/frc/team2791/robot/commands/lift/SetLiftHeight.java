@@ -26,7 +26,9 @@ public class SetLiftHeight extends Command {
         if (abs(diff) > Constants.FAR_AWAY_DISTANCE) {
             Robot.lift.setPower(-diffSign * Constants.FAR_AWAY_POWER);
             Robot.lift.setBreak(false);
-        } else if (abs(diff) > Constants.CLOSE_DISTANCE) {
+         // we special case going to 0 because we need to hit it almost exactly.
+        } else if (abs(diff) > Constants.CLOSE_DISTANCE || (
+        		targetHeight <=0.01 && abs(diff) > 0.1)) {
             Robot.lift.setPower(-diffSign * Constants.CLOSE_POWER);
             Robot.lift.setBreak(false);
         } else {
@@ -37,8 +39,13 @@ public class SetLiftHeight extends Command {
     
     @Override
     public boolean isFinished() {
-        return Math.abs(Robot.lift.getHeight() - targetHeight) < Constants.CLOSE_DISTANCE;
-    }
+    	double diff = Robot.lift.getHeight() - targetHeight; // TODO make this a method
+    	if(targetHeight <=0.01) {
+    		return abs(diff) < 0.1; 
+    	} else {
+    		return Math.abs(diff) < Constants.CLOSE_DISTANCE;
+    	}
+   }
     @Override
     protected void end () {
     	Robot.lift.setPower(0);
