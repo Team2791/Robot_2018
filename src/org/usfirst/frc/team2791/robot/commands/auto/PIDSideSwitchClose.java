@@ -34,7 +34,7 @@ public class PIDSideSwitchClose extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addParallel(new SetManipulatorRetracted(true));
-    	addParallel(new SetLiftHeight(Constants.AUTON_SWITCH_HEIGHT)); // was 13
+    	addParallel(new SetLiftHeight(Constants.AUTON_RETRACTED_SWITCH_HEIGHT)); // was 13
     	addSequential(new DriveStraightEncoderGyro(148, 0.7));
     	// turn towards the switch
     	if(onLeftSide) {

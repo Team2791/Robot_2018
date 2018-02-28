@@ -1,6 +1,5 @@
 package org.usfirst.frc.team2791.robot;
 
-import org.usfirst.frc.team2791.robot.commands.SetLiftAndManipulator;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.Creep;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.SetDrivetrainShifterMode;
 import org.usfirst.frc.team2791.robot.commands.lift.RunLiftWithJoystick;
@@ -12,7 +11,6 @@ import org.usfirst.frc.team2791.robot.commands.manipulator.ShootCube;
 import org.usfirst.frc.team2791.robot.commands.manipulator.ToggleManipulator;
 import org.usfirst.frc.team2791.robot.commands.ramps.DropRamps;
 import org.usfirst.frc.team2791.robot.commands.ramps.RaiseRamps;
-import org.usfirst.frc.team2791.robot.commands.ramps.SetRampDeploy;
 import org.usfirst.frc.team2791.robot.shakerJoystick.ShakerGamePad;
 import org.usfirst.frc.team2791.robot.util.DoubleButton;
 
@@ -56,12 +54,13 @@ public class OI {
 		driverY.whenPressed(new SetDrivetrainShifterMode(true));
 		
 		
-//		driverStart.whileHeld(new RunDrivetrainOnlyOneSide(true, Constants.RAISE_RAMPS_SPEED)); // true runs the left side
-//		driverBack.whileHeld(new RunDrivetrainOnlyOneSide(false, Constants.RAISE_RAMPS_SPEED)); // flase runs the right side
 		raiseRampsLeftButton = driverStart;
 		raiseRampsRightButton = driverBack;
 		raiseRampsDoubleButton = new DoubleButton(raiseRampsLeftButton, raiseRampsRightButton, "OR");
 		raiseRampsDoubleButton.whileHeld(new RaiseRamps(raiseRampsLeftButton, raiseRampsRightButton));
+		
+		dropRampsButton = new DoubleButton(raiseRampsLeftButton, raiseRampsRightButton, "AND");
+		dropRampsButton.whenPressed(new DropRamps());
 		
 		driverLB.whileHeld(new Creep(-0.22));
 		driverRB.whileHeld(new Creep(0.22));

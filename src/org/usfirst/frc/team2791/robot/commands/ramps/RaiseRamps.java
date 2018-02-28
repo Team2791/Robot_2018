@@ -20,11 +20,15 @@ public class RaiseRamps extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Robot.drivetrain.setDriveOrRampMode(false);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if(Robot.drivetrain.isDrivetrainInDriveMode()) {
+    		Robot.drivetrain.setLeftRightMotorOutputs(0, 0);
+    		return;
+    	}
+    	
     	double leftOutput;
     	double rightOutput;
 

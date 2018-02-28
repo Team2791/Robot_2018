@@ -10,6 +10,7 @@ import org.usfirst.frc.team2791.robot.commands.auto.PIDSideScaleFar;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDSideSwitchClose;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDSideSwitchFar;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchLEFT;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchLEFT_2Cube;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchRIGHT;
 import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyDriveStraightToSwitch;
 import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyStraightSwitchCubeSCORE;
@@ -94,6 +95,11 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("center switch - PID", new NearSwitchAutonChooser(
 			new PIDTurnSwitchLEFT(),
 			new PIDTurnSwitchRIGHT()
+		));
+		
+		chooser.addObject("center switch x2 cube - PID", new NearSwitchAutonChooser(
+			new PIDTurnSwitchLEFT_2Cube(),
+			new PIDTurnSwitchLEFT_2Cube()
 		));
 		
 		chooser.addObject("side switch LEFT - PID", new NearSwitchAutonChooser(

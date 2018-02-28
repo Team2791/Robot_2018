@@ -38,7 +38,7 @@ public class PIDTurnSwitchRIGHT extends CommandGroup {
     	// turn towards the left side
     	addSequential(new StationaryGyroTurn(60, 0.5));
     	// drive towards the left side
-    	addParallel(new SetLiftHeight(Constants.AUTON_SWITCH_HEIGHT)); // was 13
+    	addParallel(new SetLiftHeight(Constants.AUTON_RETRACTED_SWITCH_HEIGHT)); // was 13
     
     	addSequential(new DriveStraightEncoderGyro(56, 0.7));
     	// turn to face the switch

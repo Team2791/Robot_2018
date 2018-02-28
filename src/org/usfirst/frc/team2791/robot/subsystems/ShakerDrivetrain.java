@@ -169,6 +169,7 @@ public class ShakerDrivetrain extends Subsystem {
 	public void setDriveOrRampMode(boolean inDrivingMode) {
 		this.inDriveMode = inDrivingMode;
 		if(inDrivingMode) {
+			inDriveMode = true;
 			shiftingSolenoid.set(Value.kForward);
 		} else {
 			inDriveMode = false;

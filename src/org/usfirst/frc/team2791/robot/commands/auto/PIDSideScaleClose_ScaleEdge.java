@@ -1,8 +1,8 @@
 package org.usfirst.frc.team2791.robot.commands.auto;
 
+
 import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.commands.auto.bangbang.DriveEncoderBangBang;
-import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveEncoderBangBangGyroPID;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveStraightEncoderGyro;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.StationaryGyroTurn;
 import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeight;
@@ -14,9 +14,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class PIDSideSwitchFar extends CommandGroup {
+public class PIDSideScaleClose_ScaleEdge extends CommandGroup {
 
-    public PIDSideSwitchFar(boolean onLeftSide) {
+    public PIDSideScaleClose_ScaleEdge(boolean leftSide) {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -34,28 +34,25 @@ public class PIDSideSwitchFar extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addParallel(new SetManipulatorRetracted(true));
-    	addSequential(new DriveStraightEncoderGyro(221, 1.0));
-    	addParallel(new SetManipulatorRetracted(false));
-    	// turn towards the switch
-    	if(onLeftSide) {
+    	addParallel(new SetLiftHeight(13));
+    	addSequential(new DriveStraightEncoderGyro(305, 0.7));
+    	addSequential(new SetLiftHeight(Constants.AUTON_SCALE_HEIGHT));
+    	if(leftSide) {
     		addSequential(new StationaryGyroTurn(90, 0.5));
     	} else {
     		addSequential(new StationaryGyroTurn(-90, 0.5));
     	}
-    	addParallel(new SetLiftHeight(Constants.AUTON_EXTENDED_SWITCH_HEIGHT));
-    	addSequential(new DriveStraightEncoderGyro(179, 1.0));
-    	
-    	if(onLeftSide) {
-    		addSequential(new StationaryGyroTurn(90, 0.5));
-    	} else {
-    		addSequential(new StationaryGyroTurn(-90, 0.5));
-    	}
-    	
-    	// drive into the cubes near the switch. Low power so we'll hit the them and use the timeout to stop
-    	addSequential(new DriveStraightEncoderGyro(12, 0.4, 2));
-    	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
-    	addParallel(new SetManipulatorRetracted(true));
+    	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED+.1));
+    	// backup and lower the lift
     	addSequential(new DriveEncoderBangBang(-0.3, 0, -20));
-    	addSequential(new SetLiftHeight(0));
+    	addParallel(new SetLiftHeight(0));
+    	// poke a toe out of our zone
+    	if(leftSide) {
+    		addSequential(new StationaryGyroTurn(-70, 0.5));
+    	} else {
+    		addSequential(new StationaryGyroTurn(70, 0.5));
+    	}
+    	addSequential(new DriveEncoderBangBang(0.3, 0, 36
+    			));
     }
 }

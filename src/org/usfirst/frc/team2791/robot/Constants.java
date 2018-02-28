@@ -17,7 +17,7 @@ public class Constants {
 	// Pbot offset = -1.13
 	//Noah's PBot = -.2
 	// flight bot offset = -0.05
-    public static final double LIFT_POT_OFFSET = -1.6;//-2.1 
+    public static final double LIFT_POT_OFFSET = -1.6-1.23;//-2.1 
 	//at 60% the lift was at 36'' from the ground, 33'' from the bottom of it's travel
     public static final double LIFT_POT_FULL_RANGE = 33.0 / 0.6;
     
@@ -34,8 +34,8 @@ public class Constants {
     public static final double MANUAL_POWER = .75;
     
     // TODO Make switch heights constants
-    public static final double AUTON_SWITCH_HEIGHT = 10;
-    public static final double AUTON_BACK_SWITCH_HEIGHT = 13;
+    public static final double AUTON_RETRACTED_SWITCH_HEIGHT = 10;
+    public static final double AUTON_EXTENDED_SWITCH_HEIGHT = 13;
     public static final double AUTON_SCALE_HEIGHT = 38;
 
 	// Joystick constants
