@@ -44,8 +44,7 @@ public class PIDTurnSwitchLEFT extends CommandGroup {
     	// turn to face the switch
     	addSequential(new StationaryGyroTurn(60, 0.5)); // there is only a weak drive after this turn so it overshoots more
     	// drive into the switch. Low power so we'll hit the wall and use the timeout to stop
-    	addSequential(new DriveStraightEncoderGyro(48-4, 0.7));  // 4 short so we do the last part of the drive with bang bang
-    	addSequential(new DriveEncoderBangBangGyroPID(0.3, 4+3, 2)); // 3 overshoot to ensure we hit the wall
+    	addSequential(new DriveStraightEncoderGyro(48+3, 0.5));  // 3 overshoot to ensure we hit the wall
     	// score
     	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
     	addSequential(new DriveEncoderBangBang(-0.3, 0, -20));

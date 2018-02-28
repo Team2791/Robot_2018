@@ -77,8 +77,8 @@ public class OI {
 		operatorY.whenPressed(new SetLiftHeight(13.5)); //Set height to scoring switch
 		
 		operatorDpadDown.whenPressed(new SetLiftHeight(28.0)); //Set height to scoring lowest scale
-		operatorDpadRight.whenPressed(new SetLiftHeight(32.5)); //Set height to scoring even scale
-		operatorDpadRight.whenPressed(new SetManipulatorRetracted(true));
+		operatorDpadRight.whenPressed(new SetLiftHeight(32.0)); //Set height to scoring even scale
+		operatorDpadUp.whenPressed(new SetManipulatorRetracted(true));
 		operatorDpadUp.whenPressed(new SetLiftHeight(38.0)); //Set height to scoring highest scale //Same as A and x :(
 		
 		operatorStart.whenPressed(new ToggleManipulator());

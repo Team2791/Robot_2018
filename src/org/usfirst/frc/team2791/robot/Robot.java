@@ -5,6 +5,7 @@ import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchLEFT;
 import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchRIGHT;
 import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDSideScaleClose;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDSideScaleClose_ScaleEdge;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDSideScaleFar;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDSideSwitchClose;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDSideSwitchFar;
@@ -114,8 +115,10 @@ public class Robot extends IterativeRobot {
 			new PIDSideScaleFar(false),
 			new PIDSideScaleClose(false)
 		));
+		
+		chooser.addObject("TEST - side scale edge RIGHT", new NoChoiceChooser(new PIDSideScaleClose_ScaleEdge(false)));
 
-		chooser.addObject("TEST - Long bang bang + gyro drive", new NoChoiceChooser(new DriveEncoderBangBangGyroPID(0.4, 15*12, 100)));
+		chooser.addObject("DEBUG - Long bang bang + gyro drive", new NoChoiceChooser(new DriveEncoderBangBangGyroPID(0.4, 15*12, 100)));
 		chooser.addObject("TEST - gyro pid 90 rotation", new NoChoiceChooser(new StationaryGyroTurn(90, 0.5, 1.5, 50)));
 		chooser.addObject("TEST - gyro pid -90 rotation", new NoChoiceChooser(new StationaryGyroTurn(-90, 0.5, 1.5, 50)));
 		chooser.addObject("TEST - gyro pid 45 rotation", new NoChoiceChooser(new StationaryGyroTurn(45, 0.5, 1.5, 50)));

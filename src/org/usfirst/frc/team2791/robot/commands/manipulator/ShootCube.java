@@ -10,38 +10,37 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class ShootCube extends Command {
     private double speed;
-    private Timer timer;
-    public ShootCube(double outputSpeed) {
+    
+    public ShootCube(double outputSpeed, double timeout) {
     	requires(Robot.manipulator);
         speed = outputSpeed;
-        timer = new Timer();
+        setTimeout(timeout);
+    }
+    
+    public ShootCube(double outputSpeed) {
+    	this(outputSpeed, 2);
     }
 
     @Override
     protected void initialize() {
-        timer.reset();
-        timer.start();
     }
 
 
     @Override
     protected void execute() {
         Robot.manipulator.setLeftRightMotorSpeed(speed, speed);
-
-
-        }
+       }
 
 
     @Override
     protected boolean isFinished() {
         // TODO: Make this return true when this Command no longer needs to run execute()
-        return timer.get() > 2;
+        return isTimedOut();
     }
 
     @Override
     protected void end() {
         Robot.manipulator.setLeftRightMotorSpeed(0, 0);
-        timer.stop();
     }
 
     @Override

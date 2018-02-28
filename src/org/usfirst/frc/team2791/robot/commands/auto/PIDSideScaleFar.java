@@ -36,13 +36,13 @@ public class PIDSideScaleFar extends CommandGroup {
     	addSequential(new DriveStraightEncoderGyro(221, 1.0));
     	// turn towards the switch
     	if(onLeftSide) {
-    		addSequential(new StationaryGyroTurn(90, 0.5));
+    		addSequential(new StationaryGyroTurn(90, 0.5, 0.75));
     	} else {
-    		addSequential(new StationaryGyroTurn(-90, 0.5));
+    		addSequential(new StationaryGyroTurn(-90, 0.5, 0.75));
     	}
     	addParallel(new SetLiftHeight(11));
     	addSequential(new DriveStraightEncoderGyro(203, 1.0));
-    	
+
     	addParallel(new SetLiftHeight(Constants.AUTON_SCALE_HEIGHT));
     	if(onLeftSide) {
     		addSequential(new StationaryGyroTurn(-100, 0.5));
