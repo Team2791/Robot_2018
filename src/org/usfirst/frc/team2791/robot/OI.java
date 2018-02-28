@@ -51,10 +51,9 @@ public class OI {
 		initDpad();
 
 		/********************************** Driver Button Assignments ****************************************/
-		driverA.whenPressed(new SetDrivetrainShifterMode(true)); // use A to shift back into drive
-		driverB.whenPressed(new SetDrivetrainShifterMode(false));
-		driverX.whenPressed(new SetRampDeploy(false));
-		driverY.whenPressed(new DropRamps());
+		driverA.whenPressed(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
+		driverB.whenPressed(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
+		driverY.whenPressed(new SetDrivetrainShifterMode(true));
 		
 		
 //		driverStart.whileHeld(new RunDrivetrainOnlyOneSide(true, Constants.RAISE_RAMPS_SPEED)); // true runs the left side
