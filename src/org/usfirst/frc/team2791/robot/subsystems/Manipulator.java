@@ -81,6 +81,7 @@ public class Manipulator extends Subsystem {
 
     public void setLeftRightMotorSpeed(double leftSpeed, double rightSpeed) {
 //    	System.out.println("M: "+leftSpeed + " : " + rightSpeed);
+    	SmartDashboard.putString("Manipulator left right speed", leftSpeed + " : " + rightSpeed);
         leftMotor.set(ControlMode.PercentOutput, leftSpeed);
         rightMotor.set(ControlMode.PercentOutput, rightSpeed);
     }

@@ -74,7 +74,6 @@ public class IntakeCube extends Command {
 
     @Override
     protected void end() {
-    	manipulator.setLeftRightMotorSpeed(Constants.HOLD_SPEED, Constants.HOLD_SPEED);
     	System.out.println("Intake cube finished.");
     }
 

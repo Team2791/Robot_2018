@@ -90,8 +90,8 @@ public class ShakerLift extends Subsystem {
             power = min(0.35, power);
         }
 
-        // clamp the maximum down power to 0.35 until we figure out why the bearing popped out
-        power = max(-.45, power);
+        // increasing speed from -0.45 to -.6 before Utica.
+        power = max(-.60, power);
         
         // now we use the internal method that has direct control to the motor
         // after we have made sure that power is a safe number.
