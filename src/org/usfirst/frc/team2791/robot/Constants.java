@@ -26,7 +26,7 @@ public class Constants {
     public static final double FAR_AWAY_POWER = 1;
     public static final double CLOSE_POWER = .25;
     
-    public static final double LIFT_MAX_HEIGHT = 40-1; // -1 for safety
+    public static final double LIFT_MAX_HEIGHT = 38.5-0.75; // -.75 for safety
     public static final double LIFT_MIN_HEIGHT = .25;
     
     public static final double BOTTOM_SAFTEY_DISTANCE = 2.5;
@@ -36,7 +36,7 @@ public class Constants {
     // TODO Make switch heights constants
     public static final double AUTON_RETRACTED_SWITCH_HEIGHT = 10;
     public static final double AUTON_EXTENDED_SWITCH_HEIGHT = 13;
-    public static final double AUTON_SCALE_HEIGHT = 38;
+    public static final double AUTON_SCALE_HEIGHT = 36;
 
 	// Joystick constants
 	public static final double DEADZONE = 0.05;
