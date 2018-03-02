@@ -35,12 +35,15 @@ public class PIDSideScaleClose_ScaleEdge extends CommandGroup {
         // arm.
     	addParallel(new SetManipulatorRetracted(true));
     	addParallel(new SetLiftHeight(13));
-    	addSequential(new DriveStraightEncoderGyro(305, 0.7, 7, 1.5)); //comp scale edge is 298 - 300 in from DS wall.
+    	//comp scale edge is 298 - 300 in from DS wall.
+    	// adding 12'' to get further onto the scale edge.
+    	addSequential(new DriveStraightEncoderGyro(317, 0.7, 7, 1.5)); 
     	addSequential(new SetLiftHeight(Constants.AUTON_SCALE_HEIGHT));
+    	// adding a bit more turn because we won't be flush with the scale
     	if(leftSide) {
-    		addSequential(new StationaryGyroTurn(90, 0.5));
+    		addSequential(new StationaryGyroTurn(100, 0.5));
     	} else {
-    		addSequential(new StationaryGyroTurn(-90, 0.5));
+    		addSequential(new StationaryGyroTurn(-100, 0.5));
     	}
     	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED+.1));
     	// backup and lower the lift

@@ -71,6 +71,7 @@ public class Robot extends IterativeRobot {
     AutonCommandChooser autonCommandChooser;
 	SendableChooser<AutonCommandChooser> chooser = new SendableChooser<>();
 	AutonCommandChooser DEFAULT_AUTO;
+	String DEFAULT_AUTO_NAME;
 
 	/**
 	 * This function is run when the robot is first started up and 2should be
@@ -96,13 +97,28 @@ public class Robot extends IterativeRobot {
 		updateGameData(false);
 
 		// Set up our auton chooser
-		DEFAULT_AUTO =  new NearSwitchAutonChooser(
+		DEFAULT_AUTO_NAME = "Center switch 1.5 cube";
+		DEFAULT_AUTO = new NearSwitchAutonChooser(
 			new PIDTurnSwitchLEFT_2Cube(),
 			new PIDTurnSwitchRIGHT_2Cube()
 		);
+		
+//		DEFAULT_AUTO_NAME = "side scale LEFT - PID";
+//		DEFAULT_AUTO = new ScaleAutonChooser(
+////				new PIDSideScaleClose(true),
+//			new PIDSideScaleClose_ScaleEdge(true),
+//			new PIDSideScaleFar(true)
+//		);
+		
+//		DEFAULT_AUTO_NAME = "side scale RIGHT - PID";
+//		DEFAULT_AUTO = new ScaleAutonChooser(
+//			new PIDSideScaleFar(false),
+////				new PIDSideScaleClose(false)
+//			new PIDSideScaleClose_ScaleEdge(false)
+//		);
 
-		chooser.addDefault("DEFAULT AUTO", DEFAULT_AUTO);
-		chooser.addObject("Default Auto - Do Nothing", new NoChoiceChooser(new DoNothing()));
+		chooser.addDefault(DEFAULT_AUTO_NAME, DEFAULT_AUTO);
+		chooser.addObject("Do Nothing", new NoChoiceChooser(new DoNothing()));
 		
 		chooser.addObject("center switch - PID", new NearSwitchAutonChooser(
 			new PIDTurnSwitchLEFT(),
