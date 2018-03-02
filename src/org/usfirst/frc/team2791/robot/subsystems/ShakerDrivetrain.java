@@ -321,7 +321,7 @@ public class ShakerDrivetrain extends Subsystem {
 	public double getAverageDist() {
 		return Util.average(getLeftDistance(), getRightDistance());
 //		right side commented out due to potential wiring issues
-		//return getLeftDistance();
+//		return getLeftDistance();
 	}
 
 	public double getLeftVelocity() {

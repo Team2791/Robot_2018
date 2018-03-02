@@ -46,7 +46,7 @@ public class Constants {
 	public static final double SPEED_MULTIPLIER = 1;
 	public static final double WHEEL_DIAMETER_IN_IN = 6.0;
 	//6.0 * 3.14159 / 12.0; // was 1.0, now 6.0*3.14159/12.0 = 1.570
-	public static final double RAISE_RAMPS_SPEED = 0.8;
+	public static final double RAISE_RAMPS_SPEED = 0.9;
 	public static final double RIGHT_JOYSTICK_TURN_MULTIPLIER = 0.5;
 
 	// Time when ramps are allowed to be released

@@ -35,9 +35,9 @@ public class IntakeCube extends Command {
         } else {
             // we are trying to get the cube
             if (manipulator.isCubeJammed()) {
-//            	System.out.println("Manipulator - FIXING JAM");
+            	System.out.println("Manipulator - FIXING JAM");
                 // if the cube is jammed we want to unjam it
-                manipulator.setLeftRightMotorSpeed(Constants.INTAKE_SPEED, 0);
+                manipulator.setLeftRightMotorSpeed(0, Constants.INTAKE_SPEED);
             } else {
                 // if we don't have the cube and it is not jammed run normally
                 manipulator.setLeftRightMotorSpeed(Constants.INTAKE_SPEED, Constants.INTAKE_SPEED);

@@ -65,7 +65,7 @@ public class Manipulator extends Subsystem {
         boolean left = !iRSensorLeft.get();
         boolean right = !iRSensorRight.get();
         
-	    return cubeInGripperDelayedBoolean.update(left || right);
+	    return cubeInGripperDelayedBoolean.update(left && right);
     }
 
     // Don't know how to find out if cube is jammed
@@ -112,8 +112,8 @@ public class Manipulator extends Subsystem {
     public double getMaxMotorCurrent() {
     	if(maxCurrentTimer.get() > 0.05) {
     		lastMaxCurrent = Math.max(Robot.pdp.getCurrent(RobotMap.PDP_INTAKE_LEFT), Robot.pdp.getCurrent(RobotMap.PDP_INTAKE_RIGHT));
-    		currentTimer.reset();
-    		currentTimer.start();
+    		maxCurrentTimer.reset();
+    		maxCurrentTimer.start();
     	}
     	return lastMaxCurrent;	
     }

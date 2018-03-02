@@ -33,7 +33,7 @@ public class PIDSideScaleFar extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addParallel(new SetManipulatorRetracted(true));
-    	addSequential(new DriveStraightEncoderGyro(221, 1.0));
+    	addSequential(new DriveStraightEncoderGyro(221, 1.0)); // adjusting from 221 to 214 for Utica
     	// turn towards the switch
     	if(onLeftSide) {
     		addSequential(new StationaryGyroTurn(90, 0.5, 0.75));
@@ -49,7 +49,7 @@ public class PIDSideScaleFar extends CommandGroup {
     	} else {
     		addSequential(new StationaryGyroTurn(100, 0.5));
     	}
-    	addSequential(new DriveStraightEncoderGyro(57, 0.5, 3));
+    	addSequential(new DriveStraightEncoderGyro(40, 0.5, 3)); // adjusting from 57 to 40
     	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
     	addSequential(new DriveEncoderBangBang(-0.3, 0, -20));
     	addSequential(new SetLiftHeight(0));

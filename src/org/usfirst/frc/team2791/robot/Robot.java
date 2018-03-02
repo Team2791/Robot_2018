@@ -70,6 +70,7 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     AutonCommandChooser autonCommandChooser;
 	SendableChooser<AutonCommandChooser> chooser = new SendableChooser<>();
+	AutonCommandChooser DEFAULT_AUTO;
 
 	/**
 	 * This function is run when the robot is first started up and 2should be
@@ -95,7 +96,13 @@ public class Robot extends IterativeRobot {
 		updateGameData(false);
 
 		// Set up our auton chooser
-		chooser.addDefault("Default Auto - Do Nothing", new NoChoiceChooser(new DoNothing()));
+		DEFAULT_AUTO =  new NearSwitchAutonChooser(
+			new PIDTurnSwitchLEFT_2Cube(),
+			new PIDTurnSwitchRIGHT_2Cube()
+		);
+
+		chooser.addDefault("DEFAULT AUTO", DEFAULT_AUTO);
+		chooser.addObject("Default Auto - Do Nothing", new NoChoiceChooser(new DoNothing()));
 		
 		chooser.addObject("center switch - PID", new NearSwitchAutonChooser(
 			new PIDTurnSwitchLEFT(),
@@ -133,7 +140,9 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("TEST - side scale edge RIGHT", new NoChoiceChooser(new PIDSideScaleClose_ScaleEdge(false)));
 		chooser.addObject("TEST - far side scale LEFT", new NoChoiceChooser(new PIDSideScaleFar(true)));
 		chooser.addObject("TEST - far side scale RIGHT", new NoChoiceChooser(new PIDSideScaleFar(false)));
-
+		chooser.addObject("TEST - turn switch x1.5 LEFT", new NoChoiceChooser(new PIDTurnSwitchLEFT_2Cube()));
+		chooser.addObject("TEST - turn switch x1.5 RIGHT", new NoChoiceChooser(new PIDTurnSwitchRIGHT_2Cube()));
+		
 		chooser.addObject("DEBUG - Long bang bang + gyro drive", new NoChoiceChooser(new DriveEncoderBangBangGyroPID(0.4, 15*12, 100)));
 		chooser.addObject("TEST - gyro pid 90 rotation", new NoChoiceChooser(new StationaryGyroTurn(90, 0.5, 1.5, 50)));
 		chooser.addObject("TEST - gyro pid -90 rotation", new NoChoiceChooser(new StationaryGyroTurn(-90, 0.5, 1.5, 50)));
