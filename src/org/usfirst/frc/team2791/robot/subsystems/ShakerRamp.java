@@ -53,10 +53,10 @@ public class ShakerRamp extends Subsystem {
     }
   
     public void debug(){
-        SmartDashboard.putBoolean("Ramp Left Limit Switch 1", leftLimitSwitchOne.get());
-        SmartDashboard.putBoolean("Ramp Left Limit Switch 2", leftLimitSwitchTwo.get());
-        SmartDashboard.putBoolean("Ramp Right Limit Switch 1", rightLimitSwitchOne.get());
-        SmartDashboard.putBoolean("Ramp Right Limit Switch 2", rightLimitSwitchTwo.get());
+        SmartDashboard.putBoolean("Ramp Left Limit Switch 1", !leftLimitSwitchOne.get());
+        SmartDashboard.putBoolean("Ramp Left Limit Switch 2", !leftLimitSwitchTwo.get());
+        SmartDashboard.putBoolean("Ramp Right Limit Switch 1", !rightLimitSwitchOne.get());
+        SmartDashboard.putBoolean("Ramp Right Limit Switch 2", !rightLimitSwitchTwo.get());
         SmartDashboard.putBoolean("Ramp Deploy Soleniod", rampDeploySolenoid.get());
      } 
 }

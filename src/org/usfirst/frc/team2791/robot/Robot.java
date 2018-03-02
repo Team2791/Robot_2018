@@ -305,8 +305,10 @@ public class Robot extends IterativeRobot {
 		lift.debug();
 		
 		boolean timerBlink = false;
+		// start blinkning in the last 45 seconds.
 		if(teleopTimer.get() > 135-45) {
-			timerBlink = ((int) teleopTimer.get()) % 2 == 0;
+			// blink on and off every second
+			timerBlink = ((int) 2 * teleopTimer.get()) % 2 == 0;
 		}
 		SmartDashboard.putBoolean("GAME ENDING SOON", timerBlink);
 	}
