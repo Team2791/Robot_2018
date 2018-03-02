@@ -52,7 +52,5 @@ public class PIDSideScaleClose_ScaleEdge extends CommandGroup {
     	} else {
     		addSequential(new StationaryGyroTurn(70, 0.5));
     	}
-    	addSequential(new DriveEncoderBangBang(0.3, 0, 36
-    			));
     }
 }

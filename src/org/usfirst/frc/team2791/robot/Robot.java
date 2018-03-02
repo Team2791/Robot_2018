@@ -4,7 +4,6 @@ package org.usfirst.frc.team2791.robot;
 import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchLEFT;
 import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchRIGHT;
 import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
-import org.usfirst.frc.team2791.robot.commands.auto.PIDSideScaleClose;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDSideScaleClose_ScaleEdge;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDSideScaleFar;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDSideSwitchClose;
@@ -12,6 +11,7 @@ import org.usfirst.frc.team2791.robot.commands.auto.PIDSideSwitchFar;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchLEFT;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchLEFT_2Cube;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchRIGHT;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchRIGHT_2Cube;
 import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyDriveStraightToSwitch;
 import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyStraightSwitchCubeSCORE;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveEncoderBangBangGyroPID;
@@ -34,6 +34,7 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -63,6 +64,8 @@ public class Robot extends IterativeRobot {
 	public static Limelight limelight;
     public static ShakerLift lift;
     public static UsbCamera driver_cam;
+    
+    private Timer teleopTimer;
 
     Command autonomousCommand;
     AutonCommandChooser autonCommandChooser;
@@ -82,6 +85,8 @@ public class Robot extends IterativeRobot {
 		ramps = new ShakerRamp();
 		lift = new ShakerLift();
 		limelight = new Limelight();
+		
+		teleopTimer = new Timer();
 
 		driver_cam = CameraServer.getInstance().startAutomaticCapture("Driver Cam", 0);
 		
@@ -97,9 +102,9 @@ public class Robot extends IterativeRobot {
 			new PIDTurnSwitchRIGHT()
 		));
 		
-		chooser.addObject("center switch x2 cube - PID", new NearSwitchAutonChooser(
+		chooser.addObject("center switch x1.5 cube - PID", new NearSwitchAutonChooser(
 			new PIDTurnSwitchLEFT_2Cube(),
-			new PIDTurnSwitchLEFT_2Cube()
+			new PIDTurnSwitchRIGHT_2Cube()
 		));
 		
 		chooser.addObject("side switch LEFT - PID", new NearSwitchAutonChooser(
@@ -113,16 +118,21 @@ public class Robot extends IterativeRobot {
 		));
 
 		chooser.addObject("side scale LEFT - PID", new ScaleAutonChooser(
-			new PIDSideScaleClose(true),
+//			new PIDSideScaleClose(true),
+			new PIDSideScaleClose_ScaleEdge(true),
 			new PIDSideScaleFar(true)
 		));
 
 		chooser.addObject("side scale RIGHT - PID", new ScaleAutonChooser(
 			new PIDSideScaleFar(false),
-			new PIDSideScaleClose(false)
+//			new PIDSideScaleClose(false)
+			new PIDSideScaleClose_ScaleEdge(false)
 		));
 		
+		chooser.addObject("TEST - side scale edge LEFT", new NoChoiceChooser(new PIDSideScaleClose_ScaleEdge(true)));
 		chooser.addObject("TEST - side scale edge RIGHT", new NoChoiceChooser(new PIDSideScaleClose_ScaleEdge(false)));
+		chooser.addObject("TEST - far side scale LEFT", new NoChoiceChooser(new PIDSideScaleFar(true)));
+		chooser.addObject("TEST - far side scale RIGHT", new NoChoiceChooser(new PIDSideScaleFar(false)));
 
 		chooser.addObject("DEBUG - Long bang bang + gyro drive", new NoChoiceChooser(new DriveEncoderBangBangGyroPID(0.4, 15*12, 100)));
 		chooser.addObject("TEST - gyro pid 90 rotation", new NoChoiceChooser(new StationaryGyroTurn(90, 0.5, 1.5, 50)));
@@ -293,6 +303,12 @@ public class Robot extends IterativeRobot {
 		ramps.debug();
 		manipulator.debug();
 		lift.debug();
+		
+		boolean timerBlink = false;
+		if(teleopTimer.get() > 135-45) {
+			timerBlink = ((int) teleopTimer.get()) % 2 == 0;
+		}
+		SmartDashboard.putBoolean("GAME ENDING SOON", timerBlink);
 	}
 	
 	public void run() {
