@@ -92,7 +92,7 @@ public class RobotMap {
 	public static final int POWER_LEFT_DRIVE_3 = 5;
 	
 	public static final int PDP_INTAKE_LEFT = 5; // pbot: 3
-	public static final int PDP_INTAKE_RIGHT = 14; // pbot: 4
+	public static final int PDP_INTAKE_RIGHT = 15; // pbot: 4
 	
 	// JOYSTICK PORTS
 	public static final int JOYSTICK_DRIVER_PORT = 0;
