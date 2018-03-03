@@ -97,20 +97,20 @@ public class Robot extends IterativeRobot {
 		updateGameData(false);
 
 		// Set up our auton chooser
-		DEFAULT_AUTO_NAME = "Center switch 1.5 cube";
+		DEFAULT_AUTO_NAME = "D: Center switch 1.5 cube";
 		DEFAULT_AUTO = new NearSwitchAutonChooser(
 			new PIDTurnSwitchLEFT_2Cube(),
 			new PIDTurnSwitchRIGHT_2Cube()
 		);
 		
-//		DEFAULT_AUTO_NAME = "side scale LEFT - PID";
+//		DEFAULT_AUTO_NAME = "D: side scale LEFT - PID";
 //		DEFAULT_AUTO = new ScaleAutonChooser(
 ////				new PIDSideScaleClose(true),
 //			new PIDSideScaleClose_ScaleEdge(true),
 //			new PIDSideScaleFar(true)
 //		);
 		
-//		DEFAULT_AUTO_NAME = "side scale RIGHT - PID";
+//		DEFAULT_AUTO_NAME = "D: side scale RIGHT - PID";
 //		DEFAULT_AUTO = new ScaleAutonChooser(
 //			new PIDSideScaleFar(false),
 ////				new PIDSideScaleClose(false)
