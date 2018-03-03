@@ -42,7 +42,7 @@ public class PIDTurnSwitchLEFT_2Cube extends CommandGroup {
     	// drive towards the left side
     	addParallel(new SetLiftHeight(Constants.AUTON_EXTENDED_SWITCH_HEIGHT));
     	
-    	addSequential(new DriveStraightEncoderGyro(70, 0.9));
+    	addSequential(new DriveStraightEncoderGyro(66, 0.9)); // removing 4 in after Utica Q1 (70->66)
     	// turn to face the switch
     	addSequential(new StationaryGyroTurn(60, 0.5));
     	addParallel(new SetManipulatorRetracted(false));
@@ -58,13 +58,15 @@ public class PIDTurnSwitchLEFT_2Cube extends CommandGroup {
     	// grab the next cube then back away
     	addParallel(new IntakeCube());
     	addSequential(new DriveStraightEncoderGyro(33, 0.6, 99, .75));
-    	addSequential(new DriveEncoderBangBang(0.35, 0, 6)); // power, turn, distance
+    	addSequential(new DriveEncoderBangBang(0.35, 0, 6+6)); // power, turn, distance. adding 6in after UTC Q1
     	addSequential(new PauseDrivetrain(0.5));
-    	addSequential(new DriveStraightEncoderGyro(-39, 0.8, 99, .75));
-    	addParallel(new SetLiftHeight(Constants.AUTON_EXTENDED_SWITCH_HEIGHT));
-    	// drive to the switch and score
-    	addSequential(new StationaryGyroTurn(-45, 0.5));
-//    	addSequential(new DriveStraightEncoderGyro(75, 0.5, 3, 1));
+    	
+    	// removing backup to be closer to cube
+//    	addSequential(new DriveStraightEncoderGyro(-39, 0.8, 99, .75));
+//    	addParallel(new SetLiftHeight(Constants.AUTON_EXTENDED_SWITCH_HEIGHT));
+//    	// drive to the switch and score
+//    	addSequential(new StationaryGyroTurn(-45, 0.5));
+////    	addSequential(new DriveStraightEncoderGyro(75, 0.5, 3, 1));
 //    	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED, 0.75));
 //    	// back up and lower lift
 //    	addSequential(new DriveEncoderBangBang(-0.4, 0, -20)); // power, turn, distance
