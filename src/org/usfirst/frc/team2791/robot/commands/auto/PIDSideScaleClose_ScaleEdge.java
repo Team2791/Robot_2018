@@ -34,10 +34,12 @@ public class PIDSideScaleClose_ScaleEdge extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addParallel(new SetManipulatorRetracted(true));
-    	addParallel(new SetLiftHeight(13));
+    	addParallel(new SetLiftHeight(10));
     	//comp scale edge is 298 - 300 in from DS wall.
     	// adding 12'' to get further onto the scale edge.
-    	addSequential(new DriveStraightEncoderGyro(317, 0.7, 7, 1.5)); 
+    	// we drove to far. Taking 8'' off
+    	// 317 -> 309
+    	addSequential(new DriveStraightEncoderGyro(309, 0.7, 7, 1.5)); 
     	addSequential(new SetLiftHeight(Constants.AUTON_SCALE_HEIGHT));
     	// adding a bit more turn because we won't be flush with the scale
     	if(leftSide) {
