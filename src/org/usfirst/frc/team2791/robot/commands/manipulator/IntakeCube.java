@@ -43,7 +43,7 @@ public class IntakeCube extends Command {
                 manipulator.setLeftRightMotorSpeed(Constants.INTAKE_SPEED, Constants.INTAKE_SPEED);
             }
         }
-        
+
         if(manipulator.getCurrentUsage() > Constants.INTAKE_CUBE_STALL_CURRENT && !intakeCurrentTimerStarted) {
         	intakeCurrentTimer.start();
         	intakeCurrentTimerStarted = true;

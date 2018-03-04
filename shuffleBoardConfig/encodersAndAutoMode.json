@@ -1,5 +1,5 @@
 {
-  "dividerPosition": 0.15577889447236182,
+  "dividerPosition": 0.41331658291457285,
   "tabPane": [
     {
       "title": "Tab 1",
@@ -46,7 +46,7 @@
           },
           "2,0": {
             "size": [
-              2,
+              1,
               1
             ],
             "content": {
@@ -55,7 +55,7 @@
               "_title": "SmartDashboard/DT - Right Encoder Distance"
             }
           },
-          "3,1": {
+          "2,1": {
             "size": [
               1,
               1
@@ -64,6 +64,19 @@
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Lift - Potentiometer value",
               "_title": "SmartDashboard/Lift - Potentiometer value"
+            }
+          },
+          "0,2": {
+            "size": [
+              3,
+              2
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/GAME ENDING SOON",
+              "_title": "/SmartDashboard/GAME ENDING SOON",
+              "colorWhenTrue": "#7CFC00FF",
+              "colorWhenFalse": "#8B0000FF"
             }
           }
         }
@@ -87,7 +100,7 @@
             "content": {
               "_type": "Boolean Box",
               "_source0": "network_table:///SmartDashboard/Manipulator Cube in gripper",
-              "_title": "SmartDashboard/Manipulator Cube in gripper",
+              "_title": "/SmartDashboard/Manipulator Cube in gripper",
               "colorWhenTrue": "#7CFC00FF",
               "colorWhenFalse": "#8B0000FF"
             }
@@ -100,7 +113,7 @@
             "content": {
               "_type": "Boolean Box",
               "_source0": "network_table:///SmartDashboard/Manipulator Cube jammed",
-              "_title": "SmartDashboard/Manipulator Cube jammed",
+              "_title": "/SmartDashboard/Manipulator Cube jammed",
               "colorWhenTrue": "#7CFC00FF",
               "colorWhenFalse": "#8B0000FF"
             }
@@ -113,7 +126,7 @@
             "content": {
               "_type": "Boolean Box",
               "_source0": "network_table:///SmartDashboard/Manipulator Left Sensor",
-              "_title": "SmartDashboard/Manipulator Left Sensor",
+              "_title": "/SmartDashboard/Manipulator Left Sensor",
               "colorWhenTrue": "#7CFC00FF",
               "colorWhenFalse": "#8B0000FF"
             }
@@ -126,7 +139,7 @@
             "content": {
               "_type": "Boolean Box",
               "_source0": "network_table:///SmartDashboard/Manipulator Right Sensor",
-              "_title": "SmartDashboard/Manipulator Right Sensor",
+              "_title": "/SmartDashboard/Manipulator Right Sensor",
               "colorWhenTrue": "#7CFC00FF",
               "colorWhenFalse": "#8B0000FF"
             }
@@ -139,7 +152,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Manipulator - Current",
-              "_title": "SmartDashboard/Manipulator - Current"
+              "_title": "/SmartDashboard/Manipulator - Current"
             }
           },
           "3,1": {
@@ -150,7 +163,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Manipulator - Max Current",
-              "_title": "SmartDashboard/Manipulator - Max Current"
+              "_title": "/SmartDashboard/Manipulator - Max Current"
             }
           }
         }

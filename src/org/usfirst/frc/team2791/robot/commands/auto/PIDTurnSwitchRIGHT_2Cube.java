@@ -53,7 +53,7 @@ public class PIDTurnSwitchRIGHT_2Cube extends CommandGroup {
     	addSequential(new DriveStraightEncoderGyro(-75, 0.7, 99, 1));
     	addParallel(new SetLiftHeight(0));
     	addParallel(new SetManipulatorRetracted(false));
-    	addSequential(new StationaryGyroTurn(-50, 0.5)); // adding angle after 2nd qual match utica 35->50
+    	addSequential(new StationaryGyroTurn(-40, 0.5)); // adding angle after 2nd qual match utica 35->50. 2nd qual on Sunday -50 -> -40
     	// grab the next cube then back away
     	addParallel(new IntakeCube());
     	addSequential(new DriveStraightEncoderGyro(33, 0.6, 99, .75));
