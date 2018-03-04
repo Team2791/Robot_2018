@@ -3,6 +3,7 @@ package org.usfirst.frc.team2791.robot.commands.auto;
 
 import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.commands.auto.bangbang.DriveEncoderBangBang;
+import org.usfirst.frc.team2791.robot.commands.auto.bangbang.TurnGyroBangBang;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveStraightEncoderGyro;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.StationaryGyroTurn;
 import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeight;
@@ -43,8 +44,15 @@ public class PIDSideScaleClose extends CommandGroup {
     	}
     	addSequential(new SetLiftHeight(Constants.AUTON_SCALE_HEIGHT));
     	addSequential(new DriveStraightEncoderGyro(63, 0.3));
-    	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
+    	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED, 0.6));
     	addSequential(new DriveEncoderBangBang(-0.3, 0, -20));
     	addSequential(new SetLiftHeight(0));
+    	// turn and backup from scale to let 340 in.
+    	if(leftSide) {
+    		addSequential(new TurnGyroBangBang(-17, 0.6, 2));
+    	} else {
+    		addSequential(new TurnGyroBangBang(17, 0.6, 2));
+    	}
+    	addSequential(new DriveEncoderBangBang(-0.7, 0, -50, 3.5));
     }
 }
