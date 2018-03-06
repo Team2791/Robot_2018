@@ -43,7 +43,8 @@ public class PIDSideScaleClose extends CommandGroup {
     		addSequential(new StationaryGyroTurn(-22, 0.5, 1.5));
     	}
     	addSequential(new SetLiftHeight(Constants.AUTON_SCALE_HEIGHT));
-    	addSequential(new DriveStraightEncoderGyro(63, 0.3, 10, 1.5));
+    	// drive to scale.
+    	addSequential(new DriveStraightEncoderGyro(63, 0.35, 10, 4.5)); // 1.5 to 4.5. Also adding a extra power
     	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED, 0.5));
     	addSequential(new DriveEncoderBangBang(-0.35, 0, -20));
     	addSequential(new SetLiftHeight(0));
