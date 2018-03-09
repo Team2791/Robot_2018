@@ -1,6 +1,8 @@
 package org.usfirst.frc.team2791.robot.subsystems;
 
 
+import java.io.File;
+
 import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.RobotMap;
@@ -20,6 +22,11 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import jaci.pathfinder.Pathfinder;
+import jaci.pathfinder.Trajectory;
+import jaci.pathfinder.Waypoint;
+import jaci.pathfinder.followers.EncoderFollower;
+import jaci.pathfinder.modifiers.TankModifier;
 /**
  * This class corresponds to the drivetrain. This code is modeled after a drivetrain with six motors, four Spark and two tallon speed controllers.
  * (Note: Talon and Spark speed controllers work off of the same code.) The controls are done for a tank drive system.
@@ -65,6 +72,8 @@ public class ShakerDrivetrain extends Subsystem {
 
 	//Determines the amount of distance traveled for every pulse read on the encoders
 	private double distancePerPulse = Util.tickToFeet(Constants.driveEncoderTicks, Constants.WHEEL_DIAMETER_IN_IN);
+	
+	private boolean isProfileFinished = false;
 
 	public ShakerDrivetrain(){
 		victorLeft1 = new VictorSPX(RobotMap.VICTOR_LEFT_1);
@@ -392,4 +401,171 @@ public class ShakerDrivetrain extends Subsystem {
 									Robot.pdp.getCurrent(RobotMap.POWER_LEFT_DRIVE_2) +
 									Robot.pdp.getCurrent(RobotMap.POWER_LEFT_DRIVE_3);
 	}
+	
+	
+	
+	 
+	
+	//**********************Trajectory***********************//
+	
+	  public int getEncoderRawLeft() {
+	        return this.talonLeft2.getSelectedSensorPosition(0);
+	    }
+
+	    public int getEncoderRawRight() {
+	        return this.talonRight2.getSelectedSensorPosition(0);
+	    }
+	    
+	public EncoderFollower[] pathSetup(Waypoint[] path) {
+
+		//create a new set of follower for the new path
+        EncoderFollower left = new EncoderFollower();
+        EncoderFollower right = new EncoderFollower();
+        Trajectory.Config cfg = new Trajectory.Config(Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH,
+                ShakerDrivetrain.DrivetrainProfiling.dt, ShakerDrivetrain.DrivetrainProfiling.max_velocity, ShakerDrivetrain.DrivetrainProfiling.max_acceleration, ShakerDrivetrain.DrivetrainProfiling.max_jerk);
+        
+        //Fast Path calculations to find the toFollow Trajectories
+        String pathHash = String.valueOf(Util.generatePathHashCode(path));
+        SmartDashboard.putString("Path Hash", pathHash);
+        Trajectory toFollow;// = Pathfinder.generate(path, cfg);
+        
+        //create the csv file for the paths if they haven't already been created
+        File trajectory = new File("/home/lvuser/paths/" + pathHash + ".csv");
+        if (!trajectory.exists()) {
+            toFollow = Pathfinder.generate(path, cfg);
+            Pathfinder.writeToCSV(trajectory, toFollow);
+            System.out.println(pathHash + ".csv not found, wrote to file");
+        } else {
+            System.out.println(pathHash + ".csv read from file");
+            toFollow = Pathfinder.readFromCSV(trajectory);
+        }
+        TankModifier modifier = new TankModifier(toFollow).modify((ShakerDrivetrain.DrivetrainProfiling.wheel_base_width));
+        
+        //Follow the paths with the trajectories
+        DrivetrainProfiling.last_gyro_error = 0.0;
+        left = new EncoderFollower(modifier.getLeftTrajectory());
+        right = new EncoderFollower(modifier.getRightTrajectory());
+        left.configureEncoder(getEncoderRawLeft(), DrivetrainProfiling.ticks_per_rev, DrivetrainProfiling.wheel_diameter);
+        right.configureEncoder(getEncoderRawRight(), DrivetrainProfiling.ticks_per_rev, DrivetrainProfiling.wheel_diameter);
+        left.configurePIDVA(DrivetrainProfiling.kp, DrivetrainProfiling.ki, DrivetrainProfiling.kd, DrivetrainProfiling.kv, DrivetrainProfiling.ka);
+        right.configurePIDVA(DrivetrainProfiling.kp, DrivetrainProfiling.ki, DrivetrainProfiling.kd, DrivetrainProfiling.kv, DrivetrainProfiling.ka);
+        
+        return new EncoderFollower[]{
+                left, // 0
+                right, // 1
+        };
+      }
+	
+	  public void resetForPath() {
+	        isProfileFinished  = false;
+	        resetEncoders();
+	        resetGyro();
+	  }
+	  
+	    public void resetPathAngleOffset() {
+	        DrivetrainProfiling.path_angle_offset = 0.0;
+	    }
+
+	    public boolean getIsProfileFinished() {
+	        return isProfileFinished;
+	    }
+
+	    public void pathFollow(EncoderFollower[] followers, boolean reverse) {
+
+	        EncoderFollower left = followers[0];
+	        EncoderFollower right = followers[1];
+	        double l;
+	        double r;
+	        double localGp = DrivetrainProfiling.gp;
+	        if (!reverse) {
+	            localGp *= -1;
+
+	            l = left.calculate(-getEncoderRawLeft());
+	            r = right.calculate(-getEncoderRawRight());
+	        } else {
+	            l = left.calculate(getEncoderRawLeft());
+	            r = right.calculate(getEncoderRawRight());
+	        }
+
+	        double gyro_heading = reverse ? -getGyroAngle() - DrivetrainProfiling.path_angle_offset : getGyroAngle() + DrivetrainProfiling.path_angle_offset;
+
+	        double angle_setpoint = Pathfinder.r2d(left.getHeading());
+	        SmartDashboard.putNumber("Angle setpoint", angle_setpoint);
+	        double angleDifference = Pathfinder.boundHalfDegrees(angle_setpoint - gyro_heading);
+	        SmartDashboard.putNumber("Angle difference", angleDifference);
+
+	        double turn = localGp * angleDifference + (DrivetrainProfiling.gd *
+	                ((angleDifference - DrivetrainProfiling.last_gyro_error) / DrivetrainProfiling.dt));
+
+	        DrivetrainProfiling.last_gyro_error = angleDifference;
+
+
+	        if (left != null && !left.isFinished()) {
+
+	            SmartDashboard.putNumber("Left diff", left.getSegment().x + this.getLeftDistance());
+	            SmartDashboard.putNumber("Left set vel", left.getSegment().velocity);
+	            SmartDashboard.putNumber("Left set pos", left.getSegment().x);
+	            SmartDashboard.putNumber("Left calc voltage", l);
+	            SmartDashboard.putNumber("Commanded seg heading", left.getHeading());
+	            SmartDashboard.putNumber("Left + turn", l + turn);
+	            SmartDashboard.putNumber("Left seg acceleration", left.getSegment().acceleration);
+	            SmartDashboard.putNumber("Path angle offset", DrivetrainProfiling.path_angle_offset);
+	            SmartDashboard.putNumber("Angle offset w/ new path angle offset", angleDifference + DrivetrainProfiling.path_angle_offset);
+	        }
+	        if (!reverse) {
+	            setLeftRightMotorOutputs(l + turn, r - turn);
+	        } else {
+	        	setLeftRightMotorOutputs(-l + turn, -r - turn);
+	        }
+
+	        if (left.isFinished() && right.isFinished()) {
+	            isProfileFinished = true;
+	            DrivetrainProfiling.path_angle_offset = angleDifference;
+	        }
+	    }
+	  
+	  
+	public static class DrivetrainProfiling {
+        //TODO: TUNE CONSTANTS
+        public static double kp = 0.8; //1.2;
+        public static double kd = 0.0;
+        public static double gp = 0.0375; // 0.05 for practice bot 0.02 for real bot
+        public static double gd = 0.0; //0.0025
+
+        public static double ki = 0.0;
+
+        //Gyro logging for motion profiling
+        public static double last_gyro_error = 0.0;
+        
+        //this stuff is in meters
+        public static double path_angle_offset = 0.0;
+        public static final double max_velocity = 3.35; //according to Cameron
+        public static final double kv = 1.0 / max_velocity; // Calculated for test Drivetrain
+        public static final double max_acceleration = 3.8; // Estimated # from 125
+        public static final double ka = 0.05; //guessed it 0.015
+        public static final double max_jerk = 16.0;  
+        public static final double wheel_diameter = 0.1524; // meters
+
+        public static final double wheel_base_width = 0.6096; //estimated by measuring the robot with cubes #engineering  
+        public static final int ticks_per_rev = (int) Constants.driveEncoderTicks;
+        public static final double dt = 0.02;
+
+        public static void setPIDG(double p, double i, double d, double gp, double gd) {
+            SmartDashboard.putNumber("kP", p);
+            SmartDashboard.putNumber("kI", i);
+            SmartDashboard.putNumber("kD", d);
+            SmartDashboard.putNumber("gP", gp);
+            SmartDashboard.putNumber("gD", gd);
+        }
+
+        public static void updatePIDG() {
+            kp = SmartDashboard.getNumber("kP", 0.0);
+            ki = SmartDashboard.getNumber("kI", 0.0);
+            kd = SmartDashboard.getNumber("kD", 0.0);
+            gp = SmartDashboard.getNumber("gP", 0.0);
+            gd = SmartDashboard.getNumber("gD", 0.0);
+        }
+    }
+	
+	
 }
