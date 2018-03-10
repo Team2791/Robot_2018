@@ -439,7 +439,9 @@ public class ShakerDrivetrain extends Subsystem {
             System.out.println(pathHash + ".csv read from file");
             toFollow = Pathfinder.readFromCSV(trajectory);
         }
+        
         TankModifier modifier = new TankModifier(toFollow).modify((ShakerDrivetrain.DrivetrainProfiling.wheel_base_width));
+        
         
         //Follow the paths with the trajectories
         DrivetrainProfiling.last_gyro_error = 0.0;
@@ -477,7 +479,7 @@ public class ShakerDrivetrain extends Subsystem {
 	        double l;
 	        double r;
 	        double localGp = DrivetrainProfiling.gp;
-	        if (!reverse) {
+	        if (!reverse) { 
 	            localGp *= -1;
 
 	            l = left.calculate(-getEncoderRawLeft());
@@ -486,7 +488,8 @@ public class ShakerDrivetrain extends Subsystem {
 	            l = left.calculate(getEncoderRawLeft());
 	            r = right.calculate(getEncoderRawRight());
 	        }
-
+	        
+	        //
 	        double gyro_heading = reverse ? -getGyroAngle() - DrivetrainProfiling.path_angle_offset : getGyroAngle() + DrivetrainProfiling.path_angle_offset;
 
 	        double angle_setpoint = Pathfinder.r2d(left.getHeading());
@@ -500,7 +503,7 @@ public class ShakerDrivetrain extends Subsystem {
 	        DrivetrainProfiling.last_gyro_error = angleDifference;
 
 
-	        if (left != null && !left.isFinished()) {
+	        if (left != null && !left.isFinished()) { 
 
 	            SmartDashboard.putNumber("Left diff", left.getSegment().x + this.getLeftDistance());
 	            SmartDashboard.putNumber("Left set vel", left.getSegment().velocity);
@@ -512,7 +515,7 @@ public class ShakerDrivetrain extends Subsystem {
 	            SmartDashboard.putNumber("Path angle offset", DrivetrainProfiling.path_angle_offset);
 	            SmartDashboard.putNumber("Angle offset w/ new path angle offset", angleDifference + DrivetrainProfiling.path_angle_offset);
 	        }
-	        if (!reverse) {
+	        if (!reverse) { 
 	            setLeftRightMotorOutputs(l + turn, r - turn);
 	        } else {
 	        	setLeftRightMotorOutputs(-l + turn, -r - turn);
@@ -527,9 +530,9 @@ public class ShakerDrivetrain extends Subsystem {
 	  
 	public static class DrivetrainProfiling {
         //TODO: TUNE CONSTANTS
-        public static double kp = 0.8; //1.2;
+        public static double kp = 0.0; //1.2;
         public static double kd = 0.0;
-        public static double gp = 0.0375; // 0.05 for practice bot 0.02 for real bot
+        public static double gp = 0.0; // 0.05 for practice bot 0.02 for real bot
         public static double gd = 0.0; //0.0025
 
         public static double ki = 0.0;
