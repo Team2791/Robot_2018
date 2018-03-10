@@ -50,7 +50,7 @@ public abstract class DrivetrainPIDStraightDrive extends Command {
 		distancePID.setMaxOutput(maxOutput);
 		distancePID.setMinOutput(-maxOutput);
 
-		distancePID.setIZone(0.15);
+		distancePID.setIZone(4);
 		movingAnglePID.setIZone(4);
 		
 		setInterruptible(true);

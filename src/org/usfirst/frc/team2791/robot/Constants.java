@@ -17,20 +17,20 @@ public class Constants {
 	// Pbot offset = -1.13
 	//Noah's PBot = -.2
 	// flight bot offset = -0.05
-    public static final double LIFT_POT_OFFSET = -2.49-.29;//Pbot: -1.6-1.23
+    public static final double LIFT_POT_OFFSET = -2.49-.29+.54;//cbot: -2.49-.29
 	//at 60% the lift was at 36'' from the ground, 33'' from the bottom of it's travel
     public static final double LIFT_POT_FULL_RANGE = 33.0 / 0.6;
     
     public static final double FAR_AWAY_DISTANCE = 5;
     public static final double CLOSE_DISTANCE = 1;
     public static final double FAR_AWAY_POWER = 1;
-    public static final double CLOSE_POWER = .25;
+    public static final double CLOSE_POWER = .4;
     
     public static final double LIFT_MAX_HEIGHT = 38.5;
     public static final double LIFT_MIN_HEIGHT = .25;
     
-    public static final double BOTTOM_SAFTEY_DISTANCE = 2.5;
-    public static final double TOP_SAFTEY_DISTANCE = 12;
+    public static final double BOTTOM_SAFTEY_DISTANCE = 4;
+    public static final double TOP_SAFTEY_DISTANCE = 6;
     public static final double MANUAL_POWER = .75;
     
     // TODO Make switch heights constants
@@ -78,8 +78,8 @@ public class Constants {
 	
 	// Auto PID constants
 	public static double DRIVE_DISTANCE_P = 0.035;
-	public static double DRIVE_DISTANCE_I = 0.04;
-	public static double DRIVE_DISTANCE_D = 0.005;
+	public static double DRIVE_DISTANCE_I = 0.08;
+	public static double DRIVE_DISTANCE_D = 0.008;
 	
 	public static double DRIVE_ANGLE_P = 0.04; // want .35 output with error 5 degrees 
 	public static double DRIVE_ANGLE_I = 0.0; // I and D values are guesses

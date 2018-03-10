@@ -42,7 +42,7 @@ public class Manipulator extends Subsystem {
         leftMotor.setNeutralMode(NeutralMode.Brake);
         leftMotor.enableVoltageCompensation(true);
         leftMotor.configVoltageCompSaturation(12, 20);
-        rightMotor.setInverted(true);
+        rightMotor.setInverted(false);
         rightMotor.setNeutralMode(NeutralMode.Brake);
         rightMotor.enableVoltageCompensation(true);
         rightMotor.configVoltageCompSaturation(12, 20);

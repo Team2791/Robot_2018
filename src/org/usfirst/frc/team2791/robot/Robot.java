@@ -91,19 +91,19 @@ public class Robot extends IterativeRobot {
 //			new PIDTurnSwitchRIGHT_2Cube()
 //		);
 		
-//		DEFAULT_AUTO_NAME = "D: side scale LEFT - PID";
-//		DEFAULT_AUTO = new ScaleAutonChooser(
-//				new PIDSideScaleClose(true),
-////			new PIDSideScaleClose_ScaleEdge(true),
-//			new PIDSideScaleFar(true)
-//		);
-	
-		DEFAULT_AUTO_NAME = "D: side scale RIGHT - PID";
+		DEFAULT_AUTO_NAME = "D: side scale LEFT - PID";
 		DEFAULT_AUTO = new ScaleAutonChooser(
-			new PIDSideScaleFar(false),
-				new PIDSideScaleClose(false)
-//			new PIDSideScaleClose_ScaleEdge(false)
+				new PIDSideScaleClose(true),
+//			new PIDSideScaleClose_ScaleEdge(true),
+			new PIDSideScaleFar(true)
 		);
+	
+//		DEFAULT_AUTO_NAME = "D: side scale RIGHT - PID";
+//		DEFAULT_AUTO = new ScaleAutonChooser(
+//			new PIDSideScaleFar(false),
+//				new PIDSideScaleClose(false)
+////			new PIDSideScaleClose_ScaleEdge(false)
+//		);
 
 		chooser.addDefault(DEFAULT_AUTO_NAME, DEFAULT_AUTO);
 		chooser.addObject("Do Nothing", new NoChoiceChooser(new DoNothing()));
@@ -158,6 +158,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("TEST - gyro + encoder pid -50'' drive", new NoChoiceChooser(new DriveStraightEncoderGyro(-50, 0.7, 100, .1)));
 		chooser.addObject("TEST - gyro + encoder pid 120'' drive", new NoChoiceChooser(new DriveStraightEncoderGyro(120, 0.7, 100, .1)));
 		chooser.addObject("TEST - gyro + encoder pid -120'' drive", new NoChoiceChooser(new DriveStraightEncoderGyro(-120, 0.7, 100, .1)));
+		chooser.addObject("TEST Default Splint", new NoChoiceChooser(new TestSpline()));
 		
 		chooser.addObject("Cross line - time only", new NoChoiceChooser(new DriveForwardTime(0.33, 3.5)));
 		
@@ -235,13 +236,13 @@ public class Robot extends IterativeRobot {
 		updateGameData(true);
 		// schedule the autonomous command
 		
-//		autonCommandChooser = chooser.getSelected();
-//
-//		if (autonCommandChooser != null) {
-//			autonomousCommand = autonCommandChooser.getCommand(weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch);
-//		}
+		autonCommandChooser = chooser.getSelected();
+
+		if (autonCommandChooser != null) {
+			autonomousCommand = autonCommandChooser.getCommand(weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch);
+		}
 		
-		autonomousCommand = new TestSpline();
+//		autonomousCommand = new TestSpline();
 		if (autonomousCommand != null) {
 			autonomousCommand.start();
 		}
