@@ -10,13 +10,23 @@ import jaci.pathfinder.Waypoint;
  */
 public class Paths {
 
-	public static Waypoint[] driveForward = new Waypoint[]{
-            new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
-            new Waypoint(2.4383 ,-2.4383, Pathfinder.d2r(90.0))
+	public static final Waypoint[] driveForward = new Waypoint[]{
+        new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
+           new Waypoint(2.4383 ,-2.4383, Pathfinder.d2r(90.0))
     };
 	
 	
-	
+    public static final Waypoint[] nearScaleLeft = convertPath_f2m(new Waypoint {
+        new Waypoint(0, 0, 0),
+        new Waypoint(13.25, 0, 0),
+        new Waypoint(9, -5.0, 30.0)
+    });
+    
+    public static final Waypoint[] nearScaleRight = convertPath_f2m(new Waypoint {
+        new Waypoint(0, 0, 0),
+        new Waypoint(13.25, 0, 0),
+        new Waypoint(9, 5.0, -30.0)
+    });
 	
 	/**
 	 * Didn't test this though
