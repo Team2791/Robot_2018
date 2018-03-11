@@ -1,0 +1,114 @@
+{
+  "dividerPosition": 0.32978723404255317,
+  "tabPane": [
+    {
+      "title": "Tab 2",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "4,0": {
+            "size": [
+              3,
+              2
+            ],
+            "content": {
+              "_type": "Graph",
+              "_source0": "network_table:///SmartDashboard/Left diff",
+              "_title": "SmartDashboard/Left diff",
+              "Visible time": 30.0,
+              "SmartDashboard/Left diff visible": true
+            }
+          },
+          "0,0": {
+            "size": [
+              2,
+              2
+            ],
+            "content": {
+              "_type": "Graph",
+              "_source0": "network_table:///SmartDashboard/Left set pos",
+              "_title": "SmartDashboard/Left set pos",
+              "Visible time": 30.0,
+              "SmartDashboard/Left set pos visible": true
+            }
+          },
+          "2,0": {
+            "size": [
+              2,
+              2
+            ],
+            "content": {
+              "_type": "Graph",
+              "_source0": "network_table:///SmartDashboard/Left Distance Meters",
+              "_title": "SmartDashboard/Left Distance Meters",
+              "Visible time": 30.0,
+              "SmartDashboard/Left Distance Meters visible": true
+            }
+          },
+          "0,2": {
+            "size": [
+              2,
+              2
+            ],
+            "content": {
+              "_type": "Graph",
+              "_source0": "network_table:///SmartDashboard/Left set vel",
+              "_title": "SmartDashboard/Left set vel",
+              "Visible time": 30.0,
+              "SmartDashboard/Left set vel visible": true
+            }
+          },
+          "1,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Spline kA",
+              "_title": "SmartDashboard/Spline kA"
+            }
+          },
+          "3,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Left Distance Meters",
+              "_title": "SmartDashboard/Left Distance Meters"
+            }
+          },
+          "2,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Left set pos",
+              "_title": "SmartDashboard/Left set pos"
+            }
+          },
+          "0,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Spline kV",
+              "_title": "SmartDashboard/Spline kV"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

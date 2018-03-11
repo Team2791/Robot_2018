@@ -201,8 +201,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-		Robot.drivetrain.setBrakeMode(false);
+		Robot.drivetrain.setBrakeMode(true);
 		Robot.drivetrain.setVoltageRampRate(0);
+		Robot.drivetrain.resetForPath();
 		Robot.ramps.setRampsDown(false);
 		updateGameData(true);
 	}
@@ -234,16 +235,19 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		updateGameData(true);
+		Robot.drivetrain.resetForPath();
 		// schedule the autonomous command
 		
-		autonCommandChooser = chooser.getSelected();
-
-		if (autonCommandChooser != null) {
-			autonomousCommand = autonCommandChooser.getCommand(weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch);
-		}
+//		autonCommandChooser = chooser.getSelected();
+//
+//		if (autonCommandChooser != null) {
+//			autonomousCommand = autonCommandChooser.getCommand(weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch);
+//		}
 		
-//		autonomousCommand = new TestSpline();
+		autonomousCommand = new TestSpline();
 		if (autonomousCommand != null) {
+			Robot.drivetrain.resetEncoders();
+			Robot.drivetrain.resetGyro();
 			autonomousCommand.start();
 		}
 		

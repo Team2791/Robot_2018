@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import jaci.pathfinder.Waypoint;
 import jaci.pathfinder.followers.EncoderFollower;
 import org.usfirst.frc.team2791.robot.Robot;
+import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain.DrivetrainProfiling;
 
 
 /**
@@ -15,6 +16,10 @@ public class DrivePath extends Command {
     Waypoint[] path;
     EncoderFollower[] followers;
 
+    /**
+     * 
+     * @param path the array of Waypoints that you want to drive
+     */
     public DrivePath(Waypoint[] path) {
         requires(Robot.drivetrain);
         this.path = path;
@@ -23,6 +28,7 @@ public class DrivePath extends Command {
     }
 
     protected void initialize() {
+        Robot.drivetrain.setLeftRightMotorOutputs(0., 0.);
         Robot.drivetrain.resetForPath();
         Robot.drivetrain.pathFollow(followers, false);
     }
@@ -36,9 +42,7 @@ public class DrivePath extends Command {
     }
 
     protected void end() {
-
         Robot.drivetrain.setLeftRightMotorOutputs(0., 0.);
-
     }
 
     protected void interrupted() {

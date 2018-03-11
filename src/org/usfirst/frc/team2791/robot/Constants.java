@@ -89,4 +89,9 @@ public class Constants {
 	public static double STATIONARY_ANGLE_I = 0.10;
 	public static double STATIONARY_ANGLE_D = 0.005;
 	
+	
+	
+	public static double FeetToMeters = 0.3048;
+	public static double InchesToMeters = 0.0254; // :o cheeeeeeesy  o:
+	
 }
