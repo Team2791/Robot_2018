@@ -565,9 +565,9 @@ public class ShakerDrivetrain extends Subsystem {
 
 	public static class DrivetrainProfiling {
 		// TODO: TUNE CONSTANTS
-		public static double kp = 1.2; // 1.2;
-		public static double kd = 0.5;
-		public static double gp = 0.0425; // 0.05 for practice bot 0.02 for real bot
+		public static double kp = 2.0; // 1.2;
+		public static double kd = 1.0;
+		public static double gp = 0.025; // 0.05 for practice bot 0.02 for real bot
 		public static double gd = 0.0; // 0.0025
 
 		public static double ki = 0.0;
@@ -577,11 +577,10 @@ public class ShakerDrivetrain extends Subsystem {
 
 		// this stuff is in meters
 		public static double path_angle_offset = 0.0;
-		public static final double max_velocity = 2.0; // 
-		public static double kv = 1.0 / max_velocity; // Calculated for test Drivetrain // this should be final once the
-														// number is confirmed
-		public static final double max_acceleration = 1.8; // Confirmed uh 3/10 2:45
-		public static double ka = 0.015; // guessed it 0.015 // this should be final once the number is confirmed
+		public static final double max_velocity = 3.0; // 
+		public static double kv = 1.0/max_velocity; 
+		public static final double max_acceleration = 2.5; //
+		public static double ka = 0.0; // guessed it 0.015 // this should be final once the number is confirmed
 		public static final double max_jerk = 8.0;
 		public static final double wheel_diameter = 0.1524; // meters
 
