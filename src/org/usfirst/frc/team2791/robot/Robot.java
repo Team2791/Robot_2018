@@ -5,6 +5,7 @@ import org.usfirst.frc.team2791.robot.commands.auto.*;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.*;
 import org.usfirst.frc.team2791.robot.commands.auto.bangbang.*;
 import org.usfirst.frc.team2791.robot.commands.auto.timeonly.*;
+import org.usfirst.frc.team2791.robot.commands.auto.spline.*;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.traj.TestSpline;
 import org.usfirst.frc.team2791.robot.subsystems.Manipulator;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
@@ -244,7 +245,7 @@ public class Robot extends IterativeRobot {
 //			autonomousCommand = autonCommandChooser.getCommand(weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch);
 //		}
 		
-		autonomousCommand = new TestSpline();
+		autonomousCommand = new RightSideNearScale();
 		if (autonomousCommand != null) {
 			Robot.drivetrain.resetEncoders();
 			Robot.drivetrain.resetGyro();

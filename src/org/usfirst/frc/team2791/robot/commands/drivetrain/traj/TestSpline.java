@@ -10,7 +10,7 @@ public class TestSpline extends CommandGroup{
 
 	public TestSpline() {
 		addSequential(new PauseDrivetrain(.5));
-		addSequential(new DrivePath(Paths.driveForward));
+		addSequential(new DrivePath(Paths.testDrive));
 	}
 
 }

@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2791.robot.util;
+ package org.usfirst.frc.team2791.robot.util;
 
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Waypoint;
@@ -18,28 +18,22 @@ public class Paths {
             new Waypoint(1.524, 0.0, Pathfinder.d2r(0.0)),
             new Waypoint(2.4383 ,-2.4383, Pathfinder.d2r(90.0)),
 //            new Waypoint(1.524, 0.0, 0.0)
-    };
+	};
 	
 	public static Waypoint[] testDrive = new Waypoint[] {
 			new Waypoint(1.0, 0.0, Pathfinder.d2r(0.0))
 	};
 	
-	public static Waypoint[] farScale = convertPath_f2m(new Waypoint[] {
-			new Waypoint(0,3.0,0),
-			new Waypoint(8.0, 3.0,0),
-			new Waypoint(18.0, 8.0, 90.),
-			new Waypoint(18.0, 14.0, 90.),
-			new Waypoint(23.0, 20.0, 0),
-	});
+    public static final Waypoint[] scaleInitialDrive = convertPath_f2m(new Waypoint[] {
+        new Waypoint(0, 0, 0),
+        new Waypoint(13.25, 0, 0),
+    });
+    
+    public static final Waypoint[] nearScaleRightScore = convertPath_f2m(new Waypoint[] {
+        new Waypoint(0, 0, 0),
+        new Waypoint(9, 5.0, -30)
+    });
 	
-	//public static Waypoint[] switchLeft = convertPath_f2m(new Waypoint[] {
-		//new Waypoint()
-	//});
-	
-	/*public static Waypoint[] switchRight = convertPath_f2m(new Waypoint[] {
-			new Waypoint(8.33, -5, 0.0)
-	});
-	*/
 	/**
 	 * Didn't test this though
 	 * Converts the given path from SI to metrics so the Pathfinder library can read it.
@@ -52,6 +46,7 @@ public class Paths {
 			double y_m = standardPath[i].y * 0.3048;
 			double theta_r = Pathfinder.d2r(standardPath[i].angle);
 			standardPath[i] = new Waypoint(x_m, y_m, theta_r);
+			System.out.println("Waypoint(" + x_m +", " + y_m + ", " + theta_r + ")");
 		}
 		
 		return standardPath;
