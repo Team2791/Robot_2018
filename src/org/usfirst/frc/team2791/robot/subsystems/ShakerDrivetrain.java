@@ -565,7 +565,7 @@ public class ShakerDrivetrain extends Subsystem {
 
 	public static class DrivetrainProfiling {
 		// TODO: TUNE CONSTANTS
-		public static double kp = 2.0; // 1.2;
+		public static double kp = 1.2; // 1.2, 2.0;
 		public static double kd = 1.0;
 		public static double gp = 0.025; // 0.05 for practice bot 0.02 for real bot
 		public static double gd = 0.0; // 0.0025

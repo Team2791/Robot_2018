@@ -24,15 +24,30 @@ public class Paths {
 			new Waypoint(1.0, 0.0, Pathfinder.d2r(0.0))
 	};
 	
-    public static final Waypoint[] scaleInitialDrive = convertPath_f2m(new Waypoint[] {
-        new Waypoint(0, 0, 0),
-        new Waypoint(13.25, 0, 0),
+	
+	public static Waypoint[] StartLeftGoToLeftScale = new Waypoint[] {
+			new Waypoint(1.0, 0.0, Pathfinder.d2r(0.0))
+		//	new Waypoint(1.0, 0.25, Pathfinder.d2r(0.0)),
+	};
+	
+    public static Waypoint[] nearScaleRightScore = convertPath_f2m(new Waypoint[] {
+    	new Waypoint(0, 0, 0),
+    	new Waypoint(13.25, 0, 0),
+		new Waypoint(22.25, 2, 30)
     });
     
-    public static final Waypoint[] nearScaleRightScore = convertPath_f2m(new Waypoint[] {
-        new Waypoint(0, 0, 0),
-        new Waypoint(9, 5.0, -30)
-    });
+    public static Waypoint[] nearScaleRightScoreReverse = convertPath_f2m(new Waypoint[] {
+        	new Waypoint(0, 0, 0),
+        	new Waypoint(13.25, 0, 0),
+    		new Waypoint(22.25, -2, -30)
+        });
+    
+    /*public static Waypoint[] farScaleRightScore = convertPath_f2m(new Waypoint[] {
+        	new Waypoint(0, 0, 0),
+        	new Waypoint(10., 0, 0),
+    		new Waypoint(18.25, 8, 90),
+    		new Waypoint(18.25, 16, 90)
+    });*/
 	
 	/**
 	 * Didn't test this though
