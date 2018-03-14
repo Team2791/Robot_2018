@@ -25,7 +25,7 @@ public class Paths {
     public static final Waypoint[] nearScaleRight = convertPath_f2m(new Waypoint {
         new Waypoint(0, 0, 0),
         new Waypoint(13.25, 0, 0),
-        new Waypoint(9, 5.0, 30.0);
+        new Waypoint(9, 5.0, 30.0);// Apparently the signs have been inverted for theta so positive is to the right and negative is to the left
     });
     //Added this Waypoint in for when the robot is at the near Right Scale and needs to turn around to the near switch if that switch is our color
     public static final Waypoint[] nearSwitchRightTurnAround = convertPath_2fm(new Waypoint){
@@ -34,6 +34,14 @@ public class Paths {
     	new Waypoint(0,0,0),
 		new Waypoint(0,0,60),
 		new Waypoint (8.5,0,0);
+	}
+	//TODO CHANGE WAYPOINT VALUES PRBLY OFF SO FAR JUST BEING USED FOR THE FOUNDATION OF THE CODE FOR AUTOS
+	//TODO NEEDS FINE TUNING
+	public static final Waypoint[] farLeftScale = convertPath_2fm(new Waypoint){
+    	new Waypoint (0,0,0),
+		new Waypoint (10,-7,-50),
+		new Waypoint (8,0,0),
+		new Waypoint (5,5,93);
 	}
 	
 	/**
