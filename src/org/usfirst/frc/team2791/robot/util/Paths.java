@@ -16,17 +16,25 @@ public class Paths {
     };
 	
 	
-    public static final Waypoint[] nearScaleLeft = convertPath_f2m(new Waypoint {
+    public static final Waypoint[] nearScaleLeft = convertPath_f2m(new Waypoint){
         new Waypoint(0, 0, 0),
         new Waypoint(13.25, 0, 0),
-        new Waypoint(9, -5.0, 30.0)
-    });
+        new Waypoint(9, -5.0, -30.0);
+    };
     
     public static final Waypoint[] nearScaleRight = convertPath_f2m(new Waypoint {
         new Waypoint(0, 0, 0),
         new Waypoint(13.25, 0, 0),
-        new Waypoint(9, 5.0, -30.0)
+        new Waypoint(9, 5.0, 30.0);
     });
+    //Added this Waypoint in for when the robot is at the near Right Scale and needs to turn around to the near switch if that switch is our color
+    public static final Waypoint[] nearSwitchRightTurnAround = convertPath_2fm(new Waypoint){
+    	//TODO I BASED THESE WAYPOINTS OFF OF ALREADY TESTED AND CORRECTED MEASUREMENTS
+		// TODO BUT THEY ARE MOST PRBLY WRONG BECAUSE NOT TESTED SO PRBLY NEEDS TO BE CHANGED SOON
+    	new Waypoint(0,0,0),
+		new Waypoint(0,0,60),
+		new Waypoint (8.5,0,0);
+	}
 	
 	/**
 	 * Didn't test this though
