@@ -18,7 +18,7 @@ public class DriveStraightEncoderGyro extends DrivetrainPIDStraightDrive {
 	public DriveStraightEncoderGyro(double distanceToDrive, double maxOutput, double timeOut, double maxThreshold){
 		super(distanceToDrive, maxOutput, timeOut, maxThreshold);
 	}
-	
+
 	/**
 	 * Driving Error Threshold is defaulted to 1.5
 	 * @param distanceToDrive the distance in feet that you would like to drive ***negative if reversing*** *

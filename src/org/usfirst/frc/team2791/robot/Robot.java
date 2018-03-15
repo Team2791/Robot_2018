@@ -98,15 +98,19 @@ public class Robot extends IterativeRobot {
 //			new PIDSideScaleFar(true)
 //		);
 	
-		DEFAULT_AUTO_NAME = "D: side scale RIGHT - PID";
-		DEFAULT_AUTO = new ScaleAutonChooser(
-			new PIDSideScaleFar(false),
-				new PIDSideScaleClose(false)
-//			new PIDSideScaleClose_ScaleEdge(false)
-		);
+//		DEFAULT_AUTO_NAME = "D: side scale RIGHT - PID";
+//		DEFAULT_AUTO = new ScaleAutonChooser(
+//			new PIDSideScaleFar(false),
+//				new PIDSideScaleClose(false)
+////			new PIDSideScaleClose_ScaleEdge(false)
+//		);
+		
+		DEFAULT_AUTO_NAME = "D: Do Nothing";
+		DEFAULT_AUTO = new NoChoiceChooser(new DoNothing());
 
 		chooser.addDefault(DEFAULT_AUTO_NAME, DEFAULT_AUTO);
 		chooser.addObject("Do Nothing", new NoChoiceChooser(new DoNothing()));
+		System.out.println("DEFAULT AUTO IS: = " + DEFAULT_AUTO_NAME);
 		
 		chooser.addObject("center switch - PID", new NearSwitchAutonChooser(
 			new PIDTurnSwitchLEFT(),
@@ -235,18 +239,16 @@ public class Robot extends IterativeRobot {
 		updateGameData(true);
 		// schedule the autonomous command
 		
-//		autonCommandChooser = chooser.getSelected();
-//
-//		if (autonCommandChooser != null) {
-//			autonomousCommand = autonCommandChooser.getCommand(weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch);
-//		}
+		autonCommandChooser = chooser.getSelected();
+
+		if (autonCommandChooser != null) {
+			autonomousCommand = autonCommandChooser.getCommand(weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch);
+		}
 		
-		autonomousCommand = new TestSpline();
+//		autonomousCommand = new TestSpline();
 		if (autonomousCommand != null) {
 			autonomousCommand.start();
 		}
-		
-		
 	}
 
 	/**
