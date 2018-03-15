@@ -78,7 +78,7 @@ public class Constants {
 	
 	// Auto PID constants
 	public static double DRIVE_DISTANCE_P = 0.035;
-	public static double DRIVE_DISTANCE_I = 0.04;
+	public static double DRIVE_DISTANCE_I = 0.08;
 	public static double DRIVE_DISTANCE_D = 0.005;
 	
 	public static double DRIVE_ANGLE_P = 0.04; // want .35 output with error 5 degrees 

@@ -35,7 +35,7 @@ public class PIDSideScaleClose extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addParallel(new SetManipulatorRetracted(true));
-    	addSequential(new DriveStraightEncoderGyro(210, 0.7, 10, 1.5));
+    	addSequential(new DriveStraightEncoderGyro(210, 1, 10, 1.5));
     	addParallel(new SetLiftHeight(13));
     	if(leftSide) {
     		addSequential(new StationaryGyroTurn(22, 0.5, 1.5));
@@ -44,16 +44,16 @@ public class PIDSideScaleClose extends CommandGroup {
     	}
     	addSequential(new SetLiftHeight(Constants.AUTON_SCALE_HEIGHT));
     	// drive to scale.
-    	addSequential(new DriveStraightEncoderGyro(63, 0.35, 10, 4.5)); // 1.5 to 4.5. Also adding a extra power
+    	addSequential(new DriveStraightEncoderGyro(63, 0.6, 10, 4.5)); // 1.5 to 4.5. Also adding a extra power
     	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED, 0.5));
-    	addSequential(new DriveEncoderBangBang(-0.35, 0, -20));
+    	addSequential(new DriveEncoderBangBang(-0.5, 0, -20));
     	addSequential(new SetLiftHeight(0));
     	// turn and backup from scale to let 340 in.
     	if(leftSide) {
-    		addSequential(new TurnGyroBangBang(-17, 0.6, 2));
+    		addSequential(new TurnGyroBangBang(-8, -0.6, 2));
     	} else {
-    		addSequential(new TurnGyroBangBang(17, 0.6, 2));
+    		addSequential(new TurnGyroBangBang(8, 0.6, 2));
     	}
-    	addSequential(new DriveEncoderBangBang(-0.7, 0, -50, 3.5));
+    	addSequential(new DriveEncoderBangBang(-0.7, 0, -30, 3.5));
     }
 }
