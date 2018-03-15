@@ -10,6 +10,7 @@ import org.usfirst.frc.team2791.robot.commands.manipulator.SetManipulatorRetract
 import org.usfirst.frc.team2791.robot.commands.manipulator.ShootCube;
 import org.usfirst.frc.team2791.robot.commands.manipulator.ToggleManipulator;
 import org.usfirst.frc.team2791.robot.commands.ramps.DropRamps;
+import org.usfirst.frc.team2791.robot.commands.ramps.LOWERRamps;
 import org.usfirst.frc.team2791.robot.commands.ramps.RaiseRamps;
 import org.usfirst.frc.team2791.robot.commands.ramps.SetRampDeploy;
 import org.usfirst.frc.team2791.robot.shakerJoystick.ShakerGamePad;
@@ -38,7 +39,8 @@ public class OI {
 	protected Button operatorRAnalogTrigger, operatorLAnalogTrigger;
 	
 	// these can be double buttons later
-	protected Button dropRampsButton, raiseRampsDoubleButton, raiseRampsLeftButton, raiseRampsRightButton;
+	protected Button dropRampsButton, raiseRampsDoubleButton, raiseRampsLeftButton, raiseRampsRightButton,
+		lowerRampsLeftButton, lowerRampsRightButton, lowerRampsDoubleButton;
 	
 	public static Button driverSlowButton;
 
@@ -55,7 +57,6 @@ public class OI {
 		driverA.whenPressed(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
 		driverB.whenPressed(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
 		driverY.whenPressed(new DropRamps());
-		
 		// THIS IS HACKY BUT YOLO!!
 		driverSlowButton = driverX;
 		
@@ -71,6 +72,11 @@ public class OI {
 		// this is not used in teleop. It's just nice to have for resetting the robot.
 		driverDpadUp.whenPressed(new SetDrivetrainShifterMode(true));
 		driverDpadUp.whenPressed(new SetRampDeploy(false));
+		
+		lowerRampsRightButton = driverDpadRight;
+		lowerRampsLeftButton = driverDpadLeft;
+		lowerRampsDoubleButton = new DoubleButton(driverDpadLeft, driverDpadRight, "OR");
+		lowerRampsDoubleButton.whileHeld(new LOWERRamps(driverDpadLeft, driverDpadRight));
 
 		
 		/********************************** Operator Button Assignments ****************************************/

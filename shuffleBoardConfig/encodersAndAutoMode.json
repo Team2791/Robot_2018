@@ -1,5 +1,5 @@
 {
-  "dividerPosition": 0.3268015170670038,
+  "dividerPosition": 0.3278894472361809,
   "tabPane": [
     {
       "title": "Tab 1",
@@ -13,7 +13,7 @@
         "tiles": {
           "0,0": {
             "size": [
-              2,
+              1,
               1
             ],
             "content": {
@@ -24,8 +24,8 @@
           },
           "0,1": {
             "size": [
-              5,
-              3
+              2,
+              1
             ],
             "content": {
               "_type": "ComboBox Chooser",
@@ -33,9 +33,9 @@
               "_title": "/SmartDashboard/Auto mode"
             }
           },
-          "3,0": {
+          "1,0": {
             "size": [
-              2,
+              1,
               1
             ],
             "content": {
@@ -44,9 +44,9 @@
               "_title": "SmartDashboard/DT - Left Encoder Distance"
             }
           },
-          "5,0": {
+          "2,0": {
             "size": [
-              2,
+              1,
               1
             ],
             "content": {
@@ -55,7 +55,7 @@
               "_title": "SmartDashboard/DT - Right Encoder Distance"
             }
           },
-          "6,1": {
+          "2,1": {
             "size": [
               1,
               1
@@ -64,6 +64,106 @@
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Lift - Potentiometer value",
               "_title": "SmartDashboard/Lift - Potentiometer value"
+            }
+          },
+          "0,2": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/GAME ENDING SOON",
+              "_title": "/SmartDashboard/GAME ENDING SOON",
+              "colorWhenTrue": "#7CFC00FF",
+              "colorWhenFalse": "#8B0000FF"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Tab 2",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "0,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/Manipulator Cube in gripper",
+              "_title": "/SmartDashboard/Manipulator Cube in gripper",
+              "colorWhenTrue": "#7CFC00FF",
+              "colorWhenFalse": "#8B0000FF"
+            }
+          },
+          "0,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/Manipulator Cube jammed",
+              "_title": "/SmartDashboard/Manipulator Cube jammed",
+              "colorWhenTrue": "#7CFC00FF",
+              "colorWhenFalse": "#8B0000FF"
+            }
+          },
+          "0,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/Manipulator Left Sensor",
+              "_title": "/SmartDashboard/Manipulator Left Sensor",
+              "colorWhenTrue": "#7CFC00FF",
+              "colorWhenFalse": "#8B0000FF"
+            }
+          },
+          "1,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/Manipulator Right Sensor",
+              "_title": "/SmartDashboard/Manipulator Right Sensor",
+              "colorWhenTrue": "#7CFC00FF",
+              "colorWhenFalse": "#8B0000FF"
+            }
+          },
+          "1,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Manipulator - Current",
+              "_title": "/SmartDashboard/Manipulator - Current"
+            }
+          },
+          "2,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Manipulator - Max Current",
+              "_title": "/SmartDashboard/Manipulator - Max Current"
             }
           }
         }

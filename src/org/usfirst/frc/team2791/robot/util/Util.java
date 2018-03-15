@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2791.robot.util;
 
+import jaci.pathfinder.Waypoint;
+
 // This is a class with commonly used methods
 
 public class Util {
@@ -45,4 +47,12 @@ public class Util {
 		}
 		return total / numbers.length;
 	}
+    
+    public static double generatePathHashCode(Waypoint[] path) {
+        double hash = 1.0;
+        for(int i = 0; i < path.length; i ++) {
+            hash =  ((path[i].x * 3) + (path[i].y * 7) + (path[i].angle * 11));
+        }
+        return (int)Math.abs(hash * 1000);
+    }
 }

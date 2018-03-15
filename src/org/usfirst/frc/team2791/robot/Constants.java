@@ -17,7 +17,7 @@ public class Constants {
 	// Pbot offset = -1.13
 	//Noah's PBot = -.2
 	// flight bot offset = -0.05
-    public static final double LIFT_POT_OFFSET = -1.6-1.23;//-2.1 
+    public static final double LIFT_POT_OFFSET = -2.49-.29;//Pbot: -1.6-1.23
 	//at 60% the lift was at 36'' from the ground, 33'' from the bottom of it's travel
     public static final double LIFT_POT_FULL_RANGE = 33.0 / 0.6;
     
@@ -26,7 +26,7 @@ public class Constants {
     public static final double FAR_AWAY_POWER = 1;
     public static final double CLOSE_POWER = .25;
     
-    public static final double LIFT_MAX_HEIGHT = 40-1; // -1 for safety
+    public static final double LIFT_MAX_HEIGHT = 38.5;
     public static final double LIFT_MIN_HEIGHT = .25;
     
     public static final double BOTTOM_SAFTEY_DISTANCE = 2.5;
@@ -36,7 +36,7 @@ public class Constants {
     // TODO Make switch heights constants
     public static final double AUTON_RETRACTED_SWITCH_HEIGHT = 10;
     public static final double AUTON_EXTENDED_SWITCH_HEIGHT = 13;
-    public static final double AUTON_SCALE_HEIGHT = 38;
+    public static final double AUTON_SCALE_HEIGHT = 36;
 
 	// Joystick constants
 	public static final double DEADZONE = 0.05;
@@ -46,7 +46,9 @@ public class Constants {
 	public static final double SPEED_MULTIPLIER = 1;
 	public static final double WHEEL_DIAMETER_IN_IN = 6.0;
 	//6.0 * 3.14159 / 12.0; // was 1.0, now 6.0*3.14159/12.0 = 1.570
-	public static final double RAISE_RAMPS_SPEED = 0.8;
+	public static final double RAISE_RAMPS_SPEED = 0.9;
+	public static final double LOWER_RAMPS_SPEED = -0.5;
+	
 	public static final double RIGHT_JOYSTICK_TURN_MULTIPLIER = 0.5;
 
 	// Time when ramps are allowed to be released
@@ -76,7 +78,7 @@ public class Constants {
 	
 	// Auto PID constants
 	public static double DRIVE_DISTANCE_P = 0.035;
-	public static double DRIVE_DISTANCE_I = 0;
+	public static double DRIVE_DISTANCE_I = 0.04;
 	public static double DRIVE_DISTANCE_D = 0.005;
 	
 	public static double DRIVE_ANGLE_P = 0.04; // want .35 output with error 5 degrees 
