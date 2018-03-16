@@ -85,11 +85,11 @@ public class Robot extends IterativeRobot {
 		updateGameData(false);
 
 		// Set up our auton chooser
-//		DEFAULT_AUTO_NAME = "D: Center switch 1.5 cube";
-//		DEFAULT_AUTO = new NearSwitchAutonChooser(
-//			new PIDTurnSwitchLEFT_2Cube(),
-//			new PIDTurnSwitchRIGHT_2Cube()
-//		);
+		DEFAULT_AUTO_NAME = "D: Center switch 1.5 cube";
+		DEFAULT_AUTO = new NearSwitchAutonChooser(
+			new PIDTurnSwitchLEFT_2Cube(),
+			new PIDTurnSwitchRIGHT_2Cube()
+		);
 		
 //		DEFAULT_AUTO_NAME = "D: side scale LEFT - PID";
 //		DEFAULT_AUTO = new ScaleAutonChooser(
@@ -104,9 +104,9 @@ public class Robot extends IterativeRobot {
 //				new PIDSideScaleClose(false)
 ////			new PIDSideScaleClose_ScaleEdge(false)
 //		);
-		
-		DEFAULT_AUTO_NAME = "D: Do Nothing";
-		DEFAULT_AUTO = new NoChoiceChooser(new DoNothing());
+
+//		DEFAULT_AUTO_NAME = "D: Do Nothing";
+//		DEFAULT_AUTO = new NoChoiceChooser(new DoNothing());
 
 		chooser.addDefault(DEFAULT_AUTO_NAME, DEFAULT_AUTO);
 		chooser.addObject("Do Nothing", new NoChoiceChooser(new DoNothing()));
