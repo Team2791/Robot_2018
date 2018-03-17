@@ -49,7 +49,7 @@ public class PIDSideScaleFar extends CommandGroup {
     	} else {
     		addSequential(new StationaryGyroTurn(100, 0.5));
     	}
-    	addSequential(new DriveStraightEncoderGyro(40-8, 0.5, 3)); // adjusting from 57 to 40
+    	addSequential(new DriveStraightEncoderGyro(40, 0.5, 3)); // adjusting from 57 to 40, adjusting from 40-8 to 40
     	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
     	addSequential(new DriveEncoderBangBang(-0.3, 0, -20));
     	addSequential(new SetLiftHeight(0));
