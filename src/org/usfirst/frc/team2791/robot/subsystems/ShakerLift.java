@@ -8,6 +8,7 @@ import org.usfirst.frc.team2791.robot.RobotMap;
 import org.usfirst.frc.team2791.robot.commands.lift.StopLift;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -25,7 +26,8 @@ public class ShakerLift extends Subsystem {
     DigitalInput topLimitSwitch, bottomLimitSwitch;
     Solenoid breakSolenoid;
     AnalogPotentiometer potentiometer;
-    BaseMotorController motorOne, motorTwo, motorThree;
+    TalonSRX leaderTalon;
+    VictorSPX followerVictor;
     BaseMotorController[] motorControllers;
     AnalogInput potAnalogInput;
     Timer breakReleaseTimer;
@@ -40,13 +42,13 @@ public class ShakerLift extends Subsystem {
         
         breakSolenoid = new Solenoid(RobotMap.PCM_CAN_ID, RobotMap.BREAK_SOLENOID);
         breakReleaseTimer = new Timer();
-        
-//        motorOne = new TalonSRX(RobotMap.LIFT_TALON_ONE);
-        motorTwo = new VictorSPX(RobotMap.LIFT_VICTOR_TWO);
-        motorThree = new VictorSPX(RobotMap.LIFT_VICTOR_THREE);
+
+        leaderTalon = new TalonSRX(RobotMap.LIFT_TALON_ONE);
+        leaderTalon.configSelectedFeedbackSensor(FeedbackDevice.Analog, 0, 0);
+        followerVictor = new VictorSPX(RobotMap.LIFT_VICTOR_TWO);
         
         // vv removed motorOne from here because we're not using it.
-        motorControllers = new BaseMotorController[] {  motorTwo, motorThree };
+        motorControllers = new BaseMotorController[] {  leaderTalon, followerVictor };
         
         for(int i=0; i<motorControllers.length; i++) {
         	motorControllers[i].setNeutralMode(NeutralMode.Brake);
@@ -68,7 +70,13 @@ public class ShakerLift extends Subsystem {
      * @return
      */
     public double getHeight() {
-    	return potentiometer.get();
+    	// From the TalonSRX software manual
+    	// - Analog-In Position, Analog-In Velocity, 10bit ADC Value, 
+    	// The value can be positive or negative so only divide by 2**9
+    	// THIS DOES NOT WORK!
+    	double potVoltage = leaderTalon.getSelectedSensorPosition(0) / Math.pow(2, 9);
+    	return potVoltage * Constants.LIFT_POT_FULL_RANGE/5.00 - Constants.LIFT_POT_OFFSET;
+//    	return potentiometer.get();
     }
 
     // this method is used to set the power of the lift and included saftey so the lift
@@ -99,19 +107,19 @@ public class ShakerLift extends Subsystem {
     }
 
     public boolean atBottom() {
-        return !bottomLimitSwitch.get() || potentiometer.get() < Constants.LIFT_MIN_HEIGHT - 0.1;
+        return !bottomLimitSwitch.get() || getHeight() < Constants.LIFT_MIN_HEIGHT - 0.1;
     }
 
     public boolean closeToBottom() {
-        return potentiometer.get() < Constants.LIFT_MIN_HEIGHT + Constants.BOTTOM_SAFTEY_DISTANCE;
+        return getHeight() < Constants.LIFT_MIN_HEIGHT + Constants.BOTTOM_SAFTEY_DISTANCE;
     }
 
     public boolean atTop() {
-        return !topLimitSwitch.get() || potentiometer.get() > Constants.LIFT_MAX_HEIGHT + 0.1;
+        return !topLimitSwitch.get() || getHeight() > Constants.LIFT_MAX_HEIGHT + 0.1;
     }
 
     public boolean closeToTop() {
-        return potentiometer.get() > Constants.LIFT_MAX_HEIGHT - Constants.TOP_SAFTEY_DISTANCE;
+        return getHeight() > Constants.LIFT_MAX_HEIGHT - Constants.TOP_SAFTEY_DISTANCE;
     }
 
     private void setPowerUnsafe(double power) {
@@ -147,7 +155,7 @@ public class ShakerLift extends Subsystem {
         SmartDashboard.putBoolean("Lift - Close to top", closeToTop());
         SmartDashboard.putBoolean("Lift - Close to bottom", closeToBottom());
         
-        SmartDashboard.putNumber("Lift - Potentiometer value", potentiometer.get());
+        SmartDashboard.putNumber("Lift - Height", getHeight());
         SmartDashboard.putNumber("Lift - Analog voltage value", potAnalogInput.getVoltage());
         
 //        SmartDashboard.putNumber("Lift - Motor One value", motorOne.getMotorOutputPercent());

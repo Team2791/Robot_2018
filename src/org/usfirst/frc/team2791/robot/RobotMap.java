@@ -24,9 +24,8 @@ public class RobotMap {
 	public static final int INTAKE_SPARK_RIGHT_PORT = 35;
 	
 	// Lift
-	public static final int LIFT_TALON_ONE = 28; // this is the
-	public static final int LIFT_VICTOR_TWO = 37; // this is the
-	public static final int LIFT_VICTOR_THREE = 38; // this is the
+	public static final int LIFT_TALON_ONE = 37; // this is the
+	public static final int LIFT_VICTOR_TWO = 38; // this is the
 	
 	
 	// __ Pistons ___
