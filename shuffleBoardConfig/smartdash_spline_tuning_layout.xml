@@ -1,0 +1,446 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="Stationary Angle PID Output" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="756"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
+		<location x="922" y="-26"/>
+		<width>662</width>
+		<height>515</height>
+		<property name="Camera Choice" value=""/>
+	</static-widget>
+	<widget field="Left diff" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="592" y="137"/>
+	</widget>
+	<widget field="Left + turn" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="1157" y="488"/>
+	</widget>
+	<widget field="Auto mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="4" y="57"/>
+	</widget>
+	<widget field="Left Distance Meters" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="764" y="493"/>
+	</widget>
+	<widget field="DT - Right Encoder Distance Meters" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1003" y="473"/>
+	</widget>
+	<widget field="DT - Left Encoder Distance Meters" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="998" y="447"/>
+	</widget>
+	<widget field="DT - Right Encoder Ticks" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="552" y="427"/>
+	</widget>
+	<widget field="DT - Left Encoder Ticks" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="556" y="449"/>
+	</widget>
+	<widget field="Commanded seg heading" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="210" y="-2"/>
+	</widget>
+	<widget field="Left set vel" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="1028" y="133"/>
+	</widget>
+	<widget field="Left set pos" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="354" y="470"/>
+	</widget>
+	<widget field="leftScale" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="203" y="210"/>
+	</widget>
+	<widget field="Angle difference" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="272" y="446"/>
+	</widget>
+	<widget field="Spline kV" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="795" y="41"/>
+	</widget>
+	<widget field="Spline kP" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="653" y="67"/>
+	</widget>
+	<widget field="PID - Distance output" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="351" y="399"/>
+	</widget>
+	<widget field="Spline kA" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="794" y="62"/>
+	</widget>
+	<widget field="Spline kI" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="654" y="93"/>
+		<height>20</height>
+	</widget>
+	<widget field="Lift - Top Limit Switch value" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="355" y="378"/>
+	</widget>
+	<widget field="Manipulator - Current" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="351" y="357"/>
+	</widget>
+	<widget field="Spline kD" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="658" y="116"/>
+	</widget>
+	<widget field="Limelight Area" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="201" y="378"/>
+	</widget>
+	<widget field="leftSwitchFar" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="201" y="357"/>
+	</widget>
+	<widget field="DT - Left Encoders Rate" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="354" y="336"/>
+	</widget>
+	<widget field="PID - Stationary Angle Output" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="341" y="315"/>
+	</widget>
+	<widget field="Limelight Valid" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="201" y="336"/>
+	</widget>
+	<widget field="Angle setpoint" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="174" y="105"/>
+	</widget>
+	<widget field="Lift - Analog voltage value" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="331" y="294"/>
+	</widget>
+	<widget field="LeftOutput vs RightOutput" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="331" y="273"/>
+	</widget>
+	<widget field="PID - Moving Angle Output" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="331" y="252"/>
+	</widget>
+	<widget field="Limelight Latency" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="370" y="231"/>
+	</widget>
+	<widget field="DT - Gyro angle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="208" y="231"/>
+	</widget>
+	<widget field="Manipulator left right speed" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="331" y="210"/>
+	</widget>
+	<widget field="Manipulator - Max Current" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="331" y="189"/>
+	</widget>
+	<widget field="Lift - Bottom Limit Switch value" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="331" y="168"/>
+	</widget>
+	<widget field="GAME ENDING SOON" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="331" y="147"/>
+	</widget>
+	<widget field="PID - Stationary Angle Error" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="331" y="126"/>
+	</widget>
+	<widget field="TUNE PID Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="331" y="105"/>
+	</widget>
+	<widget field="Spline gP" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="651" y="13"/>
+	</widget>
+	<widget field="Spline gD" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="786" y="15"/>
+	</widget>
+	<widget field="DT - Gyro rate" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="165" y="21"/>
+	</widget>
+	<widget field="TUNE PID Stat Angle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="331" y="84"/>
+	</widget>
+	<widget field="Manipulator Right Sensor" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="331" y="63"/>
+	</widget>
+	<widget field="Path angle offset" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="331" y="42"/>
+	</widget>
+	<widget field="Manipulator Cube jammed" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="331" y="21"/>
+	</widget>
+	<widget field="DT - Avg Encoder Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="331" y="0"/>
+	</widget>
+	<widget field="Lift - break timer" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="165" y="0"/>
+	</widget>
+	<widget field="Limelight Skew" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="735"/>
+	</widget>
+	<widget field="Left seg acceleration" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="714"/>
+	</widget>
+	<widget field="PID - Moving Angle Error" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="693"/>
+	</widget>
+	<widget field="Manipulator Cube in gripper" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="672"/>
+	</widget>
+	<widget field="DT - Left Encoder Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="770" y="450"/>
+	</widget>
+	<widget field="Left calc voltage" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="630"/>
+	</widget>
+	<widget field="PID - Distance error" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="588"/>
+	</widget>
+	<widget field="Ramp Right Limit Switch 2" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="567"/>
+	</widget>
+	<widget field="Ramp Right Limit Switch 1" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="546"/>
+	</widget>
+	<widget field="Lift - Close to bottom" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="525"/>
+	</widget>
+	<widget field="Limelight Horizontal" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="504"/>
+	</widget>
+	<widget field="Lift - Break value" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="483"/>
+	</widget>
+	<widget field="Limelight Vertical" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="462"/>
+	</widget>
+	<widget field="Path Finished" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="441"/>
+	</widget>
+	<widget field="PID - Moving Angle P" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="420"/>
+	</widget>
+	<widget field="DT - Right Encoder Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="399"/>
+	</widget>
+	<widget field="PID - Moving Angle I" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="378"/>
+	</widget>
+	<widget field="PID - Moving Angle D" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="357"/>
+	</widget>
+	<widget field="leftSwitchNear" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="336"/>
+	</widget>
+	<widget field="Ramp Deploy Soleniod" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="315"/>
+	</widget>
+	<widget field="Path Hash" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="294"/>
+	</widget>
+	<widget field="Lift - Close to top" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="273"/>
+	</widget>
+	<widget field="Lift - Potentiometer value" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="252"/>
+	</widget>
+	<widget field="DT - Right Encoders Rate" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="231"/>
+	</widget>
+	<widget field="Ramp Left Limit Switch 2" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="210"/>
+	</widget>
+	<widget field="PID - Stat Angle P" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="189"/>
+	</widget>
+	<widget field="Ramp Left Limit Switch 1" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="168"/>
+	</widget>
+	<widget field="PID - Stat Angle I" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="147"/>
+	</widget>
+	<widget field="Manipulator Left Sensor" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="126"/>
+	</widget>
+	<widget field="PID - Stat Angle D" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="105"/>
+	</widget>
+	<widget field="Manipulator Extender Solenoid" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="63"/>
+	</widget>
+	<widget field="PID - Distance P" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="42"/>
+	</widget>
+	<widget field="PID - Distance I" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="21"/>
+	</widget>
+	<widget field="PID - Distance D" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="0"/>
+	</widget>
+</dashboard>
+<live-window>
+	<widget field="shakerRamp" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="0" y="733"/>
+	</widget>
+	<widget field="ShakerLift" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="0" y="709"/>
+	</widget>
+	<widget field="ShakerDrivetrain" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="0" y="685"/>
+	</widget>
+	<widget field="Manipulator" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="0" y="661"/>
+	</widget>
+	<widget field="Ungrouped" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="DigitalInput[9]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[9]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="PowerDistributionPanel[0]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.PowerDistributionPanel">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="PowerDistributionPanel[0]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.PowerDistributionPanel">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="AnalogInput[1]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="AnalogInput[1]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[8]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[8]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[5]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[5]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[4]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[4]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Solenoid[10,4]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Solenoid[10,4]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[6]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[6]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="AnalogPotentiometer[1]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="AnalogPotentiometer[1]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Compressor[10]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Compressor[10]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Solenoid[10,5]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Solenoid[10,5]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Solenoid[10,3]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Solenoid[10,3]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[7]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[7]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[2]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[2]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="ADXRS450_Gyro[0]" type="Table" class="edu.wpi.first.smartdashboard.gui.elements.Compass">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="ADXRS450_Gyro[0]" type="Table" class="edu.wpi.first.smartdashboard.gui.elements.Compass">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DoubleSolenoid[10,0]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.RelayController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DoubleSolenoid[10,0]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.RelayController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[3]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[3]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<location x="11" y="0"/>
+		<width>338</width>
+		<height>660</height>
+	</widget>
+</live-window>
+</xml>
