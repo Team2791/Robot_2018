@@ -13,34 +13,45 @@ public class Paths {
 	 * Waypoint is (dx in meters forwards, dy in meters left?, angle in radians clockwise?)
 	 */
 
-	public static Waypoint[] driveForward = new Waypoint[]{
+	public static Waypoint[] driveForward = convertPath_f2m(new Waypoint[]{
             new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
-            new Waypoint(1.524, 0.0, Pathfinder.d2r(0.0)),
-            new Waypoint(2.4383 ,-2.4383, Pathfinder.d2r(90.0)),
+            new Waypoint(6,0,0),
+   //         new Waypoint(1.524, 0.0, Pathfinder.d2r(0.0)),
+  //          new Waypoint(2.4383 ,-2.4383, Pathfinder.d2r(90.0)),
 //            new Waypoint(1.524, 0.0, 0.0)
-	};
-	
-	public static Waypoint[] testDrive = new Waypoint[] {
+	});
+
+//	public static Waypoint[] testDrive = convertPath_f2m(new Waypoint[] {
+//			new Waypoint(1.0, 0.0, Pathfinder.d2r(0.0))
+//	});
+//	
+	public static Waypoint[] turn = convertPath_f2m(new Waypoint[] {
+			new Waypoint (0,0,0),
+			new Waypoint (4,4,-90),
+	});
+//
+//	public static Waypoint[] forwardAndTurn = convertPath_f2m(new Waypoint[] {
+//			new Waypoint(0,0,0),
+//			new Waypoint(3,3,0),
+//	});
+//
+	public static Waypoint[] StartLeftGoToLeftScale = convertPath_f2m(new Waypoint[] {
+			new Waypoint(0,0,0),
 			new Waypoint(1.0, 0.0, Pathfinder.d2r(0.0))
-	};
-	
-	
-	public static Waypoint[] StartLeftGoToLeftScale = new Waypoint[] {
-			new Waypoint(1.0, 0.0, Pathfinder.d2r(0.0))
-		//	new Waypoint(1.0, 0.25, Pathfinder.d2r(0.0)),
-	};
-	
+//			new Waypoint(1.0, 0.25, Pathfinder.d2r(0.0)),
+	});
+
     public static Waypoint[] nearScaleRightScore = convertPath_f2m(new Waypoint[] {
     	new Waypoint(0, 0, 0),
     	new Waypoint(13.25, 0, 0),
-		new Waypoint(22.25, 2, 30)
+		new Waypoint(22.25, 2, 20)
     });
-    
-    public static Waypoint[] nearScaleRightScoreReverse = convertPath_f2m(new Waypoint[] {
-        	new Waypoint(0, 0, 0),
-        	new Waypoint(13.25, 0, 0),
-    		new Waypoint(22.25, -2, -30)
-        });
+//    
+//    public static Waypoint[] nearScaleRightScoreReverse = convertPath_f2m(new Waypoint[] {
+//    	new Waypoint(0, 0, 0),
+//    	new Waypoint(13.25, 0, 0),
+//		new Waypoint(22.25, -2, -20)
+//    });
     
     /*public static Waypoint[] farScaleRightScore = convertPath_f2m(new Waypoint[] {
         	new Waypoint(0, 0, 0),

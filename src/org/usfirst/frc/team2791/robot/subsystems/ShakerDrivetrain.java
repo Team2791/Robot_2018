@@ -235,7 +235,7 @@ public class ShakerDrivetrain extends Subsystem {
 		// I'm leaving them in because we may use them in the future and I want to be
 		// explicit why we are not using them right now.
 		// SmartDashboard.putNumber("Encoder Angle", getAngleEncoder());
-		// SmartDashboard.putNumber("Avg Acceleration", getAverageAcceleration());
+		 SmartDashboard.putNumber("DT - Avg Acceleration", getAverageAcceleration());
 		// SmartDashboard.putString("LAcc vs RAcc vs AvgAcc",
 		// getLeftAcceleration()+":"+getRightAcceleration()+":"+getAverageAcceleration());
 
@@ -366,9 +366,17 @@ public class ShakerDrivetrain extends Subsystem {
 	public double getLeftVelocity() {
 		return talonLeft2.getSelectedSensorVelocity(0) * distancePerPulse * 10;// 10 to convert from milliseconds a
 	}
+	
+	public double getLeftVelocityMet() {
+		return getLeftVelocity() * Constants.InchesToMeters;
+	}
 
 	public double getRightVelocity() {
 		return talonRight2.getSelectedSensorVelocity(0) * distancePerPulse * 10;
+	}
+	
+	public double getRightVelocityMet() {
+		return getRightVelocity() * Constants.InchesToMeters;
 	}
 
 	/** @return average velocity of both encoder velocities */
@@ -538,17 +546,31 @@ public class ShakerDrivetrain extends Subsystem {
 
 		if (left != null && !left.isFinished()) {
 
-			SmartDashboard.putNumber("Left diff", left.getSegment().x - this.getLeftDistanceMet());
-			SmartDashboard.putNumber("Left Distance Meters", this.getLeftDistanceMet());
-			SmartDashboard.putNumber("Left set vel", left.getSegment().velocity);
-			SmartDashboard.putNumber("Left set pos", left.getSegment().x);
-			SmartDashboard.putNumber("Left calc voltage", l);
-			SmartDashboard.putNumber("Commanded seg heading", left.getHeading());
-			SmartDashboard.putNumber("Left + turn", l + turn);
-			SmartDashboard.putNumber("Left seg acceleration", left.getSegment().acceleration);
-			SmartDashboard.putNumber("Path angle offset", DrivetrainProfiling.path_angle_offset);
-			SmartDashboard.putNumber("Angle offset w/ new path angle offset",
+			SmartDashboard.putNumber("Pathfinder - Left error dist", this.getLeftDistanceMet() - left.getSegment().x);
+			SmartDashboard.putNumber("Pathfinder - Left error vel", this.getLeftVelocityMet() - left.getSegment().velocity);
+			SmartDashboard.putNumber("Pathfinder - Left Distance Meters", this.getLeftDistanceMet());
+			SmartDashboard.putNumber("Pathfinder - Left set vel", left.getSegment().velocity);
+			SmartDashboard.putNumber("Pathfinder - Left set pos", left.getSegment().x);
+			SmartDashboard.putNumber("Pathfinder - Left calc voltage", l);
+			SmartDashboard.putNumber("Pathfinder - Left Commanded seg heading", left.getHeading());
+			SmartDashboard.putNumber("Pathfinder - Left + turn", l + turn);
+			SmartDashboard.putNumber("Pathfinder - Left seg acceleration", left.getSegment().acceleration);
+			
+			SmartDashboard.putNumber("Pathfinder - Right error dist", this.getRightDistanceMet() - right.getSegment().x);
+			SmartDashboard.putNumber("Pathfinder - Right error vel", this.getRightVelocityMet() - right.getSegment().velocity);
+			SmartDashboard.putNumber("Pathfinder - Right Distance Meters", this.getRightDistanceMet());
+			SmartDashboard.putNumber("Pathfinder - Right set vel", right.getSegment().velocity);
+			SmartDashboard.putNumber("Pathfinder - Right set pos", right.getSegment().x);
+			SmartDashboard.putNumber("Pathfinder - Right calc voltage", r);
+			SmartDashboard.putNumber("Pathfinder - Right Commanded seg heading", right.getHeading());
+			SmartDashboard.putNumber("Pathfinder - Right - turn", r - turn);
+			SmartDashboard.putNumber("Pathfinder - Right seg acceleration", right.getSegment().acceleration);
+
+			SmartDashboard.putNumber("Pathfinder - Path angle offset", DrivetrainProfiling.path_angle_offset);
+			SmartDashboard.putNumber("Pathfinder - Angle offset w/ new path angle offset",
 					angleDifference + DrivetrainProfiling.path_angle_offset);
+		
+			SmartDashboard.putNumber("Pathfinder - Angle Error", getGyroAngle() - left.getHeading()*180/Math.PI);
 		}
 		
 		if (!reverse) {
@@ -565,9 +587,9 @@ public class ShakerDrivetrain extends Subsystem {
 
 	public static class DrivetrainProfiling {
 		// TODO: TUNE CONSTANTS
-		public static double kp = 1.2; // 1.2, 2.0;
-		public static double kd = 1.0;
-		public static double gp = 0.025; // 0.05 for practice bot 0.02 for real bot
+		public static double kp = 4.0; // 6.0 Maybe higher, less than 6.5
+		public static double kd = 0.0; // 0
+		public static double gp = 0.0; // 0.025
 		public static double gd = 0.0; // 0.0025
 
 		public static double ki = 0.0;
@@ -577,10 +599,12 @@ public class ShakerDrivetrain extends Subsystem {
 
 		// this stuff is in meters
 		public static double path_angle_offset = 0.0;
-		public static final double max_velocity = 3.0; // 
+		public static final double max_velocity = 3; // 125 in/s -> 3.175m/s
 		public static double kv = 1.0/max_velocity; 
-		public static final double max_acceleration = 2.5; //
-		public static double ka = 0.0; // guessed it 0.015 // this should be final once the number is confirmed
+		public static final double max_acceleration = 2.5; // 200 in/s^2 at 0, -> 5.08m. 2.5 max accel is okay for now. Can add later.
+		public static double ka = 0.065; // guessed it 0.015 // this should be final once the number is confirmed
+		// was 0.1 and looked too high
+		// 1.0/5.08 = 0.20.
 		public static final double max_jerk = 8.0;
 		public static final double wheel_diameter = 0.1524; // meters
 
@@ -598,14 +622,14 @@ public class ShakerDrivetrain extends Subsystem {
 		 * @param gd
 		 */
 		public static void sendToDashboardPIDG(double p, double i, double d, double gp, double gd) {
-			SmartDashboard.putNumber("Spline kP", p);
-			SmartDashboard.putNumber("Spline kI", i);
-			SmartDashboard.putNumber("Spline kD", d);
-			SmartDashboard.putNumber("Spline gP", gp);
-			SmartDashboard.putNumber("Spline gD", gd);
-			SmartDashboard.putNumber("Spline kV", kv);
-			SmartDashboard.putNumber("Spline kA", ka);
-			SmartDashboard.putBoolean("Path Finished", Robot.drivetrain.isProfileFinished);
+			SmartDashboard.putNumber("Pathfinder - kP", p);
+			SmartDashboard.putNumber("Pathfinder - kI", i);
+			SmartDashboard.putNumber("Pathfinder - kD", d);
+			SmartDashboard.putNumber("Pathfinder - gP", gp);
+			SmartDashboard.putNumber("Pathfinder - gD", gd);
+			SmartDashboard.putNumber("Pathfinder - kV", kv);
+			SmartDashboard.putNumber("Pathfinder - kA", ka);
+			SmartDashboard.putBoolean("Pathfinder -Path Finished", Robot.drivetrain.isProfileFinished);
 		}
 
 	}

@@ -1,5 +1,5 @@
 {
-  "dividerPosition": 0.32978723404255317,
+  "dividerPosition": 0.3316645807259074,
   "tabPane": [
     {
       "title": "Tab 2",
@@ -19,9 +19,8 @@
             "content": {
               "_type": "Graph",
               "_source0": "network_table:///SmartDashboard/Left diff",
-              "_title": "SmartDashboard/Left diff",
-              "Visible time": 30.0,
-              "SmartDashboard/Left diff visible": true
+              "_title": "/SmartDashboard/Left diff",
+              "Visible time": 30.0
             }
           },
           "0,0": {
@@ -32,9 +31,8 @@
             "content": {
               "_type": "Graph",
               "_source0": "network_table:///SmartDashboard/Left set pos",
-              "_title": "SmartDashboard/Left set pos",
-              "Visible time": 30.0,
-              "SmartDashboard/Left set pos visible": true
+              "_title": "/SmartDashboard/Left set pos",
+              "Visible time": 30.0
             }
           },
           "2,0": {
@@ -45,9 +43,8 @@
             "content": {
               "_type": "Graph",
               "_source0": "network_table:///SmartDashboard/Left Distance Meters",
-              "_title": "SmartDashboard/Left Distance Meters",
-              "Visible time": 30.0,
-              "SmartDashboard/Left Distance Meters visible": true
+              "_title": "/SmartDashboard/Left Distance Meters",
+              "Visible time": 30.0
             }
           },
           "0,2": {
@@ -58,9 +55,8 @@
             "content": {
               "_type": "Graph",
               "_source0": "network_table:///SmartDashboard/Left set vel",
-              "_title": "SmartDashboard/Left set vel",
-              "Visible time": 30.0,
-              "SmartDashboard/Left set vel visible": true
+              "_title": "/SmartDashboard/Left set vel",
+              "Visible time": 30.0
             }
           },
           "1,4": {
