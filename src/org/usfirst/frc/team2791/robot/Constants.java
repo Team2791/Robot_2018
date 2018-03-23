@@ -17,11 +17,11 @@ public class Constants {
 	// Pbot offset = -1.13
 	//Noah's PBot = -.2
 	// flight bot offset = -0.05
-    public static final double LIFT_POT_OFFSET = -2.49-.29-.23-.17;//Pbot: -1.6-1.23
+    public static final double LIFT_POT_OFFSET = -3.7096;//Pbot: -1.6-1.23
 	//at 60% the lift was at 36'' from the ground, 33'' from the bottom of it's travel
     public static final double LIFT_POT_FULL_RANGE = 33.0 / 0.6;
     
-    public static final double FAR_AWAY_DISTANCE = 5;
+    public static final double FAR_AWAY_DISTANCE = 12;
     public static final double CLOSE_DISTANCE = 1;
     public static final double FAR_AWAY_POWER = 1;
     public static final double CLOSE_POWER = .25;
@@ -29,8 +29,8 @@ public class Constants {
     public static final double LIFT_MAX_HEIGHT = 38.5;
     public static final double LIFT_MIN_HEIGHT = .25;
     
-    public static final double BOTTOM_SAFTEY_DISTANCE = 2.5;
-    public static final double TOP_SAFTEY_DISTANCE = 6;
+    public static final double BOTTOM_SAFTEY_DISTANCE = 11;
+    public static final double TOP_SAFTEY_DISTANCE = 14;
     public static final double MANUAL_POWER = .75;
     
     // TODO Make switch heights constants
@@ -74,6 +74,7 @@ public class Constants {
 	//Auto Constants
 	public static final double LINE_DISTANCE = 10; //THIS IS NOT FINAL TODO FIND ACTUAL DISTANCE
 	public static final double SMALL_DISTANCE = 2; //THIS IS NOT FINAL TODO FIND ACTUAL VALUABLE SMALL DISTANCE
+	public static final double LIFT_HOLD_VOLTAGE = 0.12;
 	
 	
 	// Auto PID constants

@@ -25,7 +25,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class ShakerLift extends Subsystem {
     DigitalInput topLimitSwitch, bottomLimitSwitch;
     Solenoid breakSolenoid;
-    AnalogPotentiometer potentiometer;
+//    AnalogPotentiometer potentiometer;
     TalonSRX leaderTalon;
     VictorSPX followerVictor;
     BaseMotorController[] motorControllers;
@@ -38,7 +38,7 @@ public class ShakerLift extends Subsystem {
         topLimitSwitch = new DigitalInput(RobotMap.LIMIT_SWITCH_TOP);
         bottomLimitSwitch = new DigitalInput(RobotMap.LIMIT_SWITCH_BOTTOM);
         potAnalogInput = new AnalogInput(RobotMap.LIFT_POT_PORT);
-        potentiometer = new AnalogPotentiometer(potAnalogInput, Constants.LIFT_POT_FULL_RANGE, Constants.LIFT_POT_OFFSET);
+//        potentiometer = new AnalogPotentiometer(potAnalogInput, Constants.LIFT_POT_FULL_RANGE, Constants.LIFT_POT_OFFSET);
         
         breakSolenoid = new Solenoid(RobotMap.PCM_CAN_ID, RobotMap.BREAK_SOLENOID);
         breakReleaseTimer = new Timer();
@@ -74,14 +74,20 @@ public class ShakerLift extends Subsystem {
     	// - Analog-In Position, Analog-In Velocity, 10bit ADC Value, 
     	// The value can be positive or negative so only divide by 2**9
     	// THIS DOES NOT WORK!
-    	double potVoltage = leaderTalon.getSelectedSensorPosition(0) / Math.pow(2, 9);
-    	return potVoltage * Constants.LIFT_POT_FULL_RANGE/5.00 - Constants.LIFT_POT_OFFSET;
+    	double potTravel = getSRXVoltageFeedback()/ 1023.0;
+    	return potTravel * Constants.LIFT_POT_FULL_RANGE + Constants.LIFT_POT_OFFSET;
 //    	return potentiometer.get();
+    }
+    
+    public int getSRXVoltageFeedback() {
+    	return 1024 - (-leaderTalon.getSelectedSensorPosition(0));
     }
 
     // this method is used to set the power of the lift and included saftey so the lift
     // is moving slowly near the top/bottom and once at the top/bottom can't break itself. 
     public void setPower(double power) {
+    	SmartDashboard.putNumber("Lift - set power input", power);
+    	power += Constants.LIFT_HOLD_VOLTAGE;
     	// make sure the break is released before we let it move
     	if(breakReleaseTimer.get() < 0.12) {
     		setPowerUnsafe(0);
@@ -156,7 +162,8 @@ public class ShakerLift extends Subsystem {
         SmartDashboard.putBoolean("Lift - Close to bottom", closeToBottom());
         
         SmartDashboard.putNumber("Lift - Height", getHeight());
-        SmartDashboard.putNumber("Lift - Analog voltage value", potAnalogInput.getVoltage());
+//        SmartDashboard.putNumber("Lift - Analog voltage value", potAnalogInput.getVoltage());
+        SmartDashboard.putNumber("Lift - SRX Return value", getSRXVoltageFeedback());
         
 //        SmartDashboard.putNumber("Lift - Motor One value", motorOne.getMotorOutputPercent());
 //        SmartDashboard.putNumber("Lift - Motor Two value", motorTwo.getMotorOutputPercent());
