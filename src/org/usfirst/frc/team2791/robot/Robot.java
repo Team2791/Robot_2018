@@ -36,8 +36,8 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -53,7 +53,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 
 
-public class Robot extends IterativeRobot {
+public class Robot extends TimedRobot {
 
 	public static String data;
 	public static boolean weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch;
@@ -99,6 +99,14 @@ public class Robot extends IterativeRobot {
 		ShakerDrivetrain.putPIDGainsOnSmartDash();
 
 		updateGameData(false);
+		
+		// THIS IS HERE FOR TRAJ TESTING ONLY!
+//		autonomousCommand = new DrivePath(Paths.turn);
+	//autonomousCommand = new DrivePath(Paths.driveForward);
+		autonomousCommand = new DrivePath(Paths.closeScale2Cube1stCubeStartRIGHT);
+//		autonomousCommand = new DrivePathReversed(Paths.closeScale2Cube1stCubeStartRIGHT);
+		
+		
 
 		// Set up our auton chooser
 //		DEFAULT_AUTO_NAME = "D: Center switch 1.5 cube";
@@ -217,9 +225,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-		Robot.drivetrain.setBrakeMode(false);
 		Robot.drivetrain.setVoltageRampRate(0);
 		Robot.drivetrain.resetForPath();
+		Robot.drivetrain.setBrakeMode(false);
 		Robot.ramps.setRampsDown(false);
 		updateGameData(true);
 	}
@@ -262,7 +270,6 @@ public class Robot extends IterativeRobot {
 //			autonomousCommand = autonCommandChooser.getCommand(weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch);
 //		}
 		
-		autonomousCommand = new DrivePath(Paths.turn);
 		if (autonomousCommand != null) {
 			autonomousCommand.start();
 		}
@@ -334,7 +341,6 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void debug(){
-		limelight.debug();
 		drivetrain.debug();
 		ramps.debug();
 		manipulator.debug();

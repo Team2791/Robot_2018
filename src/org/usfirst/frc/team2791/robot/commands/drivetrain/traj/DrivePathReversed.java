@@ -24,9 +24,11 @@ public class DrivePathReversed extends Command {
     protected void initialize() {
         Robot.drivetrain.resetForPath();
         Robot.drivetrain.pathFollow(followers, true);
+        System.out.println("Driving path reversed init finished");
     }
 
     protected void execute() {
+//    	System.out.println("Driving path reversed!");
         Robot.drivetrain.pathFollow(followers, true);
     }
 
@@ -35,7 +37,7 @@ public class DrivePathReversed extends Command {
     }
 
     protected void end() {
-
+    	System.out.println("Driving path reversed finished!");
         Robot.drivetrain.setLeftRightMotorOutputs(0., 0.);
     }
 

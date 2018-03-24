@@ -467,15 +467,16 @@ public class ShakerDrivetrain extends Subsystem {
 		Trajectory toFollow;// = Pathfinder.generate(path, cfg);
 
 		// create the csv file for the paths if they haven't already been created
-		File trajectory = new File("/home/lvuser/paths/" + pathHash + ".csv");
-		if (!trajectory.exists()) {
+//		File trajectory = new File("/home/lvuser/paths/" + pathHash + ".csv");
+//		if (!trajectory.exists()) {
+		// Until the paths are final don't do this!!
 			toFollow = Pathfinder.generate(path, cfg);
-			Pathfinder.writeToCSV(trajectory, toFollow);
-			System.out.println(pathHash + ".csv not found, wrote to file");
-		} else {
-			System.out.println(pathHash + ".csv read from file");
-			toFollow = Pathfinder.readFromCSV(trajectory);
-		}
+//			Pathfinder.writeToCSV(trajectory, toFollow);
+//			System.out.println(pathHash + ".csv not found, wrote to file");
+//		} else {
+//			System.out.println(pathHash + ".csv read from file");
+//			toFollow = Pathfinder.readFromCSV(trajectory);
+//		}
 
 		TankModifier modifier = new TankModifier(toFollow)
 				.modify((ShakerDrivetrain.DrivetrainProfiling.wheel_base_width));
@@ -521,11 +522,10 @@ public class ShakerDrivetrain extends Subsystem {
 		double localGp = DrivetrainProfiling.gp;
 		
 		if (!reverse) {
-			localGp *= -1;
-
 			l = left.calculate(getEncoderRawLeft());
 			r = right.calculate(getEncoderRawRight());
 		} else {
+			localGp *= -1;
 			l = left.calculate(-getEncoderRawLeft());
 			r = right.calculate(-getEncoderRawRight());
 		}
@@ -548,21 +548,21 @@ public class ShakerDrivetrain extends Subsystem {
 
 			SmartDashboard.putNumber("Pathfinder - Left error dist", this.getLeftDistanceMet() - left.getSegment().x);
 			SmartDashboard.putNumber("Pathfinder - Left error vel", this.getLeftVelocityMet() - left.getSegment().velocity);
-			SmartDashboard.putNumber("Pathfinder - Left Distance Meters", this.getLeftDistanceMet());
+			SmartDashboard.putNumber("Pathfinder - Left Distance Meters", left.getSegment().x);
 			SmartDashboard.putNumber("Pathfinder - Left set vel", left.getSegment().velocity);
 			SmartDashboard.putNumber("Pathfinder - Left set pos", left.getSegment().x);
 			SmartDashboard.putNumber("Pathfinder - Left calc voltage", l);
-			SmartDashboard.putNumber("Pathfinder - Left Commanded seg heading", left.getHeading());
+			SmartDashboard.putNumber("Pathfinder - Left Commanded seg heading", left.getHeading()*Constants.RADIANS_TO_DEGREES);
 			SmartDashboard.putNumber("Pathfinder - Left + turn", l + turn);
 			SmartDashboard.putNumber("Pathfinder - Left seg acceleration", left.getSegment().acceleration);
 			
 			SmartDashboard.putNumber("Pathfinder - Right error dist", this.getRightDistanceMet() - right.getSegment().x);
 			SmartDashboard.putNumber("Pathfinder - Right error vel", this.getRightVelocityMet() - right.getSegment().velocity);
-			SmartDashboard.putNumber("Pathfinder - Right Distance Meters", this.getRightDistanceMet());
+			SmartDashboard.putNumber("Pathfinder - Right Distance Meters", right.getSegment().x);
 			SmartDashboard.putNumber("Pathfinder - Right set vel", right.getSegment().velocity);
 			SmartDashboard.putNumber("Pathfinder - Right set pos", right.getSegment().x);
 			SmartDashboard.putNumber("Pathfinder - Right calc voltage", r);
-			SmartDashboard.putNumber("Pathfinder - Right Commanded seg heading", right.getHeading());
+			SmartDashboard.putNumber("Pathfinder - Right Commanded seg heading degrees", right.getHeading()*Constants.RADIANS_TO_DEGREES);
 			SmartDashboard.putNumber("Pathfinder - Right - turn", r - turn);
 			SmartDashboard.putNumber("Pathfinder - Right seg acceleration", right.getSegment().acceleration);
 
@@ -570,26 +570,28 @@ public class ShakerDrivetrain extends Subsystem {
 			SmartDashboard.putNumber("Pathfinder - Angle offset w/ new path angle offset",
 					angleDifference + DrivetrainProfiling.path_angle_offset);
 		
-			SmartDashboard.putNumber("Pathfinder - Angle Error", getGyroAngle() - left.getHeading()*180/Math.PI);
+			SmartDashboard.putNumber("Pathfinder - Angle Error", getGyroAngle() - left.getHeading()*Constants.RADIANS_TO_DEGREES);
 		}
 		
 		if (!reverse) {
-			setLeftRightMotorOutputs(l + turn, r - turn);
+			setLeftRightMotorOutputs(l - turn, r + turn);
 		} else {
-			setLeftRightMotorOutputs(-l + turn, -r - turn);
+			setLeftRightMotorOutputs(-l - turn, -r + turn);
 		}
 
 		if (left.isFinished() && right.isFinished()) {
+			System.out.println("DT Finished driving path");
 			isProfileFinished = true;
 			DrivetrainProfiling.path_angle_offset = angleDifference;
+			return;
 		}
 	}
 
 	public static class DrivetrainProfiling {
 		// TODO: TUNE CONSTANTS
-		public static double kp = 4.0; // 6.0 Maybe higher, less than 6.5
-		public static double kd = 0.0; // 0
-		public static double gp = 0.0; // 0.025
+		public static double kp = 5.0; // 6.0 Maybe higher, less than 6.5. Using 5 because on 2nd day gave best results
+		public static double kd = 0.04; // 0.04
+		public static double gp = 0.03; //  0.03
 		public static double gd = 0.0; // 0.0025
 
 		public static double ki = 0.0;
@@ -600,15 +602,15 @@ public class ShakerDrivetrain extends Subsystem {
 		// this stuff is in meters
 		public static double path_angle_offset = 0.0;
 		public static final double max_velocity = 3; // 125 in/s -> 3.175m/s
-		public static double kv = 1.0/max_velocity; 
-		public static final double max_acceleration = 2.5; // 200 in/s^2 at 0, -> 5.08m. 2.5 max accel is okay for now. Can add later.
+		public static double kv = 1.0/max_velocity;
+		public static final double max_acceleration = 3.5; // was 3 // 200 in/s^2 at 0, -> 5.08m. 2.5 max accel is okay for now. Can add later.
 		public static double ka = 0.065; // guessed it 0.015 // this should be final once the number is confirmed
 		// was 0.1 and looked too high
 		// 1.0/5.08 = 0.20.
-		public static final double max_jerk = 8.0;
-		public static final double wheel_diameter = 0.1524; // meters
+		public static final double max_jerk = 5000000.0; // was 8
+		public static final double wheel_diameter = Constants.WHEEL_DIAMETER_IN_IN * Constants.InchesToMeters; // 6'' in meters
 
-		public static final double wheel_base_width = 0.6985; // 27.5 inches
+		public static final double wheel_base_width = 0.662; // 24.5 inches
 		public static final int ticks_per_rev = (int) Constants.driveEncoderTicks;
 		public static final double dt = 0.02;
 

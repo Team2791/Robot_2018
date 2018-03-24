@@ -44,7 +44,7 @@ public class Constants {
 	// Drive train constants
 	public static double driveEncoderTicks = 256 * 2; // not sure why we're doing this ??
 	public static final double SPEED_MULTIPLIER = 1;
-	public static final double WHEEL_DIAMETER_IN_IN = 6.0;
+	public static final double WHEEL_DIAMETER_IN_IN = 6.0 * 0.95833333; //because of carpet + real size wheels are actually 0.95833333 * 6''
 	//6.0 * 3.14159 / 12.0; // was 1.0, now 6.0*3.14159/12.0 = 1.570
 	public static final double RAISE_RAMPS_SPEED = 0.9;
 	public static final double LOWER_RAMPS_SPEED = -0.5;
@@ -74,6 +74,7 @@ public class Constants {
 	//Auto Constants
 	public static final double LINE_DISTANCE = 10; //THIS IS NOT FINAL TODO FIND ACTUAL DISTANCE
 	public static final double SMALL_DISTANCE = 2; //THIS IS NOT FINAL TODO FIND ACTUAL VALUABLE SMALL DISTANCE
+	public static final double RADIANS_TO_DEGREES = -180/Math.PI;
 	
 	
 	// Auto PID constants

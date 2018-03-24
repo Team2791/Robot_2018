@@ -25,15 +25,19 @@ public class DrivePath extends Command {
         this.path = path;
         setInterruptible(false); //not sure if this should be there
         followers = Robot.drivetrain.pathSetup(path);
+        System.out.println("Finished constructor for DrivePath");
     }
 
     protected void initialize() {
+    	System.out.println("Started Path Init!");
         Robot.drivetrain.setLeftRightMotorOutputs(0., 0.);
         Robot.drivetrain.resetForPath();
-        Robot.drivetrain.pathFollow(followers, false);
+        followers[0].reset();
+        followers[1].reset();
     }
 
     protected void execute() {
+//    	System.out.println("Driving Path");
         Robot.drivetrain.pathFollow(followers, false);
     }
 
@@ -42,6 +46,7 @@ public class DrivePath extends Command {
     }
 
     protected void end() {
+    	System.out.println("Finished Driving Path");
         Robot.drivetrain.setLeftRightMotorOutputs(0., 0.);
     }
 

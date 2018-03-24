@@ -15,7 +15,7 @@ public class Paths {
 
 	public static Waypoint[] driveForward = convertPath_f2m(new Waypoint[]{
             new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
-            new Waypoint(6,0,0),
+            new Waypoint(20,0,0),
    //         new Waypoint(1.524, 0.0, Pathfinder.d2r(0.0)),
   //          new Waypoint(2.4383 ,-2.4383, Pathfinder.d2r(90.0)),
 //            new Waypoint(1.524, 0.0, 0.0)
@@ -46,6 +46,16 @@ public class Paths {
     	new Waypoint(13.25, 0, 0),
 		new Waypoint(22.25, 2, 20)
     });
+
+    
+    
+    public static Waypoint[] closeScale2Cube1stCubeStartRIGHT = convertPath_f2m(new Waypoint[] {
+    	new Waypoint(0, 0, 0), // start on the right side
+    	new Waypoint(13, 0, 0),
+    	new Waypoint(19, 2.5, 25),
+		new Waypoint(23.5, -1.1, 90) // end in the center of the null zone facing the scale.
+    });
+    
 //    
 //    public static Waypoint[] nearScaleRightScoreReverse = convertPath_f2m(new Waypoint[] {
 //    	new Waypoint(0, 0, 0),
