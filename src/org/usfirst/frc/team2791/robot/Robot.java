@@ -1,11 +1,23 @@
 
 package org.usfirst.frc.team2791.robot;
 
-import org.usfirst.frc.team2791.robot.commands.auto.*;
-import org.usfirst.frc.team2791.robot.commands.auto.pid.*;
-import org.usfirst.frc.team2791.robot.commands.auto.bangbang.*;
-import org.usfirst.frc.team2791.robot.commands.auto.timeonly.*;
-import org.usfirst.frc.team2791.robot.commands.drivetrain.traj.TestSpline;
+import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchLEFT;
+import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchRIGHT;
+import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDSideScaleClose_ScaleEdge;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDSideScaleFar;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDSideSwitchClose;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDSideSwitchFar;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchLEFT;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchLEFT_2Cube;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchRIGHT;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchRIGHT_2Cube;
+import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyDriveStraightToSwitch;
+import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyStraightSwitchCubeSCORE;
+import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveEncoderBangBangGyroPID;
+import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveStraightEncoderGyro;
+import org.usfirst.frc.team2791.robot.commands.auto.pid.StationaryGyroTurn;
+import org.usfirst.frc.team2791.robot.commands.auto.timeonly.DriveForwardTime;
 import org.usfirst.frc.team2791.robot.subsystems.Manipulator;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerLift;
@@ -20,8 +32,8 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -37,7 +49,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 
 
-public class Robot extends IterativeRobot {
+public class Robot extends TimedRobot {
 
 	public static String data;
 	public static boolean weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch;
@@ -97,16 +109,16 @@ public class Robot extends IterativeRobot {
 //			new PIDSideScaleClose_ScaleEdge(true),
 //			new PIDSideScaleFar(true)
 //		);
-	
-		DEFAULT_AUTO_NAME = "D: side scale RIGHT - PID";
-		DEFAULT_AUTO = new ScaleAutonChooser(
-			new PIDSideScaleFar(false),
-//				new PIDSideScaleClose(false)
-			new PIDSideScaleClose_ScaleEdge(false)
-		);
+//	
+//		DEFAULT_AUTO_NAME = "D: side scale RIGHT - PID";
+//		DEFAULT_AUTO = new ScaleAutonChooser(
+//			new PIDSideScaleFar(false),
+////				new PIDSideScaleClose(false)
+//			new PIDSideScaleClose_ScaleEdge(false)
+//		);
 
-//		DEFAULT_AUTO_NAME = "D: Do Nothing";
-//		DEFAULT_AUTO = new NoChoiceChooser(new DoNothing());
+		DEFAULT_AUTO_NAME = "D: Do Nothing";
+		DEFAULT_AUTO = new NoChoiceChooser(new DoNothing());
 
 		chooser.addDefault(DEFAULT_AUTO_NAME, DEFAULT_AUTO);
 		chooser.addObject("Do Nothing", new NoChoiceChooser(new DoNothing()));

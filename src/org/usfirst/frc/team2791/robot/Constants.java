@@ -17,7 +17,7 @@ public class Constants {
 	// Pbot offset = -1.13
 	//Noah's PBot = -.2
 	// flight bot offset = -0.05
-    public static final double LIFT_POT_OFFSET = -3.7096;//Pbot: -1.6-1.23
+    public static final double LIFT_POT_OFFSET = -4.036;//-3.7096-0.914;//Pbot: -1.6-1.23
 	//at 60% the lift was at 36'' from the ground, 33'' from the bottom of it's travel
     public static final double LIFT_POT_FULL_RANGE = 33.0 / 0.6;
     
@@ -67,7 +67,7 @@ public class Constants {
 	// 2/12 ~= 0.17. We use voltage compensation so we can assume the voltage is 12v
 	public static final double HOLD_SPEED = -0.1; //Made negative for P-Bot, wires are backwards 
 	public static final double SMALL_OUTPUT_SPEED = .45; //Made negative for P-Bot, wires are backwards //Increased by 40% for new 1:10 reduction
-	public static final double LARGE_OUTPUT_SPEED = .9; //Made negative for P-Bot, wires are backwards //Increased by 40% for new 1:10 reduction
+	public static final double LARGE_OUTPUT_SPEED = 1.0; //Made negative for P-Bot, wires are backwards //Increased by 40% for new 1:10 reduction
 	public static final double INTAKE_CUBE_STALL_CURRENT = 7;
 	
 

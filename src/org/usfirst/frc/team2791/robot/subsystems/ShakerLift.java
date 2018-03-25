@@ -80,7 +80,7 @@ public class ShakerLift extends Subsystem {
     }
     
     public int getSRXVoltageFeedback() {
-    	return 1024 - (-leaderTalon.getSelectedSensorPosition(0));
+    	return leaderTalon.getSelectedSensorPosition(0);
     }
 
     // this method is used to set the power of the lift and included saftey so the lift
