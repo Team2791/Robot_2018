@@ -3,6 +3,7 @@ package org.usfirst.frc.team2791.robot.subsystems;
 import java.io.File;
 
 import org.usfirst.frc.team2791.robot.Constants;
+import org.usfirst.frc.team2791.robot.Constants.DrivetrainProfiling;
 import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.RobotMap;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.DriveWithJoystick;
@@ -235,9 +236,11 @@ public class ShakerDrivetrain extends Subsystem {
 		// I'm leaving them in because we may use them in the future and I want to be
 		// explicit why we are not using them right now.
 		// SmartDashboard.putNumber("Encoder Angle", getAngleEncoder());
-		 SmartDashboard.putNumber("DT - Avg Acceleration", getAverageAcceleration());
+//		 SmartDashboard.putNumber("DT - Avg Acceleration", getAverageAcceleration());
 		// SmartDashboard.putString("LAcc vs RAcc vs AvgAcc",
 		// getLeftAcceleration()+":"+getRightAcceleration()+":"+getAverageAcceleration());
+		 
+		 SmartDashboard.putBoolean("Pathfinder -Path Finished", Robot.drivetrain.isProfileFinished);
 
 	}
 
@@ -457,9 +460,9 @@ public class ShakerDrivetrain extends Subsystem {
 		EncoderFollower left = new EncoderFollower();
 		EncoderFollower right = new EncoderFollower();
 		Trajectory.Config cfg = new Trajectory.Config(Trajectory.FitMethod.HERMITE_QUINTIC,
-				Trajectory.Config.SAMPLES_HIGH, ShakerDrivetrain.DrivetrainProfiling.dt,
-				ShakerDrivetrain.DrivetrainProfiling.max_velocity,
-				ShakerDrivetrain.DrivetrainProfiling.max_acceleration, ShakerDrivetrain.DrivetrainProfiling.max_jerk);
+				Trajectory.Config.SAMPLES_HIGH, DrivetrainProfiling.dt,
+				DrivetrainProfiling.max_velocity,
+				DrivetrainProfiling.max_acceleration, DrivetrainProfiling.max_jerk);
 
 		// Fast Path calculations to find the toFollow Trajectories
 		String pathHash = String.valueOf(Util.generatePathHashCode(path));
@@ -479,7 +482,7 @@ public class ShakerDrivetrain extends Subsystem {
 //		}
 
 		TankModifier modifier = new TankModifier(toFollow)
-				.modify((ShakerDrivetrain.DrivetrainProfiling.wheel_base_width));
+				.modify((DrivetrainProfiling.wheel_base_width));
 
 		DrivetrainProfiling.last_gyro_error = 0.0;
 		left = new EncoderFollower(modifier.getLeftTrajectory());
@@ -585,55 +588,6 @@ public class ShakerDrivetrain extends Subsystem {
 			DrivetrainProfiling.path_angle_offset = angleDifference;
 			return;
 		}
-	}
-
-	public static class DrivetrainProfiling {
-		// TODO: TUNE CONSTANTS
-		public static double kp = 5.0; // 6.0 Maybe higher, less than 6.5. Using 5 because on 2nd day gave best results
-		public static double kd = 0.04; // 0.04
-		public static double gp = 0.03; //  0.03
-		public static double gd = 0.0; // 0.0025
-
-		public static double ki = 0.0;
-
-		// Gyro logging for motion profiling
-		public static double last_gyro_error = 0.0;
-
-		// this stuff is in meters
-		public static double path_angle_offset = 0.0;
-		public static final double max_velocity = 3; // 125 in/s -> 3.175m/s
-		public static double kv = 1.0/max_velocity;
-		public static final double max_acceleration = 3.5; // was 3 // 200 in/s^2 at 0, -> 5.08m. 2.5 max accel is okay for now. Can add later.
-		public static double ka = 0.065; // guessed it 0.015 // this should be final once the number is confirmed
-		// was 0.1 and looked too high
-		// 1.0/5.08 = 0.20.
-		public static final double max_jerk = 5000000.0; // was 8
-		public static final double wheel_diameter = Constants.WHEEL_DIAMETER_IN_IN * Constants.InchesToMeters; // 6'' in meters
-
-		public static final double wheel_base_width = 0.662; // 24.5 inches
-		public static final int ticks_per_rev = (int) Constants.driveEncoderTicks;
-		public static final double dt = 0.02;
-
-		/**
-		 * Spline PID
-		 * 
-		 * @param p
-		 * @param i
-		 * @param d
-		 * @param gp
-		 * @param gd
-		 */
-		public static void sendToDashboardPIDG(double p, double i, double d, double gp, double gd) {
-			SmartDashboard.putNumber("Pathfinder - kP", p);
-			SmartDashboard.putNumber("Pathfinder - kI", i);
-			SmartDashboard.putNumber("Pathfinder - kD", d);
-			SmartDashboard.putNumber("Pathfinder - gP", gp);
-			SmartDashboard.putNumber("Pathfinder - gD", gd);
-			SmartDashboard.putNumber("Pathfinder - kV", kv);
-			SmartDashboard.putNumber("Pathfinder - kA", ka);
-			SmartDashboard.putBoolean("Pathfinder -Path Finished", Robot.drivetrain.isProfileFinished);
-		}
-
 	}
 
 }

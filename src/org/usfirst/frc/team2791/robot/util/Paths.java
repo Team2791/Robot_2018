@@ -50,10 +50,10 @@ public class Paths {
     
     
     public static Waypoint[] closeScale2Cube1stCubeStartRIGHT = convertPath_f2m(new Waypoint[] {
-    	new Waypoint(0, 0, 0), // start on the right side
-    	new Waypoint(13, 0, 0),
-    	new Waypoint(19, 2.5, 25),
-		new Waypoint(23.5, -1.1, 90) // end in the center of the null zone facing the scale.
+    	new Waypoint(1.75, 4, 0), // start on the right side
+    	new Waypoint(22.5, 5, 15),
+    	new Waypoint(27, 2.5, 90),
+		//new Waypoint(23.5, -1.1, 90) // end in the center of the null zone facing the scale.
     });
     
 //    
@@ -63,12 +63,24 @@ public class Paths {
 //		new Waypoint(22.25, -2, -20)
 //    });
     
-    /*public static Waypoint[] farScaleRightScore = convertPath_f2m(new Waypoint[] {
-        	new Waypoint(0, 0, 0),
+    public static Waypoint[] farScaleRightScore = convertPath_f2m(new Waypoint[] {
+        /*	new Waypoint(0, 0, 0),
         	new Waypoint(10., 0, 0),
     		new Waypoint(18.25, 8, 90),
     		new Waypoint(18.25, 16, 90)
-    });*/
+    		*/
+    		//TODO needs more tuning 
+    	    new Waypoint(1.50,4,0),
+    	    new Waypoint(18,5,15),
+    	//	new Waypoint(18,5,40),
+    		new Waypoint(19,7,100),
+    	    new Waypoint(19.05,22,100),
+    		//new Waypoint(19.01,21,95),
+    		new Waypoint(20,24,30),
+    		new Waypoint(24.5,21,-20),
+    		
+    		
+    });
 	
 	/**
 	 * Didn't test this though

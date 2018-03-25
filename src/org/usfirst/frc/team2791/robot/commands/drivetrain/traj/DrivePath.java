@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import jaci.pathfinder.Waypoint;
 import jaci.pathfinder.followers.EncoderFollower;
 import org.usfirst.frc.team2791.robot.Robot;
-import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain.DrivetrainProfiling;
+import org.usfirst.frc.team2791.robot.Constants.DrivetrainProfiling;
 
 
 /**
@@ -30,10 +30,11 @@ public class DrivePath extends Command {
 
     protected void initialize() {
     	System.out.println("Started Path Init!");
-        Robot.drivetrain.setLeftRightMotorOutputs(0., 0.);
+        Robot.drivetrain.setLeftRightMotorOutputs(0, 0);
         Robot.drivetrain.resetForPath();
         followers[0].reset();
         followers[1].reset();
+        System.out.println("Finished driving path");
     }
 
     protected void execute() {
@@ -47,7 +48,7 @@ public class DrivePath extends Command {
 
     protected void end() {
     	System.out.println("Finished Driving Path");
-        Robot.drivetrain.setLeftRightMotorOutputs(0., 0.);
+        Robot.drivetrain.setLeftRightMotorOutputs(0, 0);
     }
 
     protected void interrupted() {

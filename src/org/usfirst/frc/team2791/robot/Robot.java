@@ -103,8 +103,9 @@ public class Robot extends TimedRobot {
 		// THIS IS HERE FOR TRAJ TESTING ONLY!
 //		autonomousCommand = new DrivePath(Paths.turn);
 	//autonomousCommand = new DrivePath(Paths.driveForward);
-		autonomousCommand = new DrivePath(Paths.closeScale2Cube1stCubeStartRIGHT);
+	//	autonomousCommand = new DrivePath(Paths.closeScale2Cube1stCubeStartRIGHT);
 //		autonomousCommand = new DrivePathReversed(Paths.closeScale2Cube1stCubeStartRIGHT);
+		autonomousCommand = new DrivePath(Paths.farScaleRightScore);
 		
 		
 
