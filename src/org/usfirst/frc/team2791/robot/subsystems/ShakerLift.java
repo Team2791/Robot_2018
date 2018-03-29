@@ -3,6 +3,7 @@ package org.usfirst.frc.team2791.robot.subsystems;
 import static java.lang.StrictMath.max;
 import static java.lang.StrictMath.min;
 
+import com.ctre.phoenix.motion.SetValueMotionProfile;
 import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.RobotMap;
 import org.usfirst.frc.team2791.robot.commands.lift.StopLift;
@@ -54,9 +55,23 @@ public class ShakerLift extends Subsystem {
         	motorControllers[i].setNeutralMode(NeutralMode.Brake);
         	// this will limit the motor controllers from shocking the lift with full power
         	// it will take them 0.5s to ramp up to full power.
-        	motorControllers[i].configOpenloopRamp(0.25, 10); 
+        	motorControllers[i].configOpenloopRamp(0.25, 10);
         }
 
+        // Setting up Magic Motion Profiling
+        // I don't know how it workis if you have leaders and followers, this code is just for leaderTalon
+        // https://www.ctr-electronics.com/downloads/pdf/Talon%20SRX%20Software%20Reference%20Manual.pdf  ---> Page 99
+        leaderTalon.configNominalOutputForward(0.0, 1); // I dont know what timeout argument is for
+        leaderTalon.configNominalOutputReverse(0.0, 1); // I dont know what timeout argument is for
+
+        //leaderTalon.
+        leaderTalon.configPeakCurrentLimit(12, 1); // Need to tune these values, I am just guessing
+        leaderTalon.configMotionCruiseVelocity(7, 1);
+        leaderTalon.configMotionAcceleration(6, 9);
+        leaderTalon.config_kD(Constants.SLOT_ID, Constants.LIFT_D_VALUE, 1);
+        leaderTalon.config_kI(Constants.SLOT_ID, Constants.LIFT_I_VALUE, 1);
+        leaderTalon.config_kP(Constants.SLOT_ID, Constants.LIFT_P_VALUE, 1);
+        leaderTalon.config_kF(Constants.SLOT_ID, Constants.LIFT_F_VALUE, 1);
     }
 
     @Override
@@ -152,6 +167,27 @@ public class ShakerLift extends Subsystem {
         	}
         }
     }
+
+//    public void switchControlMode(){
+//        if(leaderTalon.getControlMode() == ControlMode.MotionMagic){
+//            leaderTalon.set();
+//        }
+//    }
+    // Use only if Magic Motion needed
+    public void setTarget(double targetHeight){
+        for (BaseMotorController controller:motorControllers) {
+            controller.set(ControlMode.MotionMagic, targetHeight);
+        }
+    }
+
+//    public void setDefaultControlMode(){
+//        setPowerUnsafe(0.0); // Using this method because it sets ControlMode within itself
+//    }
+//
+//    public void setMagicMotionControlMode(){
+//        setTarget(0.0); // Using this method because it sets ControlMode within itself
+//    }
+
 
 
     public void debug(){

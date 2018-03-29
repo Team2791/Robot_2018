@@ -32,6 +32,17 @@ public class Constants {
     public static final double BOTTOM_SAFTEY_DISTANCE = 11;
     public static final double TOP_SAFTEY_DISTANCE = 14;
     public static final double MANUAL_POWER = .75;
+
+    // Lift Magic Motion values
+	public static final int SLOT_ID = 0;
+    public static final double LIFT_F_VALUE = 0.0;
+    public static final double LIFT_P_VALUE = 0.0;
+    public static final double LIFT_I_VALUE = 0.0;
+    public static final double LIFT_D_VALUE = 0.0;
+    public static final int MOTION_VELOCITY = 5;
+    public static final int MOTION_ACCELERATION = 2;
+
+
     
     // TODO Make switch heights constants
     public static final double AUTON_RETRACTED_SWITCH_HEIGHT = 10;

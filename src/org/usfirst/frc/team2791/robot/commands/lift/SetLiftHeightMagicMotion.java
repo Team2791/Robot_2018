@@ -1,27 +1,38 @@
 package org.usfirst.frc.team2791.robot.commands.lift;
-import static java.lang.Math.abs;
-
-import org.usfirst.frc.team2791.robot.Constants;
-import org.usfirst.frc.team2791.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team2791.robot.Constants;
+import org.usfirst.frc.team2791.robot.Robot;
+import org.usfirst.frc.team2791.robot.subsystems.ShakerLift;
 
-public class SetLiftHeight extends Command {
-    private double targetHeight;
+import static java.lang.Math.abs;
+
+public class SetLiftHeightMagicMotion extends Command {
     // Height measered inches
-    public SetLiftHeight(double height) {
+    private double targetHeight;
+    private ShakerLift lift;
+    public SetLiftHeightMagicMotion(double height) {
         super("GoToHeight");
         requires(Robot.lift);
-        targetHeight = height;
+        this.targetHeight = height;
+        this.lift = Robot.lift;
+
     }
 
+
+    /**
+     * The initialize method is called just before the first time
+     * this Command is run after being started.
+     */
+    @Override
     protected void initialize() {
-    	Robot.lift.setBreak(false);
+        lift.setBreak(false);
+        lift.setTarget(targetHeight);
     }
 
     @Override
     protected void execute(){
-        double diff = Robot.lift.getHeight() - targetHeight;
+    double diff = Robot.lift.getHeight() - targetHeight;
         int diffSign = (int) Math.signum(diff);
         if (abs(diff) > Constants.FAR_AWAY_DISTANCE) {
             Robot.lift.setPower(-diffSign * Constants.FAR_AWAY_POWER);
@@ -36,12 +47,12 @@ public class SetLiftHeight extends Command {
             Robot.lift.setBreak(true);
         }
     }
-    
+
     @Override
     public boolean isFinished() {
     	double diff = Robot.lift.getHeight() - targetHeight; // TODO make this a method
     	if(targetHeight <= 0.01) {
-    		return abs(diff) < 0.1; 
+    		return abs(diff) < 0.1;
     	} else {
     		return Math.abs(diff) < Constants.CLOSE_DISTANCE;
     	}
@@ -51,7 +62,8 @@ public class SetLiftHeight extends Command {
     	Robot.lift.setPower(0);
     	Robot.lift.setBreak(true);
     }
-    protected void interrupted () {
-    	end();
+    @Override
+    protected void interrupted() {
+        super.interrupted();
     }
 }
