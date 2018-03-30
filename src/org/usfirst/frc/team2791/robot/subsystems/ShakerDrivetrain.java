@@ -6,6 +6,7 @@ import java.io.File;
 import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.RobotMap;
+import org.usfirst.frc.team2791.robot.commands.auto.ShakerSrx;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.DriveWithJoystick;
 import org.usfirst.frc.team2791.robot.util.Util;
 
@@ -43,8 +44,8 @@ public class ShakerDrivetrain extends Subsystem {
 	private TalonSRX talonLeft2;
 	private VictorSPX victorRight1;//, victorRight2;
 	private TalonSRX  talonRight2;
-	private BaseMotorController[] leftDrive;
-	private BaseMotorController[] rightDrive;
+	public ShakerSrx leftDrive;
+	public ShakerSrx rightDrive;
 	
 	private DoubleSolenoid shiftingSolenoid;
 
@@ -526,8 +527,9 @@ public class ShakerDrivetrain extends Subsystem {
 	            DrivetrainProfiling.path_angle_offset = angleDifference;
 	        }
 	    }
-	  
-	  
+
+
+
 	public static class DrivetrainProfiling {
         //TODO: TUNE CONSTANTS
         public static double kp = 0.0; //1.2;
