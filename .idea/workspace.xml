@@ -1,23 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a63bb6a-fc87-4abd-a71d-b79b741d118f" name="Default" comment="Added check driveorrampmode to drive commands">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Pathfinder_Java_1_8.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/auto/spline/LeftSidenearSwitchSCORE.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/auto/spline/splinetest.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/WPILib.xml" afterPath="$PROJECT_DIR$/.idea/libraries/WPILib.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/WPILib_sources.xml" afterPath="$PROJECT_DIR$/.idea/libraries/WPILib_sources.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/cscore.xml" afterPath="$PROJECT_DIR$/.idea/libraries/cscore.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ntcore.xml" afterPath="$PROJECT_DIR$/.idea/libraries/ntcore.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ntcore_sources.xml" afterPath="$PROJECT_DIR$/.idea/libraries/ntcore_sources.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/opencv.xml" afterPath="$PROJECT_DIR$/.idea/libraries/opencv.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/opencv_sources.xml" afterPath="$PROJECT_DIR$/.idea/libraries/opencv_sources.xml" />
+    <list default="true" id="6a63bb6a-fc87-4abd-a71d-b79b741d118f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Robot.iml" afterPath="$PROJECT_DIR$/Robot.iml" />
-      <change beforePath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/auto/spline/LeftSideFarScaleSCORE.java" afterPath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/auto/spline/LeftSideFarScaleSCORE.java" />
-      <change beforePath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/auto/spline/RightSidenearScale2CubeScore.java" afterPath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/auto/spline/RightSidenearScale2CubeScore.java" />
-      <change beforePath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/util/Paths.java" afterPath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/util/Paths.java" />
-      <change beforePath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/util/Util.java" afterPath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/util/Util.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -488,7 +473,14 @@
       <option name="project" value="LOCAL" />
       <updated>1518903896585</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Added check driveorrampmode to drive commands">
+      <created>1522375165704</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1522375165704</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
