@@ -5,6 +5,7 @@ import java.util.function.Function;
 import org.usfirst.frc.team2791.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -69,6 +70,7 @@ public class RunPath extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	double error = -deltaAngle(Robot.drivetrain.getGyroAngle());
+    	SmartDashboard.putNumber("340_Path - error", error);
     	
     	double leftSpeed = speed();
     	double rightSpeed = speed();
@@ -78,6 +80,7 @@ public class RunPath extends Command {
     		double speed = leftSpeed;
     		double turn = Math.abs(speed) * error * kP;
     		Robot.drivetrain.setLeftRightMotorOutputs(leftSpeed + turn, rightSpeed - turn);
+    		
 //        	Robot.drivetrain.setLeftRightMotorOutputs(
 //        			(leftSpeed+((error)/(arcDivisor/Math.abs(speed)))), 
 //        			(rightSpeed-(((error)/(arcDivisor/Math.abs(speed))))));
