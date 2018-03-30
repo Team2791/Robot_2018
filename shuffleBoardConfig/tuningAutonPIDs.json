@@ -272,8 +272,7 @@
             "content": {
               "_type": "Graph",
               "_title": "Graph (no sources)",
-              "Visible time": 30.0,
-              "SmartDashboard/PID - Moving Angle Error visible": true
+              "Visible time": 30.0
             }
           },
           "7,6": {
@@ -339,8 +338,56 @@
             "content": {
               "_type": "Graph",
               "_title": "Graph (no sources)",
+              "Visible time": 30.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "340 Path Tuning",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "0,0": {
+            "size": [
+              10,
+              5
+            ],
+            "content": {
+              "_type": "Graph",
+              "_source0": "network_table:///SmartDashboard/340_Path - error",
+              "_title": "SmartDashboard/340_Path - error",
               "Visible time": 30.0,
-              "SmartDashboard/PID - Distance error visible": true
+              "SmartDashboard/340_Path - error visible": true
+            }
+          },
+          "0,5": {
+            "size": [
+              9,
+              2
+            ],
+            "content": {
+              "_type": "Graph",
+              "_source0": "network_table:///SmartDashboard/340_Path - turn",
+              "_title": "SmartDashboard/340_Path - turn",
+              "Visible time": 30.0,
+              "SmartDashboard/340_Path - turn visible": true
+            }
+          },
+          "9,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/340_Path - kP",
+              "_title": "SmartDashboard/340_Path - kP"
             }
           }
         }

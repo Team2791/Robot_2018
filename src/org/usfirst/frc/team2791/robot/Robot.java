@@ -97,8 +97,7 @@ public class Robot extends IterativeRobot {
 		ShakerDrivetrain.putPIDGainsOnSmartDash();
 
 		updateGameData(false);
-		
-		
+
 		autonomousCommand = new RunPath(Paths.FROM_CENTER.SWITCH_RIGHT, 0.3);
 		
 

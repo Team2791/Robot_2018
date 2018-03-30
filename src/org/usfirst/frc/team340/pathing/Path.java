@@ -33,11 +33,13 @@ public class Path extends ArrayList<PathSegment> {
      * ex: if you traveled past the first Path's length, it returns the second (or third, or fourth...)
      */
     public PathSegment getPathAtDistance(double distance) {
+    	// TODO FIX THIS METHOD FOR REAL. Just taking out the -1 without looking through it a so much.
         int i = 0;
-        while (distance >= 0 && i < this.size()) {
+
+        do {
             distance -= this.get(i).getLength();
             i++;
-        }
+        } while (distance >= 0 && i < this.size());
 
         return this.get(i - 1);
     }

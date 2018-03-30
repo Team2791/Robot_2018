@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class RunPath extends Command {
 
-	private final double kP = 1/15;
+	private double kP = 0.1; // was 1.0/15.0 = 0.666, was way too much
 	private Path path;	
 	private Function<Double, Double> speed;
 	
@@ -31,6 +31,9 @@ public class RunPath extends Command {
     	requires(Robot.drivetrain);
     	this.path = path;
     	this.speed = speed;
+    	SmartDashboard.putNumber("340_Path - error", 0);
+    	SmartDashboard.putNumber("340_Path - turn", 0);
+    	SmartDashboard.putNumber("340_Path - kP", kP);
     }
 
     
@@ -45,6 +48,9 @@ public class RunPath extends Command {
     	Robot.drivetrain.resetEncoders();
     	Robot.drivetrain.resetGyro();
     	System.out.println("RUNPATH INIT");
+    	SmartDashboard.putNumber("340_Path - error", 0);
+    	SmartDashboard.putNumber("340_Path - turn", 0);
+    	kP = SmartDashboard.getNumber("340_Path - kP", kP);
     }
 
     private double getDistance() {
@@ -53,39 +59,34 @@ public class RunPath extends Command {
 
     private double deltaAngle(double currentAngle) {
     	double currentSlope = Math.tan(currentAngle * Math.PI / 180);
-    	double nextSlope = dydx(getDistance());
+    	double targetSlope = dydx(getDistance());
     	
-    	double angle = Math.atan((nextSlope - currentSlope)/(1 + currentSlope * nextSlope))*180/Math.PI;
+    	double angle = Math.atan((targetSlope - currentSlope)/(1 + currentSlope * targetSlope))*180/Math.PI;
     	
-    	System.out.println("m1: " + currentSlope + " m2: " + nextSlope + " dTheta: " + angle);
+    	System.out.println("currentSlope: " + currentSlope + " targetSlope: " + targetSlope + " dTheta: " + angle);
     	System.out.println("Encoder: " + getDistance() + " dydx: " + dydx(getDistance()));
     	return angle;
     }
     
-    public double speed() {
-//    	System.out.println(-speed.apply(getDistance()/path.getTotalLength()));
-    	return -speed.apply(getDistance()/path.getTotalLength());
-    }
-
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double error = -deltaAngle(Robot.drivetrain.getGyroAngle());
+    	double error = deltaAngle(Robot.drivetrain.getGyroAngle());
     	SmartDashboard.putNumber("340_Path - error", error);
+//    	System.out.println("Angle Error:" + error);
+
+    	double baseSpeed = speed.apply(getDistance()/path.getTotalLength());
+
+    	double turn = Math.abs(baseSpeed) * error * kP;
+    	SmartDashboard.putNumber("340_Path - turn", turn);
+    	System.out.println("error: " + error + "   speed: " + baseSpeed + "   turn: "+ turn);
     	
-    	double leftSpeed = speed();
-    	double rightSpeed = speed();
-    	
-    	System.out.println("error: " + error);
-    	if(Math.abs(getDistance()) > 3) {
-    		double speed = leftSpeed;
-    		double turn = Math.abs(speed) * error * kP;
-    		Robot.drivetrain.setLeftRightMotorOutputs(leftSpeed + turn, rightSpeed - turn);
-    		
+    	if(Math.abs(getDistance()) > 3) {    		
+    		Robot.drivetrain.setLeftRightMotorOutputs(baseSpeed + turn, baseSpeed - turn);
 //        	Robot.drivetrain.setLeftRightMotorOutputs(
 //        			(leftSpeed+((error)/(arcDivisor/Math.abs(speed)))), 
 //        			(rightSpeed-(((error)/(arcDivisor/Math.abs(speed))))));
     	} else {
-        	Robot.drivetrain.setLeftRightMotorOutputs(leftSpeed, rightSpeed);
+        	Robot.drivetrain.setLeftRightMotorOutputs(baseSpeed, baseSpeed);
     	}
     }
 
