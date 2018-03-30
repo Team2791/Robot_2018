@@ -80,7 +80,8 @@ public class ShakerLift extends Subsystem {
     }
     
     public int getSRXVoltageFeedback() {
-    	return 1024 - (-leaderTalon.getSelectedSensorPosition(0));
+//    	return 1024 - (-leaderTalon.getSelectedSensorPosition(0));
+    	return leaderTalon.getSelectedSensorPosition(0);
     }
 
     // this method is used to set the power of the lift and included saftey so the lift
@@ -99,7 +100,7 @@ public class ShakerLift extends Subsystem {
         } else if (closeToBottom()) {
             power = max(0, power); // was 0.2 without manipulator, if it needs to be something it can be -0.05 or something very small
         } else if (atTop()) {
-            power = min(0, power);
+            power = min(Constants.LIFT_HOLD_VOLTAGE - 0.2, power); // let the lift hold itself at the top.
         } else if (closeToTop()) {
             power = min(0.35, power);
         }
