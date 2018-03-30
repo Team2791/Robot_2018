@@ -27,25 +27,11 @@ public class SetLiftHeightMagicMotion extends Command {
     @Override
     protected void initialize() {
         lift.setBreak(false);
-        lift.setTarget(targetHeight);
+        lift.setTargetMagicMotion(targetHeight);
     }
 
     @Override
-    protected void execute(){
-    double diff = Robot.lift.getHeight() - targetHeight;
-        int diffSign = (int) Math.signum(diff);
-        if (abs(diff) > Constants.FAR_AWAY_DISTANCE) {
-            Robot.lift.setPower(-diffSign * Constants.FAR_AWAY_POWER);
-            Robot.lift.setBreak(false);
-         // we special case going to 0 because we need to hit it almost exactly.
-        } else if (abs(diff) > Constants.CLOSE_DISTANCE || (
-        		targetHeight <=0.01 && abs(diff) > 0.1)) {
-            Robot.lift.setPower(-diffSign * Constants.CLOSE_POWER);
-            Robot.lift.setBreak(false);
-        } else {
-            Robot.lift.setPower(0);
-            Robot.lift.setBreak(true);
-        }
+    protected void execute() {
     }
 
     @Override

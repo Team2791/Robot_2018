@@ -47,6 +47,7 @@ public class ShakerLift extends Subsystem {
         leaderTalon = new TalonSRX(RobotMap.LIFT_TALON_ONE);
         leaderTalon.configSelectedFeedbackSensor(FeedbackDevice.Analog, 0, 0);
         followerVictor = new VictorSPX(RobotMap.LIFT_VICTOR_TWO);
+        followerVictor.follow(leaderTalon);
         
         // vv removed motorOne from here because we're not using it.
         motorControllers = new BaseMotorController[] {  leaderTalon, followerVictor };
@@ -61,17 +62,17 @@ public class ShakerLift extends Subsystem {
         // Setting up Magic Motion Profiling
         // I don't know how it workis if you have leaders and followers, this code is just for leaderTalon
         // https://www.ctr-electronics.com/downloads/pdf/Talon%20SRX%20Software%20Reference%20Manual.pdf  ---> Page 99
-        leaderTalon.configNominalOutputForward(0.0, 1); // I dont know what timeout argument is for
-        leaderTalon.configNominalOutputReverse(0.0, 1); // I dont know what timeout argument is for
+        leaderTalon.configNominalOutputForward(Constants.LIFT_HOLD_VOLTAGE, 0); // I dont know what timeout argument is for
+        leaderTalon.configNominalOutputReverse(0.0, 0); // I dont know what timeout argument is for
 
         //leaderTalon.
-        leaderTalon.configPeakCurrentLimit(12, 1); // Need to tune these values, I am just guessing
-        leaderTalon.configMotionCruiseVelocity(7, 1);
-        leaderTalon.configMotionAcceleration(6, 9);
-        leaderTalon.config_kD(Constants.SLOT_ID, Constants.LIFT_D_VALUE, 1);
-        leaderTalon.config_kI(Constants.SLOT_ID, Constants.LIFT_I_VALUE, 1);
-        leaderTalon.config_kP(Constants.SLOT_ID, Constants.LIFT_P_VALUE, 1);
-        leaderTalon.config_kF(Constants.SLOT_ID, Constants.LIFT_F_VALUE, 1);
+//        leaderTalon.configPeakCurrentLimit(12, 1); // Need to tune these values, I am just guessing
+        leaderTalon.configMotionCruiseVelocity(Constants.MOTION_VELOCITY, 0);
+        leaderTalon.configMotionAcceleration(Constants.MOTION_ACCELERATION, 0);
+        leaderTalon.config_kD(Constants.SLOT_ID, Constants.LIFT_D_VALUE, 0);
+        leaderTalon.config_kI(Constants.SLOT_ID, Constants.LIFT_I_VALUE, 0);
+        leaderTalon.config_kP(Constants.SLOT_ID, Constants.LIFT_P_VALUE, 0);
+        leaderTalon.config_kF(Constants.SLOT_ID, Constants.LIFT_F_VALUE, 0);
     }
 
     @Override
@@ -94,16 +95,24 @@ public class ShakerLift extends Subsystem {
 //    	return potentiometer.get();
     }
     
+    public double getVelocity() {
+    	double potTravel = getSRXVoltageVelocityFeedback() * 10.0 / 1023.0;
+    	return potTravel * Constants.LIFT_POT_FULL_RANGE + Constants.LIFT_POT_OFFSET;
+    }
+    
     public int getSRXVoltageFeedback() {
 //    	return 1024 - (-leaderTalon.getSelectedSensorPosition(0));
     	return leaderTalon.getSelectedSensorPosition(0);
+    }
+    
+    public double getSRXVoltageVelocityFeedback() {
+    	return leaderTalon.getSelectedSensorVelocity(0);
     }
 
     // this method is used to set the power of the lift and included saftey so the lift
     // is moving slowly near the top/bottom and once at the top/bottom can't break itself. 
     public void setPower(double power) {
     	SmartDashboard.putNumber("Lift - set power input", power);
-    	power += Constants.LIFT_HOLD_VOLTAGE;
     	// make sure the break is released before we let it move
     	if(breakReleaseTimer.get() < 0.12) {
     		setPowerUnsafe(0);
@@ -115,7 +124,7 @@ public class ShakerLift extends Subsystem {
         } else if (closeToBottom()) {
             power = max(0, power); // was 0.2 without manipulator, if it needs to be something it can be -0.05 or something very small
         } else if (atTop()) {
-            power = min(Constants.LIFT_HOLD_VOLTAGE - 0.02, power); // let the lift hold itself at the top.
+            power = min(0.01, power); // let the lift hold itself at the top.
         } else if (closeToTop()) {
             power = min(0.35, power);
         }
@@ -145,9 +154,7 @@ public class ShakerLift extends Subsystem {
     }
 
     private void setPowerUnsafe(double power) {
-    	for(int i=0; i<motorControllers.length; i++) {
-        	motorControllers[i].set(ControlMode.PercentOutput, power); 
-        }
+		leaderTalon.set(ControlMode.PercentOutput, power);
     }
 
     public void setBreak(boolean breakOn){
@@ -175,10 +182,8 @@ public class ShakerLift extends Subsystem {
 //        }
 //    }
     // Use only if Magic Motion needed
-    public void setTarget(double targetHeight){
-        for (BaseMotorController controller:motorControllers) {
-            controller.set(ControlMode.MotionMagic, targetHeight);
-        }
+    public void setTargetMagicMotion(double targetHeight){
+        leaderTalon.set(ControlMode.MotionMagic, targetHeight);
     }
 
 //    public void setDefaultControlMode(){
@@ -199,6 +204,8 @@ public class ShakerLift extends Subsystem {
         SmartDashboard.putBoolean("Lift - Close to bottom", closeToBottom());
         
         SmartDashboard.putNumber("Lift - Height", getHeight());
+        SmartDashboard.putNumber("Lift - Velocity", getVelocity());
+        SmartDashboard.putNumber("Lift - Velocity RAW", getSRXVoltageVelocityFeedback());
 //        SmartDashboard.putNumber("Lift - Analog voltage value", potAnalogInput.getVoltage());
         SmartDashboard.putNumber("Lift - SRX Return value", getSRXVoltageFeedback());
         
