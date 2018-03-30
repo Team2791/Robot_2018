@@ -37,9 +37,9 @@ public class RunPath extends Command {
     }
 
     
-	public double dydx(double s) {
-		PathSegment segment = path.getPathAtDistance(s);
-		return segment.getDerivative().apply((s - path.getTotalOfCompletedPaths(s))/segment.getLength());
+	public double dydx(double distanceTraveled) {
+		PathSegment segment = path.getPathAtDistance(distanceTraveled);
+		return segment.getDerivative().apply((distanceTraveled - path.getTotalOfCompletedPaths(distanceTraveled))/segment.getLength());
 	}
 
     // Called just before this Command runs the first time

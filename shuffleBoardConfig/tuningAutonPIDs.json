@@ -140,6 +140,17 @@
               "_source0": "network_table:///SmartDashboard/Auto mode",
               "_title": "SmartDashboard/Auto mode"
             }
+          },
+          "0,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift - Height",
+              "_title": "/SmartDashboard/Lift - Height"
+            }
           }
         }
       }
@@ -360,10 +371,8 @@
             ],
             "content": {
               "_type": "Graph",
-              "_source0": "network_table:///SmartDashboard/340_Path - error",
-              "_title": "SmartDashboard/340_Path - error",
-              "Visible time": 30.0,
-              "SmartDashboard/340_Path - error visible": true
+              "_title": "Graph (no sources)",
+              "Visible time": 30.0
             }
           },
           "0,5": {
@@ -373,10 +382,8 @@
             ],
             "content": {
               "_type": "Graph",
-              "_source0": "network_table:///SmartDashboard/340_Path - turn",
-              "_title": "SmartDashboard/340_Path - turn",
-              "Visible time": 30.0,
-              "SmartDashboard/340_Path - turn visible": true
+              "_title": "Graph (no sources)",
+              "Visible time": 30.0
             }
           },
           "9,5": {
