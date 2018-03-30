@@ -262,6 +262,8 @@ public class Robot extends IterativeRobot {
 //			autonomousCommand = autonCommandChooser.getCommand(weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch);
 //		}
 
+
+//		autonomousCommand = new DrivePath(Paths.driveForward);
 		if (autonomousCommand != null) {
 			autonomousCommand.start();
 		}

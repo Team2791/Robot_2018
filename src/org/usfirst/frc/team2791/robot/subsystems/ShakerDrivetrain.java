@@ -402,8 +402,7 @@ public class ShakerDrivetrain extends Subsystem {
 									Robot.pdp.getCurrent(RobotMap.POWER_LEFT_DRIVE_3);
 	}
 	
-	
-	
+
 //	 
 //	
 //	//**********************Trajectory***********************//
