@@ -372,7 +372,8 @@
             "content": {
               "_type": "Graph",
               "_title": "Graph (no sources)",
-              "Visible time": 30.0
+              "Visible time": 30.0,
+              "SmartDashboard/340_Path - error visible": true
             }
           },
           "0,5": {
@@ -383,7 +384,8 @@
             "content": {
               "_type": "Graph",
               "_title": "Graph (no sources)",
-              "Visible time": 30.0
+              "Visible time": 30.0,
+              "SmartDashboard/340_Path - turn visible": true
             }
           },
           "9,5": {

@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class RunPath extends Command {
 
-	private double kP = 0.1; // was 1.0/15.0 = 0.666, was way too much
+	private double kP = 0.175; // was 1.0/15.0 = 0.666, was way too much
 	private Path path;	
 	private Function<Double, Double> speed;
 	
