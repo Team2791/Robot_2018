@@ -223,6 +223,8 @@ public class Robot extends IterativeRobot {
 			Robot.drivetrain.resetEncoders();
 	    	Robot.drivetrain.resetGyro();
 		}
+		
+		Robot.lift.updateMagicMotionPIDGains();
 	}
 
 	/**

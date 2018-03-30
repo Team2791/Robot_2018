@@ -4,7 +4,9 @@ import static java.lang.StrictMath.max;
 import static java.lang.StrictMath.min;
 
 import com.ctre.phoenix.motion.SetValueMotionProfile;
+
 import org.usfirst.frc.team2791.robot.Constants;
+import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.RobotMap;
 import org.usfirst.frc.team2791.robot.commands.lift.StopLift;
 
@@ -65,14 +67,26 @@ public class ShakerLift extends Subsystem {
         leaderTalon.configNominalOutputForward(Constants.LIFT_HOLD_VOLTAGE, 0); // I dont know what timeout argument is for
         leaderTalon.configNominalOutputReverse(0.0, 0); // I dont know what timeout argument is for
 
+    	SmartDashboard.putNumber("LIFT - MM - kP", Constants.LIFT_P_VALUE);
+    	SmartDashboard.putNumber("LIFT - MM - kI", Constants.LIFT_I_VALUE);
+    	SmartDashboard.putNumber("LIFT - MM - kD", Constants.LIFT_D_VALUE);
+    	SmartDashboard.putNumber("Lift - MM - Target", 0);
+        
         //leaderTalon.
 //        leaderTalon.configPeakCurrentLimit(12, 1); // Need to tune these values, I am just guessing
         leaderTalon.configMotionCruiseVelocity(Constants.MOTION_VELOCITY, 0);
         leaderTalon.configMotionAcceleration(Constants.MOTION_ACCELERATION, 0);
-        leaderTalon.config_kD(Constants.SLOT_ID, Constants.LIFT_D_VALUE, 0);
-        leaderTalon.config_kI(Constants.SLOT_ID, Constants.LIFT_I_VALUE, 0);
-        leaderTalon.config_kP(Constants.SLOT_ID, Constants.LIFT_P_VALUE, 0);
-        leaderTalon.config_kF(Constants.SLOT_ID, Constants.LIFT_F_VALUE, 0);
+        leaderTalon.config_kF(Constants.MM_PID_SLOT_ID, Constants.LIFT_F_VALUE, 0);
+        updateMagicMotionPIDGains();
+    }
+    
+    public void updateMagicMotionPIDGains() {
+    	Constants.LIFT_P_VALUE = SmartDashboard.getNumber("LIFT - MM - kP", Constants.LIFT_P_VALUE);
+    	Constants.LIFT_I_VALUE = SmartDashboard.getNumber("LIFT - MM - kI", Constants.LIFT_I_VALUE);
+    	Constants.LIFT_D_VALUE = SmartDashboard.getNumber("LIFT - MM - kD", Constants.LIFT_D_VALUE);
+        leaderTalon.config_kP(Constants.MM_PID_SLOT_ID, Constants.LIFT_P_VALUE, 0);
+        leaderTalon.config_kI(Constants.MM_PID_SLOT_ID, Constants.LIFT_I_VALUE, 0);
+        leaderTalon.config_kD(Constants.MM_PID_SLOT_ID, Constants.LIFT_D_VALUE, 0);
     }
 
     @Override
@@ -90,7 +104,7 @@ public class ShakerLift extends Subsystem {
     	// - Analog-In Position, Analog-In Velocity, 10bit ADC Value, 
     	// The value can be positive or negative so only divide by 2**9
     	// THIS DOES NOT WORK!
-    	double potTravel = getSRXVoltageFeedback()/ 1023.0;
+    	double potTravel = getSRXVoltageFeedback() / 1023.0;
     	return potTravel * Constants.LIFT_POT_FULL_RANGE + Constants.LIFT_POT_OFFSET;
 //    	return potentiometer.get();
     }
@@ -107,6 +121,10 @@ public class ShakerLift extends Subsystem {
     
     public double getSRXVoltageVelocityFeedback() {
     	return leaderTalon.getSelectedSensorVelocity(0);
+    }
+    
+    public int convertLiftHeightToSRXUnits(double liftHeightIn) {
+    	return (int) ((liftHeightIn - Constants.LIFT_POT_OFFSET) / Constants.LIFT_POT_FULL_RANGE * 1023);
     }
 
     // this method is used to set the power of the lift and included saftey so the lift
@@ -182,8 +200,13 @@ public class ShakerLift extends Subsystem {
 //        }
 //    }
     // Use only if Magic Motion needed
-    public void setTargetMagicMotion(double targetHeight){
-        leaderTalon.set(ControlMode.MotionMagic, targetHeight);
+    public void setTargetMagicMotion(double targetHeight) {
+    	SmartDashboard.putNumber("Lift - MM - Target", convertLiftHeightToSRXUnits(targetHeight));
+        leaderTalon.set(ControlMode.MotionMagic, convertLiftHeightToSRXUnits(targetHeight));
+    }
+    
+    public double getMagicMotionInstantError() {
+    	return leaderTalon.getClosedLoopError(Constants.MM_PID_SLOT_ID);
     }
 
 //    public void setDefaultControlMode(){
@@ -206,6 +229,7 @@ public class ShakerLift extends Subsystem {
         SmartDashboard.putNumber("Lift - Height", getHeight());
         SmartDashboard.putNumber("Lift - Velocity", getVelocity());
         SmartDashboard.putNumber("Lift - Velocity RAW", getSRXVoltageVelocityFeedback());
+        SmartDashboard.putNumber("LIFT - MM - Error", Robot.lift.getMagicMotionInstantError());
 //        SmartDashboard.putNumber("Lift - Analog voltage value", potAnalogInput.getVoltage());
         SmartDashboard.putNumber("Lift - SRX Return value", getSRXVoltageFeedback());
         

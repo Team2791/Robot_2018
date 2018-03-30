@@ -5,7 +5,7 @@ import org.usfirst.frc.team2791.robot.commands.auto.bangbang.DriveEncoderBangBan
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveEncoderBangBangGyroPID;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveStraightEncoderGyro;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.StationaryGyroTurn;
-import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeight;
+import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightBangBang;
 import org.usfirst.frc.team2791.robot.commands.manipulator.SetManipulatorRetracted;
 import org.usfirst.frc.team2791.robot.commands.manipulator.ShootCube;
 
@@ -38,7 +38,7 @@ public class PIDTurnSwitchLEFT extends CommandGroup {
     	// turn towards the left side
     	addSequential(new StationaryGyroTurn(-60, 0.5));
     	// drive towards the left side
-    	addParallel(new SetLiftHeight(Constants.AUTON_RETRACTED_SWITCH_HEIGHT)); // was 13
+    	addParallel(new SetLiftHeightBangBang(Constants.AUTON_RETRACTED_SWITCH_HEIGHT)); // was 13
     
     	addSequential(new DriveStraightEncoderGyro(70, 0.7));
     	// turn to face the switch
@@ -48,7 +48,7 @@ public class PIDTurnSwitchLEFT extends CommandGroup {
     	// score
     	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
     	addSequential(new DriveEncoderBangBang(-0.3, 0, -20));
-    	addSequential(new SetLiftHeight(0));
+    	addSequential(new SetLiftHeightBangBang(0));
     	addParallel(new SetManipulatorRetracted(false));
     	addSequential(new StationaryGyroTurn(50, 0.5));
     }

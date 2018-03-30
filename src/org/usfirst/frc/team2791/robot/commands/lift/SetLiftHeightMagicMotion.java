@@ -1,6 +1,8 @@
 package org.usfirst.frc.team2791.robot.commands.lift;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerLift;
@@ -36,20 +38,23 @@ public class SetLiftHeightMagicMotion extends Command {
 
     @Override
     public boolean isFinished() {
-    	double diff = Robot.lift.getHeight() - targetHeight; // TODO make this a method
+    	double diff = Robot.lift.getHeight() - targetHeight;
     	if(targetHeight <= 0.01) {
     		return abs(diff) < 0.1;
     	} else {
-    		return Math.abs(diff) < Constants.CLOSE_DISTANCE;
+    		return Math.abs(diff) < 0.25;
     	}
    }
+
     @Override
     protected void end () {
+    	System.out.println("Lift magic motion done!");
     	Robot.lift.setPower(0);
     	Robot.lift.setBreak(true);
     }
+
     @Override
     protected void interrupted() {
-        super.interrupted();
+        end();
     }
 }

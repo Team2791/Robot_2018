@@ -372,8 +372,7 @@
             "content": {
               "_type": "Graph",
               "_title": "Graph (no sources)",
-              "Visible time": 30.0,
-              "SmartDashboard/340_Path - error visible": true
+              "Visible time": 30.0
             }
           },
           "0,5": {
@@ -384,8 +383,7 @@
             "content": {
               "_type": "Graph",
               "_title": "Graph (no sources)",
-              "Visible time": 30.0,
-              "SmartDashboard/340_Path - turn visible": true
+              "Visible time": 30.0
             }
           },
           "9,5": {
@@ -397,6 +395,110 @@
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/340_Path - kP",
               "_title": "SmartDashboard/340_Path - kP"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Lift MM Tuning",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "0,0": {
+            "size": [
+              10,
+              4
+            ],
+            "content": {
+              "_type": "Graph",
+              "_source0": "network_table:///SmartDashboard/Lift - Velocity RAW",
+              "_title": "SmartDashboard/Lift - Velocity RAW",
+              "Visible time": 30.0,
+              "SmartDashboard/Lift - Velocity RAW visible": true
+            }
+          },
+          "0,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift - Height",
+              "_title": "SmartDashboard/Lift - Height"
+            }
+          },
+          "0,6": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/LIFT - MM - kP",
+              "_title": "/SmartDashboard/LIFT - MM - kP"
+            }
+          },
+          "1,6": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/LIFT - MM - kI",
+              "_title": "/SmartDashboard/LIFT - MM - kI"
+            }
+          },
+          "2,6": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/LIFT - MM - kD",
+              "_title": "/SmartDashboard/LIFT - MM - kD"
+            }
+          },
+          "1,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift - MM - Target",
+              "_title": "SmartDashboard/Lift - MM - Target"
+            }
+          },
+          "2,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift - SRX Return value",
+              "_title": "SmartDashboard/Lift - SRX Return value"
+            }
+          },
+          "3,4": {
+            "size": [
+              7,
+              3
+            ],
+            "content": {
+              "_type": "Graph",
+              "_source0": "network_table:///SmartDashboard/LIFT - MM - Error",
+              "_title": "SmartDashboard/LIFT - MM - Error",
+              "Visible time": 30.0,
+              "SmartDashboard/LIFT - MM - Error visible": true
             }
           }
         }
