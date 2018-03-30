@@ -1,11 +1,23 @@
 
 package org.usfirst.frc.team2791.robot;
 
-import org.usfirst.frc.team2791.robot.commands.auto.*;
-import org.usfirst.frc.team2791.robot.commands.auto.pid.*;
-import org.usfirst.frc.team2791.robot.commands.auto.bangbang.*;
-import org.usfirst.frc.team2791.robot.commands.auto.timeonly.*;
-import org.usfirst.frc.team2791.robot.commands.drivetrain.traj.TestSpline;
+import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchLEFT;
+import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchRIGHT;
+import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDSideScaleClose_ScaleEdge;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDSideScaleFar;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDSideSwitchClose;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDSideSwitchFar;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchLEFT;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchLEFT_2Cube;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchRIGHT;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchRIGHT_2Cube;
+import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyDriveStraightToSwitch;
+import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyStraightSwitchCubeSCORE;
+import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveEncoderBangBangGyroPID;
+import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveStraightEncoderGyro;
+import org.usfirst.frc.team2791.robot.commands.auto.pid.StationaryGyroTurn;
+import org.usfirst.frc.team2791.robot.commands.auto.timeonly.DriveForwardTime;
 import org.usfirst.frc.team2791.robot.subsystems.Manipulator;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerLift;
@@ -15,6 +27,8 @@ import org.usfirst.frc.team2791.robot.util.autonChoosers.AutonCommandChooser;
 import org.usfirst.frc.team2791.robot.util.autonChoosers.NearSwitchAutonChooser;
 import org.usfirst.frc.team2791.robot.util.autonChoosers.NoChoiceChooser;
 import org.usfirst.frc.team2791.robot.util.autonChoosers.ScaleAutonChooser;
+import org.usfirst.frc.team340.pathing.Paths;
+import org.usfirst.frc.team340.pathing.RunPath;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -83,6 +97,10 @@ public class Robot extends IterativeRobot {
 		ShakerDrivetrain.putPIDGainsOnSmartDash();
 
 		updateGameData(false);
+		
+		
+		autonomousCommand = new RunPath(Paths.FROM_CENTER.SWITCH_RIGHT, 0.3);
+		
 
 		// Set up our auton chooser
 //		DEFAULT_AUTO_NAME = "D: Center switch 1.5 cube";
@@ -239,13 +257,12 @@ public class Robot extends IterativeRobot {
 		updateGameData(true);
 		// schedule the autonomous command
 		
-		autonCommandChooser = chooser.getSelected();
+//		autonCommandChooser = chooser.getSelected();
+//
+//		if (autonCommandChooser != null) {
+//			autonomousCommand = autonCommandChooser.getCommand(weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch);
+//		}
 
-		if (autonCommandChooser != null) {
-			autonomousCommand = autonCommandChooser.getCommand(weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch);
-		}
-		
-//		autonomousCommand = new TestSpline();
 		if (autonomousCommand != null) {
 			autonomousCommand.start();
 		}
