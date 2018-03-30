@@ -14,35 +14,45 @@ public class Paths {
         new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
            new Waypoint(2.4383 ,-2.4383, Pathfinder.d2r(90.0))
     };
-	
-	
-    public static final Waypoint[] nearScaleLeft = convertPath_f2m(new Waypoint){
+	public static final Waypoint[] nearScaleLeft = convertPath_f2m(new Waypoint[] {
+		new Waypoint(0, 0, 0),
+				new Waypoint(13.25, 0, 0),
+				new Waypoint(9, -5.0, -30.0)
+	});
+
+	public static final Waypoint[] nearScaleRight = convertPath_f2m(new Waypoint[] {
         new Waypoint(0, 0, 0),
         new Waypoint(13.25, 0, 0),
-        new Waypoint(9, -5.0, -30.0);
-    };
-    
-    public static final Waypoint[] nearScaleRight = convertPath_f2m(new Waypoint {
-        new Waypoint(0, 0, 0),
-        new Waypoint(13.25, 0, 0),
-        new Waypoint(9, 5.0, 30.0);// Apparently the signs have been inverted for theta so positive is to the right and negative is to the left
+        new Waypoint(9, 5.0, 30.0)// Apparently the signs have been inverted for theta so positive is to the right and negative is to the left
     });
     //Added this Waypoint in for when the robot is at the near Right Scale and needs to turn around to the near switch if that switch is our color
-    public static final Waypoint[] nearSwitchRightTurnAround = convertPath_2fm(new Waypoint){
-    	//TODO I BASED THESE WAYPOINTS OFF OF ALREADY TESTED AND CORRECTED MEASUREMENTS
-		// TODO BUT THEY ARE MOST PRBLY WRONG BECAUSE NOT TESTED SO PRBLY NEEDS TO BE CHANGED SOON
-    	new Waypoint(0,0,0),
-		new Waypoint(0,0,60),
-		new Waypoint (8.5,0,0);
-	}
+    public static final Waypoint[] nearSwitchRightTurnAround = convertPath_f2m(new Waypoint[]{
+			//TODO I BASED THESE WAYPOINTS OFF OF ALREADY TESTED AND CORRECTED MEASUREMENTS
+			// TODO BUT THEY ARE MOST PRBLY WRONG BECAUSE NOT TESTED SO PRBLY NEEDS TO BE CHANGED SOON
+			new Waypoint(0, 0, 0),
+			new Waypoint(0, 0, 60),
+			new Waypoint(8.5, 0, 0)
+	});
 	//TODO CHANGE WAYPOINT VALUES PRBLY OFF SO FAR JUST BEING USED FOR THE FOUNDATION OF THE CODE FOR AUTOS
 	//TODO NEEDS FINE TUNING
-	public static final Waypoint[] farLeftScale = convertPath_2fm(new Waypoint){
+	public static final Waypoint[] farLeftScale = convertPath_f2m(new Waypoint[]{
     	new Waypoint (0,0,0),
 		new Waypoint (10,-7,-50),
 		new Waypoint (8,0,0),
-		new Waypoint (5,5,93);
+		new Waypoint (5,5,93)
+	});
+	public static final Waypoint[] nearLeftSwitch = convertPath_f2m(new Waypoint){
+    	new Waypoint (0,0,0);
 	}
+	public static final Waypoint [] test = convertPath_f2m(new Waypoint[]{
+    	new Waypoint(0,0,0),
+		new Waypoint (4,0,0),
+		new Waypoint (-4,0,0),
+		new Waypoint(0,5,0),
+		new Waypoint (0,-5,0),
+		new Waypoint(0,6,30),
+		new Waypoint(0,-6,-30)
+	});
 	
 	/**
 	 * Didn't test this though
@@ -50,7 +60,7 @@ public class Paths {
 	 * @param standardPath an array of Waypoint where each parameter of the Waypoints are defined as: (x_inFeet, y_inFeet, angle_inDegrees)
 	 * @return the given path where each Waypoint is defined as (x_inMeters, y_inMeters, angle_inRadians)
 	 */
-	private Waypoint[] convertPath_f2m(Waypoint[] standardPath) {
+	private static Waypoint[] convertPath_f2m(Waypoint[] standardPath) {
 		for(int i = 0; i < standardPath.length; i++) {
 			double x_m = standardPath[i].x * 0.3048;
 			double y_m = standardPath[i].y * 0.3048;

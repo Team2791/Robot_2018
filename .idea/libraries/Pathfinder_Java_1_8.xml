@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Pathfinder-Java-1.8">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/wpilib/java/current/lib/Pathfinder-Java-1.8.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

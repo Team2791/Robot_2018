@@ -3,7 +3,7 @@
     <CLASSES />
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$networktables.sources$!/" />
+      <root url="jar://$USER_HOME$/wpilib/java/current/lib/ntcore-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

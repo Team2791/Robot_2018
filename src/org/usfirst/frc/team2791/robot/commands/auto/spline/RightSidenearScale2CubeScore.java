@@ -13,14 +13,11 @@ import org.usfirst.frc.team2791.robot.util.Paths;
 
 public class RightSidenearScale2CubeScore extends CommandGroup {
     public RightSidenearScale2CubeScore(){
-        addSequential(new PauseDrivetrain(.25));
         addParallel(new SetLiftAndManipulator(Constants.AUTON_SCALE_HEIGHT, true));
         addSequential(new DrivePath(Paths.nearScaleRight));
         addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
-        addSequential(new TurnTime(-1.5, .23));
-        addSequential(new PauseDrivetrain(.2));
+        addSequential(new TurnTime(-.23, 1.5));
         addSequential(new SetLiftAndManipulator(Constants.LIFT_MIN_HEIGHT, false));
-        addSequential(new PauseDrivetrain(.1));
         addSequential(new DrivePath(Paths.nearSwitchRightTurnAround));
         addSequential(new IntakeAndHoldCube());
         addParallel(new SetLiftHeight(Constants.AUTON_EXTENDED_SWITCH_HEIGHT));

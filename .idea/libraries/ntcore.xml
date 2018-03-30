@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="ntcore">
     <CLASSES>
-      <root url="jar://$networktables$!/" />
+      <root url="jar://$USER_HOME$/wpilib/java/current/lib/ntcore.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

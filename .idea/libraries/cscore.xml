@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="cscore">
     <CLASSES>
-      <root url="jar://$cscore$!/" />
+      <root url="jar://$USER_HOME$/wpilib/java/current/lib/cscore.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
