@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2791.robot.commands;
 import com.ctre.phoenix.motion.MotionProfileStatus;
 import edu.wpi.first.wpilibj.command.Command;
+import jaci.pathfinder.Trajectory;
 import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.RobotMap;
@@ -35,6 +36,7 @@ public class FollowTrajectory extends Command {
     private SetValueMotionProfile setValue = SetValueMotionProfile.Disable;
 
     private class BufferLoader implements java.lang.Runnable {
+        private final String trajectoryName;
         private int leftLastPointSent = 0;
         private int rightLastPointSent = 0;
 
@@ -50,10 +52,47 @@ public class FollowTrajectory extends Command {
             leftLastPointSent = manageBuffer(leftTalon, trajectorytoFollow.leftProfile, Robot.drivetrain.getGyroRate(), leftLastPointSent);
             rightLastPointSent = manageBuffer(rightTalon, trajectorytoFollow.rightProfile, Robot.drivetrain.getGyroRate(), rightLastPointSent);
         }
-        private int manageBuffer()
-    }
-    @Override
-    protected boolean isFinished() {
-        return false;
+
+        private int manageBuffer(ShakerSrx talon, SrxMotionProfile prof, int pidfslot, int lastPointSent) {
+            if (lastPointSent >= prof.numPoints) {
+                return lastPointSent;
+            }
+            if(!talon.isMotionProfileTopLevelBufferFull() && lastPointSent < prof.numPoints){
+                TrajectoryPoint point = new TrajectoryPoint();
+                point.position = prof.points[lastPointSent][0];
+                point.velocity = prof.points[lastPointSent][1];
+                point.profileSlotSelect0 = pidfslot;
+                point.profileSlotSelect1 = pidfslot;
+                point.zeroPos = false;
+                if(lastPointSent == 0) {
+                    point.zeroPos = true;
+                }
+                point.isLastPoint = false;
+                if((lastPointSent +1) == prof.numPoints) {
+                    point.isLastPoint = true;
+                }
+                talon.pushMotionProfileTrajectory(point);
+                lastPointSent++;
+            }
+            return lastPointSent;
+        }
+private TrajectoryPoint.TrajectoryDuration getTrajectoryDuration(int ms){
+    TrajectoryPoint.TrajectoryDuration retval = TrajectoryPoint.TrajectoryDuration.Trajectory_Duration_0ms.TrajectoryDuration
+
+    retval= retval.valueOf(ms);
+    return retval;
+}
+private Notifier bufferNotifier;
+
+        public FollowTrajectory(String trajectoryName){
+            this.trajectoryName = trajectoryName;
+            requires(Robot.drivetrain);
+
+        }
+
+        @Override
+        protected boolean isFinished() {
+            return false;
+        }
     }
 }
