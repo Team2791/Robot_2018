@@ -100,7 +100,7 @@ public class ShakerLift extends Subsystem {
         } else if (closeToBottom()) {
             power = max(0, power); // was 0.2 without manipulator, if it needs to be something it can be -0.05 or something very small
         } else if (atTop()) {
-            power = min(Constants.LIFT_HOLD_VOLTAGE - 0.2, power); // let the lift hold itself at the top.
+            power = min(Constants.LIFT_HOLD_VOLTAGE - 0.02, power); // let the lift hold itself at the top.
         } else if (closeToTop()) {
             power = min(0.35, power);
         }

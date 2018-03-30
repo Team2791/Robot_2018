@@ -5,12 +5,14 @@ import org.usfirst.frc.team2791.robot.commands.auto.*;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.*;
 import org.usfirst.frc.team2791.robot.commands.auto.bangbang.*;
 import org.usfirst.frc.team2791.robot.commands.auto.timeonly.*;
+import org.usfirst.frc.team2791.robot.commands.drivetrain.traj.DrivePath;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.traj.TestSpline;
 import org.usfirst.frc.team2791.robot.subsystems.Manipulator;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerLift;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerRamp;
 import org.usfirst.frc.team2791.robot.util.Limelight;
+import org.usfirst.frc.team2791.robot.util.Paths;
 import org.usfirst.frc.team2791.robot.util.autonChoosers.AutonCommandChooser;
 import org.usfirst.frc.team2791.robot.util.autonChoosers.NearSwitchAutonChooser;
 import org.usfirst.frc.team2791.robot.util.autonChoosers.NoChoiceChooser;
@@ -245,7 +247,7 @@ public class Robot extends IterativeRobot {
 			autonomousCommand = autonCommandChooser.getCommand(weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch);
 		}
 		
-//		autonomousCommand = new TestSpline();
+//		autonomousCommand = new DrivePath(Paths.driveForward);
 		if (autonomousCommand != null) {
 			autonomousCommand.start();
 		}
