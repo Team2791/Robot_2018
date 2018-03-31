@@ -38,12 +38,14 @@ public class SetLiftHeightMagicMotion extends Command {
 
     @Override
     public boolean isFinished() {
-    	double diff = Robot.lift.getHeight() - targetHeight;
-    	if(targetHeight <= 0.01) {
-    		return abs(diff) < 0.1;
-    	} else {
-    		return Math.abs(diff) < 0.25;
-    	}
+    	// TODO use break!
+    	return false;
+//    	double diff = Robot.lift.getHeight() - targetHeight;
+//    	if(targetHeight <= 0.01) {
+//    		return abs(diff) < 0.1;
+//    	} else {
+//    		return Math.abs(diff) < 0.25;
+//    	}
    }
 
     @Override

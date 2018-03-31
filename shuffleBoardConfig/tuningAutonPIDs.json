@@ -409,19 +409,6 @@
         "hgap": 16.0,
         "vgap": 16.0,
         "tiles": {
-          "0,0": {
-            "size": [
-              10,
-              4
-            ],
-            "content": {
-              "_type": "Graph",
-              "_source0": "network_table:///SmartDashboard/Lift - Velocity RAW",
-              "_title": "SmartDashboard/Lift - Velocity RAW",
-              "Visible time": 30.0,
-              "SmartDashboard/Lift - Velocity RAW visible": true
-            }
-          },
           "0,5": {
             "size": [
               1,
@@ -495,10 +482,23 @@
             ],
             "content": {
               "_type": "Graph",
-              "_source0": "network_table:///SmartDashboard/LIFT - MM - Error",
-              "_title": "SmartDashboard/LIFT - MM - Error",
+              "_source0": "network_table:///SmartDashboard/Lift - Velocity",
+              "_title": "SmartDashboard/Lift - Velocity",
               "Visible time": 30.0,
-              "SmartDashboard/LIFT - MM - Error visible": true
+              "SmartDashboard/Lift - Velocity visible": true
+            }
+          },
+          "0,0": {
+            "size": [
+              10,
+              4
+            ],
+            "content": {
+              "_type": "Graph",
+              "_source0": "network_table:///SmartDashboard/LIFT - MM - Error IN",
+              "_title": "SmartDashboard/LIFT - MM - Error IN",
+              "Visible time": 30.0,
+              "SmartDashboard/LIFT - MM - Error IN visible": true
             }
           }
         }
