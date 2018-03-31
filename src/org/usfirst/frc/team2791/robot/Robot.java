@@ -1,6 +1,9 @@
 
 package org.usfirst.frc.team2791.robot;
 
+import org.usfirst.frc.team2791.pathing.GrrPaths;
+import org.usfirst.frc.team2791.pathing.RunPath;
+import org.usfirst.frc.team2791.pathing.ScoreSwitch;
 import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchLEFT;
 import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchRIGHT;
 import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
@@ -105,7 +108,19 @@ public class Robot extends TimedRobot {
 	//autonomousCommand = new DrivePath(Paths.driveForward);
 	//	autonomousCommand = new DrivePath(Paths.closeScale2Cube1stCubeStartRIGHT);
 //		autonomousCommand = new DrivePathReversed(Paths.closeScale2Cube1stCubeStartRIGHT);
-		autonomousCommand = new DrivePath(Paths.farScaleRightScore);
+//		autonomousCommand = new DrivePath(Paths.farScaleRightScore);
+		
+		autonomousCommand = new RunPath(GrrPaths.FROM_CENTER.SWITCH_RIGHT, x -> {
+			if (x < 0.2) {
+				return 0.3;
+			} else if (x < 0.75) {
+				return 0.6;
+			} else {
+				return 0.2;
+			}
+		});
+		
+		
 		
 		
 
@@ -270,6 +285,9 @@ public class Robot extends TimedRobot {
 //		if (autonCommandChooser != null) {
 //			autonomousCommand = autonCommandChooser.getCommand(weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch);
 //		}
+		
+		autonomousCommand = new ScoreSwitch(false);
+	
 		
 		if (autonomousCommand != null) {
 			autonomousCommand.start();
