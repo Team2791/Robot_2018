@@ -473,7 +473,6 @@ public class ShakerDrivetrain extends Subsystem {
 	    }
 
 	    public void pathFollow(EncoderFollower[] followers, boolean reverse) {
-
 	        EncoderFollower left = followers[0];
 	        EncoderFollower right = followers[1];
 	        double l;
@@ -488,8 +487,7 @@ public class ShakerDrivetrain extends Subsystem {
 	            l = left.calculate(getEncoderRawLeft());
 	            r = right.calculate(getEncoderRawRight());
 	        }
-	        
-	        //
+
 	        double gyro_heading = reverse ? -getGyroAngle() - DrivetrainProfiling.path_angle_offset : getGyroAngle() + DrivetrainProfiling.path_angle_offset;
 
 	        double angle_setpoint = Pathfinder.r2d(left.getHeading());
@@ -505,15 +503,15 @@ public class ShakerDrivetrain extends Subsystem {
 
 	        if (left != null && !left.isFinished()) { 
 
-	            SmartDashboard.putNumber("Left diff", left.getSegment().x + this.getLeftDistance());
-	            SmartDashboard.putNumber("Left set vel", left.getSegment().velocity);
-	            SmartDashboard.putNumber("Left set pos", left.getSegment().x);
-	            SmartDashboard.putNumber("Left calc voltage", l);
-	            SmartDashboard.putNumber("Commanded seg heading", left.getHeading());
-	            SmartDashboard.putNumber("Left + turn", l + turn);
-	            SmartDashboard.putNumber("Left seg acceleration", left.getSegment().acceleration);
-	            SmartDashboard.putNumber("Path angle offset", DrivetrainProfiling.path_angle_offset);
-	            SmartDashboard.putNumber("Angle offset w/ new path angle offset", angleDifference + DrivetrainProfiling.path_angle_offset);
+	            SmartDashboard.putNumber("Path - Left diff", left.getSegment().x + this.getLeftDistance());
+	            SmartDashboard.putNumber("Path - Left set vel", left.getSegment().velocity);
+	            SmartDashboard.putNumber("Path - Left set pos", left.getSegment().x);
+	            SmartDashboard.putNumber("Path - Left calc voltage", l);
+	            SmartDashboard.putNumber("Path - Commanded seg heading", left.getHeading());
+	            SmartDashboard.putNumber("Path - Left + turn", l + turn);
+	            SmartDashboard.putNumber("Path - Left seg acceleration", left.getSegment().acceleration);
+	            SmartDashboard.putNumber("Path - Path angle offset", DrivetrainProfiling.path_angle_offset);
+	            SmartDashboard.putNumber("Path - Angle offset w/ new path angle offset", angleDifference + DrivetrainProfiling.path_angle_offset);
 	        }
 	        if (!reverse) { 
 	            setLeftRightMotorOutputs(l + turn, r - turn);
@@ -530,8 +528,10 @@ public class ShakerDrivetrain extends Subsystem {
 	  
 	public static class DrivetrainProfiling {
         //TODO: TUNE CONSTANTS
+		// These gains help correct for errors in distance?
         public static double kp = 0.0; //1.2;
         public static double kd = 0.0;
+        // these gains help correct for errors in angle.
         public static double gp = 0.0; // 0.05 for practice bot 0.02 for real bot
         public static double gd = 0.0; //0.0025
 
@@ -549,24 +549,24 @@ public class ShakerDrivetrain extends Subsystem {
         public static final double max_jerk = 16.0;  
         public static final double wheel_diameter = 0.1524; // meters
 
-        public static final double wheel_base_width = 0.6096; //estimated by measuring the robot with cubes #engineering  
+        public static final double wheel_base_width = 0.622; //estimated by measuring the robot with cubes #engineering  
         public static final int ticks_per_rev = (int) Constants.driveEncoderTicks;
         public static final double dt = 0.02;
 
         public static void setPIDG(double p, double i, double d, double gp, double gd) {
-            SmartDashboard.putNumber("kP", p);
-            SmartDashboard.putNumber("kI", i);
-            SmartDashboard.putNumber("kD", d);
-            SmartDashboard.putNumber("gP", gp);
-            SmartDashboard.putNumber("gD", gd);
+            SmartDashboard.putNumber("DT - Pathfinder - kP", p);
+            SmartDashboard.putNumber("DT - Pathfinder - kI", i);
+            SmartDashboard.putNumber("DT - Pathfinder - kD", d);
+            SmartDashboard.putNumber("DT - Pathfinder - gP", gp);
+            SmartDashboard.putNumber("DT - Pathfinder - gD", gd);
         }
 
         public static void updatePIDG() {
-            kp = SmartDashboard.getNumber("kP", 0.0);
-            ki = SmartDashboard.getNumber("kI", 0.0);
-            kd = SmartDashboard.getNumber("kD", 0.0);
-            gp = SmartDashboard.getNumber("gP", 0.0);
-            gd = SmartDashboard.getNumber("gD", 0.0);
+            kp = SmartDashboard.getNumber("Path - kP", 0.0);
+            ki = SmartDashboard.getNumber("Path - kI", 0.0);
+            kd = SmartDashboard.getNumber("Path - kD", 0.0);
+            gp = SmartDashboard.getNumber("Path - gP", 0.0);
+            gd = SmartDashboard.getNumber("Path - gD", 0.0);
         }
     }
 	

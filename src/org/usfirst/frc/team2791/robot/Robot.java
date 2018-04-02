@@ -257,7 +257,7 @@ public class Robot extends TimedRobot {
 			autonomousCommand = autonCommandChooser.getCommand(weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch);
 		}
 		
-//		autonomousCommand = new TestSpline();
+//		autonomousCommand = new DrivePath(Paths.driveForward);
 		if (autonomousCommand != null) {
 			autonomousCommand.start();
 		}
