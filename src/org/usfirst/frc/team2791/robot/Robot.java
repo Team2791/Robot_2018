@@ -98,7 +98,17 @@ public class Robot extends IterativeRobot {
 
 		updateGameData(false);
 
-		autonomousCommand = new RunPath(Paths.FROM_CENTER.SWITCH_RIGHT, 0.3);
+//		autonomousCommand = new RunPath(Paths.FROM_RIGHT.SCALE_RIGHT, 0.25);
+		
+		autonomousCommand = new RunPath(Paths.FROM_CENTER.SWITCH_RIGHT, x -> {
+			if (x < 0.2) {
+				return 0.5;
+			} else if (x < 0.7) {
+				return 0.6;
+			} else {
+				return 0.2;
+			}
+		});
 //		autonomousCommand = new RunPath(Paths.FROM_CENTER.SWITCH_RIGHT, x -> {
 //			if(x < 0.15 || x > 0.75)
 //				return 0.3;
