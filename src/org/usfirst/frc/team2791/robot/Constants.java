@@ -17,7 +17,7 @@ public class Constants {
 	// Pbot offset = -1.13
 	//Noah's PBot = -.2
 	// flight bot offset = -0.05
-    public static final double LIFT_POT_OFFSET = -3.7096;//Pbot: -1.6-1.23
+    public static final double LIFT_POT_OFFSET = -3.7096-0.59;//Pbot: -1.6-1.23
 	//at 60% the lift was at 36'' from the ground, 33'' from the bottom of it's travel
     public static final double LIFT_POT_FULL_RANGE = 33.0 / 0.6;
     

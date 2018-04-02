@@ -1,24 +1,24 @@
 package org.usfirst.frc.team2791.robot.commands.lift;
 
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerLift;
+import org.usfirst.frc.team2791.robot.util.DelayedBoolean;
 
-import static java.lang.Math.abs;
+import edu.wpi.first.wpilibj.command.Command;
 
 public class SetLiftHeightMagicMotion extends Command {
     // Height measered inches
     private double targetHeight;
     private ShakerLift lift;
+    private DelayedBoolean finishDelayedBoolean;
+    
+    
     public SetLiftHeightMagicMotion(double height) {
         super("GoToHeight");
         requires(Robot.lift);
         this.targetHeight = height;
         this.lift = Robot.lift;
-
+        finishDelayedBoolean = new DelayedBoolean(0.3);
     }
 
 
@@ -38,9 +38,8 @@ public class SetLiftHeightMagicMotion extends Command {
 
     @Override
     public boolean isFinished() {
-    	// TODO use break!
-    	return false;
-//    	double diff = Robot.lift.getHeight() - targetHeight;
+    	double diff = Robot.lift.getHeight() - targetHeight;
+    	return finishDelayedBoolean.update(Math.abs(diff) < 0.6);
 //    	if(targetHeight <= 0.01) {
 //    		return abs(diff) < 0.1;
 //    	} else {
