@@ -55,7 +55,8 @@ public class OI {
 		initDpad();
 
 		/********************************** Driver Button Assignments ****************************************/
-		driverA.whenPressed(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
+		driverA.whileHeld(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
+		driverA.whileHeld(new Creep(-0.32));
 		driverB.whenPressed(new ShootCube(Constants.LARGE_OUTPUT_SPEED));
 		driverY.whenPressed(new DropRamps());
 		// THIS IS HACKY BUT YOLO!!
