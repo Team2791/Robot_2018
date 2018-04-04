@@ -1,9 +1,6 @@
 
 package org.usfirst.frc.team2791.robot;
 
-import org.usfirst.frc.team2791.pathing.GrrPaths;
-import org.usfirst.frc.team2791.pathing.RunPath;
-import org.usfirst.frc.team2791.pathing.ScoreSwitch;
 import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchLEFT;
 import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchRIGHT;
 import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
@@ -16,20 +13,19 @@ import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchLEFT;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchLEFT_2Cube;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchRIGHT;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchRIGHT_2Cube;
+import org.usfirst.frc.team2791.robot.commands.auto.SideScaleFar340Path;
 import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyDriveStraightToSwitch;
 import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyStraightSwitchCubeSCORE;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveEncoderBangBangGyroPID;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveStraightEncoderGyro;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.StationaryGyroTurn;
 import org.usfirst.frc.team2791.robot.commands.auto.timeonly.DriveForwardTime;
-import org.usfirst.frc.team2791.robot.commands.drivetrain.traj.DrivePath;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.traj.TestSpline;
 import org.usfirst.frc.team2791.robot.subsystems.Manipulator;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerLift;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerRamp;
 import org.usfirst.frc.team2791.robot.util.Limelight;
-import org.usfirst.frc.team2791.robot.util.Paths;
 import org.usfirst.frc.team2791.robot.util.autonChoosers.AutonCommandChooser;
 import org.usfirst.frc.team2791.robot.util.autonChoosers.NearSwitchAutonChooser;
 import org.usfirst.frc.team2791.robot.util.autonChoosers.NoChoiceChooser;
@@ -110,18 +106,19 @@ public class Robot extends TimedRobot {
 //		autonomousCommand = new DrivePathReversed(Paths.closeScale2Cube1stCubeStartRIGHT);
 //		autonomousCommand = new DrivePath(Paths.farScaleRightScore);
 		
-		autonomousCommand = new RunPath(GrrPaths.FROM_CENTER.SWITCH_RIGHT, x -> {
-			if (x < 0.2) {
-				return 0.3;
-			} else if (x < 0.75) {
-				return 0.6;
-			} else {
-				return 0.2;
-			}
-		});
+//		autonomousCommand = new RunPath(GrrPaths.FROM_CENTER.SWITCH_RIGHT, x -> {
+//			if (x < 0.2) {
+//				return 0.3;
+//			} else if (x < 0.75) {
+//				return 0.6;
+//			} else {
+//				return 0.2;
+//			}
+//		});		
 		
-		
-		
+		// Testing multiple 340 paths at once.
+//		autonomousCommand = new ScoreSwitch(false);
+		autonomousCommand = new SideScaleFar340Path(false);
 		
 
 		// Set up our auton chooser
@@ -279,16 +276,13 @@ public class Robot extends TimedRobot {
 		Robot.drivetrain.resetGyro();
 		Robot.drivetrain.resetForPath();
 		// schedule the autonomous command
-		
+
 //		autonCommandChooser = chooser.getSelected();
 //
 //		if (autonCommandChooser != null) {
 //			autonomousCommand = autonCommandChooser.getCommand(weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch);
 //		}
-		
-		autonomousCommand = new ScoreSwitch(false);
-	
-		
+
 		if (autonomousCommand != null) {
 			autonomousCommand.start();
 		}

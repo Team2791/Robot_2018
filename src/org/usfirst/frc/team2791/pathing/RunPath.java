@@ -6,6 +6,7 @@ import java.util.function.Function;
 import org.usfirst.frc.team2791.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -13,9 +14,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class RunPath extends Command {
 	private final double arcDivisor = 20;
 
-	private double leftSpeed = 0;
-	private double rightSpeed = 0;
-	
 	private double length = -1;
 	
 	private boolean reset = true;
@@ -25,13 +23,7 @@ public class RunPath extends Command {
 	private Function<Double, Double> speed;
 	
     public RunPath(Path path, double speed) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.drivetrain);
-    	this.path = path;
-    	this.leftSpeed = -speed;
-    	this.rightSpeed = -speed;
-    	this.speed = x -> speed;
+    	this(path, x-> speed);
     }
     
     public RunPath(Path path, double speed, boolean reset) {
@@ -45,8 +37,8 @@ public class RunPath extends Command {
     	requires(Robot.drivetrain);
     	this.path = path;
     	this.speed = speed;
-    	this.leftSpeed = speed.apply(0.0);
-    	this.rightSpeed = speed.apply(0.0);
+    	SmartDashboard.putNumber("340_Path - amountOfPathDriven", 0);
+    	SmartDashboard.putNumber("340_Path - Error", 0);
     }
     
     public RunPath(Path path, Function<Double, Double> speed, boolean reset) {
@@ -61,7 +53,7 @@ public class RunPath extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {	
-//    	Robot.drive.setBothDrive(leftSpeed, rightSpeed);
+    	Robot.drivetrain.setLeftRightMotorOutputs(0, 0);
 //    	Robot.drive.resetBothEncoders();
 //    	Robot.drive.resetIMU();
     	Robot.drivetrain.reset();
@@ -79,36 +71,32 @@ public class RunPath extends Command {
     	
     	double angle = Math.atan((nextSlope - currentSlope)/(1 + currentSlope * nextSlope))*180/Math.PI;
     	
-    	System.out.println("m1: " + currentSlope + " m2: " + nextSlope + " dTheta: " + angle);
-    	System.out.println("Encoder: " + getDistance() + " dydx: " + dydx(getDistance()));
+//    	System.out.println("m1: " + currentSlope + " m2: " + nextSlope + " dTheta: " + angle);
+//    	System.out.println("Encoder: " + getDistance() + " dydx: " + dydx(getDistance()));
     	return angle;
-    }
-    
-    public double speed() {
-//    	System.out.println(-speed.apply(getDistance()/path.getTotalLength()));
-    	return -speed.apply(getDistance()/path.getTotalLength());
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 //    	double error = -deltaAngle(Robot.drive.getYaw());
     	double error = deltaAngle(Robot.drivetrain.getGyroAngle());
+    	SmartDashboard.putNumber("340_Path - Error", error);
     	
-    	leftSpeed = -speed();
-    	rightSpeed = -speed();
+    	double amountOfPathDriven = getDistance()/path.getTotalLength();
+    	SmartDashboard.putNumber("340_Path - amountOfPathDriven", amountOfPathDriven);
+    	double driveSpeed = speed.apply(amountOfPathDriven);
     	
-    	System.out.println("error: " + error);
+//    	System.out.println("error: " + error);
     	if(Math.abs(getDistance()) > 3) {
-    		double speed = leftSpeed;
 //        	Robot.drive.setBothDrive(
 //        			(leftSpeed+((error)/(arcDivisor/Math.abs(speed)))), 
 //        			(rightSpeed-(((error)/(arcDivisor/Math.abs(speed))))));
     		Robot.drivetrain.setLeftRightMotorOutputs(
-        			(leftSpeed+((error)/(arcDivisor/Math.abs(speed)))),
-        			(rightSpeed-(((error)/(arcDivisor/Math.abs(speed))))));
+        			(driveSpeed+((error)/(arcDivisor/Math.abs(driveSpeed)))),
+        			(driveSpeed-(((error)/(arcDivisor/Math.abs(driveSpeed))))));
     	} else {
 //        	Robot.drive.setBothDrive(leftSpeed, rightSpeed);
-    		Robot.drivetrain.setLeftRightMotorOutputs(leftSpeed, rightSpeed);
+    		Robot.drivetrain.setLeftRightMotorOutputs(driveSpeed, driveSpeed);
     	}
     }
 

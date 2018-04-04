@@ -1,18 +1,12 @@
 package org.usfirst.frc.team2791.pathing;
 
-import org.usfirst.frc.team2791.robot.Constants;
-import org.usfirst.frc.team2791.robot.Robot;
-import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeight;
-import org.usfirst.frc.team2791.robot.commands.manipulator.SetManipulatorRetracted;
-import org.usfirst.frc.team2791.robot.commands.manipulator.ShootCube;
-
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class ScoreSwitch extends CommandGroup {
 	public ScoreSwitch(boolean isRight) {
 //		addSequential(new SetLiftHeight(Constants.AUTON_EXTENDED_SWITCH_HEIGHT));
 		if(isRight) {
-			addSequential(new RunPath(GrrPaths.FROM_CENTER.SWITCH_RIGHT, x -> {
+			addSequential(new RunPath(ShakerPaths.FROM_CENTER.SWITCH_RIGHT, x -> {
 				if (x < 0.25) {
 					return 0.4;
 				} else if (x < 0.75) {
@@ -21,7 +15,9 @@ public class ScoreSwitch extends CommandGroup {
 					return 0.20;
 				}
 			}), 2.5);
-			addSequential(new RunPath(GrrPaths.FROM_CENTER.SWITCH_RIGHT, x -> {
+			// replace lambda with
+			// Lambda getSpeedFunction([[0, 0.4] [0.25, 0.7], [0.75, 0.2]]);
+			addSequential(new RunPath(ShakerPaths.FROM_CENTER.SWITCH_RIGHT, x -> {
 				if (x < 0.25) {
 					return -0.4;
 				} else if (x < 0.75) {
@@ -32,7 +28,7 @@ public class ScoreSwitch extends CommandGroup {
 			}), 2.5);
 		}
 		else {
-			addSequential(new RunPath(GrrPaths.FROM_CENTER.SWITCH_LEFT, x -> {
+			addSequential(new RunPath(ShakerPaths.FROM_CENTER.SWITCH_LEFT, x -> {
 				if (x < 0.25) {
 					return 0.4;
 				} else if (x < 0.75) {
@@ -41,7 +37,7 @@ public class ScoreSwitch extends CommandGroup {
 					return 0.20;
 				}
 			}), 2.6);
-			addSequential(new RunPath(GrrPaths.FROM_CENTER.SWITCH_LEFT, x -> {
+			addSequential(new RunPath(ShakerPaths.FROM_CENTER.SWITCH_LEFT, x -> {
 				if (x < 0.25) {
 					return -0.4;
 				} else if (x < 0.75) {
@@ -51,17 +47,17 @@ public class ScoreSwitch extends CommandGroup {
 				}
 			}), 2.6);
 		}
-		addSequential(new RunPath(GrrPaths.straightLength(58), x-> {
+		addSequential(new RunPath(ShakerPaths.straightLength(58), x-> {
 			if(x < 0.75) return 0.55;
 			else return 0.25;
 			}), 1.1);
-		addSequential(new RunPath(GrrPaths.straightLength(58), x-> {
+		addSequential(new RunPath(ShakerPaths.straightLength(58), x-> {
 			if(x < 0.75) return -0.55;
 			else return -0.25;
 			}), 1.1);
 		
 		if(isRight) {
-			addSequential(new RunPath(GrrPaths.FROM_CENTER.SWITCH_RIGHT, x -> {
+			addSequential(new RunPath(ShakerPaths.FROM_CENTER.SWITCH_RIGHT, x -> {
 				if (x < 0.25) {
 					return 0.4;
 				} else if (x < 0.75) {
@@ -70,7 +66,7 @@ public class ScoreSwitch extends CommandGroup {
 					return 0.20;
 				}
 			}), 2.5);
-			addSequential(new RunPath(GrrPaths.FROM_CENTER.SWITCH_RIGHT, x -> {
+			addSequential(new RunPath(ShakerPaths.FROM_CENTER.SWITCH_RIGHT, x -> {
 				if (x < 0.25) {
 					return -0.4;
 				} else if (x < 0.75) {
@@ -81,7 +77,7 @@ public class ScoreSwitch extends CommandGroup {
 			}), 2.5);
 		}
 		else {
-			addSequential(new RunPath(GrrPaths.FROM_CENTER.SWITCH_LEFT, x -> {
+			addSequential(new RunPath(ShakerPaths.FROM_CENTER.SWITCH_LEFT, x -> {
 				if (x < 0.25) {
 					return 0.4;
 				} else if (x < 0.75) {
@@ -90,7 +86,7 @@ public class ScoreSwitch extends CommandGroup {
 					return 0.20;
 				}
 			}), 2.6);
-			addSequential(new RunPath(GrrPaths.FROM_CENTER.SWITCH_LEFT, x -> {
+			addSequential(new RunPath(ShakerPaths.FROM_CENTER.SWITCH_LEFT, x -> {
 				if (x < 0.25) {
 					return -0.4;
 				} else if (x < 0.75) {
@@ -100,7 +96,7 @@ public class ScoreSwitch extends CommandGroup {
 				}
 			}), 2.6);
 		}
-		addSequential(new RunPath(GrrPaths.straightLength(58), x-> {
+		addSequential(new RunPath(ShakerPaths.straightLength(58), x-> {
 			if(x < 0.75) return 0.55;
 			else return 0.25;
 			}), 1.1);

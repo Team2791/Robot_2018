@@ -1,0 +1,67 @@
+
+<!-- saved from url=(0024)http://paths.rpappa.com/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script src="./paths.rpappa.com_files/jquery.min.js.download"></script>
+
+		<script src="./paths.rpappa.com_files/drawing.js.download"></script>
+		<script src="./paths.rpappa.com_files/bezier.js.download"></script>
+
+    	<script src="./paths.rpappa.com_files/draw.js.download"></script>
+    	<script src="./paths.rpappa.com_files/loader.js.download"></script>
+	<script>(function(drawfunctions) { 
+  with(drawfunctions) { 
+    with(Math) { var curve = new Bezier(100,25 , 10,90 , 110,100 , 150,195);
+		            window.draw = function(c) {
+		            	if(!c) {
+		            	c = curve;
+		            }
+		            reset();
+	              drawSkeleton(c);
+	              drawCurve(c);
+	            }
+			
+      draw();
+      handleInteraction(getCanvas(), curve).onupdate = function(evt) { reset(); draw(evt); }
+    }
+  }
+} (bindDrawFunctions( 0 )) );
+</script></head>
+	<body style="font-family: &#39;Open Sans&#39;, sans-serif;">
+		<div id="left" style="width:45%;display: inline-block;float: left;">
+			<form>
+				Start x: <input id="startx" type="number" value="100"> Start y: <input id="starty" type="number" value="25"><br>
+				End x : <input id="endx" type="number" value="150"> End y:<input id="endy" type="number" value="195"><br>
+				Mid1 x: <input id="mid1x" type="number" value="10"> Mid1 y: <input id="mid1y" type="number" value="90"><br>
+				Mid2 x: <input id="mid2x" type="number" value="110"> Mid2 y:<input id="mid2y" type="number" value="100">
+				<br> <br>
+				Import: <input id="import"> <span id="importtext" style="font-size:0.9em;background-color:#aaaaff; border-radius: 5px; padding: 3px;"> Import from JSON </span>
+			</form>
+			<span id="xt">x(t) = 0 + 138t + -123t^2 + 97t^3</span><br>
+			<span id="yt">y(t) = 100 + -3t + -168t^2 + 115t^3</span><br>
+			<br>
+			<span id="dx">dx/dt = 138 + -246t + 291t^2</span><br>
+			<span id="dy">dy/dt = -3 + -336t + 345t^2</span><br>
+			<span id="dydx">(-3 + -336 * t + 345 * Math.pow(t, 2))/
+	(138 + -246 * t + 291 * Math.pow(t, 2))</span><br><br>
+			<span id="export">/* {"start":{"x":0,"y":100},"mid1":{"x":46,"y":99},"mid2":{"x":51,"y":42},"end":{"x":112,"y":44}} */</span><br><br>
+			
+			<div style="background-color:#dddddd; width: fit-content;">
+				<span id="java" style="font-family: serf; font-size:11px">new PathSegment(t -&gt; <br>
+		/* {"start":{"x":0,"y":100},"mid1":{"x":46,"y":99},"mid2":{"x":51,"y":42},"end":{"x":112,"y":44}} */<br>
+		(-3 + -336 * t + 345 * Math.pow(t, 2))/
+	(138 + -246 * t + 291 * Math.pow(t, 2)) <br>
+		, 130)</span><br>
+			</div>	
+		</div>
+
+		<div id="right" style="width:50%;display: inline-block;">
+
+			<span id="len">len = 129.384 end angle: 1.878</span><br><br>
+			<figures>
+			<figure class="quadratic"><canvas width="600" height="600"></canvas></figure></figures>
+		</div>
+		<div id="340" style="float:right;position:relative;opacity:0.2;right:30px;bottom:30px">
+			<span style="font-family:Impact; font-size:80px; font-style:italic;">340</span>
+		</div>
+	
+</body></html>
