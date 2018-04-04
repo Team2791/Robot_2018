@@ -5,7 +5,7 @@ import org.usfirst.frc.team2791.robot.commands.auto.bangbang.TurnGyroBangBang;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveEncoderBangBangGyroPID;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.PauseDrivetrain;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.SetDrivetrainBreakMode;
-import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeight;
+import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightBangBang;
 import org.usfirst.frc.team2791.robot.commands.manipulator.SetManipulatorRetracted;
 import org.usfirst.frc.team2791.robot.commands.manipulator.ShootCube;
 
@@ -43,7 +43,7 @@ public class BangBangTurnSwitchRIGHT extends CommandGroup {
     	addParallel(new SetManipulatorRetracted(true));
     	// turn towards the left side
     	addSequential(new TurnGyroBangBang(60-10, 0.3, 100)); // want to turn 60 degrees 
-    	addParallel(new SetLiftHeight(8));
+    	addParallel(new SetLiftHeightBangBang(8));
     	// stop any momentum we have so the next drive start cleanly
     	addSequential(new PauseDrivetrain(0.5));
     	// drive towards the left side

@@ -28,7 +28,7 @@ public class TurnGyroBangBang extends Command {
 
 	/**
 	 * Time Out is defaulted to 2791 seconds
-	 * @param turn amount of power you want in the turn
+	 * @param power amount of power you want in the turn
 	 * @param angle degrees that you want to turn  
 	 */
 	public TurnGyroBangBang(double angle, double power) {

@@ -14,10 +14,7 @@ public class Constants {
 
 	//Lift Constants
 
-	// Pbot offset = -1.13
-	//Noah's PBot = -.2
-	// flight bot offset = -0.05
-    public static final double LIFT_POT_OFFSET = -4.036;//-3.7096-0.914;//Pbot: -1.6-1.23
+    public static final double LIFT_POT_OFFSET = 0;
 	//at 60% the lift was at 36'' from the ground, 33'' from the bottom of it's travel
     public static final double LIFT_POT_FULL_RANGE = 33.0 / 0.6;
     
@@ -31,7 +28,19 @@ public class Constants {
     
     public static final double BOTTOM_SAFTEY_DISTANCE = 11;
     public static final double TOP_SAFTEY_DISTANCE = 14;
-    public static final double MANUAL_POWER = .75;
+    public static final double MANUAL_POWER = 0.75;
+
+    // Lift Magic Motion values
+	public static final int MM_PID_SLOT_ID = 0;
+    public static double LIFT_P_VALUE = 18; // 3.5
+    public static double LIFT_I_VALUE = 0.008; // 0
+    public static double LIFT_D_VALUE = 180; // 40
+    public static final double LIFT_MAX_SPEED_RAW_UNITS = 85.0;// max velocity is 85 U/.1s up and 95 U/.1s down
+    public static final int MOTION_VELOCITY = (int) (LIFT_MAX_SPEED_RAW_UNITS * 1.0); 
+    public static final double LIFT_F_VALUE = 1023.0 / LIFT_MAX_SPEED_RAW_UNITS; // F-gain = (100% X 1023) / MAX_VEL 
+    public static final int MOTION_ACCELERATION = (int) (MOTION_VELOCITY / 0.75); // want 0.75s to reach curise speed
+
+
     
     // TODO Make switch heights constants
     public static final double AUTON_RETRACTED_SWITCH_HEIGHT = 10;

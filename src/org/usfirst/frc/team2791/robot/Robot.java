@@ -233,6 +233,8 @@ public class Robot extends TimedRobot {
 			Robot.drivetrain.resetEncoders();
 	    	Robot.drivetrain.resetGyro();
 		}
+		
+		Robot.lift.updateMagicMotionPIDGains();
 	}
 
 	/**

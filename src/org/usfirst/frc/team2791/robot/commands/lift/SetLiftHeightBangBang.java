@@ -6,10 +6,10 @@ import org.usfirst.frc.team2791.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class SetLiftHeight extends Command {
+public class SetLiftHeightBangBang extends Command {
     private double targetHeight;
     // Height measered inches
-    public SetLiftHeight(double height) {
+    public SetLiftHeightBangBang(double height) {
         super("GoToHeight");
         requires(Robot.lift);
         targetHeight = height;
@@ -40,7 +40,7 @@ public class SetLiftHeight extends Command {
     @Override
     public boolean isFinished() {
     	double diff = Robot.lift.getHeight() - targetHeight; // TODO make this a method
-    	if(targetHeight <=0.01) {
+    	if(targetHeight <= 0.01) {
     		return abs(diff) < 0.1; 
     	} else {
     		return Math.abs(diff) < Constants.CLOSE_DISTANCE;

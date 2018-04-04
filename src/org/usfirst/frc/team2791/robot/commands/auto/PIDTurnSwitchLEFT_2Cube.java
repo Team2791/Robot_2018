@@ -5,7 +5,7 @@ import org.usfirst.frc.team2791.robot.commands.auto.bangbang.DriveEncoderBangBan
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveStraightEncoderGyro;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.StationaryGyroTurn;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.PauseDrivetrain;
-import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeight;
+import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightBangBang;
 import org.usfirst.frc.team2791.robot.commands.manipulator.IntakeCube;
 import org.usfirst.frc.team2791.robot.commands.manipulator.SetManipulatorRetracted;
 import org.usfirst.frc.team2791.robot.commands.manipulator.ShootCube;
@@ -40,7 +40,7 @@ public class PIDTurnSwitchLEFT_2Cube extends CommandGroup {
     	// turn towards the left side
     	addSequential(new StationaryGyroTurn(-60, 0.5));
     	// drive towards the left side
-    	addParallel(new SetLiftHeight(Constants.AUTON_EXTENDED_SWITCH_HEIGHT));
+    	addParallel(new SetLiftHeightBangBang(Constants.AUTON_EXTENDED_SWITCH_HEIGHT));
     	
     	addSequential(new DriveStraightEncoderGyro(66, 0.9)); // removing 4 in after Utica Q1 (70->66)
     	// turn to face the switch
@@ -52,7 +52,7 @@ public class PIDTurnSwitchLEFT_2Cube extends CommandGroup {
     	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED, 0.75));
     	// back up from the switch and point at the next cube
     	addSequential(new DriveStraightEncoderGyro(-75, 0.7, 99, 1));
-    	addParallel(new SetLiftHeight(0));
+    	addParallel(new SetLiftHeightBangBang(0));
     	
     	addSequential(new StationaryGyroTurn(50, 0.5)); // adding angle after 2nd qual match utica 35->50
     	// grab the next cube then back away

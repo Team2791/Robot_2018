@@ -5,7 +5,7 @@ import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.commands.auto.bangbang.DriveEncoderBangBang;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveStraightEncoderGyro;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.StationaryGyroTurn;
-import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeight;
+import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightBangBang;
 import org.usfirst.frc.team2791.robot.commands.manipulator.SetManipulatorRetracted;
 import org.usfirst.frc.team2791.robot.commands.manipulator.ShootCube;
 
@@ -34,13 +34,13 @@ public class PIDSideScaleClose_ScaleEdge extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addParallel(new SetManipulatorRetracted(true));
-    	addParallel(new SetLiftHeight(10));
+    	addParallel(new SetLiftHeightBangBang(10));
     	//comp scale edge is 298 - 300 in from DS wall.
     	// adding 12'' to get further onto the scale edge.
     	// we drove to far. Taking 8'' off
     	// 317 -> 309
     	addSequential(new DriveStraightEncoderGyro(309, 0.7, 7, 1.5)); 
-    	addSequential(new SetLiftHeight(Constants.AUTON_SCALE_HEIGHT));
+    	addSequential(new SetLiftHeightBangBang(Constants.AUTON_SCALE_HEIGHT));
     	// adding a bit more turn because we won't be flush with the scale
     	if(leftSide) {
     		addSequential(new StationaryGyroTurn(100, 0.5));
@@ -50,7 +50,7 @@ public class PIDSideScaleClose_ScaleEdge extends CommandGroup {
     	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED+.1));
     	// backup and lower the lift
     	addSequential(new DriveEncoderBangBang(-0.3, 0, -20));
-    	addParallel(new SetLiftHeight(0));
+    	addParallel(new SetLiftHeightBangBang(0));
     	// poke a toe out of our zone
     	if(leftSide) {
     		addSequential(new StationaryGyroTurn(-70, 0.5));
