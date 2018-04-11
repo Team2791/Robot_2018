@@ -22,7 +22,7 @@ public class SetLiftHeightMagicMotionTopOrBottom extends Command {
         super("GoToHeight");
         requires(Robot.lift);
         targetHeight = goingToTop ? Constants.LIFT_MAX_HEIGHT - 0.5 : Constants.LIFT_MIN_HEIGHT;
-        targetMagicMotionHeight = goingToTop ? Constants.LIFT_MAX_HEIGHT - 2 : Constants.LIFT_MIN_HEIGHT + 3;
+        targetMagicMotionHeight = goingToTop ? Constants.LIFT_MAX_HEIGHT - 2.75 : Constants.LIFT_MIN_HEIGHT + 3;
     }
 
 
@@ -50,6 +50,7 @@ public class SetLiftHeightMagicMotionTopOrBottom extends Command {
         	int diffSign = (int) Math.signum(diff);
 
     		if (abs(diff) > 0.1) {
+//    			System.out.println("-Diff sign "+ (-diffSign));
                 Robot.lift.setPower(-diffSign * Constants.CLOSE_POWER);
                 Robot.lift.setBreak(false);
     		} else {
