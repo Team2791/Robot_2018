@@ -25,9 +25,9 @@ public class Constants {
     
     public static final double LIFT_MAX_HEIGHT = 38.5;
     public static final double LIFT_MIN_HEIGHT = .25;
-    
-    public static final double BOTTOM_SAFTEY_DISTANCE = 11;
-    public static final double TOP_SAFTEY_DISTANCE = 14;
+
+    public static final double BOTTOM_SAFTEY_DISTANCE = 3; //11 when using bang bang
+    public static final double TOP_SAFTEY_DISTANCE = 3; // 12 when using bang bang
     public static final double MANUAL_POWER = 0.75;
 
     // Lift Magic Motion values

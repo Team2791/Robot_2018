@@ -3,8 +3,8 @@ package org.usfirst.frc.team2791.robot;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.Creep;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.SetDrivetrainShifterMode;
 import org.usfirst.frc.team2791.robot.commands.lift.RunLiftWithJoystick;
-import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightBangBang;
 import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightMagicMotion;
+import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightMagicMotionTopOrBottom;
 import org.usfirst.frc.team2791.robot.commands.manipulator.IntakeCube;
 import org.usfirst.frc.team2791.robot.commands.manipulator.RunManipulatorWithJoystick;
 import org.usfirst.frc.team2791.robot.commands.manipulator.SetManipulatorRetracted;
@@ -83,7 +83,8 @@ public class OI {
 		
 		/********************************** Operator Button Assignments ****************************************/
 
-		operatorA.whenPressed(new SetLiftHeightBangBang(0)); // go to bottom //Same as X and dPadUp
+//		operatorA.whenPressed(new SetLiftHeightBangBang(0)); // go to bottom //Same as X and dPadUp
+		operatorA.whenPressed(new SetLiftHeightMagicMotionTopOrBottom(false));
 		operatorA.whenPressed(new SetManipulatorRetracted(false));
 		operatorB.whenPressed(new SetLiftHeightMagicMotion(5.25)); //middle of power cube pile //Was 12 Is now 7.25
 		operatorX.whenPressed(new SetLiftHeightMagicMotion(10)); //Top of power cube pile OR Portal//Was 12.5 now 12 //I wish it was SetLiftHeightandRetract but it cancels with the intake
@@ -92,7 +93,8 @@ public class OI {
 		operatorDpadDown.whenPressed(new SetLiftHeightMagicMotion(28.0)); //Set height to scoring lowest scale
 		operatorDpadRight.whenPressed(new SetLiftHeightMagicMotion(32.0)); //Set height to scoring even scale
 		operatorDpadUp.whenPressed(new SetManipulatorRetracted(true));
-		operatorDpadUp.whenPressed(new SetLiftHeightBangBang(38.75)); //Set height to scoring highest scale //Same as A and x :(
+//		operatorDpadUp.whenPressed(new SetLiftHeightBangBang(38.75)); //Set height to scoring highest scale //Same as A and x :(
+		operatorDpadUp.whenPressed(new SetLiftHeightMagicMotionTopOrBottom(true));
 		
 		operatorStart.whenPressed(new ToggleManipulator());
 		operatorBack.whenPressed(new ToggleManipulator());
