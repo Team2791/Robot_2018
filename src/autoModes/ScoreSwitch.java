@@ -1,4 +1,8 @@
-package org.usfirst.frc.team2791.pathing;
+package autoModes;
+
+import org.usfirst.frc.team2791.pathing.RunPath;
+import org.usfirst.frc.team2791.pathing.ShakerPaths;
+import org.usfirst.frc.team2791.pathing.ShakerPaths.FROM_CENTER;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 

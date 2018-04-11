@@ -13,7 +13,7 @@ public class ShakerPaths {
 				(-3 + -336 * t + 345 * Math.pow(t, 2))/ (138 + -246 * t + 291 * Math.pow(t, 2)) 
 				, 130));
 	}
-	
+
 	public static class FROM_RIGHT {
 //		public static final Path TravelToLeftScale = new Path(new PathSegment(t -> 
 //		/* {"start":{"x":0,"y":170},"mid1":{"x":109,"y":150},"mid2":{"x":170,"y":241},"end":{"x":169,"y":22}} */
