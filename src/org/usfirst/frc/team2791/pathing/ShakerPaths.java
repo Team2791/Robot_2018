@@ -38,22 +38,19 @@ public class ShakerPaths {
 //		/* {"start":{"x":0,"y":170},"mid1":{"x":109,"y":150},"mid2":{"x":190,"y":260},"end":{"x":187,"y":0}} */
 //		(-60 + 780 * t + -1500 * Math.pow(t, 2))/ (327 + -168 * t + -168 * Math.pow(t, 2)) 
 //		, 331));
-		
+
 		// Was still close to Platform
 		public static final Path TravelToLeftScale = new Path(new PathSegment(t -> 
 		/* {"start":{"x":0,"y":170},"mid1":{"x":109,"y":150},"mid2":{"x":190,"y":260},"end":{"x":178,"y":0}} */
 		(-60 + 780 * t + -1500 * Math.pow(t, 2))/ (327 + -168 * t + -195 * Math.pow(t, 2)) 
 		, 328));
 		// ^^ this path gave a good enough result. Still would like to drive further but that's okay for now.
-		
+
 		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
 		/* {"start":{"x":178,"y":100},"mid1":{"x":171,"y":80},"mid2":{"x":181,"y":46},"end":{"x":203,"y":60}} */
 		(-60 + -84 * t + 186 * Math.pow(t, 2))/ (-21 + 102 * t + -15 * Math.pow(t, 2)) 
 		, 63));
-		
-		
-		
-		
+
 		
 		// vv not sure what this path is doing.
 //		public static final Path TravelToLeftScale = new Path(

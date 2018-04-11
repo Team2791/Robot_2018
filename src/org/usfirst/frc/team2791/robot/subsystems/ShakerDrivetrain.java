@@ -41,7 +41,7 @@ import jaci.pathfinder.modifiers.TankModifier;
 
 public class ShakerDrivetrain extends Subsystem {
 
-	private double SAFETY_FACTOR = 1.0;
+	private double DRIVE_OUTPUT_SCALING_FACTOR = 1.0;
 	boolean inDriveMode = true;
 	// Victor speed controllers can be controlled with the WPI Talon class.
 	private VictorSPX victorLeft1;// , victorLeft2;
@@ -111,8 +111,7 @@ public class ShakerDrivetrain extends Subsystem {
 		}
 		setBrakeMode(false);
 
-		// stops all motors right away just in case
-		disable();
+		setLeftRightMotorOutputs(0, 0);
 
 		// keeps the gyro from throwing startCompetition() errors and allows us to
 		// troubleshoot errors
@@ -152,18 +151,6 @@ public class ShakerDrivetrain extends Subsystem {
 	}
 
 	/**
-	 * Stops the drivetrain
-	 */
-	public void disable() {
-		for (int i = 0; i < leftDrive.length; i++) {
-			leftDrive[i].set(ControlMode.PercentOutput, 0.0);
-		}
-		for (int i = 0; i < rightDrive.length; i++) {
-			rightDrive[i].set(ControlMode.PercentOutput, 0.0);
-		}
-	}
-
-	/**
 	 * Drivetrain motor outputs; Accepts values between -1.0 and +1.0
 	 * 
 	 * @param left
@@ -174,10 +161,10 @@ public class ShakerDrivetrain extends Subsystem {
 	public void setLeftRightMotorOutputs(double left, double right) {
 		SmartDashboard.putString("LeftOutput vs RightOutput", left + ":" + right);
 		for (int i = 0; i < leftDrive.length; i++) {
-			leftDrive[i].set(ControlMode.PercentOutput, left * this.SAFETY_FACTOR);
+			leftDrive[i].set(ControlMode.PercentOutput, left * DRIVE_OUTPUT_SCALING_FACTOR);
 		}
 		for (int i = 0; i < rightDrive.length; i++) {
-			rightDrive[i].set(ControlMode.PercentOutput, right * this.SAFETY_FACTOR);
+			rightDrive[i].set(ControlMode.PercentOutput, right * DRIVE_OUTPUT_SCALING_FACTOR);
 		}
 	}
 
@@ -214,8 +201,8 @@ public class ShakerDrivetrain extends Subsystem {
 
 		SmartDashboard.putNumber("DT - Left Encoder Ticks", getEncoderRawLeft());
 		SmartDashboard.putNumber("DT - Right Encoder Ticks", getEncoderRawRight());
-		SmartDashboard.putNumber("DT - Left Encoder Distance Meters", this.getLeftDistanceMet());
-		SmartDashboard.putNumber("DT - Right Encoder Distance Meters", this.getRightDistanceMet());
+//		SmartDashboard.putNumber("DT - Left Encoder Distance Meters", this.getLeftDistanceMet());
+//		SmartDashboard.putNumber("DT - Right Encoder Distance Meters", this.getRightDistanceMet());
 
 		SmartDashboard.putNumber("DT - Gyro angle", gyro.getAngle());
 		SmartDashboard.putNumber("DT - Gyro rate", gyro.getRate());
@@ -297,15 +284,15 @@ public class ShakerDrivetrain extends Subsystem {
 		return getGyroAngle() * (Math.PI / 180);
 	}
 
-	/**
-	 * resets the left and right drive encoders; resets the gyro; stops the
-	 * drivetrain
-	 */
-	public void reset() {
-		disable();
-		resetGyro();
-		resetEncoders();
-	}
+//	/**
+//	 * resets the left and right drive encoders; resets the gyro; stops the
+//	 * drivetrain
+//	 */
+//	public void reset() {
+//		disable();
+//		resetGyro();
+//		resetEncoders();
+//	}
 
 	public void resetEncoders() {
 		// zero the encoders
@@ -367,7 +354,7 @@ public class ShakerDrivetrain extends Subsystem {
 	}
 
 	public double getLeftVelocity() {
-		return talonLeft2.getSelectedSensorVelocity(0) * distancePerPulse * 10;// 10 to convert from milliseconds a
+		return talonLeft2.getSelectedSensorVelocity(0) * distancePerPulse * 10;// units/.1s  to units/1s
 	}
 	
 	public double getLeftVelocityMet() {
@@ -505,7 +492,7 @@ public class ShakerDrivetrain extends Subsystem {
 	public void resetForPath() {
 		isProfileFinished = false;
 		setBrakeMode(true);
-		reset();
+		resetEncoders();
 	}
 
 	public void resetPathAngleOffset() {
