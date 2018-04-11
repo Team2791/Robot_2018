@@ -64,6 +64,7 @@ public class Robot extends TimedRobot {
 	public static Limelight limelight;
     public static ShakerLift lift;
     public static UsbCamera driver_cam;
+    public static UsbCamera down_cam;
     
     private Timer teleopTimer;
 
@@ -91,7 +92,7 @@ public class Robot extends TimedRobot {
 		teleopTimer = new Timer();
 
 		driver_cam = CameraServer.getInstance().startAutomaticCapture("Driver Cam", 0);
-		
+		down_cam = CameraServer.getInstance().startAutomaticCapture("down_cam", 1);
 		ShakerDrivetrain.putPIDGainsOnSmartDash();
 
 		updateGameData(false);
