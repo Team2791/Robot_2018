@@ -51,6 +51,9 @@ public class ShakerPaths {
 		(-60 + -84 * t + 186 * Math.pow(t, 2))/ (-21 + 102 * t + -15 * Math.pow(t, 2)) 
 		, 63));
 
+		//Sams Test Path
+		public static final Path SamsPath = new Path(new PathSegment(t -> 
+		(-300 * Math.pow(t,  2) + 300 * t + 0) / (750 * Math.pow(t,  2) +-600 * t + 150), 130));
 		
 		// vv not sure what this path is doing.
 //		public static final Path TravelToLeftScale = new Path(

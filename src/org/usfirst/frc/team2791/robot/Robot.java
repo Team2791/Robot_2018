@@ -1,6 +1,8 @@
 
 package org.usfirst.frc.team2791.robot;
 
+import org.usfirst.frc.team2791.pathing.RunPath;
+import org.usfirst.frc.team2791.pathing.ShakerPaths;
 import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchLEFT;
 import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchRIGHT;
 import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
@@ -13,7 +15,6 @@ import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchLEFT;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchLEFT_2Cube;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchRIGHT;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchRIGHT_2Cube;
-import org.usfirst.frc.team2791.robot.commands.auto.SideScaleFar340Path;
 import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyDriveStraightToSwitch;
 import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyStraightSwitchCubeSCORE;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveEncoderBangBangGyroPID;
@@ -111,7 +112,8 @@ public class Robot extends TimedRobot {
 		
 		// Testing multiple 340 paths at once.
 //		autonomousCommand = new ScoreSwitch(false);
-		autonomousCommand = new SideScaleFar340Path(false);
+//		autonomousCommand = new SideScaleFar340Path(false);
+		autonomousCommand = new RunPath(ShakerPaths.FROM_RIGHT.SamsPath, 0.3);
 		
 
 		// Set up our auton chooser
