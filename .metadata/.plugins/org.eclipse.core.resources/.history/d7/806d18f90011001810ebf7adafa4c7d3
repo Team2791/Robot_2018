@@ -1,0 +1,61 @@
+package org.usfirst.frc.team2791.robot.commands.auto;
+
+import org.usfirst.frc.team2791.robot.Robot;
+import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
+
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.command.Command;
+
+/**
+ * The way to interpret the string file that is transmitted is shown below and the site is bookmarked
+ * The command is DriverStation.getInstance().getGameSpecificMessage();
+ * This code should go straight, turn right, and drop a cube in the switch
+ */
+public class RightSideSwitch extends Command {
+
+	String gameData;
+	
+    public RightSideSwitch() {
+    	requires(Robot.drivetrain);
+    }
+
+    protected void initialize() {
+    	gameData = DriverStation.getInstance().getGameSpecificMessage();
+    	if(gameData.length() != 3) {
+    		System.out.println("Something went wrong while receiving game data.");
+    		end();
+    	}
+    }
+
+    protected void execute() {
+    	if(gameData.charAt(0) == 'R') {
+    		//This will need to cross to left side of switch from right
+    		Robot.drivetrain.setLeftRightMotorOutputs(0.3, 0.3); // I chose .3 for no reason; liable to change
+    		if(Robot.drivetrain.getAverageDist() >= 14-(3+3/24)) { //switch is 14ft away from alliance wall
+    			//Length: Bumper to bumper is 33.5" or 2' + (19/24)
+    			//Width: Bumper to bumper is 37.5" or 3' + (3/24)
+    			Robot.drivetrain.setLeftRightMotorOutputs(0, .3);
+    			if(Robot.drivetrain.getRightDistance()> 4.908738521) { //The constant is 1/4 circle with r=width of robot
+    				end();
+    			}
+    	else {
+    		//This will need to go straight to right side of switch
+    		if(gameData.charAt(0) == 'L') {
+    			//TODO: Go straight and then loop around to left side of switch to drop cube
+    		}
+    	}
+    }
+
+    protected boolean isFinished() {
+        return false;
+    }
+
+    // Called once after isFinished returns true
+    protected void end() {
+    }
+
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    protected void interrupted() {
+    }
+}

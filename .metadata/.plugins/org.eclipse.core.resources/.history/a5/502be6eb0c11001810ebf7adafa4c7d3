@@ -1,0 +1,82 @@
+package org.usfirst.frc.team2791.robot.commands.auto;
+
+import org.usfirst.frc.team2791.robot.Robot;
+import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
+import org.usfirst.frc.team2791.robot.commands.lift.GoToHeight;
+import org.usfirst.frc.team2791.robot.commands.intakeclaw.ShootCube;
+import org.usfirst.frc.team2791.robot.util.Constants;
+
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
+
+/**
+ * The way to interpret the string file that is transmitted is shown below and the site is bookmarked
+ * The command is DriverStation.getInstance().getGameSpecificMessage();
+ * This code should go straight, turn right, and drop a cube in the switch
+ */
+public class RightSideSwitchBangBang extends CommandGroup {
+
+	String gameData;
+	
+    public RightSideSwitchBangBang() {
+    	requires(Robot.drivetrain);
+    }
+
+    protected void initialize() {
+    	gameData = DriverStation.getInstance().getGameSpecificMessage();
+    	if(gameData.length() != 3) {
+    		System.out.println("Something went wrong while receiving game data.");
+    		end();
+    	}
+    }
+
+    protected void execute() {
+    	if(gameData.charAt(0) == 'R') {
+    		//This will need to cross to left side of switch from right
+    		Robot.drivetrain.setLeftRightMotorOutputs(0.3, 0.3); // I chose .3 for no reason; liable to change
+    		if(Robot.drivetrain.getAverageDist() >= 14-(3+3/24)) { //switch is 14ft away from alliance wall
+    			//Width: Bumper to bumper is 33.5" or 2' + (19/24)
+    			//Length: Bumper to bumper is 37.5" or 3' + (3/24)
+    			Robot.drivetrain.setLeftRightMotorOutputs(0, .3);
+    			if(Robot.drivetrain.getRightDistance()> 4.385139746) { //The constant is 1/4 circle with r=width of robot
+    				Robot.drivetrain.setLeftRightMotorOutputs(0, 0);
+    				//addSequential(new GoToHeight(Constants.SWITCH_HEIGHT + 10)); will default to this height
+    				//TODO: Push out cube
+    				addSequential(new ShootCube());
+    				end();
+    			}
+    	else {
+    		//This will need to go straight to right side of switch
+    		if(gameData.charAt(0) == 'L') {
+    			Robot.drivetrain.setLeftRightMotorOutputs(.3, .3);
+    			if(Robot.drivetrain.getAverageDist() >= 18) { //Distance to switch + switch width
+    				Robot.drivetrain.setLeftRightMotorOutputs(0, .3);
+    				if(Robot.drivetrain.getRightDistance() > 4.385139746) {
+    					Robot.drivetrain.setLeftRightMotorOutputs(-.3,.3);
+    					if(Robot.drivetrain.getRightDistance() > 2.192569874) {
+    						Robot.drivetrain.setLeftRightMotorOutputs(0, 0);
+    						//addSequential(new GoToHeight(Constants.SWITCH_HEIGHT + 10)); will default to this height
+    						addSequential(new ShootCube());
+    						end();
+    						//TODO: Push out cube
+    					}
+    				}
+    			}
+    		}
+    	}
+    }
+
+    protected boolean isFinished() {
+        return false;
+    }
+
+    // Called once after isFinished returns true
+    protected void end() {
+    }
+
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    protected void interrupted() {
+    }
+}
