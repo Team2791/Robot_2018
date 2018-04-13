@@ -38,7 +38,7 @@ public class Manipulator extends Subsystem {
         extender = new Solenoid(RobotMap.PCM_CAN_ID, RobotMap.INTAKE_EXTENDER_SOLENOID_PORT);
 
         // Invert Motors
-        leftMotor.setInverted(true);
+        leftMotor.setInverted(false);
         leftMotor.setNeutralMode(NeutralMode.Brake);
         leftMotor.enableVoltageCompensation(true);
         leftMotor.configVoltageCompSaturation(12, 20);

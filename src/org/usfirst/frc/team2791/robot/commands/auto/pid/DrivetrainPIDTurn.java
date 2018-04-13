@@ -18,7 +18,7 @@ public abstract class DrivetrainPIDTurn extends Command {
 	protected BasicPID stationaryAnglePID;
 	
 	/**
-	 * @param angleToTurn the angle in degrees you would like to turn, ***negative if counterclockwise*** *
+	 * @param errorThreshold the angle in degrees you would like to turn, ***negative if counterclockwise*** *
 	 * @param maxOutput the maximum output you would like the motors to receive (up to 1.0)
 	 */
     public DrivetrainPIDTurn(double maxOutput, double errorThreshold) {

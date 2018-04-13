@@ -15,6 +15,7 @@ public class Paths {
 
 	public static Waypoint[] driveForward = convertPath_f2m(new Waypoint[]{
             new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
+<<<<<<< HEAD
             new Waypoint(20,0,0),
    //         new Waypoint(1.524, 0.0, Pathfinder.d2r(0.0)),
   //          new Waypoint(2.4383 ,-2.4383, Pathfinder.d2r(90.0)),
@@ -99,4 +100,8 @@ public class Paths {
 		
 		return standardPath;
 	}
+=======
+            new Waypoint(1.0, 1.0, Pathfinder.d2r(0.0)),
+    };
+>>>>>>> master
 }

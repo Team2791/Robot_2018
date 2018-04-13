@@ -6,7 +6,7 @@ import org.usfirst.frc.team2791.robot.commands.auto.bangbang.DriveEncoderBangBan
 import org.usfirst.frc.team2791.robot.commands.auto.bangbang.TurnGyroBangBang;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveStraightEncoderGyro;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.StationaryGyroTurn;
-import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeight;
+import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightBangBang;
 import org.usfirst.frc.team2791.robot.commands.manipulator.SetManipulatorRetracted;
 import org.usfirst.frc.team2791.robot.commands.manipulator.ShootCube;
 
@@ -36,18 +36,18 @@ public class PIDSideScaleClose extends CommandGroup {
         // arm.
     	addParallel(new SetManipulatorRetracted(true));
     	addSequential(new DriveStraightEncoderGyro(210, 1, 10, 1.5));
-    	addParallel(new SetLiftHeight(13));
+    	addParallel(new SetLiftHeightBangBang(13));
     	if(leftSide) {
     		addSequential(new StationaryGyroTurn(22, 0.5, 1.5));
     	} else {
     		addSequential(new StationaryGyroTurn(-22, 0.5, 1.5));
     	}
-    	addSequential(new SetLiftHeight(Constants.AUTON_SCALE_HEIGHT));
+    	addSequential(new SetLiftHeightBangBang(Constants.AUTON_SCALE_HEIGHT));
     	// drive to scale.
     	addSequential(new DriveStraightEncoderGyro(63, 0.6, 10, 4.5)); // 1.5 to 4.5. Also adding a extra power
     	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED, 0.5));
     	addSequential(new DriveEncoderBangBang(-0.5, 0, -20));
-    	addSequential(new SetLiftHeight(0));
+    	addSequential(new SetLiftHeightBangBang(0));
     	// turn and backup from scale to let 340 in.
     	if(leftSide) {
     		addSequential(new TurnGyroBangBang(-8, -0.6, 2));

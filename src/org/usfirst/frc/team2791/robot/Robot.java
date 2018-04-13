@@ -67,6 +67,7 @@ public class Robot extends TimedRobot {
 	public static Limelight limelight;
     public static ShakerLift lift;
     public static UsbCamera driver_cam;
+    public static UsbCamera down_cam;
     
     private Timer teleopTimer;
 
@@ -94,7 +95,7 @@ public class Robot extends TimedRobot {
 		teleopTimer = new Timer();
 
 		driver_cam = CameraServer.getInstance().startAutomaticCapture("Driver Cam", 0);
-		
+		down_cam = CameraServer.getInstance().startAutomaticCapture("down_cam", 1);
 		ShakerDrivetrain.putPIDGainsOnSmartDash();
 
 		updateGameData(false);
@@ -121,23 +122,27 @@ public class Robot extends TimedRobot {
 //			new PIDTurnSwitchLEFT_2Cube(),
 //			new PIDTurnSwitchRIGHT_2Cube()
 //		);
-		
-		DEFAULT_AUTO_NAME = "D: side scale LEFT - PID";
-		DEFAULT_AUTO = new ScaleAutonChooser(
-				new PIDSideScaleClose(true),
+
+//		DEFAULT_AUTO_NAME = "D: side scale LEFT - PID";
+//		DEFAULT_AUTO = new ScaleAutonChooser(
+////				new PIDSideScaleClose(true),
 //			new PIDSideScaleClose_ScaleEdge(true),
-			new PIDSideScaleFar(true)
-		);
-	
+//			new PIDSideScaleFar(true)
+//		);
+//	
 //		DEFAULT_AUTO_NAME = "D: side scale RIGHT - PID";
 //		DEFAULT_AUTO = new ScaleAutonChooser(
 //			new PIDSideScaleFar(false),
-//				new PIDSideScaleClose(false)
-////			new PIDSideScaleClose_ScaleEdge(false)
+////				new PIDSideScaleClose(false)
+//			new PIDSideScaleClose_ScaleEdge(false)
 //		);
+
+		DEFAULT_AUTO_NAME = "D: Do Nothing";
+		DEFAULT_AUTO = new NoChoiceChooser(new DoNothing());
 
 		chooser.addDefault(DEFAULT_AUTO_NAME, DEFAULT_AUTO);
 		chooser.addObject("Do Nothing", new NoChoiceChooser(new DoNothing()));
+		System.out.println("DEFAULT AUTO IS: = " + DEFAULT_AUTO_NAME);
 		
 		chooser.addObject("center switch - PID", new NearSwitchAutonChooser(
 			new PIDTurnSwitchLEFT(),
@@ -250,6 +255,8 @@ public class Robot extends TimedRobot {
 			Robot.drivetrain.resetEncoders();
 	    	Robot.drivetrain.resetGyro();
 		}
+		
+		Robot.lift.updateMagicMotionPIDGains();
 	}
 
 	/**

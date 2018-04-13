@@ -6,7 +6,7 @@ import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveEncoderBangBangGyro
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveStraightEncoderGyro;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.StationaryGyroTurn;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.PauseDrivetrain;
-import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeight;
+import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightBangBang;
 import org.usfirst.frc.team2791.robot.commands.manipulator.IntakeCube;
 import org.usfirst.frc.team2791.robot.commands.manipulator.SetManipulatorRetracted;
 import org.usfirst.frc.team2791.robot.commands.manipulator.ShootCube;
@@ -40,7 +40,7 @@ public class PIDTurnSwitchRIGHT_2Cube extends CommandGroup {
     	// turn towards the left side
     	addSequential(new StationaryGyroTurn(60, 0.5));
     	// drive towards the left side
-    	addParallel(new SetLiftHeight(Constants.AUTON_RETRACTED_SWITCH_HEIGHT)); // was 13
+    	addParallel(new SetLiftHeightBangBang(Constants.AUTON_RETRACTED_SWITCH_HEIGHT)); // was 13
     
     	addSequential(new DriveStraightEncoderGyro(56, 0.7));
     	// turn to face the switch
@@ -51,7 +51,7 @@ public class PIDTurnSwitchRIGHT_2Cube extends CommandGroup {
     	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
     	// back up from the switch and point at the next cube
     	addSequential(new DriveStraightEncoderGyro(-75, 0.7, 99, 1));
-    	addParallel(new SetLiftHeight(0));
+    	addParallel(new SetLiftHeightBangBang(0));
     	addParallel(new SetManipulatorRetracted(false));
     	addSequential(new StationaryGyroTurn(-40, 0.5)); // adding angle after 2nd qual match utica 35->50. 2nd qual on Sunday -50 -> -40
     	// grab the next cube then back away

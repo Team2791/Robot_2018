@@ -4,7 +4,7 @@ import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.commands.auto.bangbang.DriveEncoderBangBang;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveStraightEncoderGyro;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.StationaryGyroTurn;
-import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeight;
+import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightBangBang;
 import org.usfirst.frc.team2791.robot.commands.manipulator.SetManipulatorRetracted;
 import org.usfirst.frc.team2791.robot.commands.manipulator.ShootCube;
 
@@ -33,25 +33,25 @@ public class PIDSideScaleFar extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addParallel(new SetManipulatorRetracted(true));
-    	addSequential(new DriveStraightEncoderGyro(221, 1.0)); // adjusting from 221 to 214 for Utica
+    	addSequential(new DriveStraightEncoderGyro(221+8+6, 1.0)); // adjusting from 221 to 214 for Utica
     	// turn towards the switch
     	if(onLeftSide) {
     		addSequential(new StationaryGyroTurn(90, 0.5, 0.75));
     	} else {
     		addSequential(new StationaryGyroTurn(-90, 0.5, 0.75));
     	}
-    	addParallel(new SetLiftHeight(11));
+    	addParallel(new SetLiftHeightBangBang(11));
     	addSequential(new DriveStraightEncoderGyro(203, 1.0));
 
-    	addParallel(new SetLiftHeight(Constants.AUTON_SCALE_HEIGHT));
+    	addParallel(new SetLiftHeightBangBang(Constants.AUTON_SCALE_HEIGHT));
     	if(onLeftSide) {
     		addSequential(new StationaryGyroTurn(-100, 0.5));
     	} else {
     		addSequential(new StationaryGyroTurn(100, 0.5));
     	}
-    	addSequential(new DriveStraightEncoderGyro(40, 0.5, 3)); // adjusting from 57 to 40
+    	addSequential(new DriveStraightEncoderGyro(40+3, 0.5, 3)); // adjusting from 57 to 40, adjusting from 40-8 to 40
     	addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED));
     	addSequential(new DriveEncoderBangBang(-0.3, 0, -20));
-    	addSequential(new SetLiftHeight(0));
+    	addSequential(new SetLiftHeightBangBang(0));
     }
 }

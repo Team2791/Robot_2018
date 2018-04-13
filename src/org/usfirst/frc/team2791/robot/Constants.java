@@ -16,24 +16,32 @@ public class Constants {
 
 	//Lift Constants
 
-	// Pbot offset = -1.13
-	//Noah's PBot = -.2
-	// flight bot offset = -0.05
-    public static final double LIFT_POT_OFFSET = -2.49-.29+.54;//cbot: -2.49-.29
+    public static final double LIFT_POT_OFFSET = -4.75; //Was -3.978
 	//at 60% the lift was at 36'' from the ground, 33'' from the bottom of it's travel
     public static final double LIFT_POT_FULL_RANGE = 33.0 / 0.6;
     
-    public static final double FAR_AWAY_DISTANCE = 5;
+    public static final double FAR_AWAY_DISTANCE = 12;
     public static final double CLOSE_DISTANCE = 1;
     public static final double FAR_AWAY_POWER = 1;
     public static final double CLOSE_POWER = .4;
     
     public static final double LIFT_MAX_HEIGHT = 38.5;
     public static final double LIFT_MIN_HEIGHT = .25;
-    
-    public static final double BOTTOM_SAFTEY_DISTANCE = 4;
-    public static final double TOP_SAFTEY_DISTANCE = 6;
-    public static final double MANUAL_POWER = .75;
+
+    public static final double BOTTOM_SAFTEY_DISTANCE = 3; //11 when using bang bang
+    public static final double TOP_SAFTEY_DISTANCE = 3; // 12 when using bang bang
+    public static final double MANUAL_POWER = 0.75;
+
+    // Lift Magic Motion values
+	public static final int MM_PID_SLOT_ID = 0;
+    public static double LIFT_P_VALUE = 18; // 3.5
+    public static double LIFT_I_VALUE = 0.008; // 0
+    public static double LIFT_D_VALUE = 180; // 40
+    public static final double LIFT_MAX_SPEED_RAW_UNITS = 85.0;// max velocity is 85 U/.1s up and 95 U/.1s down
+    public static final int MOTION_VELOCITY = (int) (LIFT_MAX_SPEED_RAW_UNITS * 1.0); 
+    public static final double LIFT_F_VALUE = 1023.0 / LIFT_MAX_SPEED_RAW_UNITS; // F-gain = (100% X 1023) / MAX_VEL 
+    public static final int MOTION_ACCELERATION = (int) (MOTION_VELOCITY / 0.75); // want 0.75s to reach curise speed
+
     
     // TODO Make switch heights constants
     public static final double AUTON_RETRACTED_SWITCH_HEIGHT = 10;
@@ -69,7 +77,7 @@ public class Constants {
 	// 2/12 ~= 0.17. We use voltage compensation so we can assume the voltage is 12v
 	public static final double HOLD_SPEED = -0.1; //Made negative for P-Bot, wires are backwards 
 	public static final double SMALL_OUTPUT_SPEED = .45; //Made negative for P-Bot, wires are backwards //Increased by 40% for new 1:10 reduction
-	public static final double LARGE_OUTPUT_SPEED = .9; //Made negative for P-Bot, wires are backwards //Increased by 40% for new 1:10 reduction
+	public static final double LARGE_OUTPUT_SPEED = 1.0; //Made negative for P-Bot, wires are backwards //Increased by 40% for new 1:10 reduction
 	public static final double INTAKE_CUBE_STALL_CURRENT = 7;
 	
 
@@ -77,6 +85,7 @@ public class Constants {
 	public static final double LINE_DISTANCE = 10; //THIS IS NOT FINAL TODO FIND ACTUAL DISTANCE
 	public static final double SMALL_DISTANCE = 2; //THIS IS NOT FINAL TODO FIND ACTUAL VALUABLE SMALL DISTANCE
 	public static final double RADIANS_TO_DEGREES = -180/Math.PI;
+	public static final double LIFT_HOLD_VOLTAGE = 0.12;
 	
 	
 	// Auto PID constants
