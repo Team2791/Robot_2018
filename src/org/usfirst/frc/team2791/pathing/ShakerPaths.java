@@ -39,30 +39,75 @@ public class ShakerPaths {
 //		(-60 + 780 * t + -1500 * Math.pow(t, 2))/ (327 + -168 * t + -168 * Math.pow(t, 2)) 
 //		, 331));
 
-		// Was still close to Platform
-		public static final Path TravelToLeftScale = new Path(new PathSegment(t -> 
-		/* {"start":{"x":0,"y":170},"mid1":{"x":109,"y":150},"mid2":{"x":190,"y":260},"end":{"x":178,"y":0}} */
-		(-60 + 780 * t + -1500 * Math.pow(t, 2))/ (327 + -168 * t + -195 * Math.pow(t, 2)) 
-		, 328));
-		// ^^ this path gave a good enough result. Still would like to drive further but that's okay for now.
-
-		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
-		/* {"start":{"x":178,"y":100},"mid1":{"x":171,"y":80},"mid2":{"x":181,"y":46},"end":{"x":203,"y":60}} */
-		(-60 + -84 * t + 186 * Math.pow(t, 2))/ (-21 + 102 * t + -15 * Math.pow(t, 2)) 
-		, 63));
-
-		//Sams Test Path
-		public static final Path SamsPath = new Path(new PathSegment(t -> 
-		(-300 * Math.pow(t,  2) + 300 * t + 0) / (750 * Math.pow(t,  2) +-600 * t + 150), 130));
+//		// Was still close to Platform
+//		public static final Path TravelToLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":0,"y":170},"mid1":{"x":109,"y":150},"mid2":{"x":190,"y":260},"end":{"x":178,"y":0}} */
+//		(-60 + 780 * t + -1500 * Math.pow(t, 2))/ (327 + -168 * t + -195 * Math.pow(t, 2)) 
+//		, 328));
 		
-		// vv not sure what this path is doing.
-//		public static final Path TravelToLeftScale = new Path(
-//				straightLength(156).getPathAtDistance(10),
-//				new PathSegment(t -> 
-//				/* {"start":{"x":0,"y":230},"mid1":{"x":109,"y":242},"mid2":{"x":34,"y":39},"end":{"x":69,"y":0}} */
-//				(36 + -1290 * t + 1137 * Math.pow(t, 2))/ (327 + -1104 * t + 882 * Math.pow(t, 2)) 
-//				, 271)
-//				);
+		
+//		// Moving away from platform
+//		public static final Path TravelToLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":0,"y":170},"mid1":{"x":109,"y":150},"mid2":{"x":170,"y":260},"end":{"x":155,"y":0}} */
+//		(-60 + 780 * t + -1500 * Math.pow(t, 2))/ (327 + -288 * t + -84 * Math.pow(t, 2)) 
+//		, 312));
+
+		
+		// moved too far away from platform
+		public static final Path TravelToLeftScale = new Path(new PathSegment(t -> 
+		/* {"start":{"x":0,"y":170},"mid1":{"x":109,"y":150},"mid2":{"x":170,"y":260},"end":{"x":168,"y":0}} */
+		(-60 + 780 * t + -1500 * Math.pow(t, 2))/ (327 + -288 * t + -45 * Math.pow(t, 2)) 
+		, 317));
+
+		
+//		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":178,"y":100},"mid1":{"x":171,"y":80},"mid2":{"x":181,"y":46},"end":{"x":203,"y":60}} */
+//		(-60 + -84 * t + 186 * Math.pow(t, 2))/ (-21 + 102 * t + -15 * Math.pow(t, 2)) 
+//		, 63));
+		// ^ old DriveIntoLeftScale
+		
+//		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
+//		/*{"start":{"x":268, "y":170}, "mid1":{"x":270, "y":65}, "mid2":{"x":281, "y":66}, "end":{"x":300, "y":60}} */
+//		 (-339 * Math.pow(t, 2) + 636 * t + -315) / (-3 * Math.pow(t, 2) + 54 * t + 6), 120));
+//		// ^ New DriveIntoLeftScale
+
+
+//		// just took 30 in off forward drive and fixed angle
+//		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":268,"y":170},"mid1":{"x":232,"y":100},"mid2":{"x":250,"y":37},"end":{"x":270,"y":60}} */
+//		(-210 + 42 * t + 237 * Math.pow(t, 2))/ (-108 + 324 * t + -156 * Math.pow(t, 2)) 
+//		, 134));
+		
+//		// Moved 10 right and attempt to make 30 d angle
+//		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":268,"y":170},"mid1":{"x":233,"y":100},"mid2":{"x":220,"y":37},"end":{"x":270,"y":70}} */
+//		(-210 + 42 * t + 267 * Math.pow(t, 2))/ (-105 + 132 * t + 123 * Math.pow(t, 2)) 
+//		, 145));
+		
+		// increased angle to 43
+//		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":268,"y":170},"mid1":{"x":233,"y":100},"mid2":{"x":225,"y":27},"end":{"x":270,"y":70}} */
+//		(-210 + -18 * t + 357 * Math.pow(t, 2))/ (-105 + 162 * t + 78 * Math.pow(t, 2)) 
+//		, 149));
+		
+		// fixed driving into the cubes
+//		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":268,"y":170},"mid1":{"x":259,"y":102},"mid2":{"x":242,"y":38},"end":{"x":270,"y":70}} */
+//		(-204 + 24 * t + 276 * Math.pow(t, 2))/ (-27 + -48 * t + 159 * Math.pow(t, 2)) 
+//		, 126));
+		
+		//Move end point 26 in. forward
+//		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":268,"y":170},"mid1":{"x":260,"y":102},"mid2":{"x":242,"y":25},"end":{"x":296,"y":70}} */
+//		(-204 + -54 * t + 393 * Math.pow(t, 2))/ (-24 + -60 * t + 246 * Math.pow(t, 2)) 
+//		, 149));
+		
+		//Move end point 8 in. back
+		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
+		/* {"start":{"x":268,"y":170},"mid1":{"x":260,"y":102},"mid2":{"x":242,"y":25},"end":{"x":296,"y":70}} */
+		(-204 + -54 * t + 393 * Math.pow(t, 2))/ (-24 + -60 * t + 246 * Math.pow(t, 2)) 
+		, 149));
+		
 	}
 
 	public static Path straightLength(double length) {
