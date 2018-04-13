@@ -4,7 +4,6 @@ package org.usfirst.frc.team2791.robot;
 import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchLEFT;
 import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchRIGHT;
 import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
-import org.usfirst.frc.team2791.robot.commands.auto.PIDSideScaleClose;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDSideScaleClose_ScaleEdge;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDSideScaleFar;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDSideSwitchClose;
@@ -20,7 +19,6 @@ import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveEncoderBangBangGyro
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveStraightEncoderGyro;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.StationaryGyroTurn;
 import org.usfirst.frc.team2791.robot.commands.auto.timeonly.DriveForwardTime;
-import org.usfirst.frc.team2791.robot.commands.drivetrain.traj.TestSpline;
 import org.usfirst.frc.team2791.robot.subsystems.Manipulator;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerLift;
@@ -194,7 +192,6 @@ public class Robot extends TimedRobot {
 		chooser.addObject("TEST - gyro + encoder pid -50'' drive", new NoChoiceChooser(new DriveStraightEncoderGyro(-50, 0.7, 100, .1)));
 		chooser.addObject("TEST - gyro + encoder pid 120'' drive", new NoChoiceChooser(new DriveStraightEncoderGyro(120, 0.7, 100, .1)));
 		chooser.addObject("TEST - gyro + encoder pid -120'' drive", new NoChoiceChooser(new DriveStraightEncoderGyro(-120, 0.7, 100, .1)));
-		chooser.addObject("TEST Default Splint", new NoChoiceChooser(new TestSpline()));
 		
 		chooser.addObject("Cross line - time only", new NoChoiceChooser(new DriveForwardTime(0.33, 3.5)));
 		
@@ -238,7 +235,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void disabledInit() {
 		Robot.drivetrain.setVoltageRampRate(0);
-		Robot.drivetrain.resetForPath();
 		Robot.drivetrain.setBrakeMode(false);
 		Robot.ramps.setRampsDown(false);
 		updateGameData(true);
@@ -275,7 +271,6 @@ public class Robot extends TimedRobot {
 		updateGameData(true);
 		Robot.drivetrain.resetEncoders();
 		Robot.drivetrain.resetGyro();
-		Robot.drivetrain.resetForPath();
 		// schedule the autonomous command
 
 //		autonCommandChooser = chooser.getSelected();
