@@ -150,16 +150,48 @@ public class ShakerPaths {
 //		(-150 + 120 * t + 78 * Math.pow(t, 2))/ (-69 + 228 * t + -63 * Math.pow(t, 2)) 
 //		, 98));
 		
-		//Even closer
-		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
-		/* {"start":{"x":268,"y":170},"mid1":{"x":245,"y":120},"mid2":{"x":263,"y":87},"end":{"x":295,"y":103}} */
-		(-150 + 102 * t + 96 * Math.pow(t, 2))/ (-69 + 246 * t + -81 * Math.pow(t, 2)) 
-		, 101));
+//		//Even closer
+//		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":268,"y":170},"mid1":{"x":245,"y":120},"mid2":{"x":263,"y":87},"end":{"x":295,"y":103}} */
+//		(-150 + 102 * t + 96 * Math.pow(t, 2))/ (-69 + 246 * t + -81 * Math.pow(t, 2)) 
+//		, 101));
 		
+		//Too close to platform
+//		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":268,"y":170},"mid1":{"x":245,"y":120},"mid2":{"x":263,"y":93},"end":{"x":295,"y":109}} */
+//		(-150 + 138 * t + 60 * Math.pow(t, 2))/ (-69 + 246 * t + -81 * Math.pow(t, 2)) 
+//		, 97));
+		
+		//10 inch closer to wall and swing less
+		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
+		/* {"start":{"x":268,"y":170},"mid1":{"x":256,"y":120},"mid2":{"x":263,"y":83},"end":{"x":295,"y":99}} */
+		(-150 + 78 * t + 120 * Math.pow(t, 2))/ (-36 + 114 * t + 18 * Math.pow(t, 2)) 
+		, 99));
+		
+		
+//		public static final Path BackupFromLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":296,"y":90},"mid1":{"x":280,"y":90},"mid2":{"x":260,"y":50},"end":{"x":260,"y":0}} */
+//		(0 + -240 * t + 90 * Math.pow(t, 2))/ (-48 + -24 * t + 72 * Math.pow(t, 2)) 
+//		, 103));
+		
+		// increased start angle
+//		public static final Path BackupFromLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":296,"y":90},"mid1":{"x":273,"y":82},"mid2":{"x":263,"y":50},"end":{"x":260,"y":0}} */
+//		(-24 + -144 * t + 18 * Math.pow(t, 2))/ (-69 + 78 * t + -18 * Math.pow(t, 2)) 
+//		, 102));
+		
+		// made path WAY shorter
+//		public static final Path BackupFromLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":296,"y":90},"mid1":{"x":273,"y":81},"mid2":{"x":260,"y":70},"end":{"x":260,"y":50}} */
+//		(-27 + -12 * t + -21 * Math.pow(t, 2))/ (-69 + 60 * t + 9 * Math.pow(t, 2)) 
+//		, 58));
+		
+		//Switched points
 		public static final Path BackupFromLeftScale = new Path(new PathSegment(t -> 
-		/* {"start":{"x":296,"y":90},"mid1":{"x":280,"y":90},"mid2":{"x":260,"y":50},"end":{"x":260,"y":0}} */
-		(0 + -240 * t + 90 * Math.pow(t, 2))/ (-48 + -24 * t + 72 * Math.pow(t, 2)) 
-		, 103));
+		/* {"start":{"x":260,"y":50},"mid1":{"x":260,"y":70},"mid2":{"x":273,"y":81},"end":{"x":296,"y":90}} */
+		(60 + -54 * t + 21 * Math.pow(t, 2))/ (0 + 78 * t + -9 * Math.pow(t, 2)) 
+		, 58));
+
 	}
 
 	public static Path straightLength(double length) {

@@ -3,6 +3,7 @@ package org.usfirst.frc.team2791.robot;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.Creep;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.SetDrivetrainShifterMode;
 import org.usfirst.frc.team2791.robot.commands.lift.RunLiftWithJoystick;
+import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightBangBang;
 import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightMagicMotion;
 import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightMagicMotionTopOrBottom;
 import org.usfirst.frc.team2791.robot.commands.manipulator.IntakeCube;
@@ -93,8 +94,8 @@ public class OI {
 		operatorDpadDown.whenPressed(new SetLiftHeightMagicMotion(28.0)); //Set height to scoring lowest scale
 		operatorDpadRight.whenPressed(new SetLiftHeightMagicMotion(32.0)); //Set height to scoring even scale
 		operatorDpadUp.whenPressed(new SetManipulatorRetracted(true));
-//		operatorDpadUp.whenPressed(new SetLiftHeightBangBang(38.75)); //Set height to scoring highest scale //Same as A and x :(
-		operatorDpadUp.whenPressed(new SetLiftHeightMagicMotionTopOrBottom(true));
+		operatorDpadUp.whenPressed(new SetLiftHeightBangBang(38.75)); //Set height to scoring highest scale //Same as A and x :(
+//		operatorDpadUp.whenPressed(new SetLiftHeightMagicMotionTopOrBottom(true));
 		
 		operatorStart.whenPressed(new ToggleManipulator());
 		operatorBack.whenPressed(new ToggleManipulator());

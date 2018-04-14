@@ -47,11 +47,20 @@ public class RunPath extends Command {
     	this.speed = speed;
     	SmartDashboard.putNumber("340_Path - amountOfPathDriven", 0);
     	SmartDashboard.putNumber("340_Path - Error", 0);
+    	SmartDashboard.putNumber("340_Path - Angle Target", 0);
     }
 
-	public double dydx(double s) {
-		PathSegment segment = path.getPathAtDistance(s);
-		return segment.getDerivative().apply((s - path.getTotalOfCompletedPaths(s))/segment.getLength());
+	public double dydx(double currentRobotDistance) {
+		// since we always use 1 segment paths this always returns the only path
+		PathSegment segment = path.getPathAtDistance(currentRobotDistance);
+		// since we always use 1 segment paths htis alwars returns currentRobotDistance
+		double amountOfCurrentPathDriven = currentRobotDistance - path.getTotalOfCompletedPaths(currentRobotDistance);
+
+		double percentOfPathDriven = amountOfCurrentPathDriven / segment.getLength();
+		if(direction == Direction.BACKWARDS || direction == Direction.BACKWARDS_MIRRORED) {
+			percentOfPathDriven = 1 - percentOfPathDriven;
+		}
+		return segment.getDerivative().apply(percentOfPathDriven);
 	}
 
     // Called just before this Command runs the first time
@@ -64,11 +73,7 @@ public class RunPath extends Command {
     }
 
     private double getDistance() {
-    	if(direction == Direction.FORWARDS || direction == Direction.FORWARDS_MIRRORED) {
-    		return Math.abs(Robot.drivetrain.getAverageDist() - distanceAtStart);
-    	} else {
-    		return 1.0 - Math.abs(Robot.drivetrain.getAverageDist() - distanceAtStart);
-    	}
+		return Math.abs(Robot.drivetrain.getAverageDist() - distanceAtStart);
     }
 
     private double deltaAngle(double currentAngle) {
@@ -76,6 +81,8 @@ public class RunPath extends Command {
     	double nextSlope = dydx(getDistance());
     	
     	double angle = Math.atan((nextSlope - currentSlope)/(1 + currentSlope * nextSlope))*180/Math.PI;
+    	
+    	SmartDashboard.putNumber("340_Path - Angle Target", angle-currentAngle);
     	
 //    	System.out.println("m1: " + currentSlope + " m2: " + nextSlope + " dTheta: " + angle);
 //    	System.out.println("Encoder: " + getDistance() + " dydx: " + dydx(getDistance()));
