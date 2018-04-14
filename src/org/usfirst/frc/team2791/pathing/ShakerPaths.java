@@ -102,12 +102,64 @@ public class ShakerPaths {
 //		(-204 + -54 * t + 393 * Math.pow(t, 2))/ (-24 + -60 * t + 246 * Math.pow(t, 2)) 
 //		, 149));
 		
-		//Move end point 8 in. back
-		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
-		/* {"start":{"x":268,"y":170},"mid1":{"x":260,"y":102},"mid2":{"x":242,"y":25},"end":{"x":296,"y":70}} */
-		(-204 + -54 * t + 393 * Math.pow(t, 2))/ (-24 + -60 * t + 246 * Math.pow(t, 2)) 
-		, 149));
+//		//Move end point 8 in. back
+//		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":268,"y":170},"mid1":{"x":260,"y":102},"mid2":{"x":242,"y":25},"end":{"x":296,"y":70}} */
+//		(-204 + -54 * t + 393 * Math.pow(t, 2))/ (-24 + -60 * t + 246 * Math.pow(t, 2)) 
+//		, 149));
 		
+//		//Make turn less sharp
+//		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":268,"y":170},"mid1":{"x":255,"y":120},"mid2":{"x":260,"y":35},"end":{"x":288,"y":70}} */
+//		(-150 + -210 * t + 465 * Math.pow(t, 2))/ (-39 + 108 * t + 15 * Math.pow(t, 2)) 
+//		, 129));
+		
+//		// changed to a 90 degree turn
+//		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":268,"y":170},"mid1":{"x":255,"y":120},"mid2":{"x":258,"y":78},"end":{"x":288,"y":78}} */
+//		(-150 + 48 * t + 102 * Math.pow(t, 2))/ (-39 + 96 * t + 33 * Math.pow(t, 2)) 
+//		, 108));
+
+		// made the turn a touch less sharp to compensate for over turn and changed the end point.
+//		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":268,"y":170},"mid1":{"x":255,"y":120},"mid2":{"x":260,"y":91},"end":{"x":290,"y":86}} */
+//		(-150 + 126 * t + 9 * Math.pow(t, 2))/ (-39 + 108 * t + 21 * Math.pow(t, 2)) 
+//		, 100));
+
+//		// made turn a touch sharper and moved end point closer to ramps
+//		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":268,"y":170},"mid1":{"x":245,"y":120},"mid2":{"x":260,"y":91},"end":{"x":290,"y":100}} */
+//		(-150 + 126 * t + 51 * Math.pow(t, 2))/ (-69 + 228 * t + -69 * Math.pow(t, 2)) 
+//		, 97));
+		
+		// made turn sharper to hit scale more reliabley
+//		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":268,"y":170},"mid1":{"x":245,"y":120},"mid2":{"x":260,"y":86},"end":{"x":290,"y":100}} */
+//		(-150 + 96 * t + 96 * Math.pow(t, 2))/ (-69 + 228 * t + -69 * Math.pow(t, 2)) 
+//		, 99));
+		
+//		// get further from ramps and back up a hair.
+//		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":268,"y":170},"mid1":{"x":245,"y":120},"mid2":{"x":260,"y":92},"end":{"x":286,"y":106}} */
+//		(-150 + 132 * t + 60 * Math.pow(t, 2))/ (-69 + 228 * t + -81 * Math.pow(t, 2)) 
+//		, 92));
+		
+//		// get a hair closer
+//		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":268,"y":170},"mid1":{"x":245,"y":120},"mid2":{"x":260,"y":90},"end":{"x":292,"y":106}} */
+//		(-150 + 120 * t + 78 * Math.pow(t, 2))/ (-69 + 228 * t + -63 * Math.pow(t, 2)) 
+//		, 98));
+		
+		//Even closer
+		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
+		/* {"start":{"x":268,"y":170},"mid1":{"x":245,"y":120},"mid2":{"x":263,"y":87},"end":{"x":295,"y":103}} */
+		(-150 + 102 * t + 96 * Math.pow(t, 2))/ (-69 + 246 * t + -81 * Math.pow(t, 2)) 
+		, 101));
+		
+		public static final Path BackupFromLeftScale = new Path(new PathSegment(t -> 
+		/* {"start":{"x":296,"y":90},"mid1":{"x":280,"y":90},"mid2":{"x":260,"y":50},"end":{"x":260,"y":0}} */
+		(0 + -240 * t + 90 * Math.pow(t, 2))/ (-48 + -24 * t + 72 * Math.pow(t, 2)) 
+		, 103));
 	}
 
 	public static Path straightLength(double length) {

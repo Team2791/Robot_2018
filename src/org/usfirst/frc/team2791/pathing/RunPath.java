@@ -12,15 +12,32 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class RunPath extends Command {
+	public static enum Direction {
+		FORWARDS,
+		FORWARDS_MIRRORED,
+		BACKWARDS,
+		BACKWARDS_MIRRORED
+	}
+
 	private final double arcDivisor = 20;
 	private Path path;
 	private Function<Double, Double> speed;
 	private double distanceAtStart = 0;
+	private Direction direction = Direction.FORWARDS;
 
     public RunPath(Path path, double speed) {
     	this(path, x-> speed);
     }
-
+    
+    public RunPath(Path path, double speed, Direction direction) {
+    	this(path,  speed);
+    	this.direction = direction;
+    }
+    
+    public RunPath(Path path, Function<Double, Double> speed, Direction direction) {
+    	this(path, speed);
+    	this.direction = direction;
+    }
     
     public RunPath(Path path, Function<Double, Double> speed) {
         // Use requires() here to declare subsystem dependencies
@@ -47,7 +64,11 @@ public class RunPath extends Command {
     }
 
     private double getDistance() {
-    	return Math.abs(Robot.drivetrain.getAverageDist() - distanceAtStart);
+    	if(direction == Direction.FORWARDS || direction == Direction.FORWARDS_MIRRORED) {
+    		return Math.abs(Robot.drivetrain.getAverageDist() - distanceAtStart);
+    	} else {
+    		return 1.0 - Math.abs(Robot.drivetrain.getAverageDist() - distanceAtStart);
+    	}
     }
 
     private double deltaAngle(double currentAngle) {
@@ -58,7 +79,11 @@ public class RunPath extends Command {
     	
 //    	System.out.println("m1: " + currentSlope + " m2: " + nextSlope + " dTheta: " + angle);
 //    	System.out.println("Encoder: " + getDistance() + " dydx: " + dydx(getDistance()));
-    	return angle;
+    	if(direction == Direction.FORWARDS || direction == Direction.BACKWARDS) {
+    		return angle;
+    	} else {
+    		return -angle;
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run

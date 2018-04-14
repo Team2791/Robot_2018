@@ -16,7 +16,7 @@ public class Constants {
 
 	//Lift Constants
 
-    public static final double LIFT_POT_OFFSET = -4.75; //Was -3.978
+    public static final double LIFT_POT_OFFSET = -5.37;
 	//at 60% the lift was at 36'' from the ground, 33'' from the bottom of it's travel
     public static final double LIFT_POT_FULL_RANGE = 33.0 / 0.6;
     
@@ -46,7 +46,7 @@ public class Constants {
     // TODO Make switch heights constants
     public static final double AUTON_RETRACTED_SWITCH_HEIGHT = 10;
     public static final double AUTON_EXTENDED_SWITCH_HEIGHT = 13;
-    public static final double AUTON_SCALE_HEIGHT = 36;
+    public static final double AUTON_SCALE_HEIGHT = LIFT_MAX_HEIGHT - 0.75;
 
 	// Joystick constants
 	public static final double DEADZONE = 0.05;

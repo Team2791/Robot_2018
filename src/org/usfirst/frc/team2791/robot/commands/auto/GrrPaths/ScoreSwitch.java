@@ -1,4 +1,4 @@
-package autoModes;
+package org.usfirst.frc.team2791.robot.commands.auto.GrrPaths;
 
 import org.usfirst.frc.team2791.pathing.RunPath;
 import org.usfirst.frc.team2791.pathing.ShakerPaths;
