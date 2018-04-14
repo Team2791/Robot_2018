@@ -4,7 +4,9 @@ import org.usfirst.frc.team2791.pathing.RunPath;
 import org.usfirst.frc.team2791.pathing.ShakerPaths;
 import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.PauseDrivetrain;
+import org.usfirst.frc.team2791.robot.commands.lift.PauseLift;
 import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightBangBang;
+import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightMagicMotionTopOrBottom;
 import org.usfirst.frc.team2791.robot.commands.manipulator.SetManipulatorRetracted;
 import org.usfirst.frc.team2791.robot.commands.manipulator.ShootCube;
 
@@ -19,7 +21,7 @@ public class SideScaleFar340Path extends CommandGroup {
 			} else if (x < 0.8) {
 				return 0.85;
 			} else {
-				return 0.6;
+				return 0.85;
 			}
 		}));
 		addParallel(new SetLiftHeightBangBang(Constants.AUTON_SCALE_HEIGHT));
@@ -28,20 +30,25 @@ public class SideScaleFar340Path extends CommandGroup {
 		addParallel(new SetManipulatorRetracted(false));
 		addSequential(new RunPath(ShakerPaths.FROM_RIGHT.DriveIntoLeftScale, x -> {
 			if (x < 0.4) {
-				return 0.5;
+				return 0.65;
 			} else {
 				return 0.22;
 			}
 		}));
-		addSequential(new PauseDrivetrain(0.5));
+		addSequential(new PauseDrivetrain(0.5)); // wait to drift into the null zone
 		addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED), 0.75);
+		
+		// backup and lower the lift
+		addParallel(new PauseLift(1));
+		addParallel(new SetLiftHeightMagicMotionTopOrBottom(false));
 		addSequential(new RunPath(ShakerPaths.FROM_RIGHT.BackupFromLeftScale, x -> {
-			if (x < 0.3) {
+			if (x < 0.15) {
 				return -0.2;
 			} else {
-				return -0.3;
+				return -0.35;
 			}
 		}, RunPath.Direction.BACKWARDS));
-		addSequential(new PauseDrivetrain(0.5));
+		
+		// pickup the next cube
 	}
 }
