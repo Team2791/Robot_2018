@@ -115,11 +115,11 @@ public class RunPath extends Command {
     protected boolean isFinished() {
     	double robotDistance = getDistance();
     	boolean result = robotDistance > path.getTotalLength();
-    	if(result) {
-    		System.out.println("About to return true to finish RunPath.");
-    		System.out.println("Robot distance " + robotDistance);
-    		System.out.println("Path distance "+path.getTotalLength());
-    	}
+//    	if(result) {
+//    		System.out.println("About to return true to finish RunPath.");
+//    		System.out.println("Robot distance " + robotDistance);
+//    		System.out.println("Path distance "+path.getTotalLength());
+//    	}
     	return result;
 //        return Math.abs(getDistance()) > path.getTotalLength();
     }

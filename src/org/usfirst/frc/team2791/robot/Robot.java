@@ -14,6 +14,7 @@ import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchRIGHT;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchRIGHT_2Cube;
 import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyDriveStraightToSwitch;
 import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyStraightSwitchCubeSCORE;
+import org.usfirst.frc.team2791.robot.commands.auto.GrrPaths.GrrPathScoreSwitch;
 import org.usfirst.frc.team2791.robot.commands.auto.GrrPaths.SideScaleFar340Path;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveEncoderBangBangGyroPID;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveStraightEncoderGyro;
@@ -109,8 +110,8 @@ public class Robot extends TimedRobot {
 //		});		
 		
 		// Testing multiple 340 paths at once.
-//		autonomousCommand = new ScoreSwitch(false);
-		autonomousCommand = new SideScaleFar340Path(false);
+		autonomousCommand = new GrrPathScoreSwitch(true);
+//		autonomousCommand = new SideScaleFar340Path(false);
 //		autonomousCommand = new RunPath(ShakerPaths.FROM_RIGHT.SamsPath, 0.3);
 		
 
