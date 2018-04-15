@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename field &apos;BOTTOM_SOLENOID&apos; in &apos;org.usfirst.frc.team2791.robot.RobotMap&apos; to &apos;BREAK_SOLENOID&apos;&#x0D;&#x0A;- Original project: &apos;Robot_2018&apos;&#x0D;&#x0A;- Original element: &apos;org.usfirst.frc.team2791.robot.RobotMap.BOTTOM_SOLENOID&apos;&#x0D;&#x0A;- Renamed element: &apos;org.usfirst.frc.team2791.robot.RobotMap.BREAK_SOLENOID&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="false" description="Rename field &apos;BOTTOM_SOLENOID&apos;" flags="589830" getter="false" id="org.eclipse.jdt.ui.rename.field" input="/src&lt;org.usfirst.frc.team2791.robot{RobotMap.java[RobotMap^BOTTOM_SOLENOID" name="BREAK_SOLENOID" references="true" setter="false" stamp="1518279478160" textual="false" version="1.0"/>
+</session>
