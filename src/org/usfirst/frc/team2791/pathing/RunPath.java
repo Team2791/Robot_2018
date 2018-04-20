@@ -48,6 +48,8 @@ public class RunPath extends Command {
     	SmartDashboard.putNumber("340_Path - amountOfPathDriven", 0);
     	SmartDashboard.putNumber("340_Path - Error", 0);
     	SmartDashboard.putNumber("340_Path - Angle Target", 0);
+    	SmartDashboard.putNumber("340_Path - Current Slope", 0);
+    	SmartDashboard.putNumber("340_Path - Next Slope", 0);
     }
 
 	public double dydx(double currentRobotDistance) {
@@ -80,17 +82,23 @@ public class RunPath extends Command {
     	double currentSlope = Math.tan(currentAngle * Math.PI / 180);
     	double nextSlope = dydx(getDistance());
     	
-    	double angle = Math.atan((nextSlope - currentSlope)/(1 + currentSlope * nextSlope))*180/Math.PI;
+    	if(direction == Direction.FORWARDS_MIRRORED || direction == Direction.BACKWARDS_MIRRORED) {
+    		// make current slope mirrored
+    		currentSlope = -currentSlope;
+    	}
     	
-    	SmartDashboard.putNumber("340_Path - Angle Target", angle-currentAngle);
+    	SmartDashboard.putNumber("340_Path - Current Slope", currentSlope);
+    	SmartDashboard.putNumber("340_Path - Next Slope", nextSlope);
+
+    	double angle = Math.atan((nextSlope - currentSlope)/(1 + currentSlope * nextSlope))*180/Math.PI;
     	
 //    	System.out.println("m1: " + currentSlope + " m2: " + nextSlope + " dTheta: " + angle);
 //    	System.out.println("Encoder: " + getDistance() + " dydx: " + dydx(getDistance()));
-    	if(direction == Direction.FORWARDS || direction == Direction.BACKWARDS) {
-    		return angle;
-    	} else {
-    		return -angle;
+    	if(direction == Direction.FORWARDS_MIRRORED || direction == Direction.BACKWARDS_MIRRORED) {
+    		angle = - angle;
     	}
+    	SmartDashboard.putNumber("340_Path - Angle Target", angle-currentAngle);
+    	return angle;
     }
 
     // Called repeatedly when this Command is scheduled to run

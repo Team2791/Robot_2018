@@ -61,7 +61,7 @@ public class GrrPathScoreSwitch extends CommandGroup {
 		}
 		addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED), 0.25);
 		
-		addParallel(new SetLiftPositionAfterDelay(1, 5.25));
+		addParallel(new SetLiftPositionAfterDelay(1, 5.25)); // this value is copied from OI. TODO make this a constant
 		if(isRight) {
 			addSequential(new RunPath(ShakerPaths.FROM_CENTER.SWITCH_TO_CUBE_LEFT, backupFromSwitchSpeedFunction, RunPath.Direction.BACKWARDS_MIRRORED));
 		} else {
