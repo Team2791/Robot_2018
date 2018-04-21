@@ -23,10 +23,10 @@ public class CloseScaleGrrPath extends CommandGroup {
 	Function<Double, Double> driveToScaleSpeedFunc = x -> {
 		if (x < 0.15) {
 			return 0.95;
-		} else if (x < 0.85) {
-			return 0.7;
+		} else if (x < 0.80) {
+			return 0.85;
 		} else {
-			return 0.30;
+			return 0.4;
 		}
 	};
 	
@@ -34,9 +34,9 @@ public class CloseScaleGrrPath extends CommandGroup {
 		if (x < 0.15) {
 			return -0.45;
 		} else if (x < 0.7) {
-			return -0.7;
+			return -0.8;
 		} else {
-			return -0.35;
+			return -0.4;
 		}
 	};
 	
@@ -49,18 +49,18 @@ public class CloseScaleGrrPath extends CommandGroup {
 		} else {
 			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.DriveIntoRightScale, driveToScaleSpeedFunc, RunPath.Direction.FORWARDS));
 		}
-		addSequential(new PauseDrivetrain(0.3));
-		addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED, 0.3));
+//		addSequential(new PauseDrivetrain(0.3));
+		addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED, 0.5));
 		addParallel(new SetManipulatorRetracted(false));
 		addParallel(new LowerLiftAfterDelay(0.8));
 		if(onLeftSide) {
-			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.BackRightScale, -0.35, RunPath.Direction.BACKWARDS_MIRRORED));
+			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.BackRightScale, -0.4, RunPath.Direction.BACKWARDS_MIRRORED));
 		} else {
-			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.BackRightScale, -0.35, RunPath.Direction.BACKWARDS));
+			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.BackRightScale, -0.4, RunPath.Direction.BACKWARDS));
 		}
 		
 		addParallel(new IntakeCube());
-		addSequential(new PauseDrivetrain(.5));
+		addSequential(new PauseDrivetrain(.2));
 		// This path is from the far side 2 cube!
 		if(onLeftSide) {
 			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromRightScale, 0.3, RunPath.Direction.FORWARDS_MIRRORED));
@@ -71,6 +71,7 @@ public class CloseScaleGrrPath extends CommandGroup {
 		addParallel(new IntakeCube());
 //		addParallel(new SetManipulatorRetracted(true));
 		addParallel(new RunCommandAfterDelay(0.5, new SetManipulatorRetracted(true)));
+		addSequential(new PauseDrivetrain(.25));
 		if(onLeftSide) {
 			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.BackUpToRightScale, backupToScaleSpeedFunc, RunPath.Direction.BACKWARDS_MIRRORED)); // this is not tested needs to be tested in order for it to be correct
 		} else {

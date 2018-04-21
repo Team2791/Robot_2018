@@ -22,6 +22,9 @@ public class RunLiftWithJoystick extends Command {
     @Override
     protected void execute() {
         double speed = OI.operator.getAxisLeftY() * Constants.MANUAL_POWER;
+        if(Robot.lift.getHeight() < 12) {
+        	speed = Math.max(-0.3, speed);
+        }
         Robot.lift.setPower(speed);
         Robot.lift.setBreak(false);
     }

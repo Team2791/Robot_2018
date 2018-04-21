@@ -15,14 +15,14 @@ public class SetLiftHeightMagicMotionTopOrBottom extends Command {
     private double targetMagicMotionHeight;
     private boolean finishedMagicMotion;
    
-    private final double MM_TO_BANGBANG_RANGE = 2;
+    private final double MM_TO_BANGBANG_RANGE = 4;
     
     
     public SetLiftHeightMagicMotionTopOrBottom(boolean goingToTop) {
         super("GoToHeight");
         requires(Robot.lift);
         targetHeight = goingToTop ? Constants.LIFT_MAX_HEIGHT - 0.5 : Constants.LIFT_MIN_HEIGHT;
-        targetMagicMotionHeight = goingToTop ? Constants.LIFT_MAX_HEIGHT - 2.75 : Constants.LIFT_MIN_HEIGHT + 3;
+        targetMagicMotionHeight = goingToTop ? Constants.LIFT_MAX_HEIGHT - 2.75 : Constants.LIFT_MIN_HEIGHT + 2.5;
     }
 
 
@@ -33,8 +33,15 @@ public class SetLiftHeightMagicMotionTopOrBottom extends Command {
     @Override
     protected void initialize() {
         Robot.lift.setBreak(false);
-        finishedMagicMotion = false;
-        Robot.lift.setTargetMagicMotion(targetMagicMotionHeight);
+        double magicMotionHeightDiff = Robot.lift.getHeight() - targetMagicMotionHeight;
+        if (abs(magicMotionHeightDiff) < MM_TO_BANGBANG_RANGE) {
+			// exit to bang bang
+			finishedMagicMotion = true;
+		} else {
+			finishedMagicMotion = false;
+	        Robot.lift.setTargetMagicMotion(targetMagicMotionHeight);
+		}
+        
     }
 
     @Override
