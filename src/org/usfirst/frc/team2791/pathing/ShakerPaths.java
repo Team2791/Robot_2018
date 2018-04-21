@@ -317,6 +317,11 @@ public class ShakerPaths {
 	/* {"start":{"x":260,"y":60},"mid1":{"x":260,"y":61},"mid2":{"x":263,"y":91},"end":{"x":309,"y":91}} */
 	(3 + 174 * t + -177 * Math.pow(t, 2))/ (0 + 18 * t + 120 * Math.pow(t, 2)) 
 	, 64));
+			
+		public static final Path GoToLeftCube = new Path(new PathSegment(t -> 
+			/* {"start":{"x":260,"y":60},"mid1":{"x":252,"y":97},"mid2":{"x":245,"y":132},"end":{"x":245,"y":132}} */
+			(111 + -12 * t + -99 * Math.pow(t, 2))/ (-24 + 6 * t + 18 * Math.pow(t, 2)) 
+			, 74));
 //		public static final Path GetCubeFromLeftScale = new Path(new PathSegment(t -> 
 //	/* {"start":{"x":260,"y":60},"mid1":{"x":253,"y":79},"mid2":{"x":249,"y":93},"end":{"x":249,"y":93}} */
 //	(57 + -30 * t + -27 * Math.pow(t, 2))/ (-21 + 18 * t + 3 * Math.pow(t, 2)) 

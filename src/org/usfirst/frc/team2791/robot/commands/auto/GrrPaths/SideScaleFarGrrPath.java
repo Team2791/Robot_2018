@@ -60,7 +60,15 @@ public class SideScaleFarGrrPath extends CommandGroup {
 		addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GoToLeftScale, x-> 0.3));
 		addParallel(new PauseDrivetrain(.5));
 		addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED), 0.5);
-		
+		// for 3 cube hopefully ^-^
+	    //addParallel(new SetLiftHeightBangBang(Constants.BOTTOM_SAFTEY_DISTANCE));
+		//addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GoToLeftScale, x-> -0.3, RunPath.Direction.BACKWARDS)); 
+//		addParallel(new IntakeCube(), 1);
+//	    addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GoToLeftCube, x->0.3));
+//	    addParallel(new PauseDrivetrain(1));
+//	    addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GoToLeftCube, x->-0.3, RunPath.Direction.BACKWARDS));
+//	  addParallel(new SetLiftHeightBangBang(Constants.AUTON_SCALE_HEIGHT));
+//	  addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GoToLeftScale, x->))
 		
 		//other alternative sequence using PID
 //		addSequential(new StationaryGyroTurn(x->-Robot.drivetrain.getGyroAngle(), 0.8, 5));

@@ -69,7 +69,7 @@ public class IntakeCube extends Command {
 
     @Override
     protected boolean isFinished() {
-        return manipulator.isCubeInGripper() || intakeCurrentTimer.get() > 3;
+        return manipulator.isCubeInGripper() || intakeCurrentTimer.get() > 10;
     }
 
     @Override

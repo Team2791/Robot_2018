@@ -5,11 +5,11 @@ import java.util.function.Function;
 import org.usfirst.frc.team2791.pathing.RunPath;
 import org.usfirst.frc.team2791.pathing.ShakerPaths;
 import org.usfirst.frc.team2791.robot.Constants;
+import org.usfirst.frc.team2791.robot.commands.RunCommandAfterDelay;
 import org.usfirst.frc.team2791.robot.commands.auto.bangbang.DriveEncoderBangBang;
 import org.usfirst.frc.team2791.robot.commands.auto.bangbang.TurnGyroBangBang;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.PauseDrivetrain;
 import org.usfirst.frc.team2791.robot.commands.lift.LowerLiftAfterDelay;
-import org.usfirst.frc.team2791.robot.commands.lift.RaiseLiftToTopAfterDelay;
 import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightBangBang;
 import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightMagicMotionTopOrBottom;
 import org.usfirst.frc.team2791.robot.commands.manipulator.IntakeCube;
@@ -60,6 +60,7 @@ public class CloseScaleGrrPath extends CommandGroup {
 		}
 		
 		addParallel(new IntakeCube());
+		addSequential(new PauseDrivetrain(.5));
 		// This path is from the far side 2 cube!
 		if(onLeftSide) {
 			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromRightScale, 0.3, RunPath.Direction.FORWARDS_MIRRORED));
@@ -67,12 +68,15 @@ public class CloseScaleGrrPath extends CommandGroup {
 			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromRightScale, 0.3, RunPath.Direction.FORWARDS));
 		}
 //		addParallel(new RaiseLiftToTopAfterDelay(1)); // This hit the scale
-		addParallel(new SetManipulatorRetracted(true));
+		addParallel(new IntakeCube());
+//		addParallel(new SetManipulatorRetracted(true));
+		addParallel(new RunCommandAfterDelay(0.5, new SetManipulatorRetracted(true)));
 		if(onLeftSide) {
 			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.BackUpToRightScale, backupToScaleSpeedFunc, RunPath.Direction.BACKWARDS_MIRRORED)); // this is not tested needs to be tested in order for it to be correct
 		} else {
 			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.BackUpToRightScale, backupToScaleSpeedFunc, RunPath.Direction.BACKWARDS));
 		}
+		addParallel(new IntakeCube());
 		addSequential(new SetLiftHeightBangBang(Constants.AUTON_SCALE_HEIGHT));
 		addParallel(new SetManipulatorRetracted(false));
 		addSequential(new DriveEncoderBangBang(0.5, 0, 6));
