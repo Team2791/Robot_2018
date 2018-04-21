@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2791.robot.commands.auto.pid;
 
+import java.util.function.Function;
+
 import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.util.BasicPID;
 
@@ -39,6 +41,10 @@ public class StationaryGyroTurn extends DrivetrainPIDTurn {
 	 */
     public StationaryGyroTurn(double angleToTurn, double maxOutput) {
     	this(angleToTurn, maxOutput, 1.25);
+    }
+    
+    public StationaryGyroTurn(Function<Void, Double> getAngleFunction, double maxOutput, double maxThreshold) {
+    	this(getAngleFunction.apply(null), maxOutput, maxThreshold);
     }
     
     /**

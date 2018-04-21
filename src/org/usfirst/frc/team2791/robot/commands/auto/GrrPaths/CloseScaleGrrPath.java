@@ -80,7 +80,7 @@ public class CloseScaleGrrPath extends CommandGroup {
 		
 		// backup, lower the lift and turn
 //		addParallel(new SetManipulatorRetracted(false));
-		addSequential(new DriveEncoderBangBang(-0.7, 0, -16));
+		addSequential(new DriveEncoderBangBang(-0.5, 0, -12));
 		addParallel(new SetLiftHeightMagicMotionTopOrBottom(false));
 		addSequential(new TurnGyroBangBang(30, 0.4));
 		addSequential(new PauseDrivetrain(10));
