@@ -1,6 +1,8 @@
 
 package org.usfirst.frc.team2791.robot;
 
+import org.usfirst.frc.team2791.pathing.RunPath;
+import org.usfirst.frc.team2791.pathing.ShakerPaths;
 import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchLEFT;
 import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchRIGHT;
 import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
@@ -14,8 +16,9 @@ import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchRIGHT;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchRIGHT_2Cube;
 import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyDriveStraightToSwitch;
 import org.usfirst.frc.team2791.robot.commands.auto.TimeOnlyStraightSwitchCubeSCORE;
-import org.usfirst.frc.team2791.robot.commands.auto.GrrPaths.GrrPathScoreSwitch;
-import org.usfirst.frc.team2791.robot.commands.auto.GrrPaths.SideScaleFar340Path;
+import org.usfirst.frc.team2791.robot.commands.auto.GrrPaths.CloseScaleGrrPath;
+import org.usfirst.frc.team2791.robot.commands.auto.GrrPaths.SideScaleFarGrrPath;
+import org.usfirst.frc.team2791.robot.commands.auto.GrrPaths.TurnSwitch2CubeGrrPath;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveEncoderBangBangGyroPID;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.DriveStraightEncoderGyro;
 import org.usfirst.frc.team2791.robot.commands.auto.pid.StationaryGyroTurn;
@@ -110,9 +113,10 @@ public class Robot extends TimedRobot {
 //		});		
 		
 		// Testing multiple 340 paths at once.
-		autonomousCommand = new GrrPathScoreSwitch(true);
-//		autonomousCommand = new SideScaleFar340Path(false);
+	//	autonomousCommand = new TurnSwitch2CubeGrrPath(true);
+//		autonomousCommand = new SideScaleFarGrrPath(false);
 //		autonomousCommand = new RunPath(ShakerPaths.FROM_RIGHT.SamsPath, 0.3);
+		autonomousCommand = new CloseScaleGrrPath(false);
 		
 
 		// Set up our auton chooser
@@ -269,6 +273,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		Robot.drivetrain.setBrakeMode(true);
 		updateGameData(true);
 		Robot.drivetrain.resetEncoders();
 		Robot.drivetrain.resetGyro();

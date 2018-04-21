@@ -12,8 +12,8 @@ import org.usfirst.frc.team2791.robot.commands.manipulator.ShootCube;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class SideScaleFar340Path extends CommandGroup {
-	public SideScaleFar340Path(boolean leftSide) {
+public class SideScaleFarGrrPath extends CommandGroup {
+	public SideScaleFarGrrPath(boolean leftSide) {
 		addParallel(new SetManipulatorRetracted(true));
 		addSequential(new RunPath(ShakerPaths.FROM_RIGHT.TravelToLeftScale, x -> {
 			if (x < 0.03) {
@@ -49,8 +49,8 @@ public class SideScaleFar340Path extends CommandGroup {
 		}, RunPath.Direction.BACKWARDS));		
 		// pickup the next cube
 		//addSequential(new SetManipulatorRetracted(true));
-		addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCube, x -> 0.3));
+		addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromLeftScale, x -> 0.3));
 		addParallel(new IntakeCube());
-		addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCube, x -> 0.3, RunPath.Direction.BACKWARDS));
+//		addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromLeftScale, x -> -0.3, RunPath.Direction.BACKWARDS));
 	}
 }

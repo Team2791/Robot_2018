@@ -14,7 +14,7 @@ import org.usfirst.frc.team2791.robot.commands.manipulator.ShootCube;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class GrrPathScoreSwitch extends CommandGroup {
+public class TurnSwitch2CubeGrrPath extends CommandGroup {
 	Function<Double, Double> driveToSwitchSpeedFunction = x -> {
 		if (x < 0.15) {
 			return 0.4;
@@ -32,7 +32,7 @@ public class GrrPathScoreSwitch extends CommandGroup {
 		}
 	};
 	
-	public GrrPathScoreSwitch(boolean isRight) {
+	public TurnSwitch2CubeGrrPath(boolean isRight) {
 		addParallel(new SetLiftHeightBangBang(Constants.AUTON_EXTENDED_SWITCH_HEIGHT));
 		addParallel(new ExtendManipulatorAutonStart());
 		if(isRight) {

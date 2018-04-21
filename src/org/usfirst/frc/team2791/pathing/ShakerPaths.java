@@ -238,14 +238,117 @@ public class ShakerPaths {
 //		, 30));
 		
 		//Make robot go more right
-		public static final Path GetCube = new Path(new PathSegment(t -> 
+		public static final Path GetCubeFromLeftScale = new Path(new PathSegment(t -> 
 		/* {"start":{"x":260,"y":60},"mid1":{"x":265,"y":50},"mid2":{"x":250,"y":80},"end":{"x":250,"y":79}} */
 		(-30 + 240 * t + -213 * Math.pow(t, 2))/ (15 + -120 * t + 105 * Math.pow(t, 2)) 
 		, 27));
 		
+		// THESE PATHS BELOW MAY BE OUT OF ORDER =
+		// 3 inches forwaard and six inches left
+//		public static final Path DriveIntoRightScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":0,"y":300},"mid1":{"x":170,"y":300},"mid2":{"x":200,"y":310},"end":{"x":253,"y":291}} */
+//		(0 + 60 * t + -117 * Math.pow(t, 2))/ (510 + -840 * t + 489 * Math.pow(t, 2)) 
+//		, 255));
 		
+		// Hit the Platform
+//		public static final Path DriveIntoRightScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":0,"y":300},"mid1":{"x":170,"y":300},"mid2":{"x":200,"y":310},"end":{"x":253,"y":256}} */
+//		(0 + 60 * t + -222 * Math.pow(t, 2))/ (510 + -840 * t + 489 * Math.pow(t, 2)) 
+//		, 266));
+		// subtracted 24 inches from the end point in the y and added 45 inches in the x
+//		public static final Path DriveIntoRightScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":0,"y":300},"mid1":{"x":50,"y":300},"mid2":{"x":200,"y":270},"end":{"x":253,"y":256}} */
+//		(0 + -180 * t + 138 * Math.pow(t, 2))/ (150 + 600 * t + -591 * Math.pow(t, 2)) 
+//		, 258));
+//
+//		public static final Path DriveIntoRightScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":0,"y":0},"mid1":{"x":50,"y":0},"mid2":{"x":200,"y":-30},"end":{"x":218,"y":-30}} */
+//		(0 + -180 * t + 180 * Math.pow(t, 2))/ (150 + 600 * t + -696 * Math.pow(t, 2)) 
+//	, 221));
 
+		// changing to move end point to the right and turn later
+//		new PathSegment(t -> 
+//		/* {"start":{"x":0,"y":0},"mid1":{"x":200,"y":10},"mid2":{"x":200,"y":-30},"end":{"x":212,"y":-30}} */
+//		(30 + -300 * t + 270 * Math.pow(t, 2))/ (600 + -1200 * t + 636 * Math.pow(t, 2)) 
+//		, 219)
 
+		public static final Path DriveIntoRightScale = new Path(new PathSegment(t -> 
+		/* {"start":{"x":0,"y":300},"mid1":{"x":170,"y":300},"mid2":{"x":200,"y":310},"end":{"x":256,"y":285}} */
+		(0 + 60 * t + -135 * Math.pow(t, 2))/ (510 + -840 * t + 498 * Math.pow(t, 2)) 
+		, 259));
+		
+//		public static final Path BackRightScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":256,"y":285},"mid1":{"x":242,"y":288},"mid2":{"x":227,"y":305},"end":{"x":230,"y":320}} */
+//		(9 + 84 * t + -48 * Math.pow(t, 2))/ (-42 + -6 * t + 57 * Math.pow(t, 2)) 
+//		, 48));	
+		
+		// Switched points
+		public static final Path BackRightScale = new Path(new PathSegment(t -> 
+		/* {"start":{"x":230,"y":320},"mid1":{"x":227,"y":305},"mid2":{"x":242,"y":288},"end":{"x":256,"y":285}} */
+		(-45 + -12 * t + 48 * Math.pow(t, 2))/ (-9 + 108 * t + -57 * Math.pow(t, 2)) 
+		, 48));
+	
+		// deceasing distance and changing angle to be toward cube
+//		public static final Path GetCubeFromRightScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":256,"y":285},"mid1":{"x":240,"y":240},"mid2":{"x":214,"y":233},"end":{"x":214,"y":233}} */
+//		(-135 + 228 * t + -93 * Math.pow(t, 2))/ (-48 + -60 * t + 108 * Math.pow(t, 2)) 
+//		, 69));
+		
+//		public static final Path GetCubeFromRightScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":256,"y":285},"mid1":{"x":240,"y":240},"mid2":{"x":220,"y":220},"end":{"x":220,"y":225}} */
+//		(-135 + 150 * t + 0 * Math.pow(t, 2))/ (-48 + -24 * t + 72 * Math.pow(t, 2)) 
+//		, 73));
+		
+//		public static final Path GetCubeFromRightScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":256,"y":285},"mid1":{"x":254,"y":266},"mid2":{"x":252,"y":239},"end":{"x":228,"y":233}} */
+//		(-57 + -48 * t + 87 * Math.pow(t, 2))/ (-6 + 0 * t + -66 * Math.pow(t, 2)) 
+//		, 64));
+//		
+		
+		// 15 inch less and angle less
+//		public static final Path GetCubeFromRightScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":256,"y":285},"mid1":{"x":254,"y":266},"mid2":{"x":240,"y":253},"end":{"x":228,"y":248}} */
+//		(-57 + 36 * t + 6 * Math.pow(t, 2))/ (-6 + -72 * t + 42 * Math.pow(t, 2)) 
+//		, 49));
+		// took off 3 inches from the x endpoint
+		public static final Path GetCubeFromRightScale = new Path(new PathSegment(t -> 
+		/* {"start":{"x":253,"y":285},"mid1":{"x":254,"y":266},"mid2":{"x":240,"y":253},"end":{"x":228,"y":248}} */
+		(-57 + 36 * t + 6 * Math.pow(t, 2))/ (3 + -90 * t + 51 * Math.pow(t, 2)) 
+		, 48));
+		
+//			public static final Path BackUpToRightScale = new Path(new PathSegment(t -> 
+//	/* {"start":{"x":328,"y":315},"mid1":{"x":331,"y":270},"mid2":{"x":276,"y":257},"end":{"x":228,"y":243}} */
+//			(-135 + 192 * t + -99 * Math.pow(t, 2))/ (9 + -348 * t + 195 * Math.pow(t, 2)) 
+//			, 134));
+//		//Took off 15 inches on the y end point
+//		public static final Path BackUpToRightScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":328,"y":300},"mid1":{"x":331,"y":270},"mid2":{"x":276,"y":256},"end":{"x":228,"y":243}} */
+//		(-90 + 96 * t + -45 * Math.pow(t, 2))/ (9 + -348 * t + 195 * Math.pow(t, 2)) 
+//		, 123));
+
+//	public static final Path BackUpToRightScale = new Path(new PathSegment(t -> 
+//	/* {"start":{"x":328,"y":290},"mid1":{"x":331,"y":270},"mid2":{"x":276,"y":256},"end":{"x":228,"y":243}} */
+//	(-60 + 36 * t + -15 * Math.pow(t, 2))/ (9 + -348 * t + 195 * Math.pow(t, 2)) 
+//	, 116));
+//		}
+		
+		//trying to miss scale
+//		public static final Path BackUpToRightScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":328,"y":290},"mid1":{"x":331,"y":270},"mid2":{"x":297,"y":288},"end":{"x":228,"y":243}} */
+//		(-60 + 228 * t + -303 * Math.pow(t, 2))/ (9 + -222 * t + 6 * Math.pow(t, 2)) 
+//		, 115));
+		
+		//Trying to avoid Scale
+//		public static final Path BackUpToRightScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":328,"y":302},"mid1":{"x":331,"y":270},"mid2":{"x":297,"y":297},"end":{"x":228,"y":243}} */
+//		(-96 + 354 * t + -420 * Math.pow(t, 2))/ (9 + -222 * t + 6 * Math.pow(t, 2)) 
+//		, 123));
+		
+		
+		public static final Path BackUpToRightScale = new Path(new PathSegment(t -> 
+		/* {"start":{"x":328,"y":302},"mid1":{"x":321,"y":269},"mid2":{"x":297,"y":297},"end":{"x":228,"y":243}} */
+		(-99 + 366 * t + -429 * Math.pow(t, 2))/ (-21 + -102 * t + -84 * Math.pow(t, 2)) 
+		, 121));
 	}
 
 	public static Path straightPath(double length) {
