@@ -26,7 +26,7 @@ public class CloseScaleGrrPath extends CommandGroup {
 		} else if (x < 0.80) {
 			return 0.85;
 		} else {
-			return 0.4;
+			return 0.3;
 		}
 	};
 	
@@ -50,7 +50,7 @@ public class CloseScaleGrrPath extends CommandGroup {
 			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.DriveIntoRightScale, driveToScaleSpeedFunc, RunPath.Direction.FORWARDS));
 		}
 //		addSequential(new PauseDrivetrain(0.3));
-		addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED, 0.5));
+		addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED, 0.3));
 		addParallel(new SetManipulatorRetracted(false));
 		addParallel(new LowerLiftAfterDelay(0.8));
 		if(onLeftSide) {
@@ -60,7 +60,7 @@ public class CloseScaleGrrPath extends CommandGroup {
 		}
 		
 		addParallel(new IntakeCube());
-		addSequential(new PauseDrivetrain(.2));
+		addSequential(new PauseDrivetrain(.5));
 		// This path is from the far side 2 cube!
 		if(onLeftSide) {
 			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromRightScale, 0.3, RunPath.Direction.FORWARDS_MIRRORED));
@@ -87,7 +87,11 @@ public class CloseScaleGrrPath extends CommandGroup {
 //		addParallel(new SetManipulatorRetracted(false));
 		addSequential(new DriveEncoderBangBang(-0.5, 0, -12));
 		addParallel(new SetLiftHeightMagicMotionTopOrBottom(false));
-		addSequential(new TurnGyroBangBang(30, 0.4));
+		if(onLeftSide) {
+			addSequential(new TurnGyroBangBang(-30, -0.4));
+		} else {
+			addSequential(new TurnGyroBangBang(30, 0.4));
+		}
 		addSequential(new PauseDrivetrain(10));
 	}
 

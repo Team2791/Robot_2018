@@ -116,10 +116,15 @@ public class Robot extends TimedRobot {
 	//	autonomousCommand = new TurnSwitch2CubeGrrPath(true);
 	//	autonomousCommand = new SideScaleFarGrrPath(false);
 //		autonomousCommand = new RunPath(ShakerPaths.FROM_RIGHT.SamsPath, 0.3);
-		autonomousCommand = new CloseScaleGrrPath(true);
-		
+//		autonomousCommand = new CloseScaleGrrPath(true);
 
 		// Set up our auton chooser
+		DEFAULT_AUTO_NAME = "D: Center switch Grr path 2.5 cube";
+		DEFAULT_AUTO = new NearSwitchAutonChooser(
+			new TurnSwitch2CubeGrrPath(false),
+			new TurnSwitch2CubeGrrPath(true)
+		);
+
 //		DEFAULT_AUTO_NAME = "D: Center switch 1.5 cube";
 //		DEFAULT_AUTO = new NearSwitchAutonChooser(
 //			new PIDTurnSwitchLEFT_2Cube(),
@@ -140,12 +145,17 @@ public class Robot extends TimedRobot {
 //			new PIDSideScaleClose_ScaleEdge(false)
 //		);
 
-		DEFAULT_AUTO_NAME = "D: Do Nothing";
-		DEFAULT_AUTO = new NoChoiceChooser(new DoNothing());
+//		DEFAULT_AUTO_NAME = "D: Do Nothing";
+//		DEFAULT_AUTO = new NoChoiceChooser(new DoNothing());
 
 		chooser.addDefault(DEFAULT_AUTO_NAME, DEFAULT_AUTO);
 		chooser.addObject("Do Nothing", new NoChoiceChooser(new DoNothing()));
 		System.out.println("DEFAULT AUTO IS: = " + DEFAULT_AUTO_NAME);
+		
+		chooser.addObject("center switch 2.5 cube - Grr Path", new NearSwitchAutonChooser(
+				new TurnSwitch2CubeGrrPath(false),
+				new TurnSwitch2CubeGrrPath(true)
+			));
 		
 		chooser.addObject("center switch - PID", new NearSwitchAutonChooser(
 			new PIDTurnSwitchLEFT(),
@@ -279,11 +289,11 @@ public class Robot extends TimedRobot {
 		Robot.drivetrain.resetGyro();
 		// schedule the autonomous command
 
-//		autonCommandChooser = chooser.getSelected();
-//
-//		if (autonCommandChooser != null) {
-//			autonomousCommand = autonCommandChooser.getCommand(weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch);
-//		}
+		autonCommandChooser = chooser.getSelected();
+
+		if (autonCommandChooser != null) {
+			autonomousCommand = autonCommandChooser.getCommand(weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch);
+		}
 
 		if (autonomousCommand != null) {
 			autonomousCommand.start();
