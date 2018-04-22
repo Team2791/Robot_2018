@@ -3,6 +3,7 @@ package org.usfirst.frc.team2791.robot.commands.lift;
 import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.OI;
 import org.usfirst.frc.team2791.robot.Robot;
+import org.usfirst.frc.team2791.robot.subsystems.ShakerLift;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.command.Command;
@@ -21,7 +22,7 @@ public class RunLiftWithJoystick extends Command {
 
     @Override
     protected void execute() {
-        double speed = OI.operator.getAxisLeftY() * Constants.MANUAL_POWER;
+        double speed = OI.operator.getAxisLeftY() * Constants.MANUAL_POWER * ShakerLift.speedModifier;
         if(Robot.lift.getHeight() < 12) {
         	speed = Math.max(-0.3, speed);
         }

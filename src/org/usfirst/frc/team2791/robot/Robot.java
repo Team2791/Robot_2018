@@ -114,7 +114,7 @@ public class Robot extends TimedRobot {
 		
 		// Testing multiple 340 paths at once.
 	//	autonomousCommand = new TurnSwitch2CubeGrrPath(true);
-	//	autonomousCommand = new SideScaleFarGrrPath(false);
+		autonomousCommand = new SideScaleFarGrrPath(false); //Noah made this false because he is awesome and whatever
 //		autonomousCommand = new RunPath(ShakerPaths.FROM_RIGHT.SamsPath, 0.3);
 //		autonomousCommand = new CloseScaleGrrPath(true);
 

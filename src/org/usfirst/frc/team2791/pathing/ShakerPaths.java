@@ -23,10 +23,17 @@ public class ShakerPaths {
 		(18 + -336 * t + 312 * Math.pow(t, 2))/ (75 + -330 * t + 501 * Math.pow(t, 2)) 
 		, 99));
 		
+		
+//		public static final Path SWITCH_LEFT = new Path(new PathSegment(t -> 
+//			/* {"start":{"x":0,"y":100},"mid1":{"x":46,"y":99},"mid2":{"x":51,"y":42},"end":{"x":112,"y":44}} */
+//			(-3 + -336 * t + 345 * Math.pow(t, 2))/ (138 + -246 * t + 291 * Math.pow(t, 2)) 
+//			, 130));
+		
+		//Less wide
 		public static final Path SWITCH_LEFT = new Path(new PathSegment(t -> 
-			/* {"start":{"x":0,"y":100},"mid1":{"x":46,"y":99},"mid2":{"x":51,"y":42},"end":{"x":112,"y":44}} */
-			(-3 + -336 * t + 345 * Math.pow(t, 2))/ (138 + -246 * t + 291 * Math.pow(t, 2)) 
-			, 130));
+		/* {"start":{"x":0,"y":100},"mid1":{"x":46,"y":99},"mid2":{"x":51,"y":54},"end":{"x":112,"y":56}} */
+		(-3 + -264 * t + 273 * Math.pow(t, 2))/ (138 + -246 * t + 291 * Math.pow(t, 2)) 
+		, 124));
 	}
 
 	public static class FROM_RIGHT {
@@ -69,11 +76,16 @@ public class ShakerPaths {
 
 		
 		// moved too far away from platform
-		public static final Path TravelToLeftScale = new Path(new PathSegment(t -> 
-		/* {"start":{"x":0,"y":170},"mid1":{"x":109,"y":150},"mid2":{"x":170,"y":260},"end":{"x":168,"y":0}} */
-		(-60 + 780 * t + -1500 * Math.pow(t, 2))/ (327 + -288 * t + -45 * Math.pow(t, 2)) 
-		, 317));
+//		public static final Path TravelToLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":0,"y":170},"mid1":{"x":109,"y":150},"mid2":{"x":170,"y":260},"end":{"x":168,"y":0}} */
+//		(-60 + 780 * t + -1500 * Math.pow(t, 2))/ (327 + -288 * t + -45 * Math.pow(t, 2)) 
+//		, 317));
 
+		//Farther forwards and less far sideways
+		public static final Path TravelToLeftScale = new Path(new PathSegment(t -> 
+		/* {"start":{"x":0,"y":170},"mid1":{"x":109,"y":150},"mid2":{"x":173,"y":260},"end":{"x":171,"y":6}} */
+		(-60 + 780 * t + -1482 * Math.pow(t, 2))/ (327 + -270 * t + -63 * Math.pow(t, 2)) 
+		, 314));
 		
 //		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
 //		/* {"start":{"x":178,"y":100},"mid1":{"x":171,"y":80},"mid2":{"x":181,"y":46},"end":{"x":203,"y":60}} */
@@ -313,10 +325,16 @@ public class ShakerPaths {
 //		/* {"start":{"x":260,"y":60},"mid1":{"x":260,"y":61},"mid2":{"x":263,"y":91},"end":{"x":295,"y":91}} */
 //		(3 + 174 * t + -177 * Math.pow(t, 2))/ (0 + 18 * t + 78 * Math.pow(t, 2)) 
 //		, 52));
-			public static final Path GoToLeftScale = new Path(new PathSegment(t -> 
-	/* {"start":{"x":260,"y":60},"mid1":{"x":260,"y":61},"mid2":{"x":263,"y":91},"end":{"x":309,"y":91}} */
-	(3 + 174 * t + -177 * Math.pow(t, 2))/ (0 + 18 * t + 120 * Math.pow(t, 2)) 
-	, 64));
+//			public static final Path GoToLeftScale = new Path(new PathSegment(t -> 
+//	/* {"start":{"x":260,"y":60},"mid1":{"x":260,"y":61},"mid2":{"x":263,"y":91},"end":{"x":309,"y":91}} */
+//	(3 + 174 * t + -177 * Math.pow(t, 2))/ (0 + 18 * t + 120 * Math.pow(t, 2)) 
+//	, 64));
+		
+		//Slightly farther
+		public static final Path GoToLeftScale = new Path(new PathSegment(t -> 
+		/* {"start":{"x":260,"y":60},"mid1":{"x":260,"y":61},"mid2":{"x":263,"y":97},"end":{"x":312,"y":97}} */
+		(3 + 210 * t + -213 * Math.pow(t, 2))/ (0 + 18 * t + 129 * Math.pow(t, 2)) 
+		, 71));
 			
 		public static final Path GoToLeftCube = new Path(new PathSegment(t -> 
 			/* {"start":{"x":260,"y":60},"mid1":{"x":252,"y":97},"mid2":{"x":245,"y":132},"end":{"x":245,"y":132}} */
@@ -334,10 +352,25 @@ public class ShakerPaths {
 //		/* {"start":{"x":260,"y":60},"mid1":{"x":253,"y":79},"mid2":{"x":242,"y":95},"end":{"x":242,"y":95}} */
 //		(57 + -18 * t + -39 * Math.pow(t, 2))/ (-21 + -24 * t + 45 * Math.pow(t, 2)) 
 //		, 40));
+		
+//		public static final Path GetCubeFromLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":260,"y":60},"mid1":{"x":253,"y":78},"mid2":{"x":245,"y":98},"end":{"x":245,"y":98}} */
+//		(54 + 12 * t + -66 * Math.pow(t, 2))/ (-21 + -6 * t + 27 * Math.pow(t, 2)) 
+//		, 41));
+		
+//		//Move slightly farther toward scale
+//		public static final Path GetCubeFromLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":260,"y":60},"mid1":{"x":253,"y":78},"mid2":{"x":248,"y":98},"end":{"x":248,"y":98}} */
+//		(54 + 12 * t + -66 * Math.pow(t, 2))/ (-21 + 12 * t + 9 * Math.pow(t, 2)) 
+//		, 40));
+		
+		//Make path slightly longer
+		//UNTESTED - Run on practice field before using
 		public static final Path GetCubeFromLeftScale = new Path(new PathSegment(t -> 
-		/* {"start":{"x":260,"y":60},"mid1":{"x":253,"y":78},"mid2":{"x":245,"y":98},"end":{"x":245,"y":98}} */
-		(54 + 12 * t + -66 * Math.pow(t, 2))/ (-21 + -6 * t + 27 * Math.pow(t, 2)) 
-		, 41));
+		/* {"start":{"x":260,"y":60},"mid1":{"x":253,"y":78},"mid2":{"x":247,"y":99},"end":{"x":247,"y":99}} */
+		(54 + 18 * t + -72 * Math.pow(t, 2))/ (-21 + 6 * t + 15 * Math.pow(t, 2)) 
+		, 42));
+		
 		// THESE PATHS BELOW MAY BE OUT OF ORDER =
 		// 3 inches forwaard and six inches left
 //		public static final Path DriveIntoRightScale = new Path(new PathSegment(t -> 
@@ -440,10 +473,22 @@ public class ShakerPaths {
 //		, 123));
 		
 		
+//		public static final Path BackUpToRightScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":328,"y":302},"mid1":{"x":321,"y":269},"mid2":{"x":297,"y":297},"end":{"x":228,"y":243}} */
+//		(-99 + 366 * t + -429 * Math.pow(t, 2))/ (-21 + -102 * t + -84 * Math.pow(t, 2)) 
+//		, 121));
+		
+		//Less overshoot
+//		public static final Path BackUpToRightScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":316,"y":302},"mid1":{"x":309,"y":269},"mid2":{"x":297,"y":297},"end":{"x":228,"y":243}} */
+//		(-99 + 366 * t + -429 * Math.pow(t, 2))/ (-21 + -30 * t + -156 * Math.pow(t, 2)) 
+//		, 110));
+		
+		//Still less overshoot
 		public static final Path BackUpToRightScale = new Path(new PathSegment(t -> 
-		/* {"start":{"x":328,"y":302},"mid1":{"x":321,"y":269},"mid2":{"x":297,"y":297},"end":{"x":228,"y":243}} */
-		(-99 + 366 * t + -429 * Math.pow(t, 2))/ (-21 + -102 * t + -84 * Math.pow(t, 2)) 
-		, 121));
+		/* {"start":{"x":304,"y":302},"mid1":{"x":297,"y":269},"mid2":{"x":297,"y":297},"end":{"x":228,"y":243}} */
+		(-99 + 366 * t + -429 * Math.pow(t, 2))/ (-21 + 42 * t + -228 * Math.pow(t, 2)) 
+		, 101));
 	}
 
 	public static Path straightPath(double length) {

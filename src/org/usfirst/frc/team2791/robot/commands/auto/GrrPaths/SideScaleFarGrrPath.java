@@ -35,10 +35,10 @@ public class SideScaleFarGrrPath extends CommandGroup {
 		}
 		
 		Function<Double, Double> driveIntoScaleSF = x -> {
-			if (x < 0.4) {
-				return 0.65;
+			if (x < 0.5) {
+				return 0.85;
 			} else {
-				return 0.22;
+				return 0.25;
 			}
 		};
 		

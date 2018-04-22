@@ -35,6 +35,7 @@ public class ShakerLift extends Subsystem {
     AnalogInput potAnalogInput;
     Timer breakReleaseTimer;
     boolean breakReleaseTimerStarted = false;
+    public static double speedModifier;
 
     public ShakerLift() {
         super("ShakerLift");
@@ -79,6 +80,7 @@ public class ShakerLift extends Subsystem {
         leaderTalon.configMotionAcceleration(Constants.MOTION_ACCELERATION, 0);
         leaderTalon.config_kF(Constants.MM_PID_SLOT_ID, Constants.LIFT_F_VALUE, 0);
         updateMagicMotionPIDGains();
+        speedModifier = 1;
     }
     
     public void updateMagicMotionPIDGains() {
@@ -224,8 +226,6 @@ public class ShakerLift extends Subsystem {
 //    public void setMagicMotionControlMode(){
 //        setTarget(0.0); // Using this method because it sets ControlMode within itself
 //    }
-
-
 
     public void debug(){
         SmartDashboard.putBoolean("Lift - Top Limit Switch value", !topLimitSwitch.get());
