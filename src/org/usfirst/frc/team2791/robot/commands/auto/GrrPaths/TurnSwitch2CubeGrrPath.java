@@ -5,6 +5,7 @@ import java.util.function.Function;
 import org.usfirst.frc.team2791.pathing.RunPath;
 import org.usfirst.frc.team2791.pathing.ShakerPaths;
 import org.usfirst.frc.team2791.robot.Constants;
+import org.usfirst.frc.team2791.robot.commands.drivetrain.PauseDrivetrain;
 import org.usfirst.frc.team2791.robot.commands.lift.LowerLiftAfterDelay;
 import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightBangBang;
 import org.usfirst.frc.team2791.robot.commands.lift.SetLiftPositionAfterDelay;
@@ -25,10 +26,18 @@ public class TurnSwitch2CubeGrrPath extends CommandGroup {
 		}
 	};
 	Function<Double, Double> backupFromSwitchSpeedFunction = x -> {
-		if (x < 0.35) {
-			return -0.45;
+		if (x < 0.5) {
+			return -0.6;
 		} else {
 			return -0.30;
+		}
+	};
+	
+	Function<Double, Double> driveIntoCubeSpeedFunc = x -> {
+		if(x < 0.5) {
+			return 0.6;
+		} else {
+			return 0.35;
 		}
 	};
 	
@@ -50,7 +59,9 @@ public class TurnSwitch2CubeGrrPath extends CommandGroup {
 		}
 
 		addParallel(new IntakeCube());
-		addSequential(new RunPath(ShakerPaths.straightPath(33), 0.35));
+		addSequential(new RunPath(ShakerPaths.straightPath(42), driveIntoCubeSpeedFunc), 1.5);
+		addParallel(new IntakeCube());
+		addSequential(new PauseDrivetrain(0.25));
 		addSequential(new RunPath(ShakerPaths.straightPath(33), -0.6, RunPath.Direction.BACKWARDS));
 		
 		addParallel(new SetLiftHeightBangBang(Constants.AUTON_EXTENDED_SWITCH_HEIGHT));
@@ -59,6 +70,7 @@ public class TurnSwitch2CubeGrrPath extends CommandGroup {
 		} else {
 			addSequential(new RunPath(ShakerPaths.FROM_CENTER.SWITCH_TO_CUBE_LEFT, driveToSwitchSpeedFunction, RunPath.Direction.FORWARDS));
 		}
+		addSequential(new RunPath(ShakerPaths.straightPath(15), 0.4), 0.3);
 		addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED), 0.25);
 		
 		addParallel(new SetLiftPositionAfterDelay(1, 5.25)); // this value is copied from OI. TODO make this a constant
@@ -67,7 +79,9 @@ public class TurnSwitch2CubeGrrPath extends CommandGroup {
 		} else {
 			addSequential(new RunPath(ShakerPaths.FROM_CENTER.SWITCH_TO_CUBE_LEFT, backupFromSwitchSpeedFunction, RunPath.Direction.BACKWARDS));
 		}
-		addSequential(new RunPath(ShakerPaths.straightPath(30), 0.3));
 		addParallel(new IntakeCube());
+		addSequential(new RunPath(ShakerPaths.straightPath(60), driveIntoCubeSpeedFunc));
+		addParallel(new IntakeCube());
+		addSequential(new PauseDrivetrain(0.5));
 	}
 }
