@@ -30,7 +30,7 @@ public class Manipulator extends Subsystem {
     private DelayedBoolean cubeInGripperDelayedBoolean;
     private DelayedBoolean cubeJammedDelayedBoolean;
     
-    public Manipulator(){
+    public Manipulator() {
         leftMotor = new VictorSPX(RobotMap.INTAKE_SPARK_LEFT_PORT);
         rightMotor = new VictorSPX(RobotMap.INTAKE_SPARK_RIGHT_PORT);
         iRSensorLeft = new DigitalInput(RobotMap.IR_SENSOR_LEFT);
@@ -55,7 +55,7 @@ public class Manipulator extends Subsystem {
         cubeInGripperDelayedBoolean = new DelayedBoolean(0.5);
         cubeJammedDelayedBoolean = new DelayedBoolean(0.1);
     }
-    
+
     public void initDefaultCommand() {
         // TODO: Set the default command, if any, for a subsystem here. Example:
             setDefaultCommand(new HoldCube());
@@ -65,7 +65,9 @@ public class Manipulator extends Subsystem {
         boolean left = !iRSensorLeft.get();
         boolean right = !iRSensorRight.get();
         
-	    return cubeInGripperDelayedBoolean.update(left && right);
+//	    return cubeInGripperDelayedBoolean.update(left && right);
+	    // with unplugged sensors this becomes return false;
+        return false; // ensure that there is no noise from the claw
     }
 
     // Don't know how to find out if cube is jammed
