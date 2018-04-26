@@ -118,11 +118,11 @@ public class Robot extends TimedRobot {
 //		autonomousCommand = new CloseScaleGrrPath(true);
 
 		// Set up our auton chooser
-//		DEFAULT_AUTO_NAME = "D: Center switch Grr path 2.5 cube";
-//		DEFAULT_AUTO = new NearSwitchAutonChooser(
-//			new TurnSwitch2CubeGrrPath(false),
-//			new TurnSwitch2CubeGrrPath(true)
-//		);
+		DEFAULT_AUTO_NAME = "D: Center switch Grr path 2.5 cube";
+		DEFAULT_AUTO = new NearSwitchAutonChooser(
+			new TurnSwitch2CubeGrrPath(false),
+			new TurnSwitch2CubeGrrPath(true)
+		);
 
 //		DEFAULT_AUTO_NAME = "D: side scale grr pathing LEFT - PID";
 //		DEFAULT_AUTO = new ScaleAutonChooser(
@@ -130,11 +130,11 @@ public class Robot extends TimedRobot {
 //				new SideScaleFarGrrPath(true)
 //		);
 
-		DEFAULT_AUTO_NAME = "D: side scale grr pathing RIGHT - PID";
-		DEFAULT_AUTO = new ScaleAutonChooser(
-				new SideScaleFarGrrPath(false),
-				new CloseScaleGrrPath(false)
-		);
+//		DEFAULT_AUTO_NAME = "D: side scale grr pathing RIGHT - PID";
+//		DEFAULT_AUTO = new ScaleAutonChooser(
+//				new SideScaleFarGrrPath(false),
+//				new CloseScaleGrrPath(false)
+//		);
 		
 //		DEFAULT_AUTO_NAME = "D: side scale tip or cross LEFT - PID";
 //		DEFAULT_AUTO = new ScaleAutonChooser(
@@ -145,20 +145,6 @@ public class Robot extends TimedRobot {
 //		DEFAULT_AUTO_NAME = "D: side scale tip or cross  RIGHT - PID";
 //		DEFAULT_AUTO = new ScaleAutonChooser(
 //			new PIDSideScaleFarONLYCROSS(false),
-//			new PIDSideScaleClose_ScaleEdge(false)
-//		);
-
-		
-//		DEFAULT_AUTO_NAME = "Dljwjl: side scale tip or swutcg LEFT - PID";
-//		DEFAULT_AUTO = new ScaleAutonChooser(
-//			new PIDSideScaleClose_ScaleEdge(true),
-//			new PIDSideSwitchClose(true)
-//		);
-//	
-//		DEFAULT_AUTO_NAME = "D: side scale tip  or drive RIGHT - PID";
-//		DEFAULT_AUTO = new ScaleAutonChooser(
-////			new PIDSideSwitchClose(false),
-//				new DriveForwardTime(0.33, 3.5),
 //			new PIDSideScaleClose_ScaleEdge(false)
 //		);
 		
@@ -213,18 +199,7 @@ public class Robot extends TimedRobot {
 		chooser.addObject("side scale tip or cross  RIGHT - PID", new ScaleAutonChooser(
 			new PIDSideScaleFarONLYCROSS(false),
 			new PIDSideScaleClose_ScaleEdge(false)
-		));
-
-		chooser.addObject("side scale switch or scale LEFT - PID", new ScaleAutonChooser(
-			new PIDSideScaleClose_ScaleEdge(true),
-			new PIDSideSwitchClose(true)
-		));
-	
-		chooser.addObject("side scale switch or scale RIGHT - PID", new ScaleAutonChooser(
-			new PIDSideScaleFarONLYCROSS(false),
-			new PIDSideSwitchClose(false)
-		));
-		
+		));		
 		
 		chooser.addObject("center switch x1.5 cube - PID", new NearSwitchAutonChooser(
 			new PIDTurnSwitchLEFT_2Cube(),
@@ -390,7 +365,14 @@ public class Robot extends TimedRobot {
 		Scheduler.getInstance().run();
 //		debug();
 		lift.debug();
+		
+		if(Robot.oi.operatorRS.get()) {
+			Constants.LIFT_POT_OFFSET = -(Robot.lift.getHeight() - Constants.LIFT_POT_OFFSET);
+			System.out.println("Lift pot offset set to "+Constants.LIFT_POT_OFFSET);
+		}
 	}
+	
+	
 	/**
 	 * This function is called periodically during test mode
 	 */
@@ -436,6 +418,14 @@ public class Robot extends TimedRobot {
 		ramps.debug();
 		manipulator.debug();
 		lift.debug();
+		
+		
+		if(Robot.oi.operatorRS.get()) {
+			Constants.LIFT_POT_OFFSET = -(Robot.lift.getHeight() - Constants.LIFT_POT_OFFSET);
+			System.out.println("Lift pot offset set to "+Constants.LIFT_POT_OFFSET);
+		}
+		
+//		System.out.println("opereator LS" + Robot.oi.operatorLS.get());
 		
 		boolean timerBlink = false;
 		// start blinkning in the last 45 seconds.

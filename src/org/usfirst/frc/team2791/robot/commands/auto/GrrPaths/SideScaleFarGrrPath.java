@@ -91,6 +91,6 @@ public class SideScaleFarGrrPath extends CommandGroup {
 			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GoToLeftScale, x-> 0.3, RunPath.Direction.FORWARDS));
 		}
 		addParallel(new PauseDrivetrain(.5));
-		addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED), 0.5);
+//		addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED), 0.5);
 	}
 }

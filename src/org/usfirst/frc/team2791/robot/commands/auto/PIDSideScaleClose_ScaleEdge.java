@@ -40,8 +40,8 @@ public class PIDSideScaleClose_ScaleEdge extends CommandGroup {
     	// we drove to far. Taking 8'' off
     	// 317 -> 309
     	// 309 -> 280 after overshoot in auton qual 1 Detroit.
-    	// changed to 295 after undershoot qual 2 Detroit.
-    	addSequential(new DriveStraightEncoderGyro(295, 0.85, 7, 1.5)); 
+    	// changed to 295 after undershoot qual 2 Detroit. changing to 300 after another undershoot
+    	addSequential(new DriveStraightEncoderGyro(300, 0.85, 7, 1.5)); 
     	addSequential(new SetLiftHeightBangBang(Constants.AUTON_SCALE_HEIGHT));
     	// adding a bit more turn because we won't be flush with the scale
     	if(leftSide) {
@@ -53,11 +53,11 @@ public class PIDSideScaleClose_ScaleEdge extends CommandGroup {
     	// backup and lower the lift
     	addSequential(new DriveEncoderBangBang(-0.3, 0, -20));
     	addParallel(new SetLiftHeightBangBang(0));
-    	// poke a toe out of our zone
-    	if(leftSide) {
-    		addSequential(new StationaryGyroTurn(-70, 0.5));
-    	} else {
-    		addSequential(new StationaryGyroTurn(70, 0.5));
-    	}
+    	// turn to get others cubes
+//    	if(leftSide) {
+//    		addSequential(new StationaryGyroTurn(-70, 0.5));
+//    	} else {
+//    		addSequential(new StationaryGyroTurn(70, 0.5));
+//    	}
     }
 }

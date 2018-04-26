@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2791.robot.commands.ramps;
 
+import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -29,6 +30,6 @@ public class DropRamps extends CommandGroup {
 //        addParallel(new SetDrivetrainShifterMode(false));
         addParallel(new SetRampDeploy(true));
         // get the gripper out of the way
-        addParallel(new SetLiftHeightBangBang(18.0));
+        addParallel(new SetLiftHeightBangBang(Constants.LIFT_HEIGHT_ENDGAME));
     }
 }

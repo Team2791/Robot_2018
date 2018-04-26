@@ -177,7 +177,7 @@ public class ShakerLift extends Subsystem {
         return getHeight() > Constants.LIFT_MAX_HEIGHT - Constants.TOP_SAFTEY_DISTANCE;
     }
 
-    private void setPowerUnsafe(double power) {
+    public void setPowerUnsafe(double power) {
 		leaderTalon.set(ControlMode.PercentOutput, power);
     }
 
