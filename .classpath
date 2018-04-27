@@ -12,7 +12,6 @@
 	<classpathentry kind="var" path="USERLIBS_DIR/CTRE_Phoenix-sources.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/CTRE_Phoenix.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Team2791/eclipse-workspace/Robot_2018 - CheesySpline/Pathfinder-Java-1.8.jar"/>
-	<classpathentry kind="var" path="USERLIBS_DIR/Pathfinder-Java-1.8.jar"/>
 	<classpathentry kind="lib" path="Pathfinder-Java.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

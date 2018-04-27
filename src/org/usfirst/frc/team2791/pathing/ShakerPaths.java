@@ -49,6 +49,7 @@ public class ShakerPaths {
 		, 71));
 		//----------------------------------------------------------------------------------
 			
+					
 		public static final Path GoToLeftCube = new Path(new PathSegment(t -> 
 			/* {"start":{"x":260,"y":60},"mid1":{"x":252,"y":97},"mid2":{"x":245,"y":132},"end":{"x":245,"y":132}} */
 			(111 + -12 * t + -99 * Math.pow(t, 2))/ (-24 + 6 * t + 18 * Math.pow(t, 2)) 
@@ -57,10 +58,36 @@ public class ShakerPaths {
 
 		//Make path slightly longer
 		//UNTESTED - Run on practice field before using
+//		public static final Path GetCubeFromLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":260,"y":60},"mid1":{"x":253,"y":78},"mid2":{"x":247,"y":99},"end":{"x":247,"y":99}} */
+//		(54 + 18 * t + -72 * Math.pow(t, 2))/ (-21 + 6 * t + 15 * Math.pow(t, 2)) 
+//		, 42));
+			
+		// this worked okay. changing to be a bit better.
+//		public static final Path GetCubeFromLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":260,"y":60},"mid1":{"x":253,"y":78},"mid2":{"x":254,"y":99},"end":{"x":244,"y":101}} */
+//		(54 + 18 * t + -66 * Math.pow(t, 2))/ (-21 + 48 * t + -57 * Math.pow(t, 2)) 
+//		, 46));
+		
+//		public static final Path GetCubeFromLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":260,"y":60},"mid1":{"x":257,"y":73},"mid2":{"x":253,"y":86},"end":{"x":244,"y":95}} */
+//		(39 + 0 * t + -12 * Math.pow(t, 2))/ (-9 + -6 * t + -12 * Math.pow(t, 2)) 
+//		, 39));
 		public static final Path GetCubeFromLeftScale = new Path(new PathSegment(t -> 
-		/* {"start":{"x":260,"y":60},"mid1":{"x":253,"y":78},"mid2":{"x":247,"y":99},"end":{"x":247,"y":99}} */
-		(54 + 18 * t + -72 * Math.pow(t, 2))/ (-21 + 6 * t + 15 * Math.pow(t, 2)) 
-		, 42));
+		/* {"start":{"x":260,"y":60},"mid1":{"x":257,"y":73},"mid2":{"x":253,"y":84},"end":{"x":244,"y":91}} */
+		(39 + -12 * t + -6 * Math.pow(t, 2))/ (-9 + -6 * t + -12 * Math.pow(t, 2)) 
+		, 36));
+//		// ^^ this path is pretty good
+		
+//		public static final Path GetCubeFromLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":260,"y":60},"mid1":{"x":257,"y":73},"mid2":{"x":260,"y":87},"end":{"x":244,"y":91}} */
+//		(39 + 6 * t + -33 * Math.pow(t, 2))/ (-9 + 36 * t + -75 * Math.pow(t, 2)) 
+//		, 38));
+		
+//		public static final Path GetCubeFromLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":260,"y":60},"mid1":{"x":257,"y":73},"mid2":{"x":260,"y":87},"end":{"x":247,"y":86}} */
+//		(39 + 6 * t + -48 * Math.pow(t, 2))/ (-9 + 36 * t + -66 * Math.pow(t, 2)) 
+//		, 33));
 		//----------------------------------------------------------------------------------
 
 		public static final Path DriveIntoRightScale = new Path(new PathSegment(t -> 

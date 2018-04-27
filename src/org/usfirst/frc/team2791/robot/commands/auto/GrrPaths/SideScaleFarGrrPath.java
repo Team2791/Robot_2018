@@ -5,6 +5,7 @@ import java.util.function.Function;
 import org.usfirst.frc.team2791.pathing.RunPath;
 import org.usfirst.frc.team2791.pathing.ShakerPaths;
 import org.usfirst.frc.team2791.robot.Constants;
+import org.usfirst.frc.team2791.robot.commands.auto.bangbang.DriveEncoderBangBang;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.PauseDrivetrain;
 import org.usfirst.frc.team2791.robot.commands.lift.LowerLiftAfterDelay;
 import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightBangBang;
@@ -22,7 +23,7 @@ public class SideScaleFarGrrPath extends CommandGroup {
 			if (x < 0.03) {
 				return 0.45;
 			} else if (x < 0.8) {
-				return 0.85;
+				return 0.9;
 			} else {
 				return 0.85;
 			}
@@ -51,9 +52,9 @@ public class SideScaleFarGrrPath extends CommandGroup {
 		} else {
 			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.DriveIntoLeftScale, driveIntoScaleSF, RunPath.Direction.FORWARDS));
 		}
-		addSequential(new PauseDrivetrain(0.5)); // wait to drift into the null zone
-		addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED), 0.75);
-		
+//		addSequential(new PauseDrivetrain(0.5));// was 0.5 // wait to drift into the null zone
+		addSequential(new ShootCube(0.75), 0.4);
+
 		Function<Double, Double> backupFromScaleSF =  x -> {
 			if (x < 0.15) {
 				return -0.2;
@@ -63,7 +64,7 @@ public class SideScaleFarGrrPath extends CommandGroup {
 		};
 		
 		// backup and lower the lift
-		addParallel(new LowerLiftAfterDelay(1.5));
+		addParallel(new LowerLiftAfterDelay(1.25));
 		if(onLeftSide) {
 			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.BackupFromLeftScale, backupFromScaleSF, RunPath.Direction.BACKWARDS_MIRRORED));
 		} else {
@@ -71,26 +72,32 @@ public class SideScaleFarGrrPath extends CommandGroup {
 		}
 		// pickup the next cube
 //		addSequential(new SetManipulatorRetracted(true));
-		addParallel(new IntakeCube(), 2.5);
+		addParallel(new IntakeCube());
+		
+		// speed was 0.3
 		if(onLeftSide) {
-			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromLeftScale, x -> 0.3, RunPath.Direction.FORWARDS_MIRRORED));
+			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromLeftScale, x -> 0.5, RunPath.Direction.FORWARDS_MIRRORED));
 		} else {
-			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromLeftScale, x -> 0.3, RunPath.Direction.FORWARDS));
+			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromLeftScale, x -> 0.5, RunPath.Direction.FORWARDS));
 		}
 		// add these steps when successful
-		addSequential(new PauseDrivetrain(1));
+		addSequential(new PauseDrivetrain(0.75));
+		// speed was -0.3
+		addSequential(new DriveEncoderBangBang(-0.5, 0, -14));
 		if(onLeftSide) {
-			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromLeftScale, x-> -0.3, RunPath.Direction.BACKWARDS_MIRRORED));
+			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromLeftScale, x-> -0.5, RunPath.Direction.BACKWARDS_MIRRORED));
 		} else {
-			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromLeftScale, x-> -0.3, RunPath.Direction.BACKWARDS));
+			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromLeftScale, x-> -0.5, RunPath.Direction.BACKWARDS));
 		}
+		// speed was 0.3
 		addParallel(new SetLiftHeightBangBang(Constants.AUTON_SCALE_HEIGHT));
 		if(onLeftSide) {
-			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GoToLeftScale, x-> 0.3, RunPath.Direction.FORWARDS_MIRRORED));
+			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GoToLeftScale, x-> 0.5, RunPath.Direction.FORWARDS_MIRRORED));
 		} else {
-			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GoToLeftScale, x-> 0.3, RunPath.Direction.FORWARDS));
+			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GoToLeftScale, x-> 0.5, RunPath.Direction.FORWARDS));
 		}
-		addParallel(new PauseDrivetrain(.5));
+		// was 0.5
+		addParallel(new PauseDrivetrain(.25));
 //		addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED), 0.5);
 	}
 }
