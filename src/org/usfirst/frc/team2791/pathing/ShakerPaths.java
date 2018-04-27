@@ -47,6 +47,13 @@ public class ShakerPaths {
 		/* {"start":{"x":260,"y":60},"mid1":{"x":260,"y":61},"mid2":{"x":263,"y":97},"end":{"x":312,"y":97}} */
 		(3 + 210 * t + -213 * Math.pow(t, 2))/ (0 + 18 * t + 129 * Math.pow(t, 2)) 
 		, 71));
+		
+		
+		//Slightly farther
+		public static final Path GoToLeftScale2ndDriveHACK = new Path(new PathSegment(t -> 
+		/* {"start":{"x":260,"y":60},"mid1":{"x":260,"y":61},"mid2":{"x":263,"y":97},"end":{"x":312,"y":97}} */
+		(3 + 210 * t + -213 * Math.pow(t, 2))/ (0 + 18 * t + 129 * Math.pow(t, 2)) 
+		, 52)); // was 71, 65 was just too much, 60 was also a bit high 
 		//----------------------------------------------------------------------------------
 			
 					

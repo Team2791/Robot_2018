@@ -81,7 +81,7 @@ public class SideScaleFarGrrPath extends CommandGroup {
 			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromLeftScale, x -> 0.5, RunPath.Direction.FORWARDS));
 		}
 		// add these steps when successful
-		addSequential(new PauseDrivetrain(0.75));
+		addSequential(new PauseDrivetrain(1));
 		// speed was -0.3
 		addSequential(new DriveEncoderBangBang(-0.5, 0, -14));
 		if(onLeftSide) {
@@ -92,12 +92,14 @@ public class SideScaleFarGrrPath extends CommandGroup {
 		// speed was 0.3
 		addParallel(new SetLiftHeightBangBang(Constants.AUTON_SCALE_HEIGHT));
 		if(onLeftSide) {
-			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GoToLeftScale, x-> 0.5, RunPath.Direction.FORWARDS_MIRRORED));
+			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GoToLeftScale2ndDriveHACK, x-> 0.5, RunPath.Direction.FORWARDS_MIRRORED));
 		} else {
-			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GoToLeftScale, x-> 0.5, RunPath.Direction.FORWARDS));
+			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GoToLeftScale2ndDriveHACK, x-> 0.5, RunPath.Direction.FORWARDS));
 		}
 		// was 0.5
 		addParallel(new PauseDrivetrain(.25));
 //		addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED), 0.5);
+		addSequential(new ShootCube(.6), 0.5);
+
 	}
 }
