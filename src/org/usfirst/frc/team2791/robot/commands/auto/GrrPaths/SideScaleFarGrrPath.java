@@ -84,13 +84,14 @@ public class SideScaleFarGrrPath extends CommandGroup {
 		addSequential(new PauseDrivetrain(1));
 		// speed was -0.3
 		addSequential(new DriveEncoderBangBang(-0.5, 0, -14));
+		addParallel(new SetLiftHeightBangBang(Constants.AUTON_SCALE_HEIGHT)); // this was from just before go to left scale 2nd drive hack
 		if(onLeftSide) {
 			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromLeftScale, x-> -0.5, RunPath.Direction.BACKWARDS_MIRRORED));
 		} else {
 			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromLeftScale, x-> -0.5, RunPath.Direction.BACKWARDS));
 		}
 		// speed was 0.3
-		addParallel(new SetLiftHeightBangBang(Constants.AUTON_SCALE_HEIGHT));
+//		addParallel(new SetLiftHeightBangBang(Constants.AUTON_SCALE_HEIGHT)); // moved up
 		if(onLeftSide) {
 			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GoToLeftScale2ndDriveHACK, x-> 0.5, RunPath.Direction.FORWARDS_MIRRORED));
 		} else {
