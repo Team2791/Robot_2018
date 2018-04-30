@@ -13,7 +13,7 @@ public class Constants {
 	// Server Constants
 	public static final String TEAM_NUMBER = "2791";
 	public static final String SERVER_PORT = "roboRIO-" + TEAM_NUMBER + "-FRC";
-	public static final String msg = "Yo Whats up";
+	public static final String msg = "I'm Alive!!!! :(";
 
 	//Lift Constants
 
