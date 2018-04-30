@@ -1,13 +1,12 @@
 
 package org.usfirst.frc.team2791.robot;
 
-import org.usfirst.frc.team2791.pathing.RunPath;
-import org.usfirst.frc.team2791.pathing.ShakerPaths;
 import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchLEFT;
 import org.usfirst.frc.team2791.robot.commands.auto.BangBangTurnSwitchRIGHT;
 import org.usfirst.frc.team2791.robot.commands.auto.DoNothing;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDSideScaleClose_ScaleEdge;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDSideScaleFar;
+import org.usfirst.frc.team2791.robot.commands.auto.PIDSideScaleFarONLYCROSS;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDSideSwitchClose;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDSideSwitchFar;
 import org.usfirst.frc.team2791.robot.commands.auto.PIDTurnSwitchLEFT;
@@ -78,6 +77,8 @@ public class Robot extends TimedRobot {
 	SendableChooser<AutonCommandChooser> chooser = new SendableChooser<>();
 	AutonCommandChooser DEFAULT_AUTO;
 	String DEFAULT_AUTO_NAME;
+	
+	boolean DEBUG = false;
 
 	/**
 	 * This function is run when the robot is first started up and 2should be
@@ -114,17 +115,20 @@ public class Robot extends TimedRobot {
 		
 		// Testing multiple 340 paths at once.
 	//	autonomousCommand = new TurnSwitch2CubeGrrPath(true);
-		autonomousCommand = new SideScaleFarGrrPath(false); //Noah made this false because he is awesome and whatever
+//		autonomousCommand = new SideScaleFarGrrPath(false); //Noah made this false because he is awesome and whatever
 //		autonomousCommand = new RunPath(ShakerPaths.FROM_RIGHT.SamsPath, 0.3);
 //		autonomousCommand = new CloseScaleGrrPath(true);
+		
+//		DEBUG = false;
+//		autonomousCommand = new SideScaleFarGrrPath(true);
 
-		// Set up our auton chooser
+////		// Set up our auton chooser
 //		DEFAULT_AUTO_NAME = "D: Center switch Grr path 2.5 cube";
 //		DEFAULT_AUTO = new NearSwitchAutonChooser(
 //			new TurnSwitch2CubeGrrPath(false),
 //			new TurnSwitch2CubeGrrPath(true)
 //		);
-//		
+
 		DEFAULT_AUTO_NAME = "D: side scale grr pathing LEFT - PID";
 		DEFAULT_AUTO = new ScaleAutonChooser(
 				new CloseScaleGrrPath(true),
@@ -136,7 +140,19 @@ public class Robot extends TimedRobot {
 //				new SideScaleFarGrrPath(false),
 //				new CloseScaleGrrPath(false)
 //		);
-
+		
+//		DEFAULT_AUTO_NAME = "D: side scale tip or cross LEFT - PID";
+//		DEFAULT_AUTO = new ScaleAutonChooser(
+//			new PIDSideScaleClose_ScaleEdge(true),
+//			new PIDSideScaleFarONLYCROSS(true)
+//		);
+//	
+//		DEFAULT_AUTO_NAME = "D: side scale tip or cross  RIGHT - PID";
+//		DEFAULT_AUTO = new ScaleAutonChooser(
+//			new PIDSideScaleFarONLYCROSS(false),
+//			new PIDSideScaleClose_ScaleEdge(false)
+//		);
+		
 //		DEFAULT_AUTO_NAME = "D: Center switch 1.5 cube";
 //		DEFAULT_AUTO = new NearSwitchAutonChooser(
 //			new PIDTurnSwitchLEFT_2Cube(),
@@ -164,31 +180,37 @@ public class Robot extends TimedRobot {
 		chooser.addObject("Do Nothing", new NoChoiceChooser(new DoNothing()));
 		System.out.println("DEFAULT AUTO IS: = " + DEFAULT_AUTO_NAME);
 		
+		
 		chooser.addObject("center switch 2.5 cube - Grr Path", new NearSwitchAutonChooser(
 				new TurnSwitch2CubeGrrPath(false),
 				new TurnSwitch2CubeGrrPath(true)
 			));
 		
-		chooser.addObject("center switch - PID", new NearSwitchAutonChooser(
-			new PIDTurnSwitchLEFT(),
-			new PIDTurnSwitchRIGHT()
+		chooser.addObject("side scale grr pathing LEFT - PID", new ScaleAutonChooser(
+				new CloseScaleGrrPath(true),
+				new SideScaleFarGrrPath(true)
 		));
+
+		chooser.addObject("side scale grr pathing RIGHT - PID", new ScaleAutonChooser(
+				new SideScaleFarGrrPath(false),
+				new CloseScaleGrrPath(false)
+		));
+
+		chooser.addObject("side scale tip or cross LEFT - PID", new ScaleAutonChooser(
+			new PIDSideScaleClose_ScaleEdge(true),
+			new PIDSideScaleFarONLYCROSS(true)
+		));
+	
+		chooser.addObject("side scale tip or cross  RIGHT - PID", new ScaleAutonChooser(
+			new PIDSideScaleFarONLYCROSS(false),
+			new PIDSideScaleClose_ScaleEdge(false)
+		));		
 		
 		chooser.addObject("center switch x1.5 cube - PID", new NearSwitchAutonChooser(
 			new PIDTurnSwitchLEFT_2Cube(),
 			new PIDTurnSwitchRIGHT_2Cube()
 		));
 		
-		chooser.addObject("side switch LEFT - PID", new NearSwitchAutonChooser(
-			new PIDSideSwitchClose(true),
-			new PIDSideSwitchFar(true)
-		));
-
-		chooser.addObject("side switch RIGHT - PID", new NearSwitchAutonChooser(
-			new PIDSideSwitchFar(false),
-			new PIDSideSwitchClose(false)
-		));
-
 		chooser.addObject("side scale LEFT - PID", new ScaleAutonChooser(
 //			new PIDSideScaleClose(true),
 			new PIDSideScaleClose_ScaleEdge(true),
@@ -236,6 +258,17 @@ public class Robot extends TimedRobot {
 			new BangBangTurnSwitchLEFT(), // this will run when we are on the left side of the switch
 			new BangBangTurnSwitchRIGHT() // this will run when we are on the right side of the switch
 		));
+		
+		chooser.addObject("side switch LEFT - PID", new NearSwitchAutonChooser(
+		new PIDSideSwitchClose(true),
+		new PIDSideSwitchFar(true)
+	));
+
+	chooser.addObject("side switch RIGHT - PID", new NearSwitchAutonChooser(
+		new PIDSideSwitchFar(false),
+		new PIDSideSwitchClose(false)
+	));
+
 		
 		SmartDashboard.putData("Auto mode", chooser);
 		oi = new OI();
@@ -303,6 +336,7 @@ public class Robot extends TimedRobot {
 
 		autonCommandChooser = chooser.getSelected();
 
+		//&& DEBUG == false
 		if (autonCommandChooser != null) {
 			autonomousCommand = autonCommandChooser.getCommand(weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch);
 		}
@@ -335,8 +369,16 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		debug();
+//		debug();
+		lift.debug();
+		
+		if(Robot.oi.operatorRS.get()) {
+			Constants.LIFT_POT_OFFSET = -(Robot.lift.getHeight() - Constants.LIFT_POT_OFFSET);
+			System.out.println("Lift pot offset set to "+Constants.LIFT_POT_OFFSET);
+		}
 	}
+	
+	
 	/**
 	 * This function is called periodically during test mode
 	 */
@@ -382,6 +424,14 @@ public class Robot extends TimedRobot {
 		ramps.debug();
 		manipulator.debug();
 		lift.debug();
+		
+		
+		if(Robot.oi.operatorRS.get()) {
+			Constants.LIFT_POT_OFFSET = -(Robot.lift.getHeight() - Constants.LIFT_POT_OFFSET);
+			System.out.println("Lift pot offset set to "+Constants.LIFT_POT_OFFSET);
+		}
+		
+//		System.out.println("opereator LS" + Robot.oi.operatorLS.get());
 		
 		boolean timerBlink = false;
 		// start blinkning in the last 45 seconds.

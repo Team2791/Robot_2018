@@ -13,10 +13,11 @@ public class Constants {
 	// Server Constants
 	public static final String TEAM_NUMBER = "2791";
 	public static final String SERVER_PORT = "roboRIO-" + TEAM_NUMBER + "-FRC";
+	public static final String msg = "I'm Alive!!!! :(";
 
 	//Lift Constants
 
-    public static final double LIFT_POT_OFFSET = -5.37+0.42+0.39;
+    public static double LIFT_POT_OFFSET = -3.2795698924731185;
 	//at 60% the lift was at 36'' from the ground, 33'' from the bottom of it's travel
     public static final double LIFT_POT_FULL_RANGE = 33.0 / 0.6;
     
@@ -27,6 +28,7 @@ public class Constants {
     
     public static final double LIFT_MAX_HEIGHT = 38.5;
     public static final double LIFT_MIN_HEIGHT = .25;
+    public static final double LIFT_HEIGHT_ENDGAME = 18.0;
 
     public static final double BOTTOM_SAFTEY_DISTANCE = 5; //11 when using bang bang
     public static final double TOP_SAFTEY_DISTANCE = 5; // 12 when using bang bang

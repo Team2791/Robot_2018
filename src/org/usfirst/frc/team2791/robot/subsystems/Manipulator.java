@@ -62,11 +62,11 @@ public class Manipulator extends Subsystem {
     }
 
     public boolean isCubeInGripper(){
-        boolean left = !iRSensorLeft.get();
-        boolean right = !iRSensorRight.get();
-        
-//	    return cubeInGripperDelayedBoolean.update(left && right);
-	    // with unplugged sensors this becomes return false;
+//        boolean left = !iRSensorLeft.get();
+//        boolean right = !iRSensorRight.get();
+//        
+////	    return cubeInGripperDelayedBoolean.update(left && right);
+//	    // with unplugged sensors this becomes return false;
         return false; // ensure that there is no noise from the claw
     }
 
@@ -124,8 +124,8 @@ public class Manipulator extends Subsystem {
     public void debug(){
 //        SmartDashboard.putString("Manipulator Left Motor Percent", Double.toString(leftMotor.getMotorOutputPercent()));
 //        SmartDashboard.putString("Manipulator Right Motor Percent", Double.toString(rightMotor.getMotorOutputPercent()));
-        SmartDashboard.putBoolean("Manipulator Left Sensor", !iRSensorLeft.get());
-        SmartDashboard.putBoolean("Manipulator Right Sensor", !iRSensorRight.get());
+//        SmartDashboard.putBoolean("Manipulator Left Sensor", !iRSensorLeft.get());
+//        SmartDashboard.putBoolean("Manipulator Right Sensor", !iRSensorRight.get());
         SmartDashboard.putBoolean("Manipulator Extender Solenoid", extender.get());
         SmartDashboard.putBoolean("Manipulator Cube in gripper", isCubeInGripper());
         SmartDashboard.putBoolean("Manipulator Cube jammed", isCubeJammed());

@@ -32,10 +32,10 @@ public class DriveWithJoystick extends Command {
 			return;
 		}
 		
-		if(Robot.lift.getHeight() > 13.75 || OI.driverSlowButton.get()) {
+		if((Robot.lift.getHeight() > 13.75 || OI.driverSlowButton.get()) && !Robot.oi.operatorDpadLeft.get()) {
 			speedMultiplier = 0.5;
 		} else {
-			speedMultiplier = Constants.SPEED_MULTIPLIER;
+			speedMultiplier = 1.0;
 		}
 		
 		double leftSpeed = OI.driver.getGtaDriveLeft() * speedMultiplier;

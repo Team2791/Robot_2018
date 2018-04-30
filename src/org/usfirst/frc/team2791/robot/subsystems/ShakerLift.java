@@ -177,7 +177,7 @@ public class ShakerLift extends Subsystem {
         return getHeight() > Constants.LIFT_MAX_HEIGHT - Constants.TOP_SAFTEY_DISTANCE;
     }
 
-    private void setPowerUnsafe(double power) {
+    public void setPowerUnsafe(double power) {
 		leaderTalon.set(ControlMode.PercentOutput, power);
     }
 
@@ -228,11 +228,11 @@ public class ShakerLift extends Subsystem {
 //    }
 
     public void debug(){
-        SmartDashboard.putBoolean("Lift - Top Limit Switch value", !topLimitSwitch.get());
-        SmartDashboard.putBoolean("Lift - Bottom Limit Switch value", !bottomLimitSwitch.get());
+//        SmartDashboard.putBoolean("Lift - Top Limit Switch value", !topLimitSwitch.get());
+//        SmartDashboard.putBoolean("Lift - Bottom Limit Switch value", !bottomLimitSwitch.get());
         
-        SmartDashboard.putBoolean("Lift - Close to top", closeToTop());
-        SmartDashboard.putBoolean("Lift - Close to bottom", closeToBottom());
+//        SmartDashboard.putBoolean("Lift - Close to top", closeToTop());
+//        SmartDashboard.putBoolean("Lift - Close to bottom", closeToBottom());
         
         SmartDashboard.putNumber("Lift - Height", getHeight());
         SmartDashboard.putNumber("Lift - Velocity", getVelocity());
@@ -246,8 +246,7 @@ public class ShakerLift extends Subsystem {
 //        SmartDashboard.putNumber("Lift - Motor Two value", motorTwo.getMotorOutputPercent());
 //        SmartDashboard.putNumber("Lift - Motor Three value", motorThree.getMotorOutputPercent());
         SmartDashboard.putBoolean("Lift - Break value", !breakSolenoid.get());
-        
-        SmartDashboard.putNumber("Lift - break timer", breakReleaseTimer.get());
+//        SmartDashboard.putNumber("Lift - break timer", breakReleaseTimer.get());
     }
 }
 

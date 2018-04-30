@@ -22,11 +22,6 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import jaci.pathfinder.Pathfinder;
-import jaci.pathfinder.Trajectory;
-import jaci.pathfinder.Waypoint;
-import jaci.pathfinder.followers.EncoderFollower;
-import jaci.pathfinder.modifiers.TankModifier;
 
 /**
  * This class corresponds to the drivetrain. This code is modeled after a
@@ -192,8 +187,8 @@ public class ShakerDrivetrain extends Subsystem {
 	 * Drivetrain sfx outputs
 	 */
 	public void debug() {
-		SmartDashboard.putNumber("DT - Left Encoders Rate", getLeftVelocity());
-		SmartDashboard.putNumber("DT - Right Encoders Rate", getRightVelocity());
+//		SmartDashboard.putNumber("DT - Left Encoders Rate", getLeftVelocity());
+//		SmartDashboard.putNumber("DT - Right Encoders Rate", getRightVelocity());
 
 		SmartDashboard.putNumber("DT - Left Encoder Distance", getLeftDistance());
 		SmartDashboard.putNumber("DT - Right Encoder Distance", getRightDistance());
@@ -223,7 +218,7 @@ public class ShakerDrivetrain extends Subsystem {
 		// SmartDashboard.putString("LAcc vs RAcc vs AvgAcc",
 		// getLeftAcceleration()+":"+getRightAcceleration()+":"+getAverageAcceleration());
 		 
-		 SmartDashboard.putBoolean("Pathfinder -Path Finished", Robot.drivetrain.isProfileFinished);
+//		 SmartDashboard.putBoolean("Pathfinder -Path Finished", Robot.drivetrain.isProfileFinished);
 
 	}
 

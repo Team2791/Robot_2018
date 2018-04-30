@@ -28,13 +28,13 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 
-	protected Button driverA, driverB, driverX, driverY, driverLB, driverRB, driverBack, driverStart, driverLS, driverRS;
-	protected Button operatorA, operatorB, operatorX, operatorY, operatorLB, operatorRB, operatorBack, operatorStart,
+	public Button driverA, driverB, driverX, driverY, driverLB, driverRB, driverBack, driverStart, driverLS, driverRS;
+	public Button operatorA, operatorB, operatorX, operatorY, operatorLB, operatorRB, operatorBack, operatorStart,
 			operatorLS, operatorRS;
 
-	protected Button driverDpadUp, driverDpadUpRight, driverDpadRight, driverDpadDownRight, driverDpadDown,
+	public Button driverDpadUp, driverDpadUpRight, driverDpadRight, driverDpadDownRight, driverDpadDown,
 			driverDpadDownLeft, driverDpadLeft, driverDpadUpLeft;
-	protected Button operatorDpadUp, operatorDpadUpRight, operatorDpadRight, operatorDpadDownRight,
+	public Button operatorDpadUp, operatorDpadUpRight, operatorDpadRight, operatorDpadDownRight,
 			operatorDpadDown, operatorDpadDownLeft, operatorDpadLeft, operatorDpadUpLeft;
 
 	protected Button operatorLeftJoystickUsed, operatorRightJoystickUsed;
@@ -55,6 +55,7 @@ public class OI {
 		initCustomStuff();
 		initButtons();
 		initDpad();
+		System.out.println(Constants.msg);
 
 		/********************************** Driver Button Assignments ****************************************/
 		driverA.whileHeld(new ShootCube(0.6)); // was 0.45

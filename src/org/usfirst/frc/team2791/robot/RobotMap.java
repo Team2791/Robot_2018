@@ -20,8 +20,8 @@ public class RobotMap {
 	public static final int TALON_RIGHT_2 = 20;
 	
 	// Manipulator
-	public static final int INTAKE_SPARK_LEFT_PORT = 34;
-	public static final int INTAKE_SPARK_RIGHT_PORT = 35;
+	public static final int INTAKE_SPARK_LEFT_PORT = 35; // was 34 on pbot
+	public static final int INTAKE_SPARK_RIGHT_PORT = 34; // was 35 on pbot
 	
 	// Lift
 	public static final int LIFT_TALON_ONE = 37; // this is the
@@ -90,8 +90,8 @@ public class RobotMap {
 	public static final int POWER_LEFT_DRIVE_2 = 4;
 	public static final int POWER_LEFT_DRIVE_3 = 5;
 	
-	public static final int PDP_INTAKE_LEFT = 3; // pbot: 3, comobt 5
-	public static final int PDP_INTAKE_RIGHT = 4; // pbot: 4, compbot 15
+	public static final int PDP_INTAKE_LEFT = 10; // pbot: 3, comobt 10
+	public static final int PDP_INTAKE_RIGHT = 15; // pbot: 4, compbot 15
 	
 	// JOYSTICK PORTS
 	public static final int JOYSTICK_DRIVER_PORT = 0;
