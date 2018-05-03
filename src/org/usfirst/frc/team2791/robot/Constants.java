@@ -57,11 +57,17 @@ public class Constants {
 	public static double driveEncoderTicks = 256 * 2; // not sure why we're doing this ??
 	public static final double SPEED_MULTIPLIER = 1;
 	public static final double WHEEL_DIAMETER_IN_IN = 6.0 * 0.95833333; //because of carpet + real size wheels are actually 0.95833333 * 6''
+	public static final double WHEELBASE_WIDTH = 0.6; // Need to tune
 	//6.0 * 3.14159 / 12.0; // was 1.0, now 6.0*3.14159/12.0 = 1.570
 	public static final double RAISE_RAMPS_SPEED = 0.9;
 	public static final double LOWER_RAMPS_SPEED = -0.5;
 	
 	public static final double RIGHT_JOYSTICK_TURN_MULTIPLIER = 0.5;
+	public static final int MOTION_PROFILE_POINT_LIMIT = 60;
+	public static final double DELTA_TIME = 0.05;
+	public static final int BASE_TRAJECTORY_PERIOD = 1;
+	public static final int BASE_TRAJECTORY_TIMEOUT = 1;
+
 
 	// Time when ramps are allowed to be released
 	// (3 * 60) - 30 = (3 minutes * 60 seconds) - 30 seconds

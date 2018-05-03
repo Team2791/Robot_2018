@@ -3,6 +3,8 @@ package org.usfirst.frc.team2791.robot.util;
 
 // This is a class with commonly used methods
 
+import org.usfirst.frc.team2791.robot.Robot;
+
 public class Util {
 
 	private Util() {}
@@ -32,7 +34,7 @@ public class Util {
 	
     /**
      * @param encoderTicks count on encoder
-     * @param wheelDiameter_inFeet
+     * @param wheelDiameterInInches
      * @return number of feet traveled based on encoder ticks read
      */
     public static double tickToFeet(double encoderTicks, double wheelDiameterInInches) {
@@ -46,6 +48,8 @@ public class Util {
 		}
 		return total / numbers.length;
 	}
+
+
     
 //    public static double generatePathHashCode(Waypoint[] path) {
 //        double hash = 1.0;

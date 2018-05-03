@@ -1,7 +1,13 @@
 package org.usfirst.frc.team2791.robot.subsystems;
 
 import java.io.File;
+import java.lang.instrument.Instrumentation;
 
+import com.ctre.phoenix.motion.MotionProfileStatus;
+import com.ctre.phoenix.motion.SetValueMotionProfile;
+import com.ctre.phoenix.motion.TrajectoryPoint;
+import jaci.pathfinder.followers.EncoderFollower;
+import jaci.pathfinder.modifiers.TankModifier;
 import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.Constants.DrivetrainProfiling;
 import org.usfirst.frc.team2791.robot.Robot;
@@ -23,6 +29,12 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import jaci.pathfinder.Pathfinder;
+import jaci.pathfinder.Trajectory;
+import jaci.pathfinder.Waypoint;
+
+// https://github.com/JacisNonsense/Pathfinder/wiki/Pathfinder-for-FRC---Java
+// https://github.com/CrossTheRoadElec/Phoenix-Documentation/raw/master/Talon%20SRX%20Motion%20Profile%20Reference%20Manual.pdf
 /**
  * This class corresponds to the drivetrain. This code is modeled after a
  * drivetrain with six motors, four Spark and two tallon speed controllers.
@@ -46,6 +58,11 @@ public class ShakerDrivetrain extends Subsystem {
 	private BaseMotorController[] leftDrive;
 	private BaseMotorController[] rightDrive;
 
+	private EncoderFollower leftFollower;
+	private  EncoderFollower rightFollower;
+
+	private TankModifier modifier;
+
 	private DoubleSolenoid shiftingSolenoid;
 
 	private ADXRS450_Gyro gyro;
@@ -68,6 +85,9 @@ public class ShakerDrivetrain extends Subsystem {
 	protected double rightCurrentRate = 0;
 	protected double rightCurrentTime = 0;
 	protected double rightFilteredAccel = 0;
+
+	private Trajectory leftTrajectory;
+	private Trajectory rightTrajectory;
 
 	// Determines the amount of distance traveled for every pulse read on the
 	// encoders
@@ -119,6 +139,8 @@ public class ShakerDrivetrain extends Subsystem {
 			gyroDisabled = true;
 			System.out.println("Gyro is unplugged, Disabling Gyro");
 		}
+		leftTrajectory = null;
+		rightTrajectory = null;
 
 	}
 
@@ -182,6 +204,124 @@ public class ShakerDrivetrain extends Subsystem {
 	public boolean isDrivetrainInDriveMode() {
 		return inDriveMode;
 	}
+
+	// ************** Motion Profiling Methods **************//
+
+
+	private void fill(Trajectory profile, int totalCnt, TalonSRX talon){
+//		talon.setControlFramePeriod((int)((Constants.DELTA_TIME * 100) / 2), 0);
+		// Talon SRX Motion Profiling Manual pg. 21
+		TrajectoryPoint point = new TrajectoryPoint();
+		MotionProfileStatus status = new MotionProfileStatus();
+
+		talon.getMotionProfileStatus(status);
+		if(status.hasUnderrun){
+			System.out.println("[Motion Profile] Has been overrun");
+//			Instrumentation.OnUnderrun();
+			talon.clearMotionProfileHasUnderrun(0);
+		}
+
+		talon.clearMotionProfileTrajectories();
+		talon.configMotionProfileTrajectoryPeriod(Constants.BASE_TRAJECTORY_PERIOD, Constants.BASE_TRAJECTORY_TIMEOUT);
+
+		for(int i = 0; i < totalCnt; i++){
+			Trajectory.Segment seg = profile.get(i);
+			point.position = seg.position;
+			point.velocity = seg.velocity;
+			point.timeDur = TrajectoryPoint.TrajectoryDuration.Trajectory_Duration_5ms; // Need to make this a variable
+			point.zeroPos = i == 0;
+			point.isLastPoint = i == totalCnt - 1;
+
+			talon.pushMotionProfileTrajectory(point);
+		}
+
+	}
+
+	public void setTrajectory(Trajectory left, int leftCnt,  Trajectory right, int rightCnt){
+
+
+		if(left.length() >= Constants.MOTION_PROFILE_POINT_LIMIT){
+			System.out.println("[Motion Profile] Too Many Points in Trajectory Left");
+			return;
+		}
+		if(right.length() >= Constants.MOTION_PROFILE_POINT_LIMIT) {
+			System.out.println("[Motion Profile] Too Many Points in Trajectory Right");
+			return;
+		}
+		this.leftTrajectory = left;
+		this.rightTrajectory = right;
+
+		fill(left, leftCnt, talonLeft2);
+		fill(right, rightCnt, talonRight2);
+	}
+
+	public Trajectory getLeftTrajectory() {
+		return leftTrajectory;
+	}
+
+	public Trajectory getRightTrajectory(){
+		return rightTrajectory;
+	}
+
+	public Trajectory[] getTrajectories(){
+		return new Trajectory[]{getLeftTrajectory(), getRightTrajectory()};
+	}
+
+	public void clearLeftTrajectory(){
+		talonLeft2.clearMotionProfileTrajectories();
+		leftTrajectory = null;
+	}
+
+	public void clearRightTrajectory(){
+		talonRight2.clearMotionProfileTrajectories();
+		rightTrajectory = null;
+	}
+
+	public void clearTrajectories(){
+		clearLeftTrajectory();
+		clearRightTrajectory();
+	}
+	// Enable Trajectory execution
+	public void enableTrajectory(){
+		// Invalid ---> -1, Disable ---> 0, Enable ---> 1, Hold ---> 2;
+		talonLeft2.set(ControlMode.MotionProfile, 1); // 1 to enable
+		talonRight2.set(ControlMode.MotionProfile, 1); // 1 to enable
+
+	}
+	// Disable Trajectory Execution
+	public void disableTrajectory(){
+		// Invalid ---> -1, Disable ---> 0, Enable ---> 1, Hold ---> 2;
+		talonLeft2.set(ControlMode.MotionProfile, 0); // 0 to disable
+		talonRight2.set(ControlMode.MotionProfile, 0); // 0 to disable
+	}
+	// Stop Trajectory execution
+	public void holdTrajectory(){
+		// Invalid ---> -1, Disable ---> 0, Enable ---> 1, Hold ---> 2;
+		talonLeft2.set(ControlMode.MotionProfile, 2); // 2 to hold
+		talonRight2.set(ControlMode.MotionProfile, 2); // 2 to hold
+
+	}
+	// Get percent of Trajectory completed as an array of {leftPercent, rightPercent}
+	public double[] getPercentTrajectoryCompleted(int count){
+		MotionProfileStatus leftStatus = new MotionProfileStatus();
+		MotionProfileStatus rightStatus = new MotionProfileStatus();
+
+		talonLeft2.getMotionProfileStatus(leftStatus);
+		talonRight2.getMotionProfileStatus(rightStatus);
+
+		double leftCompleted = count - leftStatus.topBufferRem;
+		double rightCompleted = count - rightStatus.topBufferRem;
+
+		return new double[]{leftCompleted / count, rightCompleted / count};
+	}
+
+	//	public void control(Trajectory trajectory) {
+//		for (int i = 0; i < trajectory.length(); i++) {
+//			Trajectory.Segment seg = trajectory.get(i);
+//
+//			System.out.printf("%f,%f,%f,%f,%f,%f,%f,%f\n", seg.dt, seg.x, seg.y, seg.position, seg.velocity, seg.acceleration, seg.jerk, seg.heading);
+//		}
+//	}
 
 	/**
 	 * Drivetrain sfx outputs
