@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="wpiutil">
-    <CLASSES>
-      <root url="jar://$USER_HOME$/wpilib/java/current/lib/wpiutil.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

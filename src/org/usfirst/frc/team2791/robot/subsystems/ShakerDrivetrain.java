@@ -81,6 +81,7 @@ public class ShakerDrivetrain extends Subsystem {
 		victorRight1 = new VictorSPX(RobotMap.VICTOR_RIGHT_1);
 		talonRight2 = new TalonSRX(RobotMap.TALON_RIGHT_2);
 
+
 		leftDrive = new BaseMotorController[] { victorLeft1, talonLeft2 };
 		rightDrive = new BaseMotorController[] { victorRight1, talonRight2 };
 
@@ -162,6 +163,18 @@ public class ShakerDrivetrain extends Subsystem {
 			rightDrive[i].set(ControlMode.PercentOutput, right * DRIVE_OUTPUT_SCALING_FACTOR);
 		}
 	}
+
+	public void setLeftRightCurrent(double leftCurrent, double rightCurrent){
+	    SmartDashboard.putString("LeftCurrent vs RightCurrent ", leftCurrent + " : " + rightCurrent);
+	    for(BaseMotorController motor : leftDrive){
+	        motor.set(ControlMode.Current, leftCurrent);
+        }
+
+        for(BaseMotorController motor : rightDrive){
+	        motor.set(ControlMode.Current, leftCurrent);
+        }
+
+    }
 
 	/**
 	 * inDriveMode == True ---> Drive inDriveMode == False -----> Ramp
@@ -270,6 +283,8 @@ public class ShakerDrivetrain extends Subsystem {
 		System.err.println("Gyro is Disabled, Rate is Incorrect");
 		return 0.0;
 	}
+
+
 
 	public double getGyroAngleInRadians() {
 		return getGyroAngle() * (Math.PI / 180);

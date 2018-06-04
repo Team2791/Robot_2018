@@ -1,6 +1,5 @@
 package org.usfirst.frc.team2791.robot.commands;
 
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2791.robot.Constants;
@@ -8,10 +7,17 @@ import org.usfirst.frc.team2791.robot.Robot;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
 
 
-public class HoldClimb extends Command {
+public class HoldClimbWithDelay extends Command {
+    private Timer timer;
     private ShakerDrivetrain drivetrain;
-    public HoldClimb() {
+    private double delayTime;
+
+    public HoldClimbWithDelay(double delayTime) {
+        timer = new Timer();
         drivetrain = Robot.drivetrain;
+        this.delayTime = delayTime;
+
+
 
     }
 
@@ -22,6 +28,7 @@ public class HoldClimb extends Command {
      */
     @Override
     protected void initialize() {
+        timer.start();
         drivetrain.setDriveOrRampMode(false);
 
     }
@@ -39,7 +46,10 @@ public class HoldClimb extends Command {
 
     @Override
     protected boolean isFinished() {
-        return true;
+        if(timer.get() >= delayTime){
+            return true;
+        }
+        return false;
     }
 
 
@@ -52,6 +62,7 @@ public class HoldClimb extends Command {
     @Override
     protected void end() {
         drivetrain.setLeftRightMotorOutputs(0.0, 0.0);
+        timer.stop();
     }
 
 

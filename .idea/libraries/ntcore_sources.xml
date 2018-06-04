@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="ntcore-sources">
-    <CLASSES />
-    <JAVADOC />
-    <SOURCES>
-      <root url="jar://$networktables.sources$!/" />
-    </SOURCES>
-  </library>
-</component>

@@ -68,8 +68,8 @@ public class Constants {
 	public static final double leftClimbSpeed = 5;
 	public static final double rightClimbSpeed = 5;
 
-	public static final double leftHoldSpeed = 5;
-	public static final double rightHoldSpeed = 5;
+	public static final double leftHoldCurrent = 5;
+	public static final double rightHoldCurrent = 5;
 
 
 	// Time when ramps are allowed to be released
