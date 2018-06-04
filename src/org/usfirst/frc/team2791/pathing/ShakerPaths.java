@@ -123,10 +123,28 @@ public class ShakerPaths {
 //		, 58));
 		
 		//kept original x and decreased original y by 5
-		public static final Path GetCubeFromRightScale = new Path(new PathSegment(t -> 
-		/* {"start":{"x":253,"y":285},"mid1":{"x":254,"y":266},"mid2":{"x":240,"y":244},"end":{"x":228,"y":243}} */
-		(-57 + -18 * t + 72 * Math.pow(t, 2))/ (3 + -90 * t + 51 * Math.pow(t, 2)) 
-		, 53));
+//		public static final Path GetCubeFromRightScale = new Path(new PathSegment(t ->
+////		/* {"start":{"x":253,"y":285},"mid1":{"x":254,"y":266},"mid2":{"x":240,"y":244},"end":{"x":228,"y":243}} */
+////		(-57 + -18 * t + 72 * Math.pow(t, 2))/ (3 + -90 * t + 51 * Math.pow(t, 2))
+////		, 53));
+//		^
+//		|
+//		|
+//		|
+//		Oringinal
+
+//		public static final Path GetCubeFromRightScale = new Path(new PathSegment(t ->
+////			/* {"start":{"x":253,"y":285},"mid1":{"x":254,"y":266},"mid2":{"x":240,"y":244},"end":{"x":222,"y":238}} */
+////			(-57 + -18 * t + 57 * Math.pow(t, 2))/ (3 + -90 * t + 33 * Math.pow(t, 2))
+////			, 60));
+
+		public static final Path GetCubeFromRightScale = new Path(new PathSegment(t ->
+/* {"start":{"x":253,"y":285},"mid1":{"x":254,"y":266},"mid2":{"x":240,"y":244},"end":{"x":232,"y":234}} */
+(-57 + -18 * t + 45 * Math.pow(t, 2))/ (3 + -90 * t + 63 * Math.pow(t, 2))
+, 57));
+
+
+
 		//----------------------------------------------------------------------------------
 
 		//Still less overshoot

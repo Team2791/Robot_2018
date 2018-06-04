@@ -29,6 +29,7 @@ public class IntakeCube extends Command {
 
     @Override
     protected void execute() {
+        System.out.println("Cube is in Gripper : " + manipulator.isCubeInGripper());
         if (manipulator.isCubeInGripper()) {
             // we have the cube
             manipulator.setLeftRightMotorSpeed(Constants.HOLD_SPEED, Constants.HOLD_SPEED);
@@ -69,7 +70,7 @@ public class IntakeCube extends Command {
 
     @Override
     protected boolean isFinished() {
-        return manipulator.isCubeInGripper() || intakeCurrentTimer.get() > 7;
+        return manipulator.isCubeInGripper() || intakeCurrentTimer.get() > 70; // Was 7, had trouble intaking cube ---> will change to 50
     }
 
     @Override

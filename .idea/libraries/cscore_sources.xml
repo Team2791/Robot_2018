@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="cscore-sources">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$cscore.sources$!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -63,6 +63,15 @@ public class Constants {
 	
 	public static final double RIGHT_JOYSTICK_TURN_MULTIPLIER = 0.5;
 
+
+	// Climber Constants
+	public static final double leftClimbSpeed = 5;
+	public static final double rightClimbSpeed = 5;
+
+	public static final double leftHoldSpeed = 5;
+	public static final double rightHoldSpeed = 5;
+
+
 	// Time when ramps are allowed to be released
 	// (3 * 60) - 30 = (3 minutes * 60 seconds) - 30 seconds
 	public static final double RAMP_RELEASE_TIME = (3 * 60) - 30;

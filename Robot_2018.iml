@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="FRC_FACET" name="FRC">
+      <configuration />
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="Robot_2018" level="project" />
+    <orderEntry type="library" exported="" name="cscore-sources" level="project" />
+    <orderEntry type="library" exported="" name="cscore" level="project" />
+    <orderEntry type="library" exported="" name="ntcore-sources" level="project" />
+    <orderEntry type="library" exported="" name="ntcore" level="project" />
+    <orderEntry type="library" exported="" name="opencv-sources" level="project" />
+    <orderEntry type="library" exported="" name="opencv" level="project" />
+    <orderEntry type="library" exported="" name="WPILib-sources" level="project" />
+    <orderEntry type="library" exported="" name="WPILib" level="project" />
+    <orderEntry type="library" exported="" name="wpiutil-sources" level="project" />
+    <orderEntry type="library" exported="" name="wpiutil" level="project" />
+    <orderEntry type="library" name="Pathfinder-Java-1.8" level="project" />
+    <orderEntry type="module-library">
+      <library name="WPILib User Lib Directory">
+        <CLASSES>
+          <root url="file://$USER_HOME$/wpilib/user/java/lib" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="file://$USER_HOME$/wpilib/user/java/lib" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="file://$USER_HOME$/wpilib/user/java/lib" />
+        </SOURCES>
+        <jarDirectory url="file://$USER_HOME$/wpilib/user/java/lib" recursive="true" />
+        <jarDirectory url="file://$USER_HOME$/wpilib/user/java/lib" recursive="true" type="JAVADOC" />
+        <jarDirectory url="file://$USER_HOME$/wpilib/user/java/lib" recursive="true" type="SOURCES" />
+      </library>
+    </orderEntry>
+  </component>
+</module>

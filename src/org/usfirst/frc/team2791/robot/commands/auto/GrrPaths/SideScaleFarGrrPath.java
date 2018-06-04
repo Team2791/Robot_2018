@@ -53,7 +53,7 @@ public class SideScaleFarGrrPath extends CommandGroup {
 			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.DriveIntoLeftScale, driveIntoScaleSF, RunPath.Direction.FORWARDS));
 		}
 //		addSequential(new PauseDrivetrain(0.5));// was 0.5 // wait to drift into the null zone
-		addSequential(new ShootCube(0.75), 0.4);
+		addSequential(new ShootCube(0.75), 0.5);
 
 		Function<Double, Double> backupFromScaleSF =  x -> {
 			if (x < 0.15) {

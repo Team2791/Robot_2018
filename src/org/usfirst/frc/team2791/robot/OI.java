@@ -40,6 +40,8 @@ public class OI {
 	protected Button operatorLeftJoystickUsed, operatorRightJoystickUsed;
 
 	protected Button operatorRAnalogTrigger, operatorLAnalogTrigger;
+
+	protected Button climbButton;
 	
 	// these can be double buttons later
 	protected Button dropRampsButton, raiseRampsDoubleButton, raiseRampsLeftButton, raiseRampsRightButton,
@@ -65,7 +67,8 @@ public class OI {
 		// THIS IS HACKY BUT YOLO!!
 		driverSlowButton = driverX;
 		
-		
+
+
 		raiseRampsLeftButton = driverStart;
 		raiseRampsRightButton = driverBack;
 		raiseRampsDoubleButton = new DoubleButton(raiseRampsLeftButton, raiseRampsRightButton, "OR");
@@ -78,11 +81,13 @@ public class OI {
 		driverDpadUp.whenPressed(new SetDrivetrainShifterMode(true));
 		driverDpadUp.whenPressed(new SetRampDeploy(false));
 		
-		lowerRampsRightButton = driverDpadRight;
-		lowerRampsLeftButton = driverDpadLeft;
-		lowerRampsDoubleButton = new DoubleButton(driverDpadLeft, driverDpadRight, "OR");
-		lowerRampsDoubleButton.whileHeld(new LOWERRamps(driverDpadLeft, driverDpadRight));
+//		lowerRampsRightButton = driverDpadRight;
+//		lowerRampsLeftButton = driverDpadLeft;
+//		lowerRampsDoubleButton = new DoubleButton(driverDpadLeft, driverDpadRight, "OR");
+//		lowerRampsDoubleButton.whileHeld(new LOWERRamps(driverDpadLeft, driverDpadRight));
 
+//		climbButton = driverDpadUp;
+//		climbButton.whileHeld(new Climb());
 		
 		/********************************** Operator Button Assignments ****************************************/
 
@@ -160,6 +165,7 @@ public class OI {
 			driverStart = new JoystickButton(driver, 8);
 			driverLS = new JoystickButton(driver, 9);
 			driverRS = new JoystickButton(driver, 10);
+
 
 			operatorA = new JoystickButton(operator, 1);
 			operatorB = new JoystickButton(operator, 2);

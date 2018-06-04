@@ -50,7 +50,7 @@ public class CloseScaleGrrPath extends CommandGroup {
 			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.DriveIntoRightScale, driveToScaleSpeedFunc, RunPath.Direction.FORWARDS));
 		}
 //		addSequential(new PauseDrivetrain(0.3));
-		addSequential(new ShootCube(0.5, 0.3));
+		addSequential(new ShootCube(0.5, 0.5));
 		addParallel(new SetManipulatorRetracted(false));
 		addParallel(new LowerLiftAfterDelay(0.8));
 		if(onLeftSide) {
