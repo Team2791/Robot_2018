@@ -2,24 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="212b8ef8-225c-4c8f-8426-eb53e537409a" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/cscore_sources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Robot_2018.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/Climb.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/HoldClimb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Robot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Robot.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/pathing/ShakerPaths.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/pathing/ShakerPaths.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/OI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/OI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/RobotMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/RobotMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/auto/GrrPaths/CloseScaleGrrPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/auto/GrrPaths/CloseScaleGrrPath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/auto/GrrPaths/SideScaleFarGrrPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/auto/GrrPaths/SideScaleFarGrrPath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/manipulator/IntakeCube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/manipulator/IntakeCube.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/subsystems/ShakerDrivetrain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/subsystems/ShakerDrivetrain.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Climb.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/Climb.java">
+      <file leaf-file-name="OI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/OI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="22" column="33" lean-forward="true" selection-end-line="42" />
+            <state relative-caret-position="276">
+              <caret line="90" column="36" lean-forward="true" selection-start-line="90" selection-start-column="36" selection-end-line="90" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -64,18 +47,37 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HoldClimb.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Climb.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/Climb.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="436">
+              <caret line="48" column="19" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="19" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HoldClimb.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/HoldClimb.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="420">
+              <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#948#949#0" expanded="true" />
                 <element signature="e#1050#1051#0" expanded="true" />
-                <element signature="e#1329#1330#0" expanded="true" />
-                <element signature="e#1357#1358#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SetRampDeploy.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/ramps/SetRampDeploy.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -85,15 +87,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-122">
               <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ShakerRamp.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/subsystems/ShakerRamp.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -155,10 +148,10 @@
         <option value="$PROJECT_DIR$/src/org/usfirst/frc/team2791/pathing/ShakerPaths.java" />
         <option value="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/Robot.java" />
         <option value="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/climber/Climb.java" />
-        <option value="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/OI.java" />
         <option value="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/Constants.java" />
-        <option value="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/HoldClimb.java" />
+        <option value="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/OI.java" />
         <option value="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/Climb.java" />
+        <option value="$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/HoldClimb.java" />
       </list>
     </option>
   </component>
@@ -323,12 +316,27 @@
       <updated>1527922998817</updated>
       <workItem from="1527923003074" duration="12714000" />
       <workItem from="1527974194151" duration="2998000" />
-      <workItem from="1528115757999" duration="1657000" />
+      <workItem from="1528115757999" duration="2779000" />
     </task>
+    <task id="LOCAL-00001" summary="Implementing Climber Commands">
+      <created>1528123820546</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1528123820546</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Implementing Climber Commands">
+      <created>1528124386198</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1528124386198</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17369000" />
+    <option name="totallyTimeSpent" value="18491000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -370,6 +378,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Implementing Climber Commands" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementing Climber Commands" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -516,13 +528,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/subsystems/ShakerRamp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/climber/Climb.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -550,6 +555,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/subsystems/Manipulator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="59" column="80" selection-start-line="59" selection-start-column="80" selection-end-line="59" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="68" column="46" selection-start-line="68" selection-start-column="31" selection-end-line="68" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/Robot.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="436">
@@ -562,22 +581,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/ramps/SetRampDeploy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="16" column="39" lean-forward="true" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+        <state relative-caret-position="272">
+          <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/OI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/subsystems/Manipulator.java">
+    <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/subsystems/ShakerRamp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="16">
-          <caret line="59" column="80" selection-start-line="59" selection-start-column="80" selection-end-line="59" selection-end-column="80" />
+          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+          <folding>
+            <element signature="e#1114#1115#0" expanded="true" />
+            <element signature="e#1161#1162#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -588,33 +604,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/HoldClimb.java">
+    <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/OI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="276">
+          <caret line="90" column="36" lean-forward="true" selection-start-line="90" selection-start-column="36" selection-end-line="90" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#948#949#0" expanded="true" />
-            <element signature="e#1050#1051#0" expanded="true" />
-            <element signature="e#1329#1330#0" expanded="true" />
-            <element signature="e#1357#1358#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="68" column="46" selection-start-line="68" selection-start-column="31" selection-end-line="68" selection-end-column="46" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/Climb.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="22" column="33" lean-forward="true" selection-end-line="42" />
+        <state relative-caret-position="436">
+          <caret line="48" column="19" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/usfirst/frc/team2791/robot/commands/HoldClimb.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#948#949#0" expanded="true" />
+            <element signature="e#1050#1051#0" expanded="true" />
           </folding>
         </state>
       </provider>
