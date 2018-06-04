@@ -8,10 +8,12 @@ import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
 
 
 public class HoldClimb extends Command {
-    Timer timer;
-    ShakerDrivetrain drivetrain;
+    private Timer timer;
+    private ShakerDrivetrain drivetrain;
+    private double holdTime = 1000;
 
     public HoldClimb() {
+        timer = new Timer();
         drivetrain = Robot.drivetrain;
 
 
@@ -43,7 +45,7 @@ public class HoldClimb extends Command {
 
     @Override
     protected boolean isFinished() {
-        if(timer.get() >= 10){
+        if(timer.get() >= holdTime){
             return true;
         }
         return false;
@@ -58,6 +60,7 @@ public class HoldClimb extends Command {
      */
     @Override
     protected void end() {
+        drivetrain.setLeftRightMotorOutputs(0.0, 0.0);
         timer.stop();
     }
 

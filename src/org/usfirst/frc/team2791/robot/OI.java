@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2791.robot;
 
+import org.usfirst.frc.team2791.robot.commands.Climb;
 import org.usfirst.frc.team2791.robot.commands.SetSpeedModifier;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.Creep;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.SetDrivetrainShifterMode;
@@ -86,8 +87,8 @@ public class OI {
 //		lowerRampsDoubleButton = new DoubleButton(driverDpadLeft, driverDpadRight, "OR");
 //		lowerRampsDoubleButton.whileHeld(new LOWERRamps(driverDpadLeft, driverDpadRight));
 
-//		climbButton = driverDpadUp;
-//		climbButton.whileHeld(new Climb());
+		climbButton = driverDpadUp;
+		climbButton.whileHeld(new Climb());
 		
 		/********************************** Operator Button Assignments ****************************************/
 

@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.Robot;
+import org.usfirst.frc.team2791.robot.commands.lift.LowerLiftAfterDelay;
 import org.usfirst.frc.team2791.robot.commands.lift.RaiseLiftToTopAfterDelay;
 import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightMagicMotion;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
@@ -22,20 +23,29 @@ public class Climb extends CommandGroup {
     public Climb() {
         this.drivetrain = Robot.drivetrain;
 
-
-
+        // Set Drive mode
         drivetrain.setDriveOrRampMode(true);
+        // Raise lift to get hook above bar
         new SetLiftHeightMagicMotion((5 * 12) + 8);
-        new RaiseLiftToTopAfterDelay(0.0 + debugPause);
+        // Lower lift to bottom
+        new LowerLiftAfterDelay(0.0 + debugPause);
+        // Pause (for Debug)
         new GenericPause(1.0 + debugPause);
+
+        // Backup
         drivetrain.setLeftRightMotorOutputs(leftBackupSpeed, rightBackupSpeed);
+        // Pause
         new GenericPause(1.0 + debugPause); // Need to test if Robot moves backward even during pause
+        // Stop backing up
         drivetrain.setLeftRightMotorOutputs(0, 0);
 
+        // Switch gears
         drivetrain.setDriveOrRampMode(false);
+        // Climb
         drivetrain.setLeftRightMotorOutputs(Constants.leftClimbSpeed, Constants.rightClimbSpeed);
+        // Pause whiling climbing
         new GenericPause(1.0 + debugPause); // Need to test if Robot moves backward even during pause
-
+        // Hold the climb
         new HoldClimb();
 
     }
