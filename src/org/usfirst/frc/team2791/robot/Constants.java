@@ -17,7 +17,7 @@ public class Constants {
 
 	//Lift Constants
 
-    public static double LIFT_POT_OFFSET = -3.2795698924731185;
+    public static double LIFT_POT_OFFSET = -4.0; //-3.2795698924731185;
 	//at 60% the lift was at 36'' from the ground, 33'' from the bottom of it's travel
     public static final double LIFT_POT_FULL_RANGE = 33.0 / 0.6;
     

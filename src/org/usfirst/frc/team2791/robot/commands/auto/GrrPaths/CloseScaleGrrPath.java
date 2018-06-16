@@ -50,7 +50,7 @@ public class CloseScaleGrrPath extends CommandGroup {
 			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.DriveIntoRightScale, driveToScaleSpeedFunc, RunPath.Direction.FORWARDS));
 		}
 //		addSequential(new PauseDrivetrain(0.3));
-		addSequential(new ShootCube(0.5, 0.3));
+		addSequential(new ShootCube(0.5 * .6,   0.3)); // addSequential(new ShootCube(0.5, 0.3));
 		addParallel(new SetManipulatorRetracted(false));
 		addParallel(new LowerLiftAfterDelay(0.8));
 		if(onLeftSide) {
@@ -81,7 +81,7 @@ public class CloseScaleGrrPath extends CommandGroup {
 		addSequential(new SetLiftHeightBangBang(Constants.AUTON_SCALE_HEIGHT));
 		addParallel(new SetManipulatorRetracted(false));
 		addSequential(new DriveEncoderBangBang(0.5, 0, 6));
-		addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED, 0.5));
+		addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED * .5, 0.5 + 0.25)); //addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED, 0.5));
 		
 		// backup, lower the lift and turn
 //		addParallel(new SetManipulatorRetracted(false));

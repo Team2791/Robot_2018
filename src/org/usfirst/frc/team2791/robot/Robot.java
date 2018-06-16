@@ -129,17 +129,17 @@ public class Robot extends TimedRobot {
 //			new TurnSwitch2CubeGrrPath(true)
 //		);
 
-		DEFAULT_AUTO_NAME = "D: side scale grr pathing LEFT - PID";
-		DEFAULT_AUTO = new ScaleAutonChooser(
-				new CloseScaleGrrPath(true),
-				new SideScaleFarGrrPath(true)
-		);
-
-//		DEFAULT_AUTO_NAME = "D: side scale grr pathing RIGHT - PID";
+//		DEFAULT_AUTO_NAME = "D: side scale grr pathing LEFT - PID";
 //		DEFAULT_AUTO = new ScaleAutonChooser(
-//				new SideScaleFarGrrPath(false),
-//				new CloseScaleGrrPath(false)
+//				new CloseScaleGrrPath(true),
+//				new SideScaleFarGrrPath(true)
 //		);
+
+		DEFAULT_AUTO_NAME = "D: side scale grr pathing RIGHT - PID";
+		DEFAULT_AUTO = new ScaleAutonChooser(
+				new SideScaleFarGrrPath(false),
+				new CloseScaleGrrPath(false)
+		);
 		
 //		DEFAULT_AUTO_NAME = "D: side scale tip or cross LEFT - PID";
 //		DEFAULT_AUTO = new ScaleAutonChooser(
