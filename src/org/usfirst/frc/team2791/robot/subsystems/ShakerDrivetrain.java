@@ -166,6 +166,7 @@ public class ShakerDrivetrain extends Subsystem {
 
 	public void setLeftRightCurrent(double leftCurrent, double rightCurrent){
 	    SmartDashboard.putString("LeftCurrent vs RightCurrent ", leftCurrent + " : " + rightCurrent);
+	    SmartDashboard.putString("LeftCurrent vs RightCurrent ", leftCurrent + " : " + rightCurrent);
 	    for(BaseMotorController motor : leftDrive){
 	        motor.set(ControlMode.Current, leftCurrent);
         }
@@ -175,6 +176,7 @@ public class ShakerDrivetrain extends Subsystem {
         }
 
     }
+	
 
 	/**
 	 * inDriveMode == True ---> Drive inDriveMode == False -----> Ramp
@@ -425,9 +427,9 @@ public class ShakerDrivetrain extends Subsystem {
 	/**
 	 * @return total current usage for all 4 motors in the drivetrain
 	 */
-//	public double getCurrentUsage() {
-////		return Robot.pdp.getCurrent(RobotMap.POWER_RIGHT_DRIVE_1) + Robot.pdp.getCurrent(RobotMap.POWER_RIGHT_DRIVE_2)
-////				+ Robot.pdp.getCurrent(RobotMap.POWER_RIGHT_DRIVE_3) + Robot.pdp.getCurrent(RobotMap.POWER_LEFT_DRIVE_1)
-////				+ Robot.pdp.getCurrent(RobotMap.POWER_LEFT_DRIVE_2) + Robot.pdp.getCurrent(RobotMap.POWER_LEFT_DRIVE_3);
-//	}
+	public double getCurrentUsage() {
+		return Robot.pdp.getCurrent(RobotMap.POWER_RIGHT_DRIVE_1) + Robot.pdp.getCurrent(RobotMap.POWER_RIGHT_DRIVE_2)
+				+ Robot.pdp.getCurrent(RobotMap.POWER_RIGHT_DRIVE_3) + Robot.pdp.getCurrent(RobotMap.POWER_LEFT_DRIVE_1)
+				+ Robot.pdp.getCurrent(RobotMap.POWER_LEFT_DRIVE_2) + Robot.pdp.getCurrent(RobotMap.POWER_LEFT_DRIVE_3);
+	}
 }

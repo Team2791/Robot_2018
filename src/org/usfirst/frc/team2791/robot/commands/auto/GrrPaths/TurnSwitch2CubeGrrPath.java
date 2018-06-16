@@ -6,6 +6,7 @@ import org.usfirst.frc.team2791.pathing.RunPath;
 import org.usfirst.frc.team2791.pathing.ShakerPaths;
 import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.PauseDrivetrain;
+import org.usfirst.frc.team2791.robot.commands.drivetrain.SetDrivetrainShifterMode;
 import org.usfirst.frc.team2791.robot.commands.lift.LowerLiftAfterDelay;
 import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightBangBang;
 import org.usfirst.frc.team2791.robot.commands.lift.SetLiftPositionAfterDelay;
@@ -44,6 +45,8 @@ public class TurnSwitch2CubeGrrPath extends CommandGroup {
 	public TurnSwitch2CubeGrrPath(boolean isRight) {
 		addParallel(new SetLiftHeightBangBang(Constants.AUTON_EXTENDED_SWITCH_HEIGHT));
 		addParallel(new ExtendManipulatorAutonStart());
+		addParallel(new SetDrivetrainShifterMode(true));
+
 		if(isRight) {
 			addSequential(new RunPath(ShakerPaths.FROM_CENTER.SWITCH_RIGHT, driveToSwitchSpeedFunction), 2.5);
 		} else {

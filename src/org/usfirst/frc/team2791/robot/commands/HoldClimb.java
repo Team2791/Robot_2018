@@ -9,9 +9,7 @@ import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
 
 
 public class HoldClimb extends Command {
-    private ShakerDrivetrain drivetrain;
     public HoldClimb() {
-        drivetrain = Robot.drivetrain;
 
     }
 
@@ -22,7 +20,7 @@ public class HoldClimb extends Command {
      */
     @Override
     protected void initialize() {
-        drivetrain.setDriveOrRampMode(false);
+//        drivetrain.setDriveOrRampMode(false);
 
     }
 
@@ -33,7 +31,8 @@ public class HoldClimb extends Command {
      */
     @Override
     protected void execute() {
-        drivetrain.setLeftRightCurrent(Constants.leftHoldCurrent, Constants.rightHoldCurrent);
+//        Robot.drivetrain.setLeftRightCurrent(Constants.leftHoldCurrent, Constants.rightHoldCurrent);
+    	Robot.drivetrain.setLeftRightMotorOutputs(Constants.leftClimbSpeed, Constants.rightClimbSpeed);
     }
 
 
@@ -51,7 +50,7 @@ public class HoldClimb extends Command {
      */
     @Override
     protected void end() {
-        drivetrain.setLeftRightMotorOutputs(0.0, 0.0);
+//        Robot.drivetrain.setLeftRightMotorOutputs(0.0, 0.0);
     }
 
 

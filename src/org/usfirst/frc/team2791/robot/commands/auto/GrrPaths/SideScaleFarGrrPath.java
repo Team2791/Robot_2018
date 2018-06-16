@@ -7,6 +7,7 @@ import org.usfirst.frc.team2791.pathing.ShakerPaths;
 import org.usfirst.frc.team2791.robot.Constants;
 import org.usfirst.frc.team2791.robot.commands.auto.bangbang.DriveEncoderBangBang;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.PauseDrivetrain;
+import org.usfirst.frc.team2791.robot.commands.drivetrain.SetDrivetrainShifterMode;
 import org.usfirst.frc.team2791.robot.commands.lift.LowerLiftAfterDelay;
 import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightBangBang;
 import org.usfirst.frc.team2791.robot.commands.manipulator.IntakeCube;
@@ -18,6 +19,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class SideScaleFarGrrPath extends CommandGroup {
 	public SideScaleFarGrrPath(boolean onLeftSide) {
 		addParallel(new SetManipulatorRetracted(true));
+		addParallel(new SetDrivetrainShifterMode(true));
 		
 		Function<Double, Double> travelToScaleSF = x -> {
 			if (x < 0.03) {

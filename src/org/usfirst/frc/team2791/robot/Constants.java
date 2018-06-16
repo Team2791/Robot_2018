@@ -65,11 +65,11 @@ public class Constants {
 
 
 	// Climber Constants
-	public static final double leftClimbSpeed = 5;
-	public static final double rightClimbSpeed = 5;
+	public static final double leftClimbSpeed = -0.125; // -0.125 works well
+	public static final double rightClimbSpeed = -0.125; // -0.125 works well
 
-	public static final double leftHoldCurrent = 5;
-	public static final double rightHoldCurrent = 5;
+//	public static final double leftHoldCurrent = 5;
+//	public static final double rightHoldCurrent = 5;
 
 
 	// Time when ramps are allowed to be released

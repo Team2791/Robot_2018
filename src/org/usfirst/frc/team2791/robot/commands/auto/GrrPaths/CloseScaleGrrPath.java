@@ -9,6 +9,7 @@ import org.usfirst.frc.team2791.robot.commands.RunCommandAfterDelay;
 import org.usfirst.frc.team2791.robot.commands.auto.bangbang.DriveEncoderBangBang;
 import org.usfirst.frc.team2791.robot.commands.auto.bangbang.TurnGyroBangBang;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.PauseDrivetrain;
+import org.usfirst.frc.team2791.robot.commands.drivetrain.SetDrivetrainShifterMode;
 import org.usfirst.frc.team2791.robot.commands.lift.LowerLiftAfterDelay;
 import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightBangBang;
 import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightMagicMotionTopOrBottom;
@@ -42,6 +43,8 @@ public class CloseScaleGrrPath extends CommandGroup {
 	
 	public CloseScaleGrrPath(boolean onLeftSide) {
 		addParallel(new SetLiftHeightBangBang(Constants.AUTON_SCALE_HEIGHT));
+		addParallel(new SetDrivetrainShifterMode(true));
+
 //		addParallel(new ExtendManipulatorAutonStart());
 		addParallel(new SetManipulatorRetracted(true));
 		if(onLeftSide) {

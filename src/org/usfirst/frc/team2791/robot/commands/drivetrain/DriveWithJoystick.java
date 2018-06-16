@@ -26,11 +26,11 @@ public class DriveWithJoystick extends Command {
 	@Override
 	protected void execute() {
 		// exit early if in ramp mode
-		if(!Robot.drivetrain.isDrivetrainInDriveMode()){
-//			System.out.println("DriveWithJoystick: Drivetrain is not in Driving mode. Ending Command");
-			Robot.drivetrain.setLeftRightMotorOutputs(0, 0);
-			return;
-		}
+//		if(!Robot.drivetrain.isDrivetrainInDriveMode()){
+////			System.out.println("DriveWithJoystick: Drivetrain is not in Driving mode. Ending Command");
+//			Robot.drivetrain.setLeftRightMotorOutputs(0, 0);
+//			return;
+//		}
 		
 		if((Robot.lift.getHeight() > 13.75 || OI.driverSlowButton.get()) && !Robot.oi.operatorDpadLeft.get()) {
 			speedMultiplier = 0.5;

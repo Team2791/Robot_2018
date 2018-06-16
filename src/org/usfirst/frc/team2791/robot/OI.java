@@ -1,7 +1,9 @@
 package org.usfirst.frc.team2791.robot;
 
 import org.usfirst.frc.team2791.robot.commands.Climb;
+import org.usfirst.frc.team2791.robot.commands.HoldClimb;
 import org.usfirst.frc.team2791.robot.commands.SetSpeedModifier;
+import org.usfirst.frc.team2791.robot.commands.drivetrain.SwitchDrivetrainShifterMode;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.Creep;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.SetDrivetrainShifterMode;
 import org.usfirst.frc.team2791.robot.commands.lift.RunLiftWithJoystick;
@@ -70,25 +72,28 @@ public class OI {
 		
 
 
-		raiseRampsLeftButton = driverStart;
-		raiseRampsRightButton = driverBack;
-		raiseRampsDoubleButton = new DoubleButton(raiseRampsLeftButton, raiseRampsRightButton, "OR");
-		raiseRampsDoubleButton.whileHeld(new RaiseRamps(raiseRampsLeftButton, raiseRampsRightButton));
+//		raiseRampsLeftButton = driverStart;
+//		raiseRampsRightButton = driverBack;
+//		raiseRampsDoubleButton = new DoubleButton(raiseRampsLeftButton, raiseRampsRightButton, "OR");
+//		raiseRampsDoubleButton.whileHeld(new RaiseRamps(raiseRampsLeftButton, raiseRampsRightButton));
 
 		driverLB.whileHeld(new Creep(-0.22));
 		driverRB.whileHeld(new Creep(0.22));
 		
 		// this is not used in teleop. It's just nice to have for resetting the robot.
-		driverDpadUp.whenPressed(new SetDrivetrainShifterMode(true));
-		driverDpadUp.whenPressed(new SetRampDeploy(false));
+		
+//		driverDpadUp.whenPressed(new SetDrivetrainShifterMode(true));
+		driverDpadUp.whenPressed(new SwitchDrivetrainShifterMode());
+
+//		driverDpadUp.whenPressed(new SetRampDeploy(false));
 		
 //		lowerRampsRightButton = driverDpadRight;
 //		lowerRampsLeftButton = driverDpadLeft;
 //		lowerRampsDoubleButton = new DoubleButton(driverDpadLeft, driverDpadRight, "OR");
 //		lowerRampsDoubleButton.whileHeld(new LOWERRamps(driverDpadLeft, driverDpadRight));
 
-		climbButton = driverDpadUp;
-		climbButton.whileHeld(new Climb());
+		climbButton = driverStart;
+		climbButton.whileHeld(new HoldClimb());
 		
 		/********************************** Operator Button Assignments ****************************************/
 

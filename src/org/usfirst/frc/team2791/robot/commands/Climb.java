@@ -9,6 +9,7 @@ import org.usfirst.frc.team2791.robot.commands.lift.RaiseLiftToTopAfterDelay;
 import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightMagicMotion;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerDrivetrain;
 import org.usfirst.frc.team2791.robot.subsystems.ShakerLift;
+import org.usfirst.frc.team2791.robot.commands.drivetrain.SetDrivetrainShifterMode;;
 
 
 public class Climb extends CommandGroup {
@@ -24,7 +25,9 @@ public class Climb extends CommandGroup {
         this.drivetrain = Robot.drivetrain;
 
         // Set Drive mode
-        drivetrain.setDriveOrRampMode(true);
+        new SetDrivetrainShifterMode(true);
+     // Pause (for Debug)
+        new GenericPause(1.0 + debugPause);
         // Raise lift to get hook above bar
         new SetLiftHeightMagicMotion((5 * 12) + 8);
         // Lower lift to bottom
