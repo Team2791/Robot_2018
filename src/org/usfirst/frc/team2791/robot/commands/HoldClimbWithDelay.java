@@ -40,9 +40,8 @@ public class HoldClimbWithDelay extends Command {
      */
     @Override
     protected void execute() {
-        drivetrain.setLeftRightCurrent(Constants.leftHoldCurrent, Constants.rightHoldCurrent);
+//        drivetrain.setLeftRightCurrent(Constants.leftHoldCurrent, Constants.rightHoldCurrent);
     }
-
 
     @Override
     protected boolean isFinished() {

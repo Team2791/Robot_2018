@@ -12,7 +12,9 @@ import org.usfirst.frc.team2791.robot.commands.drivetrain.PauseDrivetrain;
 import org.usfirst.frc.team2791.robot.commands.drivetrain.SetDrivetrainShifterMode;
 import org.usfirst.frc.team2791.robot.commands.lift.LowerLiftAfterDelay;
 import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightBangBang;
+import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightMagicMotion;
 import org.usfirst.frc.team2791.robot.commands.lift.SetLiftHeightMagicMotionTopOrBottom;
+import org.usfirst.frc.team2791.robot.commands.manipulator.IntakeAndHoldCube;
 import org.usfirst.frc.team2791.robot.commands.manipulator.IntakeCube;
 import org.usfirst.frc.team2791.robot.commands.manipulator.SetManipulatorRetracted;
 import org.usfirst.frc.team2791.robot.commands.manipulator.ShootCube;
@@ -53,7 +55,7 @@ public class CloseScaleGrrPath extends CommandGroup {
 			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.DriveIntoRightScale, driveToScaleSpeedFunc, RunPath.Direction.FORWARDS));
 		}
 //		addSequential(new PauseDrivetrain(0.3));
-		addSequential(new ShootCube(0.5, 0.5));
+		addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED, 0.5));
 		addParallel(new SetManipulatorRetracted(false));
 		addParallel(new LowerLiftAfterDelay(0.8));
 		if(onLeftSide) {
@@ -63,7 +65,7 @@ public class CloseScaleGrrPath extends CommandGroup {
 		}
 		
 		addParallel(new IntakeCube());
-		addSequential(new PauseDrivetrain(.5));
+//		addParallel(new PauseDrivetrain(.5));
 		// This path is from the far side 2 cube!
 		if(onLeftSide) {
 			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromRightScale, 0.3, RunPath.Direction.FORWARDS_MIRRORED));
@@ -73,29 +75,30 @@ public class CloseScaleGrrPath extends CommandGroup {
 //		addParallel(new RaiseLiftToTopAfterDelay(1)); // This hit the scale
 		addParallel(new IntakeCube());
 //		addParallel(new SetManipulatorRetracted(true));
-		addParallel(new RunCommandAfterDelay(0.5, new SetManipulatorRetracted(true)));
+//		addParallel(new RunCommandAfterDelay(0.5, new SetManipulatorRetracted(true)));
 		addSequential(new PauseDrivetrain(.25));
 		if(onLeftSide) {
-			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.BackUpToRightScale, backupToScaleSpeedFunc, RunPath.Direction.BACKWARDS_MIRRORED)); // this is not tested needs to be tested in order for it to be correct
+			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.BackUpToRightScale, backupToScaleSpeedFunc, RunPath.Direction.BACKWARDS_MIRRORED), 5); // this is not tested needs to be tested in order for it to be correct
 		} else {
-			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.BackUpToRightScale, backupToScaleSpeedFunc, RunPath.Direction.BACKWARDS));
+			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.BackUpToRightScale, backupToScaleSpeedFunc, RunPath.Direction.BACKWARDS), 5);
 		}
-		addParallel(new IntakeCube());
-		addSequential(new SetLiftHeightBangBang(Constants.AUTON_SCALE_HEIGHT));
-		addParallel(new SetManipulatorRetracted(false));
-		addSequential(new DriveEncoderBangBang(0.5, 0, 6));
-		addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED, 0.5));
+//		addParallel(new IntakeCube());
+		
+		addSequential(new SetLiftHeightBangBang(38.75));//Constants.AUTON_SCALE_HEIGHT
+		addParallel(new SetManipulatorRetracted(true));
+		addSequential(new DriveEncoderBangBang(0.5, 0, 10)); // Params were 0.5 , 0, 6; 1, 0, 6
+		addSequential(new ShootCube(Constants.SMALL_OUTPUT_SPEED, 0.5));
 		
 		// backup, lower the lift and turn
 //		addParallel(new SetManipulatorRetracted(false));
-		addSequential(new DriveEncoderBangBang(-0.5, 0, -12));
-		addParallel(new SetLiftHeightMagicMotionTopOrBottom(false));
-		if(onLeftSide) {
-			addSequential(new TurnGyroBangBang(-30, -0.4));
-		} else {
-			addSequential(new TurnGyroBangBang(30, 0.4));
-		}
-		addSequential(new PauseDrivetrain(10));
+//		addSequential(new DriveEncoderBangBang(-0.5, 0, -12));
+//		addParallel(new SetLiftHeightMagicMotionTopOrBottom(false));
+//		if(onLeftSide) {
+//			addSequential(new TurnGyroBangBang(-30, -0.4));
+//		} else {
+//			addSequential(new TurnGyroBangBang(30, 0.4));
+//		}
+//		addSequential(new PauseDrivetrain(10));
 	}
 
 }

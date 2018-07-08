@@ -11,6 +11,7 @@ public class ScaleAutonChooser extends AutonCommandChooser {
 	@Override
 	public Command getCommand(boolean weOwnLeftSideNearSwitch,
 			boolean weOwnLeftSideScale, boolean weOwnLeftSideFarSwitch) {
+		for(int i = 0; i < 10; i++) {System.out.println(weOwnLeftSideScale);}
 		if(weOwnLeftSideScale) {
 			return leftSideAuto;
 		} else {

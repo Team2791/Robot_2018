@@ -107,8 +107,10 @@ public class ShakerLift extends Subsystem {
     	// - Analog-In Position, Analog-In Velocity, 10bit ADC Value, 
     	// The value can be positive or negative so only divide by 2**9
     	// THIS DOES NOT WORK!
-    	return convertSRXInitsToLiftHeight(getSRXVoltageFeedback()) + Constants.LIFT_POT_OFFSET;
-//    	return potentiometer.get();
+    	double val = convertSRXInitsToLiftHeight(getSRXVoltageFeedback()) + Constants.LIFT_POT_OFFSET;
+//    	System.out.println(val);
+    	return val;
+    	//    	return potentiometer.get();
     }
     
     public double getVelocity() {

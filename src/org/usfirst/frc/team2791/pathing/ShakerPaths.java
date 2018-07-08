@@ -97,10 +97,30 @@ public class ShakerPaths {
 //		, 33));
 		//----------------------------------------------------------------------------------
 
+//		public static final Path DriveIntoRightScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":0,"y":300},"mid1":{"x":170,"y":300},"mid2":{"x":200,"y":310},"end":{"x":256,"y":285}} */
+//		(0 + 60 * t + -135 * Math.pow(t, 2))/ (510 + -840 * t + 498 * Math.pow(t, 2)) 
+//		, 259));
+		
+//		public static final Path DriveIntoRightScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":0,"y":300},"mid1":{"x":170,"y":300},"mid2":{"x":246,"y":322},"end":{"x":256,"y":284}} */
+//		(0 + 132 * t + -246 * Math.pow(t, 2))/
+//(510 + -564 * t + 84 * Math.pow(t, 2)) 
+//		, 266));
+		
+//		public static final Path DriveIntoRightScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":0,"y":300},"mid1":{"x":170,"y":300},"mid2":{"x":266,"y":312},"end":{"x":276,"y":280}} */
+//		(0 + 72 * t + -168 * Math.pow(t, 2))/
+//(510 + -444 * t + -36 * Math.pow(t, 2)) 
+//		, 283));
+		
 		public static final Path DriveIntoRightScale = new Path(new PathSegment(t -> 
-		/* {"start":{"x":0,"y":300},"mid1":{"x":170,"y":300},"mid2":{"x":200,"y":310},"end":{"x":256,"y":285}} */
-		(0 + 60 * t + -135 * Math.pow(t, 2))/ (510 + -840 * t + 498 * Math.pow(t, 2)) 
-		, 259));
+		/* {"start":{"x":0,"y":300},"mid1":{"x":170,"y":300},"mid2":{"x":266,"y":312},"end":{"x":273,"y":291}} */
+		(0 + 72 * t + -135 * Math.pow(t, 2))/
+(510 + -444 * t + -45 * Math.pow(t, 2)) 
+		, 275)); // 277
+		
+		
 		//----------------------------------------------------------------------------------
 		
 		// Switched points
@@ -138,20 +158,82 @@ public class ShakerPaths {
 ////			(-57 + -18 * t + 57 * Math.pow(t, 2))/ (3 + -90 * t + 33 * Math.pow(t, 2))
 ////			, 60));
 
-		public static final Path GetCubeFromRightScale = new Path(new PathSegment(t ->
-/* {"start":{"x":253,"y":285},"mid1":{"x":254,"y":266},"mid2":{"x":240,"y":244},"end":{"x":232,"y":234}} */
-(-57 + -18 * t + 45 * Math.pow(t, 2))/ (3 + -90 * t + 63 * Math.pow(t, 2))
-, 57));
+//		public static final Path GetCubeFromRightScale = new Path(new PathSegment(t ->
+///* {"start":{"x":253,"y":285},"mid1":{"x":254,"y":266},"mid2":{"x":240,"y":244},"end":{"x":232,"y":234}} */
+//(-57 + -18 * t + 45 * Math.pow(t, 2))/ (3 + -90 * t + 63 * Math.pow(t, 2))
+//, 57));
+		
+		
+//		public static final Path GetCubeFromRightScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":253,"y":285},"mid1":{"x":255,"y":268},"mid2":{"x":240,"y":247},"end":{"x":220,"y":243}} */
+//		(-51 + -24 * t + 63 * Math.pow(t, 2))/ (6 + -102 * t + 36 * Math.pow(t, 2)) 
+//		, 58));
+		
+//		public static final Path GetCubeFromRightScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":253,"y":285},"mid1":{"x":251,"y":273},"mid2":{"x":238,"y":259},"end":{"x":210,"y":254}} */
+//		(-36 + -12 * t + 33 * Math.pow(t, 2))/ (-6 + -66 * t + -12 * Math.pow(t, 2)) 
+//		, 57));
+		
+//		public static final Path GetCubeFromRightScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":253,"y":285},"mid1":{"x":251,"y":265},"mid2":{"x":237,"y":246},"end":{"x":210,"y":254}} */
+//		(-60 + 6 * t + 78 * Math.pow(t, 2))/
+//		(-6 + -72 * t + -3 * Math.pow(t, 2)) 
+//		, 63));
+		
+//		public static final Path GetCubeFromRightScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":253,"y":285},"mid1":{"x":251,"y":265},"mid2":{"x":245,"y":222},"end":{"x":210,"y":254}} */
+//		(-60 + -138 * t + 294 * Math.pow(t, 2))/
+//		(-6 + -24 * t + -75 * Math.pow(t, 2)) 
+//		, 77));
+		
+////		public static final Path GetCubeFromRightScale = new Path(new PathSegment(t -> 
+////			/* {"start":{"x":253,"y":285},"mid1":{"x":253,"y":272},"mid2":{"x":225,"y":268},"end":{"x":210,"y":254}} */
+////			(-39 + 54 * t + -57 * Math.pow(t, 2))/(0 + -168 * t + 123 * Math.pow(t, 2)) 
+////			, 55)); // 55
+//		
+//		
+//		^
+//		|
+//		|
+//		Best Path So Far
+		
+		
+		
+		
+		
+		public static final Path GetCubeFromRightScale = new Path(new PathSegment(t -> 
+		/* {"start":{"x":253,"y":285},"mid1":{"x":253,"y":272},"mid2":{"x":225,"y":268},"end":{"x":208,"y":248}} */
+		(-39 + 54 * t + -75 * Math.pow(t, 2))/
+(0 + -168 * t + 117 * Math.pow(t, 2)) 
+		, 60));
 
+		
+//		public static final Path GetCubeFromRightScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":253,"y":285},"mid1":{"x":253,"y":272},"mid2":{"x":230,"y":253},"end":{"x":210,"y":245}} */
+//		(-39 + -36 * t + 51 * Math.pow(t, 2))/
+//		(0 + -138 * t + 78 * Math.pow(t, 2)) 
+//		, 61));
 
 
 		//----------------------------------------------------------------------------------
 
 		//Still less overshoot
+//		public static final Path BackUpToRightScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":304,"y":302},"mid1":{"x":297,"y":269},"mid2":{"x":297,"y":297},"end":{"x":228,"y":243}} */
+//		(-99 + 366 * t + -429 * Math.pow(t, 2))/ (-21 + 42 * t + -228 * Math.pow(t, 2)) 
+//		, 101));
+		
+//		public static final Path BackUpToRightScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":319,"y":318},"mid1":{"x":318,"y":282},"mid2":{"x":297,"y":297},"end":{"x":228,"y":243}} */
+//		(-108 + 306 * t + -360 * Math.pow(t, 2))/ (-3 + -120 * t + -84 * Math.pow(t, 2)) 
+//		, 124));
+		
 		public static final Path BackUpToRightScale = new Path(new PathSegment(t -> 
-		/* {"start":{"x":304,"y":302},"mid1":{"x":297,"y":269},"mid2":{"x":297,"y":297},"end":{"x":228,"y":243}} */
-		(-99 + 366 * t + -429 * Math.pow(t, 2))/ (-21 + 42 * t + -228 * Math.pow(t, 2)) 
-		, 101));
+		/* {"start":{"x":319,"y":310},"mid1":{"x":318,"y":282},"mid2":{"x":297,"y":297},"end":{"x":228,"y":243}} */
+		(-84 + 258 * t + -336 * Math.pow(t, 2))/
+		(-3 + -120 * t + -84 * Math.pow(t, 2)) 
+		, 117));
+		
 		//----------------------------------------------------------------------------------
 
 	}

@@ -78,6 +78,7 @@ public class Manipulator extends Subsystem {
 //        boolean right = !iRSensorRight.get();
 
 //        return left ^ right;
+    	//System.out.println(getMaxMotorCurrent());
     	return cubeJammedDelayedBoolean.update(getMaxMotorCurrent() > Constants.INTAKE_CUBE_STALL_CURRENT && !isCubeInGripper());
     }
 

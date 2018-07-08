@@ -129,17 +129,17 @@ public class Robot extends TimedRobot {
 //			new TurnSwitch2CubeGrrPath(true)
 //		);
 
-//		DEFAULT_AUTO_NAME = "D: side scale grr pathing LEFT - PID";
-//		DEFAULT_AUTO = new ScaleAutonChooser(
-//				new CloseScaleGrrPath(true),
-//				new SideScaleFarGrrPath(true)
-//		);
-
-		DEFAULT_AUTO_NAME = "D: side scale grr pathing RIGHT - PID";
+		DEFAULT_AUTO_NAME = "D: side scale grr pathing LEFT - PID";
 		DEFAULT_AUTO = new ScaleAutonChooser(
-				new SideScaleFarGrrPath(false),
-				new CloseScaleGrrPath(false)
+				new CloseScaleGrrPath(true),
+				new SideScaleFarGrrPath(true)
 		);
+
+//		DEFAULT_AUTO_NAME = "D: side scale grr pathing RIGHT - PID";
+//		DEFAULT_AUTO = new ScaleAutonChooser(
+//				new SideScaleFarGrrPath(false),
+//				new CloseScaleGrrPath(false)
+//		);
 		
 //		DEFAULT_AUTO_NAME = "D: side scale tip or cross LEFT - PID";
 //		DEFAULT_AUTO = new ScaleAutonChooser(
@@ -294,7 +294,6 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void disabledInit() {
-		Robot.drivetrain.setVoltageRampRate(0);
 		Robot.drivetrain.setBrakeMode(false);
 		Robot.ramps.setRampsDown(false);
 		updateGameData(true);
@@ -329,21 +328,25 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
 		Robot.drivetrain.setBrakeMode(true);
+		Robot.drivetrain.setVoltageRampRate(0);
 		updateGameData(true);
 		Robot.drivetrain.resetEncoders();
 		Robot.drivetrain.resetGyro();
 		// schedule the autonomous command
 
-		autonCommandChooser = chooser.getSelected();
-
-		//&& DEBUG == false
-		if (autonCommandChooser != null) {
-			autonomousCommand = autonCommandChooser.getCommand(weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch);
-		}
-
-		if (autonomousCommand != null) {
-			autonomousCommand.start();
-		}
+//		autonCommandChooser = chooser.getSelected();
+//
+//		//&& DEBUG == false
+//		if (autonCommandChooser != null) {
+//			autonomousCommand = autonCommandChooser.getCommand(weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch);
+//		}
+//
+//		if (autonomousCommand != null) {
+//			autonomousCommand.start();
+//		}
+		
+		autonomousCommand = DEFAULT_AUTO.getCommand(weOwnLeftSideNearSwitch, weOwnLeftSideScale, weOwnLeftSideFarSwitch);
+		autonomousCommand.start();
 	}
 
 	/**
@@ -359,7 +362,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopInit() {
 		Robot.drivetrain.setBrakeMode(false);
-		Robot.drivetrain.setVoltageRampRate(0);
+		Robot.drivetrain.setVoltageRampRate(.1);
 		updateGameData(true);
 	}
 
