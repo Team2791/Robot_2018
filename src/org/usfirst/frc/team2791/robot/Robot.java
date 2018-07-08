@@ -123,17 +123,17 @@ public class Robot extends TimedRobot {
 //		autonomousCommand = new SideScaleFarGrrPath(true);
 
 ////		// Set up our auton chooser
-//		DEFAULT_AUTO_NAME = "D: Center switch Grr path 2.5 cube";
-//		DEFAULT_AUTO = new NearSwitchAutonChooser(
-//			new TurnSwitch2CubeGrrPath(false),
-//			new TurnSwitch2CubeGrrPath(true)
-//		);
-
-		DEFAULT_AUTO_NAME = "D: side scale grr pathing LEFT - PID";
-		DEFAULT_AUTO = new ScaleAutonChooser(
-				new CloseScaleGrrPath(true),
-				new SideScaleFarGrrPath(true)
+		DEFAULT_AUTO_NAME = "D: Center switch Grr path 2.5 cube";
+		DEFAULT_AUTO = new NearSwitchAutonChooser(
+			new TurnSwitch2CubeGrrPath(false),
+			new TurnSwitch2CubeGrrPath(true)
 		);
+
+//		DEFAULT_AUTO_NAME = "D: side scale grr pathing LEFT - PID";
+//		DEFAULT_AUTO = new ScaleAutonChooser(
+//				new CloseScaleGrrPath(true),
+//				new SideScaleFarGrrPath(true)
+//		);
 
 //		DEFAULT_AUTO_NAME = "D: side scale grr pathing RIGHT - PID";
 //		DEFAULT_AUTO = new ScaleAutonChooser(

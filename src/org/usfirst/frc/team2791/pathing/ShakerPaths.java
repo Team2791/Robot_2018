@@ -29,10 +29,15 @@ public class ShakerPaths {
 		, 314));
 		//----------------------------------------------------------------------------------
 		
+//		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":268,"y":170},"mid1":{"x":260,"y":120},"mid2":{"x":271,"y":83},"end":{"x":303,"y":99}} */
+//		(-150 + 78 * t + 120 * Math.pow(t, 2))/ (-24 + 114 * t + 6 * Math.pow(t, 2)) 
+//		, 101));
+		
 		public static final Path DriveIntoLeftScale = new Path(new PathSegment(t -> 
-		/* {"start":{"x":268,"y":170},"mid1":{"x":260,"y":120},"mid2":{"x":271,"y":83},"end":{"x":303,"y":99}} */
-		(-150 + 78 * t + 120 * Math.pow(t, 2))/ (-24 + 114 * t + 6 * Math.pow(t, 2)) 
-		, 101));
+		/* {"start":{"x":268,"y":170},"mid1":{"x":260,"y":120},"mid2":{"x":271,"y":91},"end":{"x":303,"y":99}} */
+		(-150 + 126 * t + 48 * Math.pow(t, 2))/(-24 + 114 * t + 6 * Math.pow(t, 2)) 
+		, 97)); // less sharp turn
 		//----------------------------------------------------------------------------------
 		
 		//Switched points

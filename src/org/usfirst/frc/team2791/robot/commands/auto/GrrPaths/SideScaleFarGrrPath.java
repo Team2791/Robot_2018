@@ -66,43 +66,43 @@ public class SideScaleFarGrrPath extends CommandGroup {
 		};
 		
 		// backup and lower the lift
-		addParallel(new LowerLiftAfterDelay(1.25));
-		if(onLeftSide) {
-			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.BackupFromLeftScale, backupFromScaleSF, RunPath.Direction.BACKWARDS_MIRRORED));
-		} else {
-			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.BackupFromLeftScale, backupFromScaleSF, RunPath.Direction.BACKWARDS));
-		}
-		// pickup the next cube
-//		addSequential(new SetManipulatorRetracted(true));
-		addParallel(new IntakeCube());
-		
-		// speed was 0.3
-		if(onLeftSide) {
-			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromLeftScale, x -> 0.5, RunPath.Direction.FORWARDS_MIRRORED));
-		} else {
-			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromLeftScale, x -> 0.5, RunPath.Direction.FORWARDS));
-		}
-		// add these steps when successful
-		addSequential(new PauseDrivetrain(1));
-		// speed was -0.3
-		addSequential(new DriveEncoderBangBang(-0.5, 0, -14));
-		addParallel(new SetLiftHeightBangBang(Constants.AUTON_SCALE_HEIGHT)); // this was from just before go to left scale 2nd drive hack
-		if(onLeftSide) {
-			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromLeftScale, x-> -0.5, RunPath.Direction.BACKWARDS_MIRRORED));
-		} else {
-			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromLeftScale, x-> -0.5, RunPath.Direction.BACKWARDS));
-		}
-		// speed was 0.3
-//		addParallel(new SetLiftHeightBangBang(Constants.AUTON_SCALE_HEIGHT)); // moved up
-		if(onLeftSide) {
-			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GoToLeftScale2ndDriveHACK, x-> 0.5, RunPath.Direction.FORWARDS_MIRRORED));
-		} else {
-			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GoToLeftScale2ndDriveHACK, x-> 0.5, RunPath.Direction.FORWARDS));
-		}
-		// was 0.5
-		addParallel(new PauseDrivetrain(.25));
-//		addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED), 0.5);
-		addSequential(new ShootCube(.6), 0.5);
+//		addParallel(new LowerLiftAfterDelay(1.25));
+//		if(onLeftSide) {
+//			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.BackupFromLeftScale, backupFromScaleSF, RunPath.Direction.BACKWARDS_MIRRORED));
+//		} else {
+//			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.BackupFromLeftScale, backupFromScaleSF, RunPath.Direction.BACKWARDS));
+//		}
+//		// pickup the next cube
+////		addSequential(new SetManipulatorRetracted(true));
+//		addParallel(new IntakeCube());
+//		
+//		// speed was 0.3
+//		if(onLeftSide) {
+//			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromLeftScale, x -> 0.5, RunPath.Direction.FORWARDS_MIRRORED));
+//		} else {
+//			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromLeftScale, x -> 0.5, RunPath.Direction.FORWARDS));
+//		}
+//		// add these steps when successful
+//		addSequential(new PauseDrivetrain(1));
+//		// speed was -0.3
+//		addSequential(new DriveEncoderBangBang(-0.5, 0, -14));
+//		addParallel(new SetLiftHeightBangBang(Constants.AUTON_SCALE_HEIGHT)); // this was from just before go to left scale 2nd drive hack
+//		if(onLeftSide) {
+//			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromLeftScale, x-> -0.5, RunPath.Direction.BACKWARDS_MIRRORED));
+//		} else {
+//			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GetCubeFromLeftScale, x-> -0.5, RunPath.Direction.BACKWARDS));
+//		}
+//		// speed was 0.3
+////		addParallel(new SetLiftHeightBangBang(Constants.AUTON_SCALE_HEIGHT)); // moved up
+//		if(onLeftSide) {
+//			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GoToLeftScale2ndDriveHACK, x-> 0.5, RunPath.Direction.FORWARDS_MIRRORED));
+//		} else {
+//			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GoToLeftScale2ndDriveHACK, x-> 0.5, RunPath.Direction.FORWARDS));
+//		}
+//		// was 0.5
+//		addParallel(new PauseDrivetrain(.25));
+////		addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED), 0.5);
+//		addSequential(new ShootCube(.6), 0.5);
 
 	}
 }
