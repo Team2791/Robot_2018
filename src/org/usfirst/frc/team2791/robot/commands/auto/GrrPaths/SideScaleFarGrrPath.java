@@ -91,6 +91,7 @@ public class SideScaleFarGrrPath extends CommandGroup {
 		}
 		// speed was 0.3
 		addParallel(new SetLiftHeightBangBang(Constants.AUTON_SCALE_HEIGHT));
+		addParallel(new SetManipulatorRetracted(true));
 		if(onLeftSide) {
 			addSequential(new RunPath(ShakerPaths.FROM_RIGHT.GoToLeftScale2ndDriveHACK, x-> 0.5, RunPath.Direction.FORWARDS_MIRRORED));
 		} else {
@@ -99,7 +100,7 @@ public class SideScaleFarGrrPath extends CommandGroup {
 		// was 0.5
 		addParallel(new PauseDrivetrain(.25));
 //		addSequential(new ShootCube(Constants.LARGE_OUTPUT_SPEED), 0.5);
-		addSequential(new ShootCube(.6), 0.5);
+		addSequential(new ShootCube(.3), 0.5);
 
 	}
 }

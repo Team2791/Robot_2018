@@ -13,6 +13,11 @@ public class ShakerPaths {
 		(18 + -336 * t + 312 * Math.pow(t, 2))/ (75 + -330 * t + 501 * Math.pow(t, 2)) 
 		, 99));
 		
+		public static final Path SWITCH_TO_CUBE_LEFT_2 = new Path(new PathSegment(t -> 
+		/* {"start":{"x":55,"y":147},"mid1":{"x":80,"y":154},"mid2":{"x":50,"y":110},"end":{"x":132,"y":111}} */
+		(21 + -306 * t + 288 * Math.pow(t, 2))/ (75 + -330 * t + 501 * Math.pow(t, 2)) 
+		, 93));
+		
 		//----------------------------------------------------------------------------------		
 		//Less wide
 		public static final Path SWITCH_LEFT = new Path(new PathSegment(t -> 
@@ -50,12 +55,20 @@ public class ShakerPaths {
 		
 		
 		//Slightly farther
+//		public static final Path GoToLeftScale2ndDriveHACK = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":260,"y":60},"mid1":{"x":260,"y":61},"mid2":{"x":263,"y":97},"end":{"x":312,"y":97}} */
+//		(3 + 210 * t + -213 * Math.pow(t, 2))/ (0 + 18 * t + 129 * Math.pow(t, 2)) 
+//		, 52)); // was 71, 65 was just too much, 60 was also a bit high 
+//		//----------------------------------------------------------------------------------
+		
+//		public static final Path GoToLeftScale2ndDriveHACK = new Path(new PathSegment(t -> 
+///* {"start":{"x":260,"y":60},"mid1":{"x":260,"y":61},"mid2":{"x":263,"y":97},"end":{"x":317,"y":104}} */
+//(3 + 210 * t + -192 * Math.pow(t, 2))/ (0 + 18 * t + 144 * Math.pow(t, 2)) 
+//, 78)); endpoint went too far
 		public static final Path GoToLeftScale2ndDriveHACK = new Path(new PathSegment(t -> 
-		/* {"start":{"x":260,"y":60},"mid1":{"x":260,"y":61},"mid2":{"x":263,"y":97},"end":{"x":312,"y":97}} */
-		(3 + 210 * t + -213 * Math.pow(t, 2))/ (0 + 18 * t + 129 * Math.pow(t, 2)) 
-		, 52)); // was 71, 65 was just too much, 60 was also a bit high 
-		//----------------------------------------------------------------------------------
-			
+		/* {"start":{"x":260,"y":60},"mid1":{"x":260,"y":61},"mid2":{"x":263,"y":97},"end":{"x":312,"y":98}} */
+		(3 + 210 * t + -201 * Math.pow(t, 2))/ (0 + 18 * t + 135 * Math.pow(t, 2)) 
+		, 74));
 					
 		public static final Path GoToLeftCube = new Path(new PathSegment(t -> 
 			/* {"start":{"x":260,"y":60},"mid1":{"x":252,"y":97},"mid2":{"x":245,"y":132},"end":{"x":245,"y":132}} */
@@ -80,11 +93,21 @@ public class ShakerPaths {
 //		/* {"start":{"x":260,"y":60},"mid1":{"x":257,"y":73},"mid2":{"x":253,"y":86},"end":{"x":244,"y":95}} */
 //		(39 + 0 * t + -12 * Math.pow(t, 2))/ (-9 + -6 * t + -12 * Math.pow(t, 2)) 
 //		, 39));
+//		public static final Path GetCubeFromLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":260,"y":60},"mid1":{"x":257,"y":73},"mid2":{"x":253,"y":84},"end":{"x":244,"y":91}} */
+//		(39 + -12 * t + -6 * Math.pow(t, 2))/ (-9 + -6 * t + -12 * Math.pow(t, 2)) 
+//		, 36));
+////		// ^^ this path is pretty good
+//		public static final Path GetCubeFromLeftScale = new Path(new PathSegment(t -> 
+//		/* {"start":{"x":260,"y":60},"mid1":{"x":252,"y":69},"mid2":{"x":247,"y":84},"end":{"x":226,"y":88}} */
+//		(27 + 36 * t + -51 * Math.pow(t, 2))/ (-24 + 18 * t + -57 * Math.pow(t, 2)) 
+//		, 46)); pretty good but path too long
 		public static final Path GetCubeFromLeftScale = new Path(new PathSegment(t -> 
-		/* {"start":{"x":260,"y":60},"mid1":{"x":257,"y":73},"mid2":{"x":253,"y":84},"end":{"x":244,"y":91}} */
-		(39 + -12 * t + -6 * Math.pow(t, 2))/ (-9 + -6 * t + -12 * Math.pow(t, 2)) 
-		, 36));
-//		// ^^ this path is pretty good
+		/* {"start":{"x":260,"y":60},"mid1":{"x":252,"y":69},"mid2":{"x":247,"y":84},"end":{"x":233,"y":87}} */
+		(27 + 36 * t + -54 * Math.pow(t, 2))/ (-24 + 18 * t + -36 * Math.pow(t, 2)) 
+		, 40));
+		  
+
 		
 //		public static final Path GetCubeFromLeftScale = new Path(new PathSegment(t -> 
 //		/* {"start":{"x":260,"y":60},"mid1":{"x":257,"y":73},"mid2":{"x":260,"y":87},"end":{"x":244,"y":91}} */

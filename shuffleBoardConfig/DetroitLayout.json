@@ -1,5 +1,5 @@
 {
-  "dividerPosition": 0.23943661971830985,
+  "dividerPosition": 0.23971518987341772,
   "tabPane": [
     {
       "title": "Tab 1",
@@ -205,7 +205,7 @@
             "content": {
               "_type": "Graph",
               "_source0": "network_table:///SmartDashboard/Manipulator - Current",
-              "_title": "SmartDashboard/Manipulator - Current",
+              "_title": "/SmartDashboard/Manipulator - Current",
               "Visible time": 30.0,
               "SmartDashboard/Manipulator - Current visible": true
             }
@@ -218,7 +218,7 @@
             "content": {
               "_type": "Graph",
               "_source0": "network_table:///SmartDashboard/Manipulator - Max Current",
-              "_title": "SmartDashboard/Manipulator - Max Current",
+              "_title": "/SmartDashboard/Manipulator - Max Current",
               "Visible time": 30.0,
               "SmartDashboard/Manipulator - Max Current visible": true
             }
@@ -584,7 +584,7 @@
             "content": {
               "_type": "Graph",
               "_source0": "network_table:///SmartDashboard/Lift - Velocity",
-              "_title": "SmartDashboard/Lift - Velocity",
+              "_title": "/SmartDashboard/Lift - Velocity",
               "Visible time": 30.0,
               "SmartDashboard/Lift - Velocity visible": true
             }
@@ -597,7 +597,7 @@
             "content": {
               "_type": "Graph",
               "_source0": "network_table:///SmartDashboard/LIFT - MM - Error IN",
-              "_title": "SmartDashboard/LIFT - MM - Error IN",
+              "_title": "/SmartDashboard/LIFT - MM - Error IN",
               "Visible time": 30.0,
               "SmartDashboard/LIFT - MM - Error IN visible": true
             }
